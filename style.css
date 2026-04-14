@@ -1,553 +1,697 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Son_of_IAM_ | Stirring Hearts Through Art</title>
-    <link rel="stylesheet" href="style.css">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_GA4_ID"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-YOUR_GA4_ID');
-    </script>
-
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      
-      /* Initialize the Pixel and track a standard PageView */
-      fbq('init', 'YOUR_META_PIXEL_ID');
-      fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=YOUR_META_PIXEL_ID&ev=PageView&noscript=1"
-    /></noscript>
-
-    <script>
-      !function (w, d, t) {
-        w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
-        
-        /* Initialize the Pixel and track a standard PageView */
-        ttq.load('YOUR_TIKTOK_PIXEL_ID');
-        ttq.page();
-      }(window, document, 'ttq');
-      
-    </script>
-    <style>
-        /* GLOBAL VARIABLES */
-        :root {
-            --color-dominant: #7205CD; 
-            --color-compliment: #5D7FFF; 
-            --color-highlight-light: #FFFFFF;
-            --color-highlight-dark: #000000;
-            --font-primary: 'Optima', sans-serif;
-            --font-secondary: 'Georgia', serif; 
-        }
-
-        /* RESET & BASE STYLES */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: var(--font-secondary);
-            background-color: var(--color-highlight-light);
-            color: var(--color-highlight-dark);
-            line-height: 1.6;
-            overflow-x: hidden; 
-        }
-
-        /* --- HEADER & NAVIGATION --- */
-        header {
-            display: flex;
-            justify-content: space-between;
-            padding: 30px 5%;
-            align-items: center;
-            position: relative;
-            z-index: 2000;
-        }
-        
-        .logo {
-            font-family: var(--font-primary);
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        /* SCROLLING TEXT BANNER (Marquee) */
-        .scrolling-banner {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px; /* How wide the scrolling window is */
-            overflow: hidden; /* Hides the text before it slides in */
-            white-space: nowrap;
-        }
-
-        .scrolling-banner p {
-            display: inline-block;
-            font-family: var(--font-primary);
-            font-size: 14px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--color-dominant); /* Uses his dominant purple */
-            
-            /* CHANGE SPEED HERE: Change '10s' to a lower number (e.g., 5s) for faster, or higher (15s) for slower */
-            animation: scroll-left 10s linear infinite; 
-        }
-
-        /* The animation that moves it from right to left */
-        @keyframes scroll-left {
-            0% { transform: translateX(300px); } /* Starts off-screen to the right */
-            100% { transform: translateX(-100%); } /* Ends completely off-screen to the left */
-        }
-
-        /* Hamburger Button */
-        .menu-toggle {
-            font-family: var(--font-primary);
-            font-size: 1.2rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
-        /* SIDE PANEL MENU */
-        .side-menu {
-            position: fixed;
-            top: 0;
-            right: -400px; 
-            width: 100%;
-            max-width: 400px; 
-            height: 100vh;
-            background: rgba(114, 5, 205, 0.9);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            z-index: 3000; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start; 
-            padding-left: 50px;
-            transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); 
-            box-shadow: -5px 0 25px rgba(0,0,0,0.2);
-        }
-
-        .side-menu.active {
-            right: 0; 
-        }
-
-        .side-menu ul {
-            list-style: none;
-        }
-
-        .side-menu li {
-            margin: 20px 0;
-        }
-
-        .side-menu a {
-            text-decoration: none;
-            color: var(--color-highlight-light);
-            font-family: var(--font-primary);
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            font-weight: bold;
-            transition: color 0.3s ease, padding-left 0.3s ease;
-        }
-
-        .side-menu a:hover {
-            color: var(--color-compliment);
-            padding-left: 10px; 
-        }
-
-        .close-menu {
-            position: absolute;
-            top: 30px;
-            right: 40px;
-            background: none;
-            border: none;
-            color: var(--color-highlight-light);
-            font-size: 2.5rem;
-            cursor: pointer;
-            font-family: var(--font-primary);
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            padding: 10vh 5%;
-            text-align: center;
+/* ==========================================
+           GLOBAL SECTION STYLING
+        =========================================== */
+        section {
+            padding: 80px 5%;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .hero h1 {
-            font-family: var(--font-primary);
-            font-size: clamp(3rem, 8vw, 7rem);
-            line-height: 1.1;
+        section h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
             text-transform: uppercase;
-            margin-bottom: 40px;
         }
 
-        .hero-intro {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 40px auto;
-            color: #333;
+        /* ==========================================
+           HOME: DISCIPLINES SECTION
+        =========================================== */
+        #home-disciplines {
+            background-color: #fafafa; /* Slight off-white to separate from hero */
+            border-radius: 20px;
+            margin-bottom: 50px;
         }
 
-        .hero-scripture {
-            font-style: italic;
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto;
-            padding-left: 20px;
-            border-left: 3px solid var(--color-dominant);
-            text-align: left;
+        .discipline-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
         }
-        
-        .hero-scripture-ref {
-            display: block;
-            margin-top: 10px;
+
+        .discipline-item h3 {
+            font-size: 4rem;
+            color: var(--color-dominant); /* #7205CD Purple */
+            opacity: 0.3;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .discipline-item h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .work-with-me {
+            margin-top: 80px;
+            padding-top: 50px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .work-with-me a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: var(--color-dominant);
+            color: var(--color-highlight-light);
+            text-decoration: none;
+            font-family: var(--font-primary);
+            text-transform: uppercase;
             font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .work-with-me a:hover {
+            background-color: var(--color-compliment); /* #5D7FFF Blue */
+        }
+
+        /* ==========================================
+           WORK PAGE (GALLERY)
+        =========================================== */
+        .work-categories ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            list-style: none;
+            margin: 40px 0;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .work-categories a {
+            text-decoration: none;
+            color: #666;
+            font-family: var(--font-primary);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .work-categories a:hover {
+            color: var(--color-dominant);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .artwork-card {
+            background: #fff;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .artwork-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .artwork-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            background-color: #eee; /* Placeholder color before images load */
+            margin-bottom: 15px;
+        }
+
+        .artwork-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .artwork-card button {
+            background: none;
+            border: 1px solid var(--color-dominant);
+            padding: 8px 15px;
+            cursor: pointer;
+            font-family: var(--font-primary);
+            color: var(--color-dominant);
+            transition: all 0.3s;
+        }
+
+        .artwork-card button:hover {
+            background: var(--color-dominant);
+            color: #fff;
+        }
+
+        /* ==========================================
+           ABOUT PAGE
+        =========================================== */
+        #about p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+
+        .about-origin, .about-journey, .about-exhibitions {
+            margin-top: 60px;
+        }
+
+        .about-journey ul, .about-exhibitions ul {
+            list-style-type: none;
+            border-left: 3px solid var(--color-compliment); /* Blue timeline line */
+            padding-left: 20px;
+            margin-top: 20px;
+        }
+
+        .about-journey li, .about-exhibitions li {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        /* Timeline dots */
+        .about-journey li::before, .about-exhibitions li::before {
+            content: '';
+            position: absolute;
+            left: -29px; /* Aligns with the border */
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--color-dominant);
+        }
+
+        /* ==========================================
+           COMMERCIAL HUB (FORM & FAQ)
+        =========================================== */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 700px;
+            margin: 40px 0;
+            background: #fff;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .contact-form label {
+            font-family: var(--font-primary);
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-form input, 
+        .contact-form select, 
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            font-family: var(--font-secondary);
+            font-size: 1rem;
+            background-color: #fafafa;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input:focus, 
+        .contact-form select:focus, 
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--color-dominant);
+        }
+
+        .contact-form button {
+            padding: 15px;
+            background-color: var(--color-highlight-dark); /* Black button */
+            color: var(--color-highlight-light);
+            border: none;
+            font-family: var(--font-primary);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: var(--color-dominant);
+        }
+
+        /* FAQ Accordion Styling */
+        .faq-section {
+            max-width: 800px;
+            margin-top: 60px;
+        }
+
+        details {
+            border-bottom: 1px solid #ddd;
+            padding: 20px 0;
+        }
+
+        summary {
+            font-family: var(--font-primary);
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            outline: none;
+            list-style: none; /* Hides default arrow in some browsers */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::-webkit-details-marker {
+            display: none; /* Hides default arrow in Safari/Chrome */
+        }
+
+        summary::after {
+            content: '+'; /* Custom plus icon */
+            font-size: 1.5rem;
+            color: var(--color-dominant);
+        }
+
+        details[open] summary::after {
+            content: '-'; /* Changes to minus when open */
+        }
+
+        details p {
+            margin-top: 15px;
+            color: #555;
+            padding-left: 10px;
+            border-left: 2px solid var(--color-compliment);
+        }
+
+        /* ==========================================
+           ARTWORK MODAL STYLING
+        =========================================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95); /* Bright, clean gallery background */
+            backdrop-filter: blur(10px);
+            z-index: 4000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: #fff;
+            max-width: 900px;
+            width: 100%;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            position: relative;
+            margin: auto;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--color-highlight-dark);
             font-family: var(--font-primary);
         }
 
-    </style>
-</head>
-<body>
+        .modal-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
 
-    <header>
-        <div class="logo">Son_of_IAM_</div>
-        
-        <div class="scrolling-banner">
-            <p>Welcome • All Rights Reserved •</p>
-        </div>
+        .modal-images {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+        }
 
-        <button class="menu-toggle" onclick="toggleMenu()">Menu</button>
-    </header>
+        .modal-images img {
+            max-width: 100%;
+            height: auto;
+            max-height: 70vh;
+            object-fit: contain;
+        }
 
-    <nav class="side-menu" id="navMenu">
-        <button class="close-menu" onclick="toggleMenu()">&times;</button>
-        <ul>
-            <li><a href="#work" onclick="toggleMenu()">Work</a></li>
-            <li><a href="#about" onclick="toggleMenu()">About</a></li>
-            <li><a href="#articles" onclick="toggleMenu()">Articles</a></li>
-            <li class="has-dropdown">
-                <a href="#" class="dropdown-toggle">Shop <span class="arrow">&#9662;</span></a>
-                <ul class="submenu">
-                    <li><a href="#limited-prints" onclick="toggleMenu()">Limited Premium Edition</a></li>
-                    <li><a href="#open-prints" onclick="toggleMenu()">Open Prints Offer</a></li>
-                    <li><a href="#stickers" onclick="toggleMenu()">Stickers</a></li>
-                    <li><a href="#wallpapers" onclick="toggleMenu()">Wallpaper Pack</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+        .detail-wrapper {
+            text-align: center;
+            width: 100%;
+        }
 
-    <main>
-        <section class="hero">
-            <h1>Stirring Hearts<br>Through Art</h1>
-            
-            <p class="hero-intro">
-                Promise Adebayo is a Christian creative called to spread the gospel of Christ through art as God moves across the earth in these times.
-            </p>
-            
-            <blockquote class="hero-scripture">
-                "See, I have called by name Bezalel the son of Uri, the son of Hur, of the tribe of Judah. I have filled him with the Spirit of God in wisdom, in understanding, in knowledge, and in all manner of craftsmanship"
-                <span class="hero-scripture-ref">- Exodus 31:2-3</span>
-            </blockquote>
-        </section>
-        <section id="home-disciplines">
-    <h2>One vision<br>Multiple disciplines</h2>
-    
-    <div class="discipline-list">
-        <article class="discipline-item">
-            <h3>01</h3>
-            <h4>Digital Illustration</h4>
-            <p>Bold, Christ centered paintings created Digitally to propagate the worship of Jesus across the world. Where truth collides with visual storytelling.</p>
-        </article>
+        .detail-label {
+            font-family: var(--font-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 15px;
+        }
 
-        <article class="discipline-item">
-            <h3>02</h3>
-            <h4>Album Art</h4>
-            <p>Visual identity for music Worshippers. From brief to billboards.</p>
-        </article>
+        /* This creates a zoomed-in "cropped" effect using CSS */
+        .cropped-container {
+            width: 100%;
+            max-width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
 
-        <article class="discipline-item">
-            <h3>03</h3>
-            <h4>Brand Campaign</h4>
-            <p>Commercial Artwork for brands seeking visual impact with depth.</p>
-        </article>
-    </div>
+        .cropped-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.5); /* Zooms in to simulate the crop */
+        }
 
-    <div class="work-with-me">
-        <h2>Work with me</h2>
-        <p>Looking for a creative who brings visions, not just visuals?</p>
-        <p>Whether it's a campaign, an album, a fashion collection, or piece for your collection or other commercial use let's create something that lasts.</p>
-        <a href="#commercial">Commercial Inquiries &rarr;</a>
-    </div>
-</section>
+        .modal-footer {
+            margin-top: 40px;
+            display: flex;
+            justify-content: flex-end;
+        }
 
-<section id="work">
-    <h2>Work</h2>
-    <p>Each piece is an invitation to know Jesus more.</p>
-    
-    <blockquote>
-        "This is eternal life: that they may know You, the only true God, and Jesus Christ, whom You have sent."
-        <span>- John 17:3 (The ethos behind every work)</span>
-    </blockquote>
+        .next-btn {
+            background: none;
+            border: none;
+            font-family: var(--font-primary);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--color-dominant);
+            transition: color 0.3s;
+        }
 
-    <nav class="work-categories">
-        <ul>
-            <li><a href="#">Paintings</a></li>
-            <li><a href="#">3D Art</a></li>
-            <li><a href="#">The Gospel Proclaimed</a></li>
-            <li><a href="#">Articles</a></li>
-            <li><a href="#">Old Artworks</a></li>
-        </ul>
-    </nav>
+        .next-btn:hover {
+            color: var(--color-compliment);
+        }
+        /* ==========================================
+   ARTWORK MODAL STYLING
+=========================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 4000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Hides it by default */
+    pointer-events: none; /* Prevents clicking it while hidden */
+    transition: opacity 0.4s ease;
+    overflow-y: auto;
+    padding: 40px 20px;
+}
 
-    <div class="gallery-grid">
-        <article class="artwork-card">
-            <h3>Artwork Title</h3>
-            <img src="placeholder.jpg" alt="Artwork Image Placeholder">
-            <button>View Details</button>
-        </article>
-        </div>
-</section>
+.modal-overlay.active {
+    opacity: 1; /* Shows it when Javascript adds the 'active' class */
+    pointer-events: auto;
+}
 
-<section id="about">
-    <h2>About</h2>
-    <p>I bring the God dimension into the world through Art.</p>
-    <p>Son_of_IAM_ is a multidisciplinary creative, based in Lagos, Nigeria. His work primarily focuses on communicating the Christian Faith visually, using Faith symbols, themes and figures to communicate his Faith bodily as inspired by the Holy Spirit in Worship.</p>
+.modal-content {
+    background: #fff;
+    max-width: 900px;
+    width: 100%;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    position: relative;
+    margin: auto;
+}
 
-    <div class="about-origin">
-        <h3>Origin</h3>
-        <p>Born in Lagos, 2006</p>
-        <p>Looking back recently, i realized I was actually surrounded by few creatives, my mom was an event photographer. I can remember clearly how I use to play with her old analogue camera in the compound.</p>
-        <p>By secondary school, I was drawing constantly...</p>
-    </div>
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--color-highlight-dark);
+    font-family: var(--font-primary);
+}
 
-    <div class="about-journey">
-        <h3>Journey</h3>
-        <p>From my school desk to the world</p>
-        <ul>
-            <li><strong>2020 Learning Photoshop:</strong> My first exploration into digital art.</li>
-            <li><strong>2022 Learning 3D:</strong> I started learning blender 3D on YouTube.</li>
-            <li><strong>2022 NFT breakthrough:</strong> I found out about NFTs, I started and sold out collaboration collections.</li>
-            <li><strong>2023 First commission & Collaborations:</strong> 8+ international collaborations with artists across 5 continents.</li>
-        </ul>
-    </div>
+.modal-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-family: var(--font-primary);
+}
 
-    <div class="about-exhibitions">
-        <h3>Exhibitions</h3>
-        <p>Shown in 3 cities</p>
-        <ul>
-            <li><strong>Lagos, Nigeria:</strong> Logoandheart 1.0 (2025), Art 4 Peace (2025).</li>
-            <li><strong>New York City:</strong> Community Artist Showcase, NFT.NYC.</li>
-            <li><strong>Florence:</strong> Link Between Worlds (2024), Dimensions DAO (2024).</li>
-        </ul>
-    </div>
-</section>
+.modal-images {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
 
-<section id="commercial">
-    <h2>Commercial Hub</h2>
-    <p>Whether you're a collector, a Brand looking to collaborate, or just someone who want to say hello, I'd love to hear from you.</p>
+.modal-images img {
+    max-width: 100%;
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
+}
 
-    <form action="https://formspree.io/f/xyklyowb" method="POST" class="contact-form">
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" name="firstname" required>
+.detail-wrapper {
+    text-align: center;
+    width: 100%;
+}
 
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="lastname" required>
+.detail-label {
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 15px;
+}
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+.cropped-container {
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
 
-        <label for="project-type">Project Type</label>
-        <select id="project-type" name="project_type">
-            <option value="commission">Commission/purchase</option>
-            <option value="brand">Brand collaboration</option>
-            <option value="press">Press/interview</option>
-            <option value="hello">Just saying Hello</option>
-        </select>
+.cropped-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.5);
+}
 
-        <label for="budget">Budget</label>
-        <select id="budget" name="budget">
-            <option value="1k-5k">$1,000 - $5,000</option>
-            <option value="5k-15k">$5,000 - $15,000</option>
-            <option value="15k-30k">$15,000 - $30,000</option>
-            <option value="30k-50k">$30,000 - $50,000</option>
-            <option value="50k+">$50,000+</option>
-        </select>
+.modal-footer {
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-end;
+}
 
-        <label for="timeline">Timeline (e.g., Q2 2026, 3 months)</label>
-        <input type="text" id="timeline" name="timeline">
+.next-btn {
+    background: none;
+    border: none;
+    font-family: var(--font-primary);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--color-dominant);
+    transition: color 0.3s;
+}
 
-        <label for="details">Project/Message Details</label>
-        <textarea id="details" name="details" rows="4" placeholder="Tell us about your project, goals and any references"></textarea>
+.next-btn:hover {
+    color: var(--color-compliment);
+}
+/* ==========================================
+           SHOP DROPDOWN MENU STYLING
+        =========================================== */
+        .submenu {
+            display: none; /* Hides the sub-links by default */
+            list-style: none;
+            padding-left: 30px;
+            margin-top: 15px;
+            border-left: 2px solid rgba(255,255,255,0.3);
+        }
 
-        <button type="submit">Submit</button>
-    </form>
+        .submenu.open {
+            display: block; /* Shows them when active */
+            animation: fadeIn 0.4s ease;
+        }
 
-    <div class="faq-section">
-        <h3>Common questions</h3>
-        
-        <details>
-            <summary>Do you take commissions?</summary>
-            <p>Yes, but selectively. I take on a limited number of personal commissions each year.</p>
-        </details>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        <details>
-            <summary>What’s your typical turnaround?</summary>
-            <p>It depends on the project. Simple pieces take 2-4 weeks. Complex campaigns can take up to 2-3 months.</p>
-        </details>
+        .submenu a {
+            font-size: 1.5rem; /* Slightly smaller than the main links */
+            text-transform: capitalize; /* Makes it look distinct from the ALL CAPS main links */
+            color: rgba(255,255,255,0.8);
+            display: block;
+            margin-bottom: 15px;
+        }
 
-        <details>
-            <summary>How does your Limited premium prints and open edition prints work?</summary>
-            <p>Limited premium prints are available in limited numbers, and the offer is only open twice a year. Open Edition prints are always going to be available in the Shop.</p>
-        </details>
-    </div>
-</section>
-    </main>
+        .arrow {
+            display: inline-block;
+            font-size: 1.5rem;
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
 
-    <script>
-       function toggleMenu() {
-            const menu = document.getElementById('navMenu');
-            menu.classList.toggle('active');
+        .arrow.rotate {
+            transform: rotate(180deg); /* Flips the arrow upside down when open */
         }
 
         /* ==========================================
-           SHOP DROPDOWN LOGIC
+           FOOTER & CONTACT SECTION
         =========================================== */
-        const dropdownToggle = document.querySelector('.dropdown-toggle');
-        const submenu = document.querySelector('.submenu');
-        const arrow = document.querySelector('.arrow');
+        .site-footer {
+            background-color: var(--color-highlight-dark); /* Black background */
+            color: var(--color-highlight-light); /* White text */
+            padding: 80px 5% 40px;
+            margin-top: 100px;
+            font-family: var(--font-secondary);
+        }
 
-        dropdownToggle.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevents the page from jumping to the top
-            submenu.classList.toggle('open');
-            arrow.classList.toggle('rotate');
-        });
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 60px auto;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 40px;
+        }
+
+        .footer-contact h3, .footer-socials h3 {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .footer-email {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--color-dominant);
+            font-size: 1.2rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .footer-email:hover {
+            color: var(--color-compliment); /* Hovers to his blue color */
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* Pill-shaped social buttons */
+        .social-links a {
+            display: inline-block;
+            padding: 10px 25px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 30px; 
+            color: var(--color-highlight-light);
+            text-decoration: none;
+            font-family: var(--font-primary);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            border-color: var(--color-dominant);
+            background-color: var(--color-dominant);
+            transform: translateY(-3px); /* Gives a nice "lift" effect when hovered */
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-family: var(--font-primary);
+            font-size: 0.9rem;
+            opacity: 0.5;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
         /* ==========================================
-           ARTWORK GALLERY LOGIC
+           MOBILE RESPONSIVENESS (PHONES)
         =========================================== */
-        const modal = document.getElementById('artwork-modal');
-        const closeModalBtn = document.querySelector('.close-modal');
-        const nextBtn = document.getElementById('next-artwork');
-        
-        // Grab all the artwork cards in the grid
-        const artworkCards = document.querySelectorAll('.artwork-card');
-        
-        let currentArtworkIndex = 0;
-
-        // Function to open the modal and inject the right data
-        function openArtwork(index) {
-            currentArtworkIndex = index;
-            const card = artworkCards[index];
-            
-            // Extract data from the clicked card
-            const title = card.querySelector('h3').innerText;
-            const imgSrc = card.querySelector('img').src;
-
-            // Inject data into the modal
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-main-img').src = imgSrc;
-            
-            // For now, we use the same image for the detail view, 
-            // but the CSS scales it up to simulate a "cropped" look.
-            document.getElementById('modal-detail-img').src = imgSrc;
-
-            // Show the modal
-            modal.classList.add('active');
-            
-            // Prevent background scrolling while modal is open
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Add click events to every artwork card
-        artworkCards.forEach((card, index) => {
-            card.addEventListener('click', () => {
-                openArtwork(index);
-            });
-        });
-
-        // Close Modal function
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Restore scrolling
-        }
-
-        closeModalBtn.addEventListener('click', closeModal);
-
-        // Next Button function (loops back to start if at the end)
-        nextBtn.addEventListener('click', () => {
-            let nextIndex = currentArtworkIndex + 1;
-            if (nextIndex >= artworkCards.length) {
-                nextIndex = 0; 
+        @media (max-width: 768px) {
+            /* 1. Header Adjustments */
+            header {
+                padding: 20px 5%; /* Slightly less padding on phones */
             }
-            openArtwork(nextIndex);
-        });
-
-        // Close modal if user clicks outside the white content box
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
+            
+            .scrolling-banner {
+                display: none; /* Hides the marquee on small screens so it doesn't overlap the logo/menu */
             }
-        });
-    </script>
-    <footer class="site-footer">
-        <div class="footer-content">
-            <div class="footer-contact">
-                <h3>Get in Touch</h3>
-                <p>For general inquiries, commissions, or just to say hello:</p>
-                <a href="mailto:SonofIAM.9@gmail.com" class="footer-email">SonofIAM.9@gmail.com</a>
-            </div>
+
+            /* 2. Typography Adjustments */
+            section h2 {
+                font-size: 2.2rem; /* Shrinks the giant section headers slightly */
+            }
             
-            <div class="footer-socials">
-                <h3>Follow</h3>
-                <div class="social-links">
-                    <a href="#" target="_blank">Instagram</a>
-                    <a href="#" target="_blank">X (Twitter)</a>
-                    <a href="#" target="_blank">YouTube</a>
-                    <a href="#" target="_blank">Behance</a>
-                    <a href="#" target="_blank">Whatsapp</a>
-                    <a href="#" target="_blank">Shopify</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2026 Son_of_IAM_. All rights reserved.</p>
-        </div>
-    </footer>
-<div id="artwork-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="close-modal">&times;</button>
-            
-            <h2 id="modal-title" class="modal-title">Artwork Title</h2>
-            
-            <div class="modal-images">
-                <img id="modal-main-img" src="" alt="Main Artwork">
-                
-                <div class="detail-wrapper">
-                    <p class="detail-label">Cropped Detailed Version</p>
-                    <div class="cropped-container">
-                        <img id="modal-detail-img" src="" alt="Cropped Detail">
-                    </div>
-                </div>
-            </div>
-            
-            <div class="modal-footer">
-                <button id="next-artwork" class="next-btn">Next &gt;</button>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+            .hero h1 {
+                margin-top: 20px;
+            }
+
+            .discipline-item h3 {
+                font-size: 3rem; /* Scales down the 01, 02, 03 markers */
+            }
+
+            /* 3. Layout Adjustments */
+            section {
+                padding: 60px 5%;
+            }
+
+            .contact-form {
+                padding: 20px; /* Gives the form more breathing room on small screens */
+            }
+
+            /* 4. Modal Adjustments */
+            .modal-content {
+                padding: 30px 20px; /* Prevents the modal from touching the edges of the phone screen */
+            }
+
+            .close-modal {
+                top: 10px;
+                right: 15px;
+            }
+
+            .cropped-container {
+                height: 250px; /* Makes the cropped detail image a bit smaller so it fits on screen */
+            }
+            /* Footer Mobile Adjustments */
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+        }
