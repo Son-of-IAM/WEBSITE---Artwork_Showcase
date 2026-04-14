@@ -1,4 +1,14 @@
 /* ==========================================
+   CUSTOM FONTS
+=========================================== */
+@font-face {
+    font-family: 'HandwritingScript';
+    src: url('fonts/HandwritingFont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Improves loading performance */
+}
+/* ==========================================
            GLOBAL SECTION STYLING
         =========================================== */
         section {
