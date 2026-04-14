@@ -9,7 +9,6 @@
     font-display: swap; /* Improves loading performance */
 }
 
-font-family: 'HandwritingScript', 'Caveat', 'Dancing Script', cursive, sans-serif;
 /* ==========================================
            GLOBAL SECTION STYLING
         =========================================== */
@@ -805,6 +804,29 @@ font-family: 'HandwritingScript', 'Caveat', 'Dancing Script', cursive, sans-seri
             background-color: var(--color-dominant);
         }
 /* Scripture/Bible verse styling with custom handwriting font */
+.scripture, 
+.scripture-text,
+blockquote,
+.ethos-text {
+    font-family: 'HandwritingScript', 'Caveat', cursive, sans-serif;
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: var(--color-dominant);
+    font-style: normal;
+    font-weight: normal;
+}
+
+.scripture-reference {
+    font-family: 'HandwritingScript', 'Caveat', cursive, sans-serif;
+    font-size: 1.4rem;
+    color: var(--color-dominant);
+    opacity: 0.8;
+    margin-top: 10px;
+    display: block;
+}
+/* ==========================================
+   SCRIPTURE STYLING - Place near other text styles
+=========================================== */
 .scripture, 
 .scripture-text,
 blockquote,
