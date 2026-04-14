@@ -802,3 +802,24 @@
         .buy-button:hover {
             background-color: var(--color-dominant);
         }
+/* Scripture/Bible verse styling with custom handwriting font */
+.scripture, 
+.scripture-text,
+blockquote,
+.ethos-text {
+    font-family: 'HandwritingScript', 'Caveat', cursive, sans-serif;
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: var(--color-dominant);
+    font-style: normal;
+    font-weight: normal;
+}
+
+.scripture-reference {
+    font-family: 'HandwritingScript', 'Caveat', cursive, sans-serif;
+    font-size: 1.4rem;
+    color: var(--color-dominant);
+    opacity: 0.8;
+    margin-top: 10px;
+    display: block;
+}
