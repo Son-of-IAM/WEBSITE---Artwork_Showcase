@@ -4,64 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Son_of_IAM_ | Stirring Hearts Through Art</title>
+    
+    <!-- Google Fonts Fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
+        /* ==========================================
+           CSS VARIABLES & RESET
+        =========================================== */
+        :root {
+            --color-dominant: #7205cd;      /* Purple Accent */
+            --color-compliment: #5D7FFF;    /* Blue Accent */
+            --color-highlight-dark: #000000; /* Black */
+            --color-highlight-light: #ffffff; /* White */
+            --bg-light: #fafafa;
+            --bg-white: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-muted: #666666;
+            --border-light: #e0e0e0;
+            --font-primary: 'Inter', sans-serif;
+            --font-secondary: 'Inter', sans-serif;
+            --font-handwriting: 'HandwritingScript', 'Caveat', cursive;
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-color: #000000;
-            --secondary-color: #666666;
-            --accent-color: #8B4513;
-            --bg-color: #ffffff;
-            --text-color: #000000;
-            --border-color: #e0e0e0;
-        }
-
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: var(--text-color);
-            background: var(--bg-color);
+            font-family: var(--font-primary);
+            color: var(--text-dark);
+            background: var(--bg-white);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Handwriting font for scriptures */
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* ==========================================
+           CUSTOM HANDWRITING FONT
+        =========================================== */
+        @font-face {
+            font-family: 'HandwritingScript';
+            src: url('fonts/handwriting-font.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
         .scripture {
-            font-family: 'Caveat', cursive;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--accent-color);
-            line-height: 1.8;
-            font-style: italic;
+            font-family: var(--font-handwriting);
+            font-size: 1.8rem;
+            line-height: 1.6;
+            color: var(--color-dominant);
+            font-style: normal;
+            margin: 1.5rem 0 0.5rem;
         }
 
         .scripture-reference {
-            font-family: 'Caveat', cursive;
-            font-size: 1.2rem;
-            color: var(--secondary-color);
-            margin-top: 0.5rem;
+            font-family: var(--font-handwriting);
+            font-size: 1.4rem;
+            color: var(--color-dominant);
+            opacity: 0.85;
+            display: block;
+            margin-bottom: 2rem;
         }
 
-        /* Navigation */
-        nav {
+        /* ==========================================
+           NAVIGATION
+        =========================================== */
+        header {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255,255,255,0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 1.5rem 5%;
-            border-bottom: 1px solid var(--border-color);
+            padding: 1.2rem 5%;
+            border-bottom: 1px solid var(--border-light);
         }
 
         .nav-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -69,80 +100,57 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            text-decoration: none;
-            color: var(--primary-color);
             letter-spacing: -0.5px;
         }
 
-        .logo img {
-            height: 50px;
-            width: auto;
-        }
-
-        /* Desktop Menu */
         .desktop-menu {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
             align-items: center;
-            list-style: none;
         }
 
         .desktop-menu a {
-            text-decoration: none;
-            color: var(--text-color);
             font-weight: 500;
             font-size: 0.95rem;
-            transition: opacity 0.3s;
+            transition: var(--transition);
+        }
+
+        .desktop-menu a:hover {
+            color: var(--color-dominant);
+        }
+
+        .dropdown {
             position: relative;
         }
 
-        .desktop-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: width 0.3s;
-        }
-
-        .desktop-menu a:hover::after {
-            width: 100%;
-        }
-
-        .shop-dropdown {
-            position: relative;
-        }
-
-        .dropdown-content {
-            display: none;
+        .dropdown-menu {
             position: absolute;
             top: 100%;
             right: 0;
             background: white;
-            min-width: 250px;
+            min-width: 220px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border-light);
             border-radius: 8px;
             margin-top: 10px;
             padding: 1rem 0;
+            display: none;
         }
 
-        .shop-dropdown:hover .dropdown-content {
+        .dropdown:hover .dropdown-menu {
             display: block;
         }
 
-        .dropdown-content a {
+        .dropdown-menu a {
             display: block;
-            padding: 0.75rem 1.5rem;
-            transition: background 0.3s;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
         }
 
-        .dropdown-content a:hover {
-            background: #f5f5f5;
+        .dropdown-menu a:hover {
+            background: var(--bg-light);
         }
 
         /* Hamburger Menu */
@@ -150,7 +158,6 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
-            z-index: 1001;
             background: none;
             border: none;
             padding: 0.5rem;
@@ -159,83 +166,49 @@
         .hamburger span {
             width: 28px;
             height: 2px;
-            background: var(--primary-color);
+            background: var(--color-highlight-dark);
             margin: 4px 0;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(7px, 7px);
-        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        /* Mobile Menu */
         .mobile-menu {
-            display: none;
             position: fixed;
             top: 0;
             right: -100%;
             width: 80%;
-            max-width: 400px;
+            max-width: 350px;
             height: 100vh;
             background: white;
-            z-index: 1000;
-            padding: 8rem 3rem 3rem;
+            z-index: 1001;
+            padding: 6rem 2rem 2rem;
             transition: right 0.3s ease;
             box-shadow: -5px 0 30px rgba(0,0,0,0.1);
         }
 
-        .mobile-menu.active {
-            right: 0;
-        }
-
-        .mobile-menu ul {
-            list-style: none;
-        }
-
-        .mobile-menu li {
-            margin-bottom: 2rem;
-        }
-
-        .mobile-menu a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-size: 1.5rem;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .mobile-menu a:hover {
-            color: var(--accent-color);
-        }
+        .mobile-menu.active { right: 0; }
+        .mobile-menu ul { display: flex; flex-direction: column; gap: 1.5rem; }
+        .mobile-menu a { font-size: 1.3rem; font-weight: 600; }
 
         .overlay {
-            display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1000;
+            display: none;
         }
+        .overlay.active { display: block; }
 
-        .overlay.active {
-            display: block;
-        }
-
-        /* Hero Section */
+        /* ==========================================
+           HERO SECTION
+        =========================================== */
         .hero {
             margin-top: 80px;
-            padding: 6rem 5%;
-            max-width: 1400px;
+            padding: 5rem 5%;
+            max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -252,183 +225,404 @@
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            letter-spacing: -2px;
+            letter-spacing: -1.5px;
         }
+
+        .hero-text h1 span { color: var(--color-dominant); }
 
         .hero-text p {
             font-size: 1.1rem;
-            color: var(--secondary-color);
-            margin-bottom: 2rem;
-            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
         }
 
         .hero-image {
-            position: relative;
+            background: var(--bg-light);
+            border-radius: 12px;
+            aspect-ratio: 4/5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-style: italic;
+            overflow: hidden;
         }
 
         .hero-image img {
             width: 100%;
-            height: auto;
-            border-radius: 12px;
+            height: 100%;
+            object-fit: cover;
         }
 
-        /* Sections */
+        /* ==========================================
+           SECTIONS GENERAL
+        =========================================== */
         section {
             padding: 5rem 5%;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
             margin-bottom: 3rem;
-            letter-spacing: -1px;
+            max-width: 600px;
         }
 
-        /* Disciplines */
+        /* ==========================================
+           DISCIPLINES
+        =========================================== */
         .disciplines {
+            background: var(--bg-light);
+            border-radius: 20px;
+            padding: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .discipline-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 3rem;
-            margin: 4rem 0;
+            margin-top: 2rem;
         }
 
-        .discipline {
-            padding: 2.5rem;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            transition: transform 0.3s, box-shadow 0.3s;
+        .discipline-item h3 {
+            font-size: 4rem;
+            color: var(--color-dominant);
+            opacity: 0.2;
+            margin-bottom: 0.5rem;
+            line-height: 1;
         }
 
-        .discipline:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
-
-        .discipline-number {
-            font-size: 0.9rem;
-            color: var(--secondary-color);
+        .discipline-item h4 {
+            font-size: 1.4rem;
             margin-bottom: 1rem;
-            font-weight: 500;
         }
 
-        .discipline h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .discipline p {
-            color: var(--secondary-color);
+        .discipline-item p {
+            color: var(--text-muted);
             line-height: 1.7;
         }
 
-        /* Work Section */
-        .work-grid {
+        /* ==========================================
+           WORK / GALLERY
+        =========================================== */
+        .work-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .work-categories a {
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--border-light);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+        }
+
+        .work-categories a:hover, .work-categories a.active {
+            background: var(--color-dominant);
+            color: white;
+            border-color: var(--color-dominant);
+        }
+
+        .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
         }
 
-        .work-item {
+        .artwork-card {
             position: relative;
-            overflow: hidden;
             border-radius: 12px;
+            overflow: hidden;
             cursor: pointer;
-            aspect-ratio: 4/5;
-            background: #f5f5f5;
+            background: var(--bg-light);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
-        .work-item img {
+        .artwork-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .artwork-image {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: #e8e8e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-style: italic;
+        }
+
+        .artwork-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
         }
 
-        .work-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .work-overlay {
+        .artwork-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+            padding: 2rem 1.5rem 1.5rem;
             color: white;
-            transform: translateY(100%);
-            transition: transform 0.3s;
+            transform: translateY(10px);
+            opacity: 0.9;
+            transition: var(--transition);
         }
 
-        .work-item:hover .work-overlay {
+        .artwork-card:hover .artwork-overlay {
             transform: translateY(0);
+            opacity: 1;
         }
 
-        /* About Section */
+        .artwork-overlay h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .artwork-overlay span {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ==========================================
+           MODAL
+        =========================================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
+            z-index: 5000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 900px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px; right: 20px;
+            background: rgba(0,0,0,0.05);
+            border: none;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover { background: rgba(0,0,0,0.1); }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .modal-image-section {
+            background: var(--bg-light);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-main-image, .modal-crop-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-style: italic;
+        }
+
+        .modal-main-image img, .modal-crop-image img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        .modal-info {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-info h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-info .category {
+            color: var(--color-dominant);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-info p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .btn-shop {
+            display: inline-block;
+            background: var(--color-highlight-dark);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .btn-shop:hover {
+            background: var(--color-dominant);
+            transform: translateY(-2px);
+        }
+
+        .modal-footer-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--color-dominant);
+        }
+
+        /* ==========================================
+           ABOUT SECTION
+        =========================================== */
         .about-content {
             max-width: 800px;
         }
 
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1.5rem;
+        }
+
         .about-content p {
-            font-size: 1.1rem;
-            line-height: 1.9;
             margin-bottom: 1.5rem;
-            color: var(--text-color);
+            color: var(--text-dark);
+            line-height: 1.8;
         }
 
         .timeline {
-            margin: 4rem 0;
+            margin: 3rem 0;
+            border-left: 3px solid var(--color-compliment);
+            padding-left: 2rem;
         }
 
         .timeline-item {
-            padding: 2rem 0;
-            border-left: 2px solid var(--border-color);
-            padding-left: 2rem;
-            margin-left: 1rem;
+            margin-bottom: 2rem;
             position: relative;
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -8px;
-            top: 2.5rem;
-            width: 14px;
-            height: 14px;
+            left: -2.65rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            background: var(--primary-color);
+            background: var(--color-dominant);
         }
 
         .timeline-year {
             font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .timeline-text {
-            color: var(--secondary-color);
+            color: var(--text-muted);
         }
 
-        /* Commercial Hub - Form Styling (BLACK) */
-        .form-container {
+        /* ==========================================
+           COMMERCIAL HUB (BLACK FORM)
+        =========================================== */
+        .commercial-intro {
             max-width: 700px;
-            margin: 3rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .contact-form {
+            max-width: 700px;
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            margin-bottom: 4rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
         }
 
         .form-group {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             font-weight: 600;
-            color: var(--primary-color);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .form-group input,
@@ -436,13 +630,13 @@
         .form-group textarea {
             width: 100%;
             padding: 1rem;
-            border: 2px solid var(--primary-color);
+            border: 2px solid var(--color-highlight-dark);
             border-radius: 8px;
-            font-family: inherit;
+            font-family: var(--font-secondary);
             font-size: 1rem;
             background: white;
-            color: var(--primary-color);
-            transition: box-shadow 0.3s;
+            color: var(--color-highlight-dark);
+            transition: var(--transition);
         }
 
         .form-group input:focus,
@@ -452,279 +646,187 @@
             box-shadow: 0 0 0 4px rgba(0,0,0,0.1);
         }
 
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: var(--secondary-color);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
         .submit-btn {
-            background: var(--primary-color);
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--color-highlight-dark);
             color: white;
-            padding: 1.25rem 3rem;
             border: none;
             border-radius: 8px;
             font-size: 1rem;
             font-weight: 600;
+            text-transform: uppercase;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: var(--transition);
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background: var(--color-dominant);
         }
 
-        /* FAQ Section */
-        .faq-item {
-            margin-bottom: 2rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 2rem;
+        .faq-section {
+            max-width: 800px;
         }
 
-        .faq-question {
-            font-size: 1.2rem;
+        details {
+            border-bottom: 1px solid var(--border-light);
+            padding: 1.5rem 0;
+        }
+
+        summary {
             font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .faq-answer {
-            color: var(--secondary-color);
-            line-height: 1.8;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--primary-color);
-            color: white;
-            padding: 4rem 5%;
-            margin-top: 6rem;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-        }
-
-        .footer-section p {
-            line-height: 1.8;
-            opacity: 0.9;
-        }
-
-        .footer-links {
+            font-size: 1.1rem;
+            cursor: pointer;
             list-style: none;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.9;
-            transition: opacity 0.3s;
-            display: block;
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-links a:hover {
-            opacity: 1;
-        }
-
-        .social-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
         }
 
-        .social-links a:hover {
-            background: rgba(255,255,255,0.1);
+        summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--color-dominant);
+            transition: var(--transition);
         }
 
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 4rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            text-align: center;
-            opacity: 0.7;
-            font-size: 0.9rem;
+        details[open] summary::after {
+            content: '-';
         }
 
-        /* CTA Section */
+        details p {
+            margin-top: 1rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ==========================================
+           CTA & FOOTER
+        =========================================== */
         .cta-section {
-            background: var(--primary-color);
+            background: var(--color-highlight-dark);
             color: white;
-            padding: 6rem 5%;
+            padding: 5rem 5%;
             text-align: center;
-            margin: 6rem 0;
+            margin: 4rem 0;
+            border-radius: 20px;
         }
 
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .cta-section p { max-width: 600px; margin: 0 auto 2rem; opacity: 0.9; }
 
-        .cta-section p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: white;
-            color: var(--primary-color);
+        .btn-cta {
+            display: inline-block;
+            background: var(--color-dominant);
+            color: white;
             padding: 1rem 2.5rem;
-            border: none;
             border-radius: 8px;
             font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            transition: transform 0.3s;
+            transition: var(--transition);
         }
 
-        .btn-primary:hover {
+        .btn-cta:hover {
+            background: var(--color-compliment);
             transform: translateY(-3px);
         }
 
-        .btn-secondary {
-            background: transparent;
+        footer {
+            background: var(--color-highlight-dark);
             color: white;
-            padding: 1rem 2.5rem;
-            border: 2px solid white;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
+            padding: 4rem 5% 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .footer-brand h3 { margin-bottom: 1rem; }
+        .footer-brand p { opacity: 0.8; max-width: 300px; }
+
+        .footer-links h4 { margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-links a { display: block; margin-bottom: 0.8rem; opacity: 0.8; transition: var(--transition); }
+        .footer-links a:hover { opacity: 1; color: var(--color-dominant); }
+
+        .social-pill {
             display: inline-block;
-            transition: background 0.3s;
+            padding: 0.5rem 1.2rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 30px;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            transition: var(--transition);
         }
 
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.1);
+        .social-pill:hover {
+            background: var(--color-dominant);
+            border-color: var(--color-dominant);
         }
 
-        /* Responsive */
-        @media (max-width: 968px) {
-            .desktop-menu {
-                display: none;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .disciplines {
-                grid-template-columns: 1fr;
-            }
-
-            .work-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Utility */
-        .text-center {
+        .footer-bottom {
             text-align: center;
+            padding-top: 2rem;
+            opacity: 0.5;
+            font-size: 0.85rem;
         }
 
-        .mt-2 {
-            margin-top: 2rem;
+        /* ==========================================
+           RESPONSIVE
+        =========================================== */
+        @media (max-width: 900px) {
+            .desktop-menu { display: none; }
+            .hamburger { display: flex; }
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .modal-body { grid-template-columns: 1fr; }
+            .modal-info { padding: 2rem; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .form-row { grid-template-columns: 1fr; }
+            .disciplines { padding: 2rem; }
         }
 
-        .mb-2 {
-            margin-bottom: 2rem;
+        @media (max-width: 600px) {
+            .hero-text h1 { font-size: 2rem; }
+            .section-title { font-size: 1.8rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .contact-form { padding: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav>
+    <!-- NAVIGATION -->
+    <header>
         <div class="nav-container">
-            <a href="#" class="logo">
-                <img src="Images/LOGO.PNG" alt="Son_of_IAM_ Logo">
-                <H3>Son_Of_IAM</H3>
-            </a>
-
-            <!-- Desktop Menu -->
-            <ul class="desktop-menu">
-                <li><a href="#work">Work</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#articles">Articles</a></li>
-                <li class="shop-dropdown">
+            <a href="#" class="logo">Son_of_IAM_</a>
+            <nav class="desktop-menu">
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+                <a href="#articles">Articles</a>
+                <div class="dropdown">
                     <a href="#shop">Shop ▾</a>
-                    <div class="dropdown-content">
+                    <div class="dropdown-menu">
                         <a href="#limited-prints">Limited Premium Edition</a>
                         <a href="#open-prints">Open Prints Offer</a>
                         <a href="#stickers">Stickers</a>
                         <a href="#wallpapers">Wallpaper Pack</a>
                     </div>
-                </li>
-            </ul>
-
-            <!-- Hamburger Menu Button -->
-            <button class="hamburger" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
+                </div>
+            </nav>
+            <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
             </button>
         </div>
-    </nav>
+    </header>
 
-    <!-- Mobile Menu -->
+    <!-- MOBILE MENU -->
     <div class="overlay" onclick="toggleMenu()"></div>
     <div class="mobile-menu">
         <ul>
@@ -733,375 +835,333 @@
             <li><a href="#articles" onclick="toggleMenu()">Articles</a></li>
             <li><a href="#shop" onclick="toggleMenu()">Shop</a></li>
             <li><a href="#commercial" onclick="toggleMenu()">Commercial</a></li>
-            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
         </ul>
     </div>
 
-    <!-- Hero Section -->
+    <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Stirring Hearts Through Art</h1>
+                <h1>Stirring Hearts <span>Through Art</span></h1>
                 <p>Promise Adebayo is a Christian creative called to spread the gospel of Christ through art as God moves across the earth in these times.</p>
-                
-                <p class="scripture">
-                    "See, I have called by name Bezalel the son of Uri, the son of Hur, of the tribe of Judah. I have filled him with the Spirit of God in wisdom, in understanding, in knowledge, and in all manner of craftsmanship"
-                </p>
-                <p class="scripture-reference">- Exodus 31:2-3</p>
+                <p class="scripture">"See, I have called by name Bezalel the son of Uri, the son of Hur, of the tribe of Judah. I have filled him with the Spirit of God in wisdom, in understanding, in knowledge, and in all manner of craftsmanship"</p>
+                <span class="scripture-reference">- Exodus 31:2-3</span>
             </div>
             <div class="hero-image">
-                <img src="hero-image.jpg" alt="Son_of_IAM_ Artwork">
+                <!-- PLACEHOLDER: Replace with actual hero image -->
+                <span>Hero Image Placeholder</span>
             </div>
         </div>
     </section>
 
-    <!-- Disciplines Section -->
-    <section>
+    <!-- DISCIPLINES -->
+    <section class="disciplines" id="home-disciplines">
         <h2 class="section-title">One Vision, Multiple Disciplines</h2>
-        <div class="disciplines">
-            <div class="discipline">
-                <div class="discipline-number">01</div>
-                <h3>Digital Illustration</h3>
+        <div class="discipline-grid">
+            <div class="discipline-item">
+                <h3>01</h3>
+                <h4>Digital Illustration</h4>
                 <p>Bold, Christ centered paintings created Digitally to propagate the worship of Jesus across the world. Where truth collides with visual storytelling.</p>
             </div>
-            <div class="discipline">
-                <div class="discipline-number">02</div>
-                <h3>Album Art</h3>
+            <div class="discipline-item">
+                <h3>02</h3>
+                <h4>Album Art</h4>
                 <p>Visual identity for music Worshippers. From brief to billboards.</p>
             </div>
-            <div class="discipline">
-                <div class="discipline-number">03</div>
-                <h3>Brand Campaign</h3>
+            <div class="discipline-item">
+                <h3>03</h3>
+                <h4>Brand Campaign</h4>
                 <p>Commercial Artwork for brands seeking visual impact with depth.</p>
             </div>
         </div>
     </section>
 
-    <!-- Work with Me CTA -->
-    <section class="cta-section">
-        <h2>Work with me</h2>
-        <p>Looking for a creative who brings visions, not just visuals? Whether it's a campaign, an album, a fashion collection, or piece for your collection or other commercial use let's create something that lasts.</p>
-        <div class="cta-buttons">
-            <a href="#commercial" class="btn-primary">Commercial Inquiries →</a>
-        </div>
-    </section>
-
-    <!-- Work Section -->
+    <!-- WORK / GALLERY -->
     <section id="work">
         <h2 class="section-title">Work</h2>
-        <p class="scripture" style="margin-bottom: 0.5rem;">
-            "This is eternal life: that they may know You, the only true God, and Jesus Christ, whom You have sent."
-        </p>
-        <p class="scripture-reference" style="margin-bottom: 3rem;">- John 17:3 (The ethos behind every work)</p>
+        <p class="section-subtitle">Each piece is an invitation to know Jesus more.</p>
+        <p class="scripture">"This is eternal life: that they may know You, the only true God, and Jesus Christ, whom You have sent."</p>
+        <span class="scripture-reference">- John 17:3 (The ethos behind every work)</span>
 
         <div class="work-categories">
-            <a href="#paintings" class="btn-secondary" style="margin-right: 1rem;">Paintings</a>
-            <a href="#3d-art" class="btn-secondary" style="margin-right: 1rem;">3D Art</a>
-            <a href="#gospel" class="btn-secondary" style="margin-right: 1rem;">The Gospel Proclaimed</a>
-            <a href="#articles" class="btn-secondary" style="margin-right: 1rem;">Articles</a>
-            <a href="#old-artworks" class="btn-secondary">Old Artworks</a>
+            <a href="#" class="active">All</a>
+            <a href="#">Paintings</a>
+            <a href="#">3D Art</a>
+            <a href="#">The Gospel Proclaimed</a>
+            <a href="#">Articles</a>
+            <a href="#">Old Artworks</a>
         </div>
 
-        <div class="work-grid">
-            <!-- Work items will be dynamically added -->
-            <div class="work-item">
-                <img src="artwork1.jpg" alt="Artwork Title">
-                <div class="work-overlay">
-                    <h3>Artwork Title</h3>
-                    <p>View Details →</p>
+        <div class="gallery-grid">
+            <!-- ARTWORK CARD 1 -->
+            <div class="artwork-card" onclick="openModal('Artwork Title 1', 'Digital Illustration', 'art1.jpg', 'crop1.jpg')">
+                <div class="artwork-image">
+                    <!-- PLACEHOLDER: Replace with <img src="your-image.jpg" alt="..."> -->
+                    <span>Artwork Image 1</span>
+                </div>
+                <div class="artwork-overlay">
+                    <h3>Artwork Title 1</h3>
+                    <span>Digital Illustration</span>
                 </div>
             </div>
-            <!-- Add more work items as needed -->
+
+            <!-- ARTWORK CARD 2 -->
+            <div class="artwork-card" onclick="openModal('Artwork Title 2', '3D Art', 'art2.jpg', 'crop2.jpg')">
+                <div class="artwork-image">
+                    <span>Artwork Image 2</span>
+                </div>
+                <div class="artwork-overlay">
+                    <h3>Artwork Title 2</h3>
+                    <span>3D Art</span>
+                </div>
+            </div>
+
+            <!-- ARTWORK CARD 3 -->
+            <div class="artwork-card" onclick="openModal('Artwork Title 3', 'The Gospel Proclaimed', 'art3.jpg', 'crop3.jpg')">
+                <div class="artwork-image">
+                    <span>Artwork Image 3</span>
+                </div>
+                <div class="artwork-overlay">
+                    <h3>Artwork Title 3</h3>
+                    <span>The Gospel Proclaimed</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- MODAL -->
+    <div class="modal-overlay" id="artworkModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-body">
+                <div class="modal-image-section">
+                    <div class="modal-main-image" id="modalMainImg">
+                        <!-- PLACEHOLDER: Main artwork image -->
+                        <span>Main Artwork View</span>
+                    </div>
+                    <div class="modal-crop-image" id="modalCropImg">
+                        <!-- PLACEHOLDER: Cropped detailed version -->
+                        <span>Cropped Detailed Version</span>
+                    </div>
+                </div>
+                <div class="modal-info">
+                    <span class="category" id="modalCategory">Category</span>
+                    <h2 id="modalTitle">Artwork Title</h2>
+                    <p>A powerful visual proclamation of faith, crafted to stir hearts and draw viewers closer to Christ. Available as premium prints and digital collectibles.</p>
+                    <a href="#shop" class="btn-shop" onclick="closeModal()">Purchase / View in Shop →</a>
+                </div>
+            </div>
+            <div class="modal-footer-nav">
+                <button class="nav-btn" onclick="closeModal()">← Close</button>
+                <button class="nav-btn">Next Artwork →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
     <section id="about">
         <h2 class="section-title">About</h2>
         <div class="about-content">
-            <h3 style="font-size: 2rem; margin-bottom: 2rem;">I bring the God dimension into the world through Art.</h3>
-            
+            <h3>I bring the God dimension into the world through Art.</h3>
             <p>Son_of_IAM_ is a multidisciplinary creative, based in Lagos, Nigeria. His work primarily focuses on communicating the Christian Faith visually, using Faith symbols, themes and figures to communicate his Faith bodily as inspired by the Holy Spirit in Worship.</p>
-            
-            <p>Promise (artist alias; Son_of_IAM), was born in Ogun State, Nigeria. Teaching himself how to draw as a child, evolving to learning Digital softwares like Photoshop, Blender 3D & Procreate in his early teenage years, to now using all these skills for a greater purpose; to serve the LORD.</p>
-            
-            <p>Change has been a common theme in his Life and in his work that has explored various themes and approaches.</p>
+            <p>Promise (artist alias; Son_of_IAM), was born in Ogun State, Nigeria. Teaching himself how to draw as a child, evolving to learning Digital softwares like Photoshop, Blender 3D & Procreate in his early teenage years, to now using all these skills for a greater purpose; to serve the LORD. Change has been a common theme in his Life and in his work that has explored various themes and approach.</p>
 
-            <p class="scripture" style="margin: 3rem 0; padding: 2rem; border-left: 4px solid var(--accent-color);">
-                "This is eternal life: that they may know You, the only true God, and Jesus Christ, whom You have sent."
-            </p>
-            <p class="scripture-reference">- John 17:3 (The ethos behind every work)</p>
+            <p class="scripture">“This is eternal life: that they may know You, the only true God, and Jesus Christ, whom You have sent.”</p>
+            <span class="scripture-reference">- John 17:3 | The ethos behind every work</span>
 
-            <!-- Origin -->
+            <h3>Origin</h3>
+            <p>Born in Lagos, 2006. Looking back recently, I realized I was actually surrounded by few creatives, my mom was an event photographer. I can remember clearly how I used to play with her old analogue camera in the compound. By secondary school, I was drawing constantly, on my class tables, in my note books, and on A4 papers, drawing diverse figures just to practice.</p>
+            <p>Years passed, we relocated and around 2020 my parent got me an old Pentium all-in-one desktop, a wired keyboard and a mouse, with those I installed Photoshop with the help of a new neighbor who was a graphic designer. He also helped with tutorial videos, and textures on my drive. It wasn’t a pivot — it was a new track in the same direction.</p>
+            <p>In 2022 I took a big break from social media and started teaching myself Blender 3D. Studied the blender gurus — polyfjord, blender guru, ducky 3D — and fused their techniques with my vision. Back then, I just wanted to create and communicate a world only I could see in my head.</p>
+
+            <h3>Journey</h3>
             <div class="timeline">
-                <h3 style="font-size: 1.8rem; margin: 3rem 0 2rem;">Origin</h3>
-                <div class="timeline-item">
-                    <div class="timeline-year">Born in Lagos, 2006</div>
-                    <div class="timeline-text">
-                        Looking back recently, I realized I was actually surrounded by few creatives, my mom was an event photographer. I can remember clearly how I used to play with her old analogue camera in the compound. By secondary school, I was drawing constantly, on my class tables, in my note books, and on A4 papers, drawing diverse figures just to practice.
-                    </div>
-                </div>
                 <div class="timeline-item">
                     <div class="timeline-year">2020 - Learning Photoshop</div>
-                    <div class="timeline-text">
-                        Years passed, we relocated and around 2020 my parent got me an old Pentium all-in-one desktop, a wired keyboard and a mouse. With those I installed Photoshop with the help of a new neighbor who was a graphic designer. He also helped with tutorial videos and textures on my drive. It wasn't a pivot — it was a new track in the same direction.
-                    </div>
+                    <div class="timeline-text">My first exploration into digital art.</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-year">2022 - Learning 3D</div>
-                    <div class="timeline-text">
-                        In 2022 I took a big break from social media and started teaching myself Blender 3D. Studied the blender gurus — Polyfjord, Blender Guru, Ducky 3D — and fused their techniques with my vision. Back then, I just wanted to create and communicate a world only I could see in my head.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Journey -->
-            <div class="timeline">
-                <h3 style="font-size: 1.8rem; margin: 3rem 0 2rem;">Journey</h3>
-                <p style="margin-bottom: 2rem; font-style: italic; color: var(--secondary-color);">From my school desk to the world</p>
-                
-                <div class="timeline-item">
-                    <div class="timeline-year">2020 - Learning Photoshop</div>
-                    <div class="timeline-text">My first exploration into digital art</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2022 - Learning 3D</div>
-                    <div class="timeline-text">I started learning Blender 3D on YouTube</div>
+                    <div class="timeline-text">I started learning Blender 3D on YouTube.</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-year">2022 - NFT Breakthrough</div>
-                    <div class="timeline-text">I found out about NFTs, started and sold out collaboration collections on Nifty Gateway, sold out a collection on Foundation</div>
+                    <div class="timeline-text">I found out about NFTs, started and sold out collaboration collections on Nifty Gateway, sold out a collection on Foundation.</div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-year">2023 - First Commission</div>
-                    <div class="timeline-text">An American found me online. The commissions began.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2023 - Collaborations</div>
-                    <div class="timeline-text">8+ international collaborations with artists across 5 continents</div>
+                    <div class="timeline-year">2023 - First Commission & Collaborations</div>
+                    <div class="timeline-text">An American found me online. The commissions began. 8+ international collaborations with artists across 5 continents.</div>
                 </div>
             </div>
 
-            <!-- Exhibitions -->
+            <h3>Exhibitions</h3>
             <div class="timeline">
-                <h3 style="font-size: 1.8rem; margin: 3rem 0 2rem;">Exhibitions</h3>
-                <p style="margin-bottom: 2rem; font-style: italic; color: var(--secondary-color);">Shown in 3 cities</p>
-                
                 <div class="timeline-item">
                     <div class="timeline-year">Lagos, Nigeria</div>
-                    <div class="timeline-text">
-                        Logoandheart 1.0 (2025)<br>
-                        Art 4 Peace by the Museum of Krypto Art (2025)
-                    </div>
+                    <div class="timeline-text">Logoandheart 1.0 (2025) | Art 4 Peace by the Museum of Krypto Art (2025)</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-year">New York City</div>
-                    <div class="timeline-text">
-                        Community Artist Showcase, NFT.NYC
-                    </div>
+                    <div class="timeline-text">Community Artist Showcase, NFT.NYC</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-year">Florence, Italy (2024)</div>
-                    <div class="timeline-text">
-                        Link Between Worlds at The Social Hub<br>
-                        Dimensions DAO Digital Gallery Exhibition
-                    </div>
+                    <div class="timeline-text">Link Between Worlds at The Social Hub | Dimensions DAO Digital Gallery Exhibition</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Commercial Hub -->
+    <!-- COMMERCIAL HUB -->
     <section id="commercial">
         <h2 class="section-title">Commercial Hub</h2>
-        <p style="font-size: 1.2rem; margin-bottom: 3rem;">Whether you're a collector, a Brand looking to collaborate, or just someone who wants to say hello, I'd love to hear from you.</p>
+        <p class="commercial-intro">Whether you’re a collector, a Brand looking to collaborate, or just someone who wants to say hello, I’d love to hear from you.</p>
 
-        <div class="form-container">
-            <form>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" name="firstName" placeholder="John" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
-                    </div>
-                </div>
-
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent! Thank you.');">
+            <div class="form-row">
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    <label>First Name</label>
+                    <input type="text" placeholder="John" required>
                 </div>
-
                 <div class="form-group">
-                    <label for="projectType">Project Type</label>
-                    <select id="projectType" name="projectType" required>
-                        <option value="">Select an option</option>
-                        <option value="commission">Commission/Purchase</option>
-                        <option value="brand">Brand Collaboration</option>
-                        <option value="press">Press/Interview</option>
-                        <option value="hello">Just Saying Hello</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="budget">Budget</label>
-                    <select id="budget" name="budget">
-                        <option value="">Select budget range</option>
-                        <option value="1000-5000">$1,000 - $5,000</option>
-                        <option value="5000-15000">$5,000 - $15,000</option>
-                        <option value="15000-30000">$15,000 - $30,000</option>
-                        <option value="30000-50000">$30,000 - $50,000</option>
-                        <option value="50000+">$50,000+</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="timeline">Timeline</label>
-                    <input type="text" id="timeline" name="timeline" placeholder="e.g., Q2 2026, 3 months">
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Project/Message Details</label>
-                    <textarea id="message" name="message" rows="6" placeholder="Tell us about your project, goals and any references..." required></textarea>
-                </div>
-
-                <button type="submit" class="submit-btn">Submit</button>
-            </form>
-        </div>
-
-        <!-- FAQ Section -->
-        <div style="margin-top: 5rem;">
-            <h3 style="font-size: 2rem; margin-bottom: 3rem;">Common Questions</h3>
-            
-            <div class="faq-item">
-                <div class="faq-question">Do you take commissions?</div>
-                <div class="faq-answer">Yes, but selectively. I take on a limited number of personal commissions each year. For the best chance of working together, reach out with a clear vision and timeline.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">What's your typical turnaround?</div>
-                <div class="faq-answer">It depends on the project. Simple pieces take 2-4 weeks. Complex campaigns can take up to 2-3 months. I'll give you a timeline once I understand your needs.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Do you sell prints?</div>
-                <div class="faq-answer">Yes. We currently have only two offers for prints: Limited Premium Edition and Open Prints Offer. They are both available through the shop.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Can I license your work?</div>
-                <div class="faq-answer">For commercial licensing (ads, products, media), please use the commercial Hub or email directly. All licensing is handled through Son_of_IAM_ studios.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">What other products do you have your Art on?</div>
-                <div class="faq-answer">I have my handcrafted art on diverse products from affordable to premium price range: stickers, wallpaper pack & prints. All available in Shop.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">How does your Limited Premium prints and Open Edition prints work?</div>
-                <div class="faq-answer">
-                    <strong>Limited Premium Prints:</strong> Available in limited numbers, and the offer is only open twice a year. This offer comes with: Certificate of Authenticity, larger sizes, museum grade printing, scriptural handcrafted scroll gift, Printed QR code to published article about purchased art, signature of artist (+edition numbers), possible special finish, collectors only wearables.<br><br>
-                    <strong>Open Edition Prints:</strong> Always available in the Shop, they come in small or standard frame size, canvas or regular art frame, artist signature (if requested), and Digital QR code to published article about purchased art.
+                    <label>Last Name</label>
+                    <input type="text" placeholder="Doe" required>
                 </div>
             </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+                <label>Project Type</label>
+                <select required>
+                    <option value="">Select an option</option>
+                    <option>Commission/Purchase</option>
+                    <option>Brand Collaboration</option>
+                    <option>Press/Interview</option>
+                    <option>Just Saying Hello</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Budget</label>
+                <select>
+                    <option value="">Select budget range</option>
+                    <option>$1,000 - $5,000</option>
+                    <option>$5,000 - $15,000</option>
+                    <option>$15,000 - $30,000</option>
+                    <option>$30,000 - $50,000</option>
+                    <option>$50,000+</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Timeline</label>
+                <input type="text" placeholder="e.g., Q2 2026, 3 months">
+            </div>
+            <div class="form-group">
+                <label>Project/Message Details</label>
+                <textarea rows="5" placeholder="Tell us about your project, goals and any references..." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+
+        <div class="faq-section">
+            <h3 style="margin-bottom: 2rem;">Common Questions</h3>
+            <details>
+                <summary>Do you take commissions?</summary>
+                <p>Yes, but selectively. I take on a limited number of personal commissions each year. For the best chance of working together, reach out with a clear vision and timeline.</p>
+            </details>
+            <details>
+                <summary>What’s your typical turnaround?</summary>
+                <p>It depends on the project. Simple pieces take 2-4 weeks. Complex campaigns can take up to 2-3 months. I’ll give you a timeline once I understand your needs.</p>
+            </details>
+            <details>
+                <summary>Do you sell prints?</summary>
+                <p>Yes. We currently have only two offers for prints; Limited Premium Edition and Open Prints Offer. They are both available through the shop.</p>
+            </details>
+            <details>
+                <summary>How does your Limited premium prints and open edition prints work?</summary>
+                <p><strong>Limited Premium Prints:</strong> Available in limited numbers, and the offer is only open twice a year. Comes with Certificate of Authenticity, larger sizes, museum grade printing, scriptural handcrafted scroll gift, Printed QR code to published article, signature of artist (+edition numbers), possible special finish, collectors only wearables.<br><br><strong>Open Edition Prints:</strong> Always available in the Shop. Come in small or standard frame size, canvas or regular art frame, artist signature (if requested), and Digital QR code to published article about purchased art.</p>
+            </details>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" style="text-align: center; padding: 4rem 5%;">
-        <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Get in Touch</h2>
-        <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--secondary-color);">For general inquiries, commissions, or just to say hello:</p>
-        <a href="mailto:SonofIAM.9@gmail.com" style="font-size: 1.3rem; color: var(--primary-color); text-decoration: none; font-weight: 600;">SonofIAM.9@gmail.com</a>
-        
-        <div class="social-links" style="justify-content: center; margin-top: 3rem;">
-            <a href="#" aria-label="Instagram">IG</a>
-            <a href="#" aria-label="Twitter">X</a>
-            <a href="#" aria-label="YouTube">YT</a>
-            <a href="#" aria-label="Behance">Be</a>
-            <a href="#" aria-label="WhatsApp">WA</a>
-        </div>
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Work with me</h2>
+        <p>Looking for a creative who brings visions, not just visuals? Whether it's a campaign, an album, a fashion collection, or piece for your collection or other commercial use — let's create something that lasts.</p>
+        <a href="#commercial" class="btn-cta">Commercial Inquiries →</a>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
+        <div class="footer-grid">
+            <div class="footer-brand">
                 <h3>SON_OF_IAM_</h3>
                 <p>Nigerian creative and worshipper, bringing the God dimension into the world through Art from Lagos.</p>
             </div>
-            <div class="footer-section">
-                <h3>Navigation</h3>
-                <ul class="footer-links">
-                    <li><a href="#work">Work</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#commercial">Commercial</a></li>
-                    <li><a href="#shop">Shop</a></li>
-                </ul>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+                <a href="#commercial">Commercial</a>
+                <a href="#shop">Shop</a>
             </div>
-            <div class="footer-section">
-                <h3>Follow</h3>
-                <div class="social-links">
-                    <a href="#" aria-label="Instagram">IG</a>
-                    <a href="#" aria-label="Twitter">X</a>
-                    <a href="#" aria-label="YouTube">YT</a>
-                    <a href="#" aria-label="Behance">Be</a>
-                    <a href="#" aria-label="Shopify">Shop</a>
+            <div class="footer-links">
+                <h4>Follow</h4>
+                <div>
+                    <a href="#" class="social-pill">Instagram</a>
+                    <a href="#" class="social-pill">X (Twitter)</a>
+                    <a href="#" class="social-pill">YouTube</a>
+                    <a href="#" class="social-pill">Behance</a>
+                    <a href="#" class="social-pill">WhatsApp</a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 Son_of_IAM_. All rights reserved.</p>
+            © 2026 Son_of_IAM_. All rights reserved.
         </div>
     </footer>
 
+    <!-- JAVASCRIPT -->
     <script>
-        // Toggle Mobile Menu
+        // Mobile Menu Toggle
         function toggleMenu() {
-            const hamburger = document.querySelector('.hamburger');
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const overlay = document.querySelector('.overlay');
-            
-            hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            overlay.classList.toggle('active');
-            
-            // Prevent body scroll when menu is open
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            document.querySelector('.hamburger').classList.toggle('active');
+            document.querySelector('.mobile-menu').classList.toggle('active');
+            document.querySelector('.overlay').classList.toggle('active');
+            document.body.style.overflow = document.querySelector('.mobile-menu').classList.contains('active') ? 'hidden' : '';
         }
 
-        // Smooth scroll for anchor links
+        // Modal Logic
+        function openModal(title, category, mainImg, cropImg) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalCategory').textContent = category;
+            // In production, swap these with actual image paths
+            document.getElementById('modalMainImg').innerHTML = `<img src="${mainImg}" alt="${title}" onerror="this.style.display='none'; this.parentElement.innerHTML='Main Artwork View';">`;
+            document.getElementById('modalCropImg').innerHTML = `<img src="${cropImg}" alt="${title} Crop" onerror="this.style.display='none'; this.parentElement.innerHTML='Cropped Detailed Version';">`;
+            document.getElementById('artworkModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('artworkModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on outside click
+        document.getElementById('artworkModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Smooth Scroll for Anchor Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
-        });
-
-        // Form submission handler
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Add your form submission logic here
-            alert('Thank you for your message! I will get back to you soon.');
-            this.reset();
-        });
-
-        // Add scroll effect to navigation
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            } else {
-                nav.style.boxShadow = 'none';
-            }
         });
     </script>
 </body>
