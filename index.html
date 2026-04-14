@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Son_of_IAM_ | Stirring Hearts Through Art</title>
-    
-    <!-- Google Fonts Fallback -->
+
+    <meta name="description" content="Son_of_IAM_ - Nigerian Christian creative spreading the gospel through digital art, 3D renders, and visual storytelling.">
+    <meta name="keywords" content="Christian art, digital illustration, Lagos artist, gospel art, NFT art">
+    <meta property="og:title" content="Son_of_IAM_ | Stirring Hearts Through Art">
+    <meta property="og:image" content="https://[your-url]/images/hero-image.jpg">
+
+    <link rel="icon" type="image/png" href="Images/LOGO.PNG">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -30,6 +36,17 @@
             --transition: all 0.3s ease;
         }
 
+        /* DARK MODE VARIABLES */
+        [data-theme="dark"] {
+            --bg-white: #121212;
+            --bg-light: #1a1a1a;
+            --text-dark: #f0f0f0;
+            --text-muted: #a0a0a0;
+            --border-light: #333333;
+            --color-highlight-dark: #ffffff; /* Inverts black buttons to white */
+            --color-highlight-light: #000000; /* Inverts white text inside buttons to black */
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -42,6 +59,7 @@
             background: var(--bg-white);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         a { text-decoration: none; color: inherit; }
@@ -95,11 +113,20 @@
             transition: var(--transition);
         }
 
+        [data-theme="dark"] header {
+            background: rgba(18,18,18,0.92);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
         header.scrolled {
             padding: 0.6rem 5%;
             box-shadow: 0 4px 30px rgba(114, 5, 205, 0.12), 
                         0 2px 10px rgba(0,0,0,0.06);
             background: rgba(255,255,255,0.96);
+        }
+
+        [data-theme="dark"] header.scrolled {
+            background: rgba(18,18,18,0.96);
         }
 
         .nav-container {
@@ -127,9 +154,9 @@
             height: 50px;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(114, 5, 205, 0.25);
+            background: transparent; /* Removed purple background */
+            box-shadow: none; /* Removed shadow for cleaner look */
             transition: var(--transition);
-            background: linear-gradient(135deg, #7205cd 0%, #9b3dd6 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -137,7 +164,6 @@
 
         .logo-icon:hover {
             transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 6px 20px rgba(114, 5, 205, 0.35);
         }
 
         .logo-icon img {
@@ -172,6 +198,12 @@
 
         .logo-wrapper:hover .logo {
             color: var(--color-dominant);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
         }
 
         .desktop-menu {
@@ -215,7 +247,7 @@
             position: absolute;
             top: calc(100% + 15px);
             right: 0;
-            background: white;
+            background: var(--bg-white);
             min-width: 240px;
             box-shadow: 0 10px 40px rgba(114, 5, 205, 0.15), 
                         0 2px 10px rgba(0,0,0,0.08);
@@ -251,6 +283,23 @@
             padding-left: 1.8rem;
         }
 
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.15);
+        }
+
         /* Hamburger Menu Enhanced */
         .hamburger {
             display: none;
@@ -265,7 +314,7 @@
         .hamburger span {
             width: 28px;
             height: 2.5px;
-            background: var(--color-highlight-dark);
+            background: var(--text-dark);
             margin: 4px 0;
             transition: var(--transition);
             border-radius: 3px;
@@ -288,7 +337,7 @@
             width: 85%;
             max-width: 400px;
             height: 100vh;
-            background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+            background: var(--bg-white);
             z-index: 1001;
             padding: 6rem 2.5rem 2rem;
             transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -302,7 +351,7 @@
             font-weight: 600;
             display: block;
             padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(114, 5, 205, 0.1);
+            border-bottom: 1px solid var(--border-light);
             transition: var(--transition);
         }
         .mobile-menu a:hover {
@@ -409,11 +458,15 @@
            DISCIPLINES
         =========================================== */
         .disciplines {
-            background: linear-gradient(135deg, #fafafa 0%, #f3f0f7 100%);
+            background: var(--bg-light);
             border-radius: 24px;
             padding: 4rem;
             margin-bottom: 4rem;
-            border: 1px solid rgba(114, 5, 205, 0.08);
+            border: 1px solid var(--border-light);
+        }
+
+        [data-theme="dark"] .disciplines {
+            background: #111111;
         }
 
         .discipline-grid {
@@ -485,7 +538,7 @@
             cursor: pointer;
             background: var(--bg-light);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
-            border: 1px solid rgba(114, 5, 205, 0.08);
+            border: 1px solid var(--border-light);
         }
 
         .artwork-card:hover {
@@ -496,11 +549,11 @@
         .artwork-image {
             width: 100%;
             aspect-ratio: 4/5;
-            background: #e8e8e8;
+            background: var(--border-light);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #999;
+            color: var(--text-muted);
             font-style: italic;
         }
 
@@ -559,20 +612,24 @@
             overflow-y: auto;
         }
 
+        [data-theme="dark"] .modal-overlay {
+            background: rgba(18,18,18,0.96);
+        }
+
         .modal-overlay.active {
             opacity: 1;
             pointer-events: auto;
         }
 
         .modal-content {
-            background: white;
+            background: var(--bg-white);
             max-width: 900px;
             width: 100%;
             border-radius: 20px;
             box-shadow: 0 30px 80px rgba(0,0,0,0.2);
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(114, 5, 205, 0.1);
+            border: 1px solid var(--border-light);
         }
 
         .modal-close {
@@ -611,16 +668,21 @@
         .modal-main-image, .modal-crop-image {
             width: 100%;
             aspect-ratio: 1;
-            background: #ddd;
+            background: var(--border-light);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #888;
+            color: var(--text-muted);
             font-style: italic;
+            overflow: hidden;
         }
 
         .modal-main-image img, .modal-crop-image img {
             width: 100%; height: 100%; object-fit: cover;
+        }
+
+        .modal-crop-image img {
+            transform: scale(1.5);
         }
 
         .modal-info {
@@ -653,7 +715,7 @@
         .btn-shop {
             display: inline-block;
             background: var(--color-highlight-dark);
-            color: white;
+            color: var(--color-highlight-light);
             padding: 1rem 2rem;
             border-radius: 8px;
             font-weight: 600;
@@ -665,6 +727,7 @@
             background: var(--color-dominant);
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(114, 5, 205, 0.3);
+            color: white;
         }
 
         .modal-footer-nav {
@@ -750,12 +813,12 @@
 
         .contact-form {
             max-width: 700px;
-            background: white;
+            background: var(--bg-white);
             padding: 3rem;
             border-radius: 16px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.08);
             margin-bottom: 4rem;
-            border: 1px solid rgba(114, 5, 205, 0.1);
+            border: 1px solid var(--border-light);
         }
 
         .form-row {
@@ -775,7 +838,7 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            color: var(--color-highlight-dark);
+            color: var(--text-dark);
         }
 
         .form-group input,
@@ -783,13 +846,20 @@
         .form-group textarea {
             width: 100%;
             padding: 1rem;
-            border: 2px solid var(--color-highlight-dark);
+            border: 2px solid var(--border-light);
             border-radius: 8px;
             font-family: var(--font-secondary);
             font-size: 1rem;
-            background: white;
-            color: var(--color-highlight-dark);
+            background: var(--bg-light);
+            color: var(--text-dark);
             transition: var(--transition);
+        }
+
+        [data-theme="dark"] .form-group input,
+        [data-theme="dark"] .form-group select,
+        [data-theme="dark"] .form-group textarea {
+            background: #2a2a2a;
+            border-color: #444;
         }
 
         .form-group input:focus,
@@ -804,7 +874,7 @@
             width: 100%;
             padding: 1.2rem;
             background: var(--color-highlight-dark);
-            color: white;
+            color: var(--color-highlight-light);
             border: none;
             border-radius: 8px;
             font-size: 1rem;
@@ -819,6 +889,7 @@
             background: var(--color-dominant);
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(114, 5, 205, 0.3);
+            color: white;
         }
 
         .faq-section {
@@ -864,10 +935,116 @@
         }
 
         /* ==========================================
+           SHOP SECTION
+        =========================================== */
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            height: 300px;
+            background: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .product-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 5px 15px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: white;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        .badge.limited { background-color: var(--color-dominant); }
+        .badge.open { background-color: var(--color-compliment); }
+        .badge.digital { background-color: #333333; }
+
+        .product-info {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-dominant);
+            margin-bottom: 1rem;
+        }
+
+        .product-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .buy-button {
+            display: block;
+            text-align: center;
+            background: var(--color-highlight-dark);
+            color: var(--color-highlight-light);
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .buy-button:hover {
+            background: var(--color-dominant);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(114, 5, 205, 0.3);
+            color: white;
+        }
+
+        /* ==========================================
            CTA & FOOTER
         =========================================== */
         .cta-section {
-            background: linear-gradient(135deg, var(--color-highlight-dark) 0%, #1a1a1a 100%);
+            background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
             color: white;
             padding: 5rem 5%;
             text-align: center;
@@ -919,10 +1096,11 @@
             background: var(--color-compliment);
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(114, 5, 205, 0.4);
+            color: white;
         }
 
         footer {
-            background: var(--color-highlight-dark);
+            background: #111111;
             color: white;
             padding: 4rem 5% 2rem;
             margin-top: 4rem;
@@ -973,7 +1151,7 @@
            RESPONSIVE
         =========================================== */
         @media (max-width: 900px) {
-            .desktop-menu { display: none; }
+            .nav-right { display: none; }
             .hamburger { display: flex; }
             .hero-content { grid-template-columns: 1fr; text-align: center; }
             .hero-text h1 { font-size: 2.5rem; }
@@ -999,12 +1177,10 @@
 </head>
 <body>
 
-    <!-- ENHANCED NAVIGATION -->
     <header id="mainHeader">
         <div class="nav-container">
             <a href="#" class="logo-wrapper">
                 <div class="logo-icon">
-                    <!-- Replace with actual logo image -->
                     <img src="Images/LOGO.PNG" alt="Son_of_IAM_ Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='🔥';">
                 </div>
                 <div class="logo-text">
@@ -1013,28 +1189,35 @@
                 </div>
             </a>
             
-            <nav class="desktop-menu">
-                <a href="#work">Work</a>
-                <a href="#about">About</a>
-                <a href="#articles">Articles</a>
-                <div class="dropdown">
-                    <a href="#shop">Shop ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="#limited-prints">Limited Premium Edition</a>
-                        <a href="#open-prints">Open Prints Offer</a>
-                        <a href="#stickers">Stickers</a>
-                        <a href="#wallpapers">Wallpaper Pack</a>
+            <div class="nav-right">
+                <nav class="desktop-menu">
+                    <a href="#work">Work</a>
+                    <a href="#about">About</a>
+                    <a href="#articles">Articles</a>
+                    <div class="dropdown">
+                        <a href="#shop">Shop ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="#limited-prints">Limited Premium Edition</a>
+                            <a href="#open-prints">Open Prints Offer</a>
+                            <a href="#stickers">Stickers</a>
+                            <a href="#wallpapers">Wallpaper Pack</a>
+                        </div>
                     </div>
-                </div>
-            </nav>
+                </nav>
+                
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+            </div>
             
-            <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
-                <span></span><span></span><span></span>
-            </button>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <button id="mobile-theme-toggle" class="theme-toggle hamburger-theme" style="display: none;" aria-label="Toggle Dark Mode">🌙</button>
+                
+                <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- MOBILE MENU -->
     <div class="overlay" onclick="toggleMenu()"></div>
     <div class="mobile-menu">
         <ul>
@@ -1046,7 +1229,6 @@
         </ul>
     </div>
 
-    <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
@@ -1056,13 +1238,17 @@
                 <span class="scripture-reference">- Exodus 31:2-3</span>
             </div>
             <div class="hero-image">
-                <!-- PLACEHOLDER: Replace with actual hero image -->
                 <span>Hero Image Placeholder</span>
             </div>
         </div>
     </section>
 
-    <!-- DISCIPLINES -->
+    <section id="home-about" style="text-align: center; max-width: 900px; padding-top: 2rem; padding-bottom: 2rem;">
+        <h2 class="section-title" style="font-size: 1.8rem;">About</h2>
+        <p style="font-size: 1.3rem; margin-bottom: 1.5rem; font-weight: 600; color: var(--color-dominant);">I bring the God dimension into the world through Art.</p>
+        <p style="color: var(--text-muted); line-height: 1.8; font-size: 1.1rem;">I'm Promise Adebayo a Nigerian Christian creative who uses his gifts in Service to God. My practice currently spans digital illustrations, blender 3D renders, and writing, all unified by a single goal; bringing the God dimension into the world and leading others closer to Him through Art imparted on me by the Holy Spirit in Worship.</p>
+    </section>
+
     <section class="disciplines" id="home-disciplines">
         <h2 class="section-title">One Vision, Multiple Disciplines</h2>
         <div class="discipline-grid">
@@ -1084,7 +1270,6 @@
         </div>
     </section>
 
-    <!-- WORK / GALLERY -->
     <section id="work">
         <h2 class="section-title">Work</h2>
         <p class="section-subtitle">Each piece is an invitation to know Jesus more.</p>
@@ -1101,10 +1286,8 @@
         </div>
 
         <div class="gallery-grid">
-            <!-- ARTWORK CARD 1 -->
             <div class="artwork-card" onclick="openModal('Artwork Title 1', 'Digital Illustration', 'art1.jpg', 'crop1.jpg')">
                 <div class="artwork-image">
-                    <!-- PLACEHOLDER: Replace with <img src="your-image.jpg" alt="..."> -->
                     <span>Artwork Image 1</span>
                 </div>
                 <div class="artwork-overlay">
@@ -1113,7 +1296,6 @@
                 </div>
             </div>
 
-            <!-- ARTWORK CARD 2 -->
             <div class="artwork-card" onclick="openModal('Artwork Title 2', '3D Art', 'art2.jpg', 'crop2.jpg')">
                 <div class="artwork-image">
                     <span>Artwork Image 2</span>
@@ -1124,7 +1306,6 @@
                 </div>
             </div>
 
-            <!-- ARTWORK CARD 3 -->
             <div class="artwork-card" onclick="openModal('Artwork Title 3', 'The Gospel Proclaimed', 'art3.jpg', 'crop3.jpg')">
                 <div class="artwork-image">
                     <span>Artwork Image 3</span>
@@ -1137,18 +1318,15 @@
         </div>
     </section>
 
-    <!-- MODAL -->
     <div class="modal-overlay" id="artworkModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()">×</button>
             <div class="modal-body">
                 <div class="modal-image-section">
                     <div class="modal-main-image" id="modalMainImg">
-                        <!-- PLACEHOLDER: Main artwork image -->
                         <span>Main Artwork View</span>
                     </div>
                     <div class="modal-crop-image" id="modalCropImg">
-                        <!-- PLACEHOLDER: Cropped detailed version -->
                         <span>Cropped Detailed Version</span>
                     </div>
                 </div>
@@ -1166,7 +1344,6 @@
         </div>
     </div>
 
-    <!-- ABOUT -->
     <section id="about">
         <h2 class="section-title">About</h2>
         <div class="about-content">
@@ -1220,54 +1397,53 @@
         </div>
     </section>
 
-    <!-- COMMERCIAL HUB -->
     <section id="commercial">
         <h2 class="section-title">Commercial Hub</h2>
         <p class="commercial-intro">Whether you're a collector, a Brand looking to collaborate, or just someone who wants to say hello, I'd love to hear from you.</p>
 
-        <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent! Thank you.');">
+        <form action="https://formspree.io/f/xyklyowb" method="POST" class="contact-form">
             <div class="form-row">
                 <div class="form-group">
                     <label>First Name</label>
-                    <input type="text" placeholder="John" required>
+                    <input type="text" name="First Name" placeholder="John" required>
                 </div>
                 <div class="form-group">
                     <label>Last Name</label>
-                    <input type="text" placeholder="Doe" required>
+                    <input type="text" name="Last Name" placeholder="Doe" required>
                 </div>
             </div>
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" placeholder="you@example.com" required>
+                <input type="email" name="Email" placeholder="you@example.com" required>
             </div>
             <div class="form-group">
                 <label>Project Type</label>
-                <select required>
+                <select name="Project Type" required>
                     <option value="">Select an option</option>
-                    <option>Commission/Purchase</option>
-                    <option>Brand Collaboration</option>
-                    <option>Press/Interview</option>
-                    <option>Just Saying Hello</option>
+                    <option value="Commission/Purchase">Commission/Purchase</option>
+                    <option value="Brand Collaboration">Brand Collaboration</option>
+                    <option value="Press/Interview">Press/Interview</option>
+                    <option value="Just Saying Hello">Just Saying Hello</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Budget</label>
-                <select>
+                <select name="Budget">
                     <option value="">Select budget range</option>
-                    <option>$1,000 - $5,000</option>
-                    <option>$5,000 - $15,000</option>
-                    <option>$15,000 - $30,000</option>
-                    <option>$30,000 - $50,000</option>
-                    <option>$50,000+</option>
+                    <option value="$1,000 - $5,000">$1,000 - $5,000</option>
+                    <option value="$5,000 - $15,000">$5,000 - $15,000</option>
+                    <option value="$15,000 - $30,000">$15,000 - $30,000</option>
+                    <option value="$30,000 - $50,000">$30,000 - $50,000</option>
+                    <option value="$50,000+">$50,000+</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Timeline</label>
-                <input type="text" placeholder="e.g., Q2 2026, 3 months">
+                <input type="text" name="Timeline" placeholder="e.g., Q2 2026, 3 months">
             </div>
             <div class="form-group">
                 <label>Project/Message Details</label>
-                <textarea rows="5" placeholder="Tell us about your project, goals and any references..." required></textarea>
+                <textarea name="Message" rows="5" placeholder="Tell us about your project, goals and any references..." required></textarea>
             </div>
             <button type="submit" class="submit-btn">Submit</button>
         </form>
@@ -1290,17 +1466,69 @@
                 <summary>How does your Limited premium prints and open edition prints work?</summary>
                 <p><strong>Limited Premium Prints:</strong> Available in limited numbers, and the offer is only open twice a year. Comes with Certificate of Authenticity, larger sizes, museum grade printing, scriptural handcrafted scroll gift, Printed QR code to published article, signature of artist (+edition numbers), possible special finish, collectors only wearables.<br><br><strong>Open Edition Prints:</strong> Always available in the Shop. Come in small or standard frame size, canvas or regular art frame, artist signature (if requested), and Digital QR code to published article about purchased art.</p>
             </details>
+            <details>
+                <summary>Can I license your work?</summary>
+                <p>For commercial licensing (ads, products, media), please use the commercial Hub or email directly. All licensing is handled through Son_of_IAM_ studios.</p>
+            </details>
+            <details>
+                <summary>What other products do you have your Art on?</summary>
+                <p>I have my handcrafted art on diverse products from affordable to premium price range; stickers, wallpaper pack & prints. All available in Shop.</p>
+            </details>
         </div>
     </section>
 
-    <!-- CTA -->
+    <section id="shop">
+        <h2 class="section-title">Shop</h2>
+        <p class="section-subtitle">Bring the God dimension into your space. All limited and open editions.</p>
+
+        <div class="shop-grid">
+            <article class="product-card" id="limited-prints">
+                <div class="product-image-wrapper">
+                    <span>Limited Print Image</span>
+                    <span class="badge limited">Limited Drop</span>
+                </div>
+                <div class="product-info">
+                    <h3>Premium Limited Print</h3>
+                    <p class="product-price">$150.00</p>
+                    <p class="product-desc">Museum grade printing, certificate of authenticity, and artist signature.</p>
+                    <a href="https://paystack.com/pay/your-unique-link" target="_blank" class="buy-button">Purchase Now</a>
+                </div>
+            </article>
+
+            <article class="product-card" id="open-prints">
+                <div class="product-image-wrapper">
+                    <span>Open Edition Image</span>
+                    <span class="badge open">Open Edition</span>
+                </div>
+                <div class="product-info">
+                    <h3>Open Edition Canvas</h3>
+                    <p class="product-price">$45.00</p>
+                    <p class="product-desc">Standard frame size canvas with digital QR code access.</p>
+                    <a href="https://paystack.com/pay/your-unique-link" target="_blank" class="buy-button">Purchase Now</a>
+                </div>
+            </article>
+
+            <article class="product-card" id="wallpapers">
+                <div class="product-image-wrapper">
+                    <span>Digital Wallpaper Image</span>
+                    <span class="badge digital">Digital</span>
+                </div>
+                <div class="product-info">
+                    <h3>Mobile & Desktop Wallpapers</h3>
+                    <p class="product-price">$10.00</p>
+                    <p class="product-desc">High-resolution digital downloads of my best artwork.</p>
+                    <a href="https://paystack.com/pay/your-unique-link" target="_blank" class="buy-button">Purchase Now</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
     <section class="cta-section">
         <h2>Work with me</h2>
         <p>Looking for a creative who brings visions, not just visuals? Whether it's a campaign, an album, a fashion collection, or piece for your collection or other commercial use — let's create something that lasts.</p>
         <a href="#commercial" class="btn-cta">Commercial Inquiries →</a>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div class="footer-brand">
@@ -1330,7 +1558,6 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT -->
     <script>
         // Header scroll effect
         window.addEventListener('scroll', function() {
@@ -1354,7 +1581,6 @@
         function openModal(title, category, mainImg, cropImg) {
             document.getElementById('modalTitle').textContent = title;
             document.getElementById('modalCategory').textContent = category;
-            // In production, swap these with actual image paths
             document.getElementById('modalMainImg').innerHTML = `<img src="${mainImg}" alt="${title}" onerror="this.style.display='none'; this.parentElement.innerHTML='Main Artwork View';">`;
             document.getElementById('modalCropImg').innerHTML = `<img src="${cropImg}" alt="${title} Crop" onerror="this.style.display='none'; this.parentElement.innerHTML='Cropped Detailed Version';">`;
             document.getElementById('artworkModal').classList.add('active');
@@ -1380,6 +1606,62 @@
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
+        });
+
+        // ==========================================
+        // DARK MODE TOGGLE LOGIC
+        // ==========================================
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const rootElement = document.documentElement;
+
+        // Function to set theme
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                rootElement.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '☀️';
+                mobileThemeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                rootElement.removeAttribute('data-theme');
+                themeToggle.textContent = '🌙';
+                mobileThemeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Check for saved user preference on load
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setTheme(savedTheme);
+        } else {
+            // Check system preference if no saved setting
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                setTheme('dark');
+            }
+        }
+
+        // Toggle Event Listeners
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = rootElement.getAttribute('data-theme');
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+        
+        mobileThemeToggle.addEventListener('click', () => {
+            const currentTheme = rootElement.getAttribute('data-theme');
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+        
+        // Show mobile toggle on small screens
+        if (window.innerWidth <= 900) {
+            mobileThemeToggle.style.display = 'block';
+        }
+        window.addEventListener('resize', () => {
+            if (window.innerWidth <= 900) {
+                mobileThemeToggle.style.display = 'block';
+            } else {
+                mobileThemeToggle.style.display = 'none';
+            }
         });
     </script>
 </body>
