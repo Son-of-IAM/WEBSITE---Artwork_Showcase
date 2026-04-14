@@ -31,7 +31,7 @@
 
         .discipline-item h3 {
             font-size: 4rem;
-            color: var(--color-dominant); /* #7205CD Purple */
+            color: #ffffff /* #7205CD Purple */
             opacity: 0.3;
             margin-bottom: 10px;
             line-height: 1;
