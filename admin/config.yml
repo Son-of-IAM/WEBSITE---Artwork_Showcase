@@ -5,7 +5,6 @@ backend:
 
 media_folder: "Images/artworks"
 public_folder: "Images/artworks"
-publish_mode: editorial_workflow
 
 collections:
   - name: "artworks"
@@ -14,8 +13,7 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string", required: true}
-      - {label: "Category", name: "category", widget: "select", options: ["paintings", "3d-art", "gospel", "old"], required: true}
-      - {label: "Main Image", name: "image", widget: "image", required: true}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Category", name: "category", widget: "select", options: ["paintings", "3d-art", "gospel", "old"]}
+      - {label: "Main Image", name: "image", widget: "image"}
       - {label: "Cropped Detail", name: "cropImage", widget: "image", required: false}
-      - {label: "Description", name: "description", widget: "text", required: false}
