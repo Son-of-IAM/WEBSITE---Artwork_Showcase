@@ -1,25 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
- <head>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About | Son_of_IAM_</title>
   <link rel="stylesheet" href="style.css">
 </head>
-  <style>
-    /* Reuse all CSS from index.html here, plus: */
-    .timeline { border-left: 2px solid var(--accent); padding-left: 1.5rem; margin: 2rem 0; }
-    .timeline-item { margin-bottom: 1.5rem; position: relative; }
-    .timeline-item::before { content: ''; position: absolute; left: -2.05rem; top: 0.3rem; width: 10px; height: 10px; background: var(--accent); border-radius: 50%; }
-    .timeline-year { font-weight: 600; color: var(--accent); }
-    .exhibitions { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-    .exhibition-card { background: var(--surface); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border); }
-  </style>
-</head>
 <body>
-  <!-- Header (Identical to index.html) -->
   <header>
-    <div class="logo">SON_OF_IAM_</div>
+    <a href="index.html" class="logo">
+      <img src="assets/logo.png" alt="Son_of_IAM_ Logo" width="140" height="auto">
+    </a>
     <nav>
       <ul>
         <li><a href="index.html#work">Work</a></li>
@@ -34,7 +25,7 @@
             <a href="index.html#wallpapers">Wallpaper Pack</a>
           </div>
         </li>
-        <li><button class="theme-toggle">🌙</button></li>
+        <li><button class="theme-toggle" aria-label="Toggle theme">🌙</button></li>
       </ul>
     </nav>
   </header>
@@ -97,7 +88,6 @@
     </section>
   </main>
 
-  <!-- Footer (Identical to index.html) -->
   <footer>
     <div class="footer-grid">
       <div>
@@ -114,28 +104,13 @@
       <div>
         <h4>Follow</h4>
         <div class="socials">
-          <a href="#">IG</a> <a href="#">X</a> <a href="#">YT</a> <a href="#">BE</a> <a href="#">WA</a>
+          <a href="#" aria-label="Instagram">IG</a> <a href="#" aria-label="X (Twitter)">X</a> <a href="#" aria-label="YouTube">YT</a> <a href="#" aria-label="Behance">BE</a> <a href="#" aria-label="WhatsApp">WA</a>
         </div>
       </div>
     </div>
-    <div style="border-top: 1px solid var(--border); padding-top: 1rem; color: var(--text-muted);">
-      © 2026 Son_of_IAM_. All rights reserved.
-    </div>
+    <div class="footer-bottom">© 2026 Son_of_IAM_. All rights reserved.</div>
   </footer>
 
-  <script>
-    // Reuse JS animations & theme toggle from index.html
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-    const themeBtn = document.querySelector('.theme-toggle');
-    themeBtn.addEventListener('click', () => {
-      const html = document.documentElement;
-      const isDark = html.getAttribute('data-theme') === 'dark';
-      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-      themeBtn.textContent = isDark ? '☀️' : '🌙';
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
