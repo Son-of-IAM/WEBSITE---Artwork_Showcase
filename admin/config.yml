@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: Son-of-IAM/WEBSITE---Artwork_Showcase
   branch: main
 
 media_folder: "Images/artworks"
