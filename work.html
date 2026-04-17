@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artwork | Son_of_IAM_</title>
+    <title>Work | Son_of_IAM_</title>
+    <meta name="description" content="Paintings, 3D Art, The Gospel Proclaimed, and more by Son_of_IAM_.">
     <link rel="icon" type="image/png" href="Images/LOGO.PNG">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --color-dominant: #7205cd;
             --color-compliment: #5D7FFF;
+            --color-highlight-dark: #000000;
+            --color-highlight-light: #ffffff;
             --bg-light: #fafafa;
             --bg-white: #ffffff;
             --text-dark: #1a1a1a;
@@ -27,23 +31,35 @@
             --text-dark: #f0f0f0;
             --text-muted: #999999;
             --border-light: #2a2a2a;
+            --color-highlight-dark: #ffffff;
+            --color-highlight-light: #000000;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: var(--font-secondary); color: var(--text-dark); background: var(--bg-white); line-height: 1.7; overflow-x: hidden; transition: background-color 0.5s, color 0.5s; }
-        h1, h2, h3 { font-family: var(--font-primary); }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-secondary); color: var(--text-dark); background: var(--bg-white); line-height: 1.7; overflow-x: hidden; transition: background-color 0.5s ease, color 0.5s ease; }
+        h1, h2, h3, h4 { font-family: var(--font-primary); font-weight: 700; }
         a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
         img { max-width: 100%; display: block; }
 
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); z-index: 1000; padding: 1rem 5%; border-bottom: 1px solid rgba(114, 5, 205, 0.1); transition: var(--transition); }
+        .scripture-block { max-width: 800px; margin: 3rem auto; text-align: center; padding: 3rem 2rem; position: relative; }
+        .scripture-block::before, .scripture-block::after { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 60px; height: 2px; background: var(--color-dominant); }
+        .scripture-block::before { top: 0; } .scripture-block::after { bottom: 0; }
+        .scripture { font-family: var(--font-handwriting); font-size: 2.4rem; line-height: 1.3; color: var(--color-dominant); margin-bottom: 0.5rem; }
+        .scripture-reference { font-family: var(--font-handwriting); font-size: 1.5rem; color: var(--text-muted); }
+
+        header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); z-index: 1000; padding: 1rem 5%; border-bottom: 1px solid rgba(114, 5, 205, 0.1); box-shadow: 0 2px 20px rgba(114, 5, 205, 0.08); transition: var(--transition); }
         [data-theme="dark"] header { background: rgba(10,10,10,0.95); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        header.scrolled { padding: 0.7rem 5%; }
         .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .logo-wrapper { display: flex; align-items: center; gap: 1rem; }
-        .logo-icon { width: 48px; height: 48px; }
-        @keyframes fireGlow { 0% { filter: drop-shadow(0 0 8px rgba(114,5,205,0.4)); } 50% { filter: drop-shadow(0 0 20px rgba(114,5,205,0.8)); transform: translateY(-2px) scale(1.02); } 100% { filter: drop-shadow(0 0 8px rgba(114,5,205,0.4)); } }
+        .logo-icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; }
+        @keyframes fireGlow { 0% { filter: drop-shadow(0 0 8px rgba(114, 5, 205, 0.4)); } 50% { filter: drop-shadow(0 0 20px rgba(114, 5, 205, 0.8)); transform: translateY(-2px) scale(1.02); } 100% { filter: drop-shadow(0 0 8px rgba(114, 5, 205, 0.4)); } }
         .logo-icon img { width: 100%; height: 100%; object-fit: contain; animation: fireGlow 3s infinite alternate; }
+        .logo-text { display: flex; flex-direction: column; }
         .logo { font-size: 1.4rem; font-weight: 700; color: var(--text-dark); font-family: var(--font-primary); letter-spacing: 1px; }
         .logo-tagline { font-size: 0.65rem; color: var(--color-dominant); text-transform: uppercase; font-weight: 600; letter-spacing: 2px; font-family: var(--font-primary); }
         .nav-right { display: flex; align-items: center; gap: 2.5rem; }
@@ -52,40 +68,60 @@
         .desktop-menu a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--color-dominant); transition: width 0.3s; }
         .desktop-menu a:hover::after { width: 100%; }
         .desktop-menu a:hover { color: var(--color-dominant); }
-        .theme-toggle { background: none; border: none; font-size: 1.3rem; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .dropdown { position: relative; }
+        .dropdown-menu { position: absolute; top: 100%; right: 0; background: var(--bg-white); min-width: 280px; box-shadow: 0 20px 50px rgba(0,0,0,0.12); border-radius: 16px; padding: 1rem 0; opacity: 0; visibility: hidden; transition: all 0.3s; transform: translateY(-10px); border: 1px solid var(--border-light); }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-menu a { display: block; padding: 0.8rem 1.8rem; font-size: 0.85rem; }
+        .dropdown-menu a:hover { color: var(--color-dominant); background: var(--bg-light); padding-left: 2.2rem; }
+        .dropdown-menu a::after { display: none; }
+        .theme-toggle { background: none; border: none; font-size: 1.3rem; cursor: pointer; transition: 0.3s; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
         .theme-toggle:hover { background: var(--bg-light); transform: rotate(15deg); }
-        .btn-cta { display: inline-block; background: var(--color-dominant); color: white !important; padding: 0.7rem 1.8rem; border-radius: 8px; font-weight: 700; font-family: var(--font-primary); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; }
-        .btn-cta:hover { background: var(--color-compliment); transform: translateY(-2px); }
+        .btn-cta { display: inline-block; background: var(--color-dominant); color: white !important; padding: 0.7rem 1.8rem; border-radius: 8px; font-weight: 700; border: none; cursor: pointer; transition: var(--transition); font-family: var(--font-primary); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; }
+        .btn-cta:hover { background: var(--color-compliment); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(114, 5, 205, 0.3); }
         .hamburger { display: none; flex-direction: column; background: none; border: none; cursor: pointer; z-index: 1002; padding: 0.5rem; gap: 5px; }
-        .hamburger span { width: 26px; height: 2px; background: var(--text-dark); transition: 0.3s; }
-        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); background: var(--color-dominant); }
+        .hamburger span { width: 26px; height: 2px; background: var(--text-dark); transition: 0.3s; border-radius: 2px; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); background: var(--color-dominant); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); background: var(--color-dominant); }
-        .mobile-menu { position: fixed; top: 0; right: -100%; width: 85%; max-width: 400px; height: 100vh; background: var(--bg-white); z-index: 1001; padding: 8rem 3rem; transition: 0.5s; box-shadow: -10px 0 50px rgba(0,0,0,0.15); font-family: var(--font-primary); }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); background: var(--color-dominant); }
+        .mobile-menu { position: fixed; top: 0; right: -100%; width: 85%; max-width: 400px; height: 100vh; background: var(--bg-white); z-index: 1001; padding: 8rem 3rem; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: -10px 0 50px rgba(0,0,0,0.15); font-family: var(--font-primary); overflow-y: auto; }
         .mobile-menu.active { right: 0; }
-        .mobile-menu a { display: block; font-size: 1.3rem; padding: 1.2rem 0; border-bottom: 1px solid var(--border-light); font-weight: 600; text-transform: uppercase; }
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; display: none; backdrop-filter: blur(8px); }
-        .overlay.active { display: block; }
+        .mobile-menu a { display: block; font-size: 1.3rem; padding: 1.2rem 0; border-bottom: 1px solid var(--border-light); font-weight: 600; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .mobile-menu a:hover { color: var(--color-dominant); padding-left: 10px; }
+        .mobile-menu .dropdown-mobile { margin-left: 1rem; margin-top: 0.5rem; display: none; }
+        .mobile-menu .dropdown-mobile.active { display: block; }
+        .mobile-menu .dropdown-mobile a { font-size: 1rem; padding: 0.8rem 0; border: none; color: var(--text-muted); }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; display: none; backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.3s; }
+        .overlay.active { display: block; opacity: 1; }
 
-        .artwork-view { margin-top: 80px; padding: 4rem 5%; max-width: 1400px; margin-left: auto; margin-right: auto; }
-        .artwork-title { font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 2px; }
-        .artwork-meta { color: var(--color-dominant); font-family: var(--font-primary); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 3rem; }
+        /* Work Page Specific */
+        .work-hero { margin-top: 80px; padding: 6rem 5% 2rem; text-align: center; }
+        .work-hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1rem; text-transform: uppercase; }
+        .work-hero > p { color: var(--text-muted); font-size: 1.2rem; margin-bottom: 3rem; }
 
-        .main-image { width: 100%; max-height: 85vh; background: var(--bg-light); border-radius: 20px; overflow: hidden; margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; }
-        .main-image img { width: 100%; height: 100%; object-fit: contain; max-height: 85vh; }
-        .placeholder-text { padding: 60px; text-align: center; color: var(--text-muted); font-family: var(--font-primary); font-style: italic; }
+        .category-section { padding: 6rem 5%; max-width: 1400px; margin: 0 auto; }
+        .category-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; border-bottom: 2px solid var(--border-light); padding-bottom: 1.5rem; }
+        .category-header h2 { font-size: 2rem; text-transform: uppercase; letter-spacing: 2px; }
+        .category-header span { font-family: var(--font-primary); color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+        .work-card { position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; background: var(--bg-light); aspect-ratio: 4/5; transition: all 0.5s ease; border: 1px solid var(--border-light); }
+        .work-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.15); }
+        .work-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s; }
+        .work-card:hover img { transform: scale(1.08); }
+        .work-card .overlay-info { position: absolute; bottom: 0; left: 0; width: 100%; padding: 2.5rem 1.5rem 1.5rem; background: linear-gradient(to top, rgba(114, 5, 205, 0.95), transparent); color: white; opacity: 0; transition: opacity 0.4s; }
+        .work-card:hover .overlay-info { opacity: 1; }
+        .work-card h3 { font-size: 1.2rem; margin-bottom: 0.3rem; }
+        .work-card p { font-size: 0.85rem; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px; }
 
-        .detail-section { margin: 4rem 0; }
-        .detail-section h3 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem; color: var(--text-muted); }
-        .cropped-image { width: 100%; height: 400px; background: var(--bg-light); border-radius: 16px; overflow: hidden; }
-        .cropped-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+        .medium-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 2rem; padding: 1rem 2rem; background: var(--bg-light); border-radius: 12px; border: 1px solid var(--border-light); font-family: var(--font-primary); font-weight: 600; color: var(--color-dominant); transition: var(--transition); }
+        .medium-link:hover { background: var(--color-dominant); color: white; transform: translateY(-2px); }
 
-        .artwork-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 2px solid var(--border-light); }
-        .nav-arrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; color: var(--color-dominant); transition: var(--transition); cursor: pointer; padding: 1rem; }
-        .nav-arrow:hover { transform: translateX(5px); }
-        .nav-arrow.prev:hover { transform: translateX(-5px); }
-        .nav-arrow svg { width: 24px; height: 24px; }
+        .archive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; opacity: 0.7; }
+        .archive-card { aspect-ratio: 1; background: var(--bg-light); border-radius: 12px; overflow: hidden; position: relative; filter: grayscale(0.3); transition: var(--transition); }
+        .archive-card:hover { filter: grayscale(0); transform: scale(1.03); }
+        .archive-card img { width: 100%; height: 100%; object-fit: cover; }
 
+        /* Footer */
         footer { background: #0a0a0a; color: rgba(255,255,255,0.8); padding: 6rem 5% 3rem; margin-top: 4rem; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1.5fr 1.5fr; gap: 4rem; max-width: 1400px; margin: 0 auto; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 4rem; }
         .footer-brand h3 { margin-bottom: 1.5rem; font-size: 1.8rem; color: white; letter-spacing: 2px; }
@@ -98,8 +134,8 @@
         .social-pill:hover { background: var(--color-dominant); border-color: var(--color-dominant); transform: translateY(-3px); }
         .footer-bottom { text-align: center; padding-top: 3rem; opacity: 0.4; font-size: 0.85rem; font-family: var(--font-primary); text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.6); }
 
-        @media (max-width: 900px) { .nav-right { display: none; } .hamburger { display: flex; } .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; } .main-image { max-height: 60vh; } }
-        @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; text-align: center; } .footer-brand p { margin: 0 auto; } .social-pills { justify-content: center; } .artwork-nav { flex-direction: column; gap: 1rem; } .cropped-image { height: 250px; } }
+        @media (max-width: 900px) { .nav-right { display: none; } .hamburger { display: flex; } .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; } .category-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); } }
+        @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; text-align: center; } .footer-brand p { margin: 0 auto; } .social-pills { justify-content: center; } .category-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; } .work-hero h1 { font-size: 2rem; } }
 
         [data-theme="dark"] .logo { color: #ffffff; }
         [data-theme="dark"] .desktop-menu a { color: #cccccc; }
@@ -121,8 +157,16 @@
             </a>
             <div class="nav-right">
                 <nav class="desktop-menu">
-                    <a href="work.html">Work</a>
-                    <a href="shop.html">Shop</a>
+                    <a href="work.html" style="color: var(--color-dominant);">Work</a>
+                    <div class="dropdown">
+                        <a href="shop.html">Shop ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="shop.html#limited-prints">Limited Premium Edition</a>
+                            <a href="shop.html#open-prints">Open Prints Offer</a>
+                            <a href="shop.html#stickers">Stickers</a>
+                            <a href="shop.html#wallpapers">Wallpaper Pack</a>
+                        </div>
+                    </div>
                     <a href="about.html">About</a>
                     <a href="https://medium.com/@Son_of_IAM_" target="_blank">Articles</a>
                 </nav>
@@ -141,39 +185,108 @@
     <div class="overlay" onclick="toggleMenu()"></div>
     <div class="mobile-menu">
         <a href="work.html" onclick="toggleMenu()">Work</a>
-        <a href="shop.html" onclick="toggleMenu()">Shop</a>
+        <a href="#" onclick="toggleDropdown(event)">Shop ▾</a>
+        <div class="dropdown-mobile">
+            <a href="shop.html#limited-prints" onclick="toggleMenu()">Limited Premium Edition</a>
+            <a href="shop.html#open-prints" onclick="toggleMenu()">Open Prints Offer</a>
+            <a href="shop.html#stickers" onclick="toggleMenu()">Stickers</a>
+            <a href="shop.html#wallpapers" onclick="toggleMenu()">Wallpaper Pack</a>
+        </div>
         <a href="about.html" onclick="toggleMenu()">About</a>
         <a href="https://medium.com/@Son_of_IAM_" target="_blank" onclick="toggleMenu()">Articles</a>
         <a href="commercial.html" onclick="toggleMenu()">Commercial</a>
     </div>
 
-    <main class="artwork-view">
-        <h1 class="artwork-title reveal" id="artworkTitle">The Announcing</h1>
-        <p class="artwork-meta reveal" id="artworkCategory">Paintings</p>
-
-        <div class="main-image reveal">
-            <img src="Images/placeholder1.jpg" alt="Main artwork" id="mainImage" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder-text\'>Main Artwork Image<br>(Add high-res image)</div>';">
+    <section class="work-hero">
+        <h1 class="reveal">Work</h1>
+        <p class="reveal">Each piece is an invitation to know Jesus more.</p>
+        <div class="scripture-block reveal">
+            <p class="scripture">"This is eternal life: that they may know You, the only true God, and Jesus Christ, whom You have sent."</p>
+            <span class="scripture-reference">John 17:3 — The ethos behind every work</span>
         </div>
+    </section>
 
-        <div class="detail-section reveal">
-            <h3>Cropped Detailed Version</h3>
-            <div class="cropped-image">
-                <img src="Images/placeholder1-crop.jpg" alt="Detail view" id="cropImage" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--bg-light), var(--border-light))'; this.parentElement.innerHTML='<div class=\'placeholder-text\'>Cropped Detail View<br>(Add detail image)</div>';">
+    <section id="paintings" class="category-section">
+        <div class="category-header reveal">
+            <h2>Paintings</h2>
+            <span>Selected Works</span>
+        </div>
+        <div class="category-grid">
+            <div class="work-card reveal" onclick="location.href='artwork.html?id=1'">
+                <img src="Images/placeholder1.jpg" alt="Artwork" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #5D7FFF)'">
+                <div class="overlay-info"><h3>The Announcing</h3><p>Paintings</p></div>
+            </div>
+            <div class="work-card reveal" onclick="location.href='artwork.html?id=3'">
+                <img src="Images/placeholder3.jpg" alt="Artwork" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #1a0a2e, #7205cd)'">
+                <div class="overlay-info"><h3>Deliverance</h3><p>Paintings</p></div>
+            </div>
+            <div class="work-card reveal" onclick="location.href='artwork.html?id=6'">
+                <img src="Images/placeholder6.jpg" alt="Artwork" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #5D7FFF, #7205cd)'">
+                <div class="overlay-info"><h3>Upper Room</h3><p>Paintings</p></div>
             </div>
         </div>
+    </section>
 
-        <div class="artwork-nav reveal">
-            <a href="artwork.html?id=0" class="nav-arrow prev" id="prevBtn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                Previous
-            </a>
-            <a href="work.html" style="font-family: var(--font-primary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted);">Back to Gallery</a>
-            <a href="artwork.html?id=2" class="nav-arrow" id="nextBtn">
-                Next
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+    <section id="3d-art" class="category-section" style="background: var(--bg-light); border-radius: 30px; margin: 2rem auto;">
+        <div class="category-header reveal">
+            <h2>3D Art</h2>
+            <span>Blender Renders</span>
         </div>
-    </main>
+        <div class="category-grid">
+            <div class="work-card reveal" onclick="location.href='artwork.html?id=2'">
+                <img src="Images/placeholder2.jpg" alt="Artwork" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #0f0518, #5D7FFF)'">
+                <div class="overlay-info"><h3>Throne Room</h3><p>3D Art</p></div>
+            </div>
+            <div class="work-card reveal" onclick="location.href='artwork.html?id=4'">
+                <img src="Images/placeholder4.jpg" alt="Artwork" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #f8f5ff)'">
+                <div class="overlay-info"><h3>New Jerusalem</h3><p>3D Art</p></div>
+            </div>
+            <div class="work-card reveal" onclick="location.href='artwork.html?id=7'">
+                <img src="Images/placeholder7.jpg" alt="Artwork" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #1a0a2e, #0f0518)'">
+                <div class="overlay-info"><h3>The Ascension</h3><p>3D Art</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gospel" class="category-section">
+        <div class="category-header reveal">
+            <h2>The Gospel Proclaimed</h2>
+            <span>Collection</span>
+        </div>
+        <div class="category-grid">
+            <div class="work-card reveal" onclick="location.href='artwork.html?id=5'">
+                <img src="Images/placeholder5.jpg" alt="Artwork" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #5D7FFF, #1a0a2e)'">
+                <div class="overlay-info"><h3>The Good Shepherd</h3><p>The Gospel Proclaimed</p></div>
+            </div>
+            <div class="work-card reveal" onclick="location.href='artwork.html?id=8'">
+                <img src="Images/placeholder8.jpg" alt="Artwork" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #5D7FFF)'">
+                <div class="overlay-info"><h3>Prodigal</h3><p>The Gospel Proclaimed</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="articles" class="category-section" style="background: linear-gradient(135deg, #f8f5ff, #f0f4ff); border-radius: 30px; margin: 2rem auto; text-align: center;">
+        <div class="category-header reveal" style="border: none; justify-content: center;">
+            <h2>Articles</h2>
+        </div>
+        <p class="reveal" style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem;">Thoughts on faith, creativity, and the journey.</p>
+        <a href="https://medium.com/@Son_of_IAM_" target="_blank" class="medium-link reveal">Read on Medium →</a>
+    </section>
+
+    <section id="old-artworks" class="category-section">
+        <div class="category-header reveal">
+            <h2>Old Artworks</h2>
+            <span>Archive</span>
+        </div>
+        <div class="archive-grid">
+            <div class="archive-card reveal"><img src="Images/archive1.jpg" alt="Old work" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)'"></div>
+            <div class="archive-card reveal"><img src="Images/archive2.jpg" alt="Old work" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)'"></div>
+            <div class="archive-card reveal"><img src="Images/archive3.jpg" alt="Old work" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)'"></div>
+            <div class="archive-card reveal"><img src="Images/archive4.jpg" alt="Old work" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)'"></div>
+            <div class="archive-card reveal"><img src="Images/archive5.jpg" alt="Old work" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)'"></div>
+            <div class="archive-card reveal"><img src="Images/archive6.jpg" alt="Old work" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)'"></div>
+        </div>
+    </section>
 
     <footer>
         <div class="footer-grid">
@@ -186,35 +299,9 @@
     </footer>
 
     <script>
-        const artworks = [
-            { id: 1, title: "The Announcing", category: "Paintings", main: "Images/placeholder1.jpg", crop: "Images/placeholder1-crop.jpg" },
-            { id: 2, title: "Throne Room", category: "3D Art", main: "Images/placeholder2.jpg", crop: "Images/placeholder2-crop.jpg" },
-            { id: 3, title: "Deliverance", category: "Paintings", main: "Images/placeholder3.jpg", crop: "Images/placeholder3-crop.jpg" },
-            { id: 4, title: "New Jerusalem", category: "3D Art", main: "Images/placeholder4.jpg", crop: "Images/placeholder4-crop.jpg" },
-            { id: 5, title: "The Good Shepherd", category: "The Gospel Proclaimed", main: "Images/placeholder5.jpg", crop: "Images/placeholder5-crop.jpg" },
-            { id: 6, title: "Upper Room", category: "Paintings", main: "Images/placeholder6.jpg", crop: "Images/placeholder6-crop.jpg" },
-            { id: 7, title: "The Ascension", category: "3D Art", main: "Images/placeholder7.jpg", crop: "Images/placeholder7-crop.jpg" },
-            { id: 8, title: "Prodigal", category: "The Gospel Proclaimed", main: "Images/placeholder8.jpg", crop: "Images/placeholder8-crop.jpg" }
-        ];
-
-        const params = new URLSearchParams(window.location.search);
-        let currentId = parseInt(params.get('id')) || 1;
-        const artwork = artworks.find(a => a.id === currentId) || artworks[0];
-        
-        document.getElementById('artworkTitle').textContent = artwork.title;
-        document.getElementById('artworkCategory').textContent = artwork.category;
-        document.getElementById('mainImage').src = artwork.main;
-        document.getElementById('cropImage').src = artwork.crop;
-
-        const currentIndex = artworks.findIndex(a => a.id === currentId);
-        const prevArt = artworks[currentIndex - 1] || artworks[artworks.length - 1];
-        const nextArt = artworks[currentIndex + 1] || artworks[0];
-        
-        document.getElementById('prevBtn').href = `artwork.html?id=${prevArt.id}`;
-        document.getElementById('nextBtn').href = `artwork.html?id=${nextArt.id}`;
-
         window.addEventListener('scroll', () => document.getElementById('mainHeader').classList.toggle('scrolled', window.scrollY > 50));
         function toggleMenu() { document.querySelector('.hamburger').classList.toggle('active'); document.querySelector('.mobile-menu').classList.toggle('active'); document.querySelector('.overlay').classList.toggle('active'); document.body.style.overflow = document.querySelector('.mobile-menu').classList.contains('active') ? 'hidden' : ''; }
+        function toggleDropdown(e) { e.preventDefault(); e.target.nextElementSibling.classList.toggle('active'); }
         const themeToggles = document.querySelectorAll('.theme-toggle');
         const rootElement = document.documentElement;
         function setTheme(theme) { if (theme === 'dark') { rootElement.setAttribute('data-theme', 'dark'); themeToggles.forEach(t => t.textContent = '☀️'); localStorage.setItem('theme', 'dark'); } else { rootElement.removeAttribute('data-theme'); themeToggles.forEach(t => t.textContent = '🌙'); localStorage.setItem('theme', 'light'); } }
@@ -224,6 +311,5 @@
         const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
-    <script src="image-loader.js"></script>
 </body>
 </html>
