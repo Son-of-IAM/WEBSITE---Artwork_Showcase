@@ -1,695 +1,425 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Son_of_IAM_ | Stirring Hearts Through Art</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Son_of_IAM_ | Stirring Hearts Through Art</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --text: #f5f5f5;
+      --text-muted: #a3a3a3;
+      --accent: #d4af37;
+      --border: #2a2a2a;
+      --radius: 8px;
+      --transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    :root[data-theme="light"] {
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --text: #111111;
+      --text-muted: #666666;
+      --accent: #b8860b;
+      --border: #e5e5e5;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
 
-    <meta name="description" content="Nigerian Christian creative spreading the gospel through digital art, 3D renders, and visual storytelling.">
-    <link rel="icon" type="image/png" href="Images/LOGO.PNG">
+    /* Animations */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    /* Header & Nav */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      background: rgba(var(--bg), 0.85); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 5%;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo { font-weight: 700; font-size: 1.1rem; letter-spacing: 1px; }
+    nav ul { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+    nav a, nav button { background: none; border: none; cursor: pointer; color: var(--text); font-size: 0.95rem; }
+    nav .dropdown { position: relative; }
+    nav .dropdown-content {
+      display: none; position: absolute; top: 100%; left: 0;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 0.5rem 0; min-width: 180px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    nav .dropdown-content a { display: block; padding: 0.5rem 1rem; }
+    nav .dropdown:hover .dropdown-content { display: block; }
+    .theme-toggle { background: none; border: none; font-size: 1.2rem; cursor: pointer; }
 
-    <style>
-        /* ==========================================
-           1. CSS VARIABLES & BASE
-        =========================================== */
-        :root {
-            --color-dominant: #7205cd;      
-            --color-compliment: #5D7FFF;    
-            --color-highlight-dark: #000000; 
-            --color-highlight-light: #ffffff; 
-            --bg-light: #fafafa;
-            --bg-white: #ffffff;
-            --text-dark: #1a1a1a;
-            --text-muted: #666666;
-            --border-light: #e0e0e0;
-            --font-primary: 'Inter', sans-serif; /* Change to Optima when available */
-            --font-secondary: 'Inter', sans-serif; /* Change to Georgia when available */
-            --font-handwriting: 'Caveat', cursive;
-            --transition: all 0.3s ease;
-        }
+    /* Sections */
+    section { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; }
+    h1, h2, h3 { font-weight: 600; line-height: 1.2; margin-bottom: 1rem; }
+    h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -1px; }
+    h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); }
+    p { color: var(--text-muted); max-width: 65ch; margin-bottom: 1.5rem; }
+    .btn {
+      display: inline-block; padding: 0.8rem 1.5rem; background: var(--text); color: var(--bg);
+      border-radius: var(--radius); font-weight: 500; transition: var(--transition);
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.3); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-        [data-theme="dark"] {
-            --bg-white: #121212;
-            --bg-light: #1a1a1a;
-            --text-dark: #f0f0f0;
-            --text-muted: #a0a0a0;
-            --border-light: #333333;
-            --color-highlight-dark: #ffffff; 
-            --color-highlight-light: #000000; 
-        }
+    /* Hero */
+    #hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; padding-top: 8rem; }
+    .scripture { font-style: italic; color: var(--accent); border-left: 2px solid var(--accent); padding-left: 1rem; margin: 2rem 0; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: var(--font-primary);
-            color: var(--text-dark);
-            background: var(--bg-white);
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+    /* Disciplines */
+    .discipline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .discipline-card { background: var(--surface); padding: 2rem; border-radius: var(--radius); border: 1px solid var(--border); }
+    .discipline-card .num { font-size: 2rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
 
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        img { max-width: 100%; display: block; }
+    /* Work Gallery */
+    .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .filters button { padding: 0.5rem 1rem; border: 1px solid var(--border); background: transparent; border-radius: 20px; cursor: pointer; }
+    .filters button.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .art-card { position: relative; overflow: hidden; border-radius: var(--radius); cursor: pointer; aspect-ratio: 4/5; }
+    .art-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .art-card:hover img { transform: scale(1.05); }
+    .art-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 1rem; background: linear-gradient(transparent, rgba(0,0,0,0.8)); }
+    .art-title { font-weight: 600; color: #fff; }
 
-        .scripture {
-            font-family: var(--font-handwriting);
-            font-size: 1.8rem;
-            line-height: 1.6;
-            color: var(--color-dominant);
-            margin: 1.5rem 0 0.5rem;
-        }
-        .scripture-reference {
-            font-family: var(--font-handwriting);
-            font-size: 1.4rem;
-            color: var(--color-dominant);
-            opacity: 0.85;
-            display: block;
-            margin-bottom: 2rem;
-        }
+    /* Commercial Form */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-full { grid-column: span 2; }
+    input, select, textarea { width: 100%; padding: 0.8rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
 
-        /* ==========================================
-           2. HEADER & NAVIGATION
-        =========================================== */
-        header {
-            position: fixed;
-            top: 0; width: 100%;
-            background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            padding: 0.8rem 5%;
-            border-bottom: 1px solid rgba(114, 5, 205, 0.1);
-            box-shadow: 0 2px 20px rgba(114, 5, 205, 0.08);
-            transition: var(--transition);
-        }
-        [data-theme="dark"] header { background: rgba(18,18,18,0.92); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        header.scrolled { padding: 0.6rem 5%; background: rgba(255,255,255,0.96); }
+    /* FAQ Accordion */
+    .faq-item { border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
+    .faq-question { display: flex; justify-content: space-between; cursor: pointer; font-weight: 500; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; margin-top: 0.5rem; color: var(--text-muted); }
+    .faq-item.open .faq-answer { max-height: 500px; }
+    .faq-icon { transition: transform 0.3s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
 
-        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        
-        .logo-wrapper { display: flex; align-items: center; gap: 1rem; transition: var(--transition); }
-        .logo-icon {
-            width: 50px; height: 50px;
-            display: flex; align-items: center; justify-content: center;
-        }
-        
-        /* LOGO FIRE ANIMATION */
-        @keyframes fireGlow {
-            0% { filter: drop-shadow(0 0 5px rgba(255, 69, 0, 0.6)) drop-shadow(0 0 10px rgba(255, 140, 0, 0.4)); }
-            50% { filter: drop-shadow(0 0 15px rgba(255, 69, 0, 0.9)) drop-shadow(0 0 25px rgba(255, 140, 0, 0.6)); transform: translateY(-1px); }
-            100% { filter: drop-shadow(0 0 5px rgba(255, 69, 0, 0.6)) drop-shadow(0 0 10px rgba(255, 140, 0, 0.4)); }
-        }
-        .logo-icon img { width: 100%; height: 100%; object-fit: cover; animation: fireGlow 2s infinite alternate; }
+    /* Shop */
+    .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .shop-card { background: var(--surface); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border); }
+    .shop-card h3 { margin-bottom: 0.5rem; }
+    .shop-card .price { color: var(--accent); font-weight: 600; margin-bottom: 1rem; display: block; }
 
-        .logo-text { display: flex; flex-direction: column; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--text-dark); }
-        .logo-tagline { font-size: 0.7rem; color: var(--color-dominant); text-transform: uppercase; font-weight: 600;}
+    /* Footer */
+    footer { background: var(--surface); padding: 4rem 5% 2rem; border-top: 1px solid var(--border); }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+    .footer-nav { display: flex; flex-direction: column; gap: 0.5rem; }
+    .socials { display: flex; gap: 1rem; margin-top: 1rem; }
+    .socials a { width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 
-        .nav-right { display: flex; align-items: center; gap: 2.5rem; }
-        .desktop-menu { display: flex; gap: 2.5rem; align-items: center; }
-        .desktop-menu a { font-weight: 500; font-size: 0.95rem; transition: var(--transition); }
-        .desktop-menu a:hover { color: var(--color-dominant); }
-        
-        .dropdown { position: relative; }
-        .dropdown-menu {
-            position: absolute; top: 100%; right: 0; background: var(--bg-white);
-            min-width: 240px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            border-radius: 12px; padding: 0.8rem 0; display: none; opacity: 0;
-        }
-        .dropdown:hover .dropdown-menu { display: block; opacity: 1; }
-        .dropdown-menu a { display: block; padding: 0.7rem 1.5rem; }
-        .dropdown-menu a:hover { color: var(--color-dominant); background: var(--bg-light); }
+    /* Modal */
+    #artwork-modal {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 200;
+      display: none; align-items: center; justify-content: center; padding: 2rem;
+    }
+    #artwork-modal.active { display: flex; }
+    .modal-content { background: var(--surface); padding: 2rem; border-radius: var(--radius); max-width: 900px; width: 100%; position: relative; }
+    .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+    .modal-images { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; margin-top: 1rem; }
+    .modal-img { width: 100%; border-radius: var(--radius); object-fit: cover; }
+    .modal-nav { display: flex; justify-content: space-between; margin-top: 1rem; }
+    .modal-nav button { padding: 0.5rem 1rem; background: var(--accent); color: var(--bg); border: none; border-radius: var(--radius); cursor: pointer; }
 
-        .theme-toggle { background: none; border: none; font-size: 1.4rem; cursor: pointer; }
-        
-        /* Mobile Nav Elements */
-        .hamburger { display: none; flex-direction: column; background: none; border: none; cursor: pointer; z-index: 1002; }
-        .hamburger span { width: 28px; height: 3px; background: var(--text-dark); margin: 3px 0; transition: 0.3s; }
-        
-        .mobile-menu {
-            position: fixed; top: 0; right: -100%; width: 85%; max-width: 400px; height: 100vh;
-            background: var(--bg-white); z-index: 1001; padding: 6rem 2.5rem; transition: 0.4s;
-        }
-        .mobile-menu.active { right: 0; }
-        .mobile-menu a { display: block; font-size: 1.4rem; padding: 1rem 0; border-bottom: 1px solid var(--border-light); font-weight: 600;}
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: none; }
-        .overlay.active { display: block; }
-
-        /* ==========================================
-           3. SECTIONS & LAYOUTS
-        =========================================== */
-        section { padding: 5rem 5%; max-width: 1400px; margin: 0 auto; }
-        .section-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; text-transform: uppercase; }
-        .section-subtitle { color: var(--text-muted); margin-bottom: 3rem; max-width: 600px; }
-
-        /* HERO - EDGE TO EDGE */
-        .hero {
-            margin-top: 60px; padding: 10rem 5%; width: 100vw; max-width: 100vw;
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('Images/hero-background.jpg');
-            background-size: cover; background-position: center; color: white;
-            text-align: center;
-        }
-        .hero h1 { font-size: 4.5rem; font-weight: 700; margin-bottom: 1.5rem; color: white;}
-        .hero p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 1.5rem auto; color: rgba(255,255,255,0.9); }
-        .hero .scripture { color: rgba(255,255,255,0.9); }
-
-        /* HOME ABOUT SPLIT */
-        .home-about-split {
-            display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: center;
-        }
-        .about-portrait { aspect-ratio: 4/5; background: var(--bg-light); border-radius: 16px; overflow: hidden; }
-        .about-portrait img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* DISCIPLINES - PARALLAX */
-        .disciplines {
-            background-image: linear-gradient(rgba(18,18,18,0.85), rgba(18,18,18,0.95)), url('Images/disciplines-bg.jpg');
-            background-size: cover; background-attachment: fixed;
-            border-radius: 24px; padding: 6rem 4rem; color: white; margin-bottom: 4rem;
-        }
-        .disciplines .section-title { color: white; }
-        .discipline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; margin-top: 2rem;}
-        .discipline-item h3 { font-size: 4rem; color: var(--color-dominant); opacity: 0.6; line-height: 1; }
-        .discipline-item h4 { font-size: 1.4rem; color: white; margin: 1rem 0; }
-        .discipline-item p { color: rgba(255,255,255,0.7); }
-
-        /* GALLERY (3-2-3-2 LAYOUT) */
-        .work-categories { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
-        .work-categories a { padding: 0.6rem 1.2rem; border: 1px solid var(--border-light); border-radius: 30px; font-size: 0.85rem; font-weight: 600; text-transform: uppercase;}
-        .work-categories a.active, .work-categories a:hover { background: var(--color-dominant); color: white; }
-
-        .gallery-grid {
-            display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;
-        }
-        .artwork-card {
-            position: relative; border-radius: 16px; overflow: hidden; cursor: pointer;
-            background: var(--bg-light); border: 1px solid var(--border-light);
-            transition: transform 0.4s, box-shadow 0.4s;
-            width: calc(33.333% - 1.35rem); /* 3 items per row default */
-        }
-        /* 4th and 5th items become 50% width to create the 2-item row */
-        .artwork-card:nth-child(5n + 4),
-        .artwork-card:nth-child(5n + 5) {
-            width: calc(50% - 1rem);
-        }
-        .artwork-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .artwork-image { width: 100%; aspect-ratio: 4/5; display: flex; align-items: center; justify-content: center; }
-        .artwork-image img { width: 100%; height: 100%; object-fit: cover; }
-        .artwork-overlay {
-            position: absolute; bottom: 0; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            padding: 2rem 1.5rem 1.5rem; color: white; opacity: 0; transition: 0.3s;
-        }
-        .artwork-card:hover .artwork-overlay { opacity: 1; }
-
-        /* COMMERCIAL HUB RESTORED */
-        #commercial {
-            background-image: linear-gradient(rgba(250,250,250,0.9), rgba(250,250,250,0.95)), url('Images/commercial-bg.jpg');
-            background-size: cover; background-attachment: fixed; border-radius: 24px; margin-bottom: 4rem;
-        }
-        [data-theme="dark"] #commercial { background-image: linear-gradient(rgba(18,18,18,0.9), rgba(18,18,18,0.95)), url('Images/commercial-bg.jpg'); }
-        
-        .contact-form {
-            max-width: 700px; background: var(--bg-white); padding: 3rem; border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08); border: 1px solid var(--border-light); margin-bottom: 3rem;
-        }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-group label { display: block; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 0.5rem; }
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%; padding: 1rem; border: 2px solid var(--border-light); border-radius: 8px;
-            background: var(--bg-light); color: var(--text-dark); font-family: inherit;
-        }
-        .form-group input:focus, .form-group textarea:focus { border-color: var(--color-dominant); outline: none; }
-        .submit-btn {
-            width: 100%; padding: 1.2rem; background: var(--color-highlight-dark); color: var(--color-highlight-light);
-            border: none; border-radius: 8px; font-weight: bold; text-transform: uppercase; cursor: pointer;
-        }
-
-        .faq-section { max-width: 800px; }
-        details { border-bottom: 1px solid var(--border-light); padding: 1.5rem 0; }
-        summary { font-weight: 600; font-size: 1.1rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; }
-        summary::after { content: '+'; color: var(--color-dominant); font-size: 1.5rem; }
-        details[open] summary::after { content: '-'; }
-        details p { margin-top: 1rem; color: var(--text-muted); padding-left: 10px; border-left: 2px solid var(--color-compliment);}
-
-        /* REVERTED CLEAN SHOP GRID */
-        .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
-        .product-card { background: var(--bg-white); border: 1px solid var(--border-light); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
-        .product-image-wrapper { height: 350px; background: var(--bg-light); position: relative; }
-        .product-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-        .badge { position: absolute; top: 15px; left: 15px; padding: 5px 15px; color: white; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; border-radius: 20px;}
-        .badge.limited { background: var(--color-dominant); } .badge.open { background: var(--color-compliment); } .badge.digital { background: var(--color-highlight-dark); }
-        .product-info { padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; }
-        .product-info h3 { font-size: 1.4rem; }
-        .product-price { font-size: 1.25rem; font-weight: bold; color: var(--color-dominant); margin-bottom: 1rem; }
-        .product-desc { color: var(--text-muted); margin-bottom: 2rem; flex-grow: 1; }
-        .buy-button { text-align: center; background: var(--color-highlight-dark); color: var(--color-highlight-light) !important; padding: 1rem; border-radius: 8px; font-weight: bold; text-transform: uppercase; display: block; }
-        .buy-button:hover { background: var(--color-dominant); }
-
-        /* CTA & FOOTER */
-        .cta-section { background: linear-gradient(135deg, #111111, #1a1a1a); color: white; text-align: center; padding: 5rem 5%; border-radius: 24px; margin: 4rem 0; }
-        .btn-cta { display: inline-block; background: var(--color-dominant); color: white !important; padding: 1rem 2.5rem; border-radius: 8px; font-weight: bold; border: none; cursor: pointer;}
-        footer { background: #111111; color: white; padding: 4rem 5% 2rem; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; max-width: 1400px; margin: 0 auto; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3rem;}
-        .social-pill { display: inline-block; padding: 0.5rem 1.2rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 30px; margin: 0.2rem; font-size: 0.85rem; }
-        .social-pill:hover { background: var(--color-dominant); border-color: var(--color-dominant); }
-
-        /* ==========================================
-           4. MODALS (ARTWORK & ACTION)
-        =========================================== */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.95); backdrop-filter: blur(8px);
-            z-index: 5000; display: flex; justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none; transition: 0.3s; padding: 2rem; overflow-y: auto;
-        }
-        [data-theme="dark"] .modal-overlay { background: rgba(18,18,18,0.95); }
-        .modal-overlay.active { opacity: 1; pointer-events: auto; }
-        
-        .modal-content { background: var(--bg-white); width: 100%; max-width: 900px; border-radius: 20px; position: relative; box-shadow: 0 30px 80px rgba(0,0,0,0.2); }
-        .close-modal { position: absolute; top: 20px; right: 20px; background: rgba(114,5,205,0.1); border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.5rem; color: var(--color-dominant); cursor: pointer; z-index: 10; }
-        
-        /* Artwork Modal specifics */
-        .modal-body { display: grid; grid-template-columns: 1fr 1fr; }
-        .modal-image-section { display: flex; flex-direction: column; }
-        .modal-main-image, .modal-crop-image { aspect-ratio: 1; background: var(--bg-light); overflow: hidden; }
-        .modal-main-image img, .modal-crop-image img { width: 100%; height: 100%; object-fit: cover; }
-        .modal-crop-image img { transform: scale(1.5); }
-        .modal-info { padding: 3rem; }
-        .modal-info h2 { font-size: 2rem; margin-bottom: 0.5rem; }
-        .modal-footer-nav { display: flex; justify-content: space-between; padding: 1.5rem 3rem; border-top: 1px solid var(--border-light); }
-        .nav-btn { background: none; border: none; font-weight: bold; color: var(--color-dominant); cursor: pointer; }
-
-        /* Action Modal specifics */
-        .action-modal-content { max-width: 550px; padding: 0; text-align: center; }
-        .modal-tabs { display: flex; border-bottom: 1px solid var(--border-light); background: var(--bg-light); }
-        .tab-btn { flex: 1; padding: 20px 10px; background: none; border: none; border-bottom: 3px solid transparent; font-weight: bold; text-transform: uppercase; cursor: pointer; color: var(--text-muted); }
-        .tab-btn.active { color: var(--color-dominant); border-bottom-color: var(--color-dominant); background: var(--bg-white); }
-        .tab-panel { display: none; padding: 40px; animation: fadeIn 0.4s; }
-        .tab-panel.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* ==========================================
-           5. MEDIA QUERIES (ALL PROPERLY CLOSED)
-        =========================================== */
-        @media (max-width: 900px) {
-            .nav-right { display: none; }
-            .hamburger { display: flex; }
-            .hero h1 { font-size: 3rem; }
-            .home-about-split { grid-template-columns: 1fr; text-align: center; }
-            .about-text-content h2 { text-align: center !important; }
-            .modal-body { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .form-row { grid-template-columns: 1fr; }
-            
-            /* Responsive Gallery: 2 per row on tablets */
-            .artwork-card, .artwork-card:nth-child(5n + 4), .artwork-card:nth-child(5n + 5) {
-                width: calc(50% - 1rem); 
-            }
-        }
-        @media (max-width: 600px) {
-            .hero { padding-top: 6rem; }
-            .hero h1 { font-size: 2.5rem; }
-            .disciplines { padding: 3rem 1.5rem; }
-            .contact-form { padding: 1.5rem; }
-            
-            /* Responsive Gallery: 1 per row on phones */
-            .artwork-card, .artwork-card:nth-child(5n + 4), .artwork-card:nth-child(5n + 5) {
-                width: 100%; 
-            }
-
-            /* ==========================================
-           RESCUE CSS: FOOTER, HOVER, & DARK MODE FIXES
-        =========================================== */
-        
-        /* 1. Fix Footer Link Squishing */
-        .footer-links a {
-            display: block !important; 
-            margin-bottom: 12px;
-            color: rgba(255, 255, 255, 0.7);
-            transition: var(--transition);
-        }
-        .footer-links a:hover {
-            color: var(--color-dominant);
-            padding-left: 5px;
-        }
-        .social-pill {
-            color: rgba(255, 255, 255, 0.9) !important;
-        }
-
-        /* 2. Change Work Hover from Black to Purple */
-        .artwork-overlay {
-            background: linear-gradient(to top, rgba(114, 5, 205, 0.95), transparent) !important;
-        }
-
-        /* 3. Force Text Colors to Change in Dark Mode */
-        [data-theme="dark"] .logo { 
-            color: #ffffff !important; 
-        }
-        [data-theme="dark"] .desktop-menu a { 
-            color: #cccccc !important; 
-        }
-        [data-theme="dark"] .desktop-menu a:hover { 
-            color: var(--color-dominant) !important; 
-        }
-        [data-theme="dark"] .about-content p, 
-        [data-theme="dark"] .timeline-text { 
-            color: #bbbbbb !important; 
-        }
-        [data-theme="dark"] .section-title,
-        [data-theme="dark"] .discipline-item h4 {
-            color: #ffffff !important;
-        }
-        }
-    </style>
+    @media (max-width: 768px) {
+      .form-grid, .modal-images { grid-template-columns: 1fr; }
+      .form-full { grid-column: span 1; }
+      nav ul { display: none; } /* Mobile menu toggle can be added later */
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <div class="logo">SON_OF_IAM_</div>
+    <nav>
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="https://medium.com/@yourusername" target="_blank">Articles</a></li>
+        <li class="dropdown">
+          <button>Shop ▾</button>
+          <div class="dropdown-content">
+            <a href="#limited-prints">Limited Premium Edition</a>
+            <a href="#open-prints">Open Prints Offer</a>
+            <a href="#stickers">Stickers</a>
+            <a href="#wallpapers">Wallpaper Pack</a>
+          </div>
+        </li>
+        <li><button class="theme-toggle">🌙</button></li>
+      </ul>
+    </nav>
+  </header>
 
-    <header id="mainHeader">
-        <div class="nav-container">
-            <a href="#" class="logo-wrapper">
-                <div class="logo-icon">
-                    <img src="Images/LOGO.PNG" alt="Son_of_IAM_ Logo" onerror="this.style.display='none';">
-                </div>
-                <div class="logo-text">
-                    <span class="logo">Son_of_IAM_</span>
-                    <span class="logo-tagline">Stirring Hearts Through Art</span>
-                </div>
-            </a>
-            
-            <div class="nav-right">
-                <nav class="desktop-menu">
-                    <a href="#work">Work</a>
-                    <div class="dropdown">
-                        <a href="#shop">Shop ▾</a>
-                        <div class="dropdown-menu">
-                            <a href="#limited-prints">Limited Premium Edition</a>
-                            <a href="#open-prints">Open Prints Offer</a>
-                            <a href="#stickers">Stickers</a>
-                            <a href="#wallpapers">Wallpaper Pack</a>
-                        </div>
-                    </div>
-                    <a href="about.html">About</a> 
-                    <a href="#articles">Articles</a>
-                </nav>
-                <button class="btn-cta" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;" onclick="openActionModal()">Connect</button>
-                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
-            </div>
+  <main>
+    <section id="hero" class="fade-up">
+      <h1>STIRRING HEARTS<br>THROUGH ART</h1>
+      <p>Promise Adebayo is a Christian creative called to spread the gospel of Christ through art as God moves across the earth in these times.</p>
+      <div class="scripture">“See, I have called by name Bezalel the son of Uri, the son of Hur, of the tribe of Judah. I have filled him with the Spirit of God in wisdom, in understanding, in knowledge, and in all manner of craftsmanship”<br>— Exodus 31:2-3</div>
+    </section>
 
-            <div style="display: flex; align-items: center; gap: 15px;">
-                <button id="mobile-theme-toggle" class="theme-toggle" style="display: none;">🌙</button>
-                <button class="hamburger" onclick="toggleMenu()">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
+    <section id="about-intro" class="fade-up">
+      <h2>About</h2>
+      <p>I bring the God dimension into the world through Art.</p>
+      <p>I'm Promise Adebayo a Nigerian Christian creative who uses his gifts in Service to God. My practice currently spans digital illustrations, blender 3D renders, and writing, all unified by a single goal; bringing the God dimension into the world and leading others closer to Him through Art imparted on me by the Holy Spirit in Worship.</p>
+      <a href="about.html" class="btn btn-outline">Read Full Story →</a>
+    </section>
+
+    <section id="disciplines" class="fade-up">
+      <h2>One Vision, Multiple Disciplines</h2>
+      <div class="discipline-grid">
+        <div class="discipline-card">
+          <div class="num">01</div>
+          <h3>Digital Illustration</h3>
+          <p>Bold, Christ centered paintings created Digitally to propagate the worship of Jesus across the world. Where truth collides with visual storytelling.</p>
         </div>
-    </header>
+        <div class="discipline-card">
+          <div class="num">02</div>
+          <h3>Album Art</h3>
+          <p>Visual identity for music Worshippers. From brief to billboards.</p>
+        </div>
+        <div class="discipline-card">
+          <div class="num">03</div>
+          <h3>Brand Campaign</h3>
+          <p>Commercial Artwork for brands seeking visual impact with depth.</p>
+        </div>
+      </div>
+    </section>
 
-    <div class="overlay" onclick="toggleMenu()"></div>
-    <div class="mobile-menu">
-        <ul>
-            <li><a href="#work" onclick="toggleMenu()">Work</a></li>
-            <li><a href="about.html" onclick="toggleMenu()">About</a></li>
-            <li><a href="#articles" onclick="toggleMenu()">Articles</a></li>
-            <li><a href="#shop" onclick="toggleMenu()">Shop</a></li>
-            <li><a href="#commercial" onclick="toggleMenu()">Commercial</a></li>
-        </ul>
+    <section id="work" class="fade-up">
+      <h2>Selected Works <a href="#all-work" class="btn btn-outline" style="margin-left: 1rem; font-size: 0.9rem;">View All Work</a></h2>
+      <div class="filters">
+        <button class="active" data-filter="all">All</button>
+        <button data-filter="paintings">Paintings</button>
+        <button data-filter="3d-art">3D Art</button>
+        <button data-filter="gospel">The Gospel Proclaimed</button>
+        <button data-filter="articles">Articles</button>
+        <button data-filter="old">Old Artworks</button>
+      </div>
+      <div class="gallery-grid" id="gallery">
+        <!-- Artwork cards will be injected by JS for scalability -->
+      </div>
+    </section>
+
+    <section id="commercial" class="fade-up">
+      <h2>Commercial Hub</h2>
+      <p>Whether you’re a collector, a Brand looking to collaborate, or just someone who wants to say hello, I’d love to hear from you.</p>
+      <form class="form-grid" onsubmit="return false;">
+        <input type="text" placeholder="First Name" required>
+        <input type="text" placeholder="Last Name" required>
+        <input type="email" placeholder="Email" required>
+        <select>
+          <option disabled selected>Project Type</option>
+          <option>Commission/Purchase</option>
+          <option>Brand Collaboration</option>
+          <option>Press/Interview</option>
+          <option>Just Saying Hello</option>
+        </select>
+        <select>
+          <option disabled selected>Budget</option>
+          <option>$1,000 - $5,000</option>
+          <option>$5,000 - $15,000</option>
+          <option>$15,000 - $30,000</option>
+          <option>$30,000 - $50,000</option>
+          <option>$50,000+</option>
+        </select>
+        <input type="text" placeholder="Timeline (e.g., Q2 2026, 3 months)">
+        <textarea class="form-full" rows="4" placeholder="Project/Message Details: Tell us about your project, goals and any references"></textarea>
+        <button type="submit" class="btn form-full">Submit Inquiry</button>
+      </form>
+    </section>
+
+    <section id="faq" class="fade-up">
+      <h2>Common Questions</h2>
+      <div class="faq-item"><div class="faq-question">Do you take commissions? <span class="faq-icon">+</span></div><div class="faq-answer">Yes, but selectively. I take on a limited number of personal commissions each year. For the best chance of working together, reach out with a Clear vision and timeline.</div></div>
+      <div class="faq-item"><div class="faq-question">What’s your typical turnaround? <span class="faq-icon">+</span></div><div class="faq-answer">It depends on the project. Simple pieces take 2-4 weeks. Complex campaigns can take up to 2-3 months. I’ll give you a timeline once I understand your needs.</div></div>
+      <div class="faq-item"><div class="faq-question">Do you sell prints? <span class="faq-icon">+</span></div><div class="faq-answer">Yes. We currently have only two offers for prints; Limited Premium Edition and Open Prints Offer. They are both available through the shop.</div></div>
+      <div class="faq-item"><div class="faq-question">Can I license your work? <span class="faq-icon">+</span></div><div class="faq-answer">For commercial licensing (ads, products, media), please use the commercial Hub or email directly. All licensing is handled through Son_of_IAM_ studios.</div></div>
+      <div class="faq-item"><div class="faq-question">What other products do you have your Art on? <span class="faq-icon">+</span></div><div class="faq-answer">I have my handcrafted art on diverse products from affordable to premium price range; stickers, wallpaper pack & prints. All available in Shop.</div></div>
+      <div class="faq-item"><div class="faq-question">How does your Limited premium prints and open edition prints work? <span class="faq-icon">+</span></div><div class="faq-answer">Limited premium prints are available in limited numbers, and the offer is only open twice a year. This offer comes with; a certificate of Authenticity, larger sizes, museum grade printing, scriptural handcrafted scroll gift, Printed QR code to published article about purchased art, signature of artist (+edition numbers), possible special finish, collectors only wearables.<br><br>Open Edition prints are always going to be available in the Shop, they come in small or standard frame size, canvas or regular art frame, artist signature (if requested), and Digital QR code to published article about purchased art.</div></div>
+    </section>
+
+    <section id="shop" class="fade-up">
+      <h2>Shop</h2>
+      <p>Bring the God dimension into your space. All limited and open editions.</p>
+      <div class="shop-grid">
+        <div class="shop-card" id="limited-prints">
+          <h3>Limited Premium Print</h3>
+          <span class="price">Limited Drop</span>
+          <p>Museum grade printing, certificate of authenticity, scriptural scroll gift, printed QR code, artist signature, and collectors wearables.</p>
+          <a href="#" class="btn">Purchase Now</a>
+        </div>
+        <div class="shop-card" id="open-prints">
+          <h3>Open Edition Print</h3>
+          <span class="price">Always Available</span>
+          <p>Standard frame size, canvas or regular art frame, artist signature (if requested), digital QR code to published article.</p>
+          <a href="#" class="btn">Purchase Now</a>
+        </div>
+        <div class="shop-card" id="stickers">
+          <h3>Stickers</h3>
+          <span class="price">Affordable</span>
+          <p>Handcrafted art stickers for laptops, journals, and everyday worship.</p>
+          <a href="#" class="btn">View Collection</a>
+        </div>
+        <div class="shop-card" id="wallpapers">
+          <h3>Wallpaper Pack</h3>
+          <span class="price">Digital</span>
+          <p>High-resolution digital wallpapers for devices. Bring faith to your screen.</p>
+          <a href="#" class="btn">Download Pack</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="cta" class="fade-up" style="text-align: center; padding: 6rem 5%;">
+      <h2>Work with me</h2>
+      <p>Looking for a creative who brings visions, not just visuals?<br>Whether it’s a campaign, an album, a fashion collection, or piece for your collection or other commercial use — let’s create something that lasts.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="#commercial" class="btn">COMMERCIAL INQUIRIES</a>
+        <a href="mailto:SonofIAM.9@gmail.com" class="btn btn-outline">GET IN TOUCH</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h3>SON_OF_IAM_</h3>
+        <p>Nigerian creative and worshipper, bringing the God dimension into the world through Art from Lagos.</p>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigation</h4>
+        <a href="#work">Work</a>
+        <a href="about.html">About</a>
+        <a href="#commercial">Commercial</a>
+        <a href="#shop">Shop</a>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <div class="socials">
+          <a href="#">IG</a>
+          <a href="#">X</a>
+          <a href="#">YT</a>
+          <a href="#">BE</a>
+          <a href="#">WA</a>
+        </div>
+      </div>
     </div>
-
-    <section class="hero">
-        <h1>Stirring Hearts<br>Through Art</h1>
-        <p>Promise Adebayo is a Christian creative called to spread the gospel of Christ through art as God moves across the earth in these times.</p>
-        <p class="scripture">"See, I have called by name Bezalel... I have filled him with the Spirit of God in wisdom, in understanding, in knowledge, and in all manner of craftsmanship"</p>
-        <span class="scripture-reference">- Exodus 31:2-3</span>
-    </section>
-
-    <section id="home-about" class="home-about-split">
-        <div class="about-portrait">
-            <img src="Images/portrait.jpg" alt="Promise Adebayo" onerror="this.style.display='none'; this.parentElement.innerHTML='Portrait Image';">
-        </div>
-        <div class="about-text-content">
-            <h2 class="section-title" style="text-align: left;">About</h2>
-            <p style="font-size: 1.3rem; margin-bottom: 1.5rem; font-weight: 600; color: var(--color-dominant);">I bring the God dimension into the world through Art.</p>
-            <p style="color: var(--text-muted); line-height: 1.8;">I'm Promise Adebayo a Nigerian Christian creative who uses his gifts in Service to God. My practice currently spans digital illustrations, blender 3D renders, and writing, all unified by a single goal; bringing the God dimension into the world and leading others closer to Him through Art imparted on me by the Holy Spirit in Worship.</p>
-            <a href="about.html" class="btn-cta" style="margin-top: 20px;">Read Full Story &rarr;</a>
-        </div>
-    </section>
-
-    <section class="disciplines" id="home-disciplines">
-        <h2 class="section-title">One Vision, Multiple Disciplines</h2>
-        <div class="discipline-grid">
-            <div class="discipline-item">
-                <h3>01</h3>
-                <h4>Digital Illustration</h4>
-                <p>Bold, Christ centered paintings created Digitally to propagate the worship of Jesus across the world.</p>
-            </div>
-            <div class="discipline-item">
-                <h3>02</h3>
-                <h4>Album Art</h4>
-                <p>Visual identity for music Worshippers. From brief to billboards.</p>
-            </div>
-            <div class="discipline-item">
-                <h3>03</h3>
-                <h4>Brand Campaign</h4>
-                <p>Commercial Artwork for brands seeking visual impact with depth.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="work">
-        <h2 class="section-title">Work</h2>
-        <p class="section-subtitle">Each piece is an invitation to know Jesus more.</p>
-        
-        <div class="work-categories">
-            <a href="#" class="active">All</a>
-            <a href="#">Paintings</a>
-            <a href="#">3D Art</a>
-            <a href="#">The Gospel Proclaimed</a>
-        </div>
-
-        <div class="gallery-grid">
-            <div class="artwork-card" onclick="openModal('Artwork 1', 'Paintings', 'Images/placeholder1.jpg', 'Images/placeholder1-crop.jpg')">
-                <div class="artwork-image"><img src="Images/placeholder1.jpg" alt="" onerror="this.style.display='none';"></div>
-                <div class="artwork-overlay"><h3>Artwork 1</h3><span>Paintings</span></div>
-            </div>
-            <div class="artwork-card" onclick="openModal('Artwork 2', '3D Art', 'Images/placeholder2.jpg', 'Images/placeholder2-crop.jpg')">
-                <div class="artwork-image"><img src="Images/placeholder2.jpg" alt="" onerror="this.style.display='none';"></div>
-                <div class="artwork-overlay"><h3>Artwork 2</h3><span>3D Art</span></div>
-            </div>
-            <div class="artwork-card" onclick="openModal('Artwork 3', 'Paintings', 'Images/placeholder3.jpg', 'Images/placeholder3-crop.jpg')">
-                <div class="artwork-image"><img src="Images/placeholder3.jpg" alt="" onerror="this.style.display='none';"></div>
-                <div class="artwork-overlay"><h3>Artwork 3</h3><span>Paintings</span></div>
-            </div>
-            <div class="artwork-card" onclick="openModal('Artwork 4', '3D Art', 'Images/placeholder4.jpg', 'Images/placeholder4-crop.jpg')">
-                <div class="artwork-image"><img src="Images/placeholder4.jpg" alt="" onerror="this.style.display='none';"></div>
-                <div class="artwork-overlay"><h3>Artwork 4</h3><span>3D Art</span></div>
-            </div>
-            <div class="artwork-card" onclick="openModal('Artwork 5', 'The Gospel Proclaimed', 'Images/placeholder5.jpg', 'Images/placeholder5-crop.jpg')">
-                <div class="artwork-image"><img src="Images/placeholder5.jpg" alt="" onerror="this.style.display='none';"></div>
-                <div class="artwork-overlay"><h3>Artwork 5</h3><span>The Gospel Proclaimed</span></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="commercial">
-        <h2 class="section-title">Commercial Hub</h2>
-        <p class="commercial-intro">Whether you're a collector, a Brand looking to collaborate, or just someone who wants to say hello, I'd love to hear from you.</p>
-
-        <form action="https://formspree.io/f/xyklyowb" method="POST" class="contact-form">
-            <div class="form-row">
-                <div class="form-group"><label>First Name</label><input type="text" name="First Name" required></div>
-                <div class="form-group"><label>Last Name</label><input type="text" name="Last Name" required></div>
-            </div>
-            <div class="form-group"><label>Email</label><input type="email" name="Email" required></div>
-            <div class="form-group">
-                <label>Project Type</label>
-                <select name="Project Type" required>
-                    <option value="">Select an option</option>
-                    <option value="Commission">Commission</option>
-                    <option value="Brand">Brand Collaboration</option>
-                </select>
-            </div>
-            <div class="form-group"><label>Message</label><textarea name="Message" rows="4" required></textarea></div>
-            <button type="submit" class="submit-btn">Submit Inquiry</button>
-        </form>
-
-        <div class="faq-section">
-            <h3 style="margin-bottom: 2rem;">Common Questions</h3>
-            <details><summary>Do you take commissions?</summary><p>Yes, but selectively. Reach out with a clear vision.</p></details>
-            <details><summary>What's your turnaround?</summary><p>Simple pieces take 2-4 weeks. Complex campaigns up to 3 months.</p></details>
-            <details><summary>Do you sell prints?</summary><p>Yes, check the Shop section for Limited and Open editions.</p></details>
-        </div>
-    </section>
-
-    <section id="shop">
-        <h2 class="section-title">Shop</h2>
-        <p class="section-subtitle">Bring the God dimension into your space. All limited and open editions.</p>
-
-        <div class="shop-grid">
-            <article class="product-card" id="limited-prints">
-                <div class="product-image-wrapper">
-                    <img src="Images/shop-1.jpg" alt="Limited Edition" onerror="this.style.display='none';">
-                    <span class="badge limited">Limited Drop</span>
-                </div>
-                <div class="product-info">
-                    <h3>Limited premium print</h3>
-                    <p class="product-price">$150.00</p>
-                    <p class="product-desc">Museum grade printing, certificate of authenticity, and artist signature.</p>
-                    <a href="#" class="buy-button">Purchase Now</a>
-                </div>
-            </article>
-
-            <article class="product-card" id="open-prints">
-                <div class="product-image-wrapper">
-                    <img src="Images/shop-2.jpg" alt="Open Edition" onerror="this.style.display='none';">
-                    <span class="badge open">Open Edition</span>
-                </div>
-                <div class="product-info">
-                    <h3>Open edition</h3>
-                    <p class="product-price">$45.00</p>
-                    <p class="product-desc">Standard frame size canvas with digital QR code access.</p>
-                    <a href="#" class="buy-button">Purchase Now</a>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <section class="cta-section">
-        <h2>Work with me</h2>
-        <p>Looking for a creative who brings visions, not just visuals?</p>
-        <button class="btn-cta" onclick="openActionModal()">Join the Inner Circle</button>
-    </section>
-
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <h3>SON_OF_IAM_</h3>
-                <p>Nigerian creative and worshipper.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Navigation</h4>
-                <a href="#work">Work</a><a href="about.html">About</a><a href="#shop">Shop</a>
-            </div>
-        </div>
-        <div class="footer-bottom">© 2026 Son_of_IAM_. All rights reserved.</div>
-    </footer>
-
-    <div class="modal-overlay" id="artworkModal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal()">×</button>
-            <div class="modal-body">
-                <div class="modal-image-section">
-                    <div class="modal-main-image" id="modalMainImg"></div>
-                    <div class="modal-crop-image" id="modalCropImg"></div>
-                </div>
-                <div class="modal-info">
-                    <span class="category" id="modalCategory">Category</span>
-                    <h2 id="modalTitle">Title</h2>
-                    <p>A powerful visual proclamation of faith.</p>
-                    <a href="#shop" class="buy-button" onclick="closeModal()">View in Shop</a>
-                </div>
-            </div>
-            <div class="modal-footer-nav">
-                <button class="nav-btn" onclick="closeModal()">← Close</button>
-            </div>
-        </div>
+    <div style="border-top: 1px solid var(--border); padding-top: 1rem; color: var(--text-muted);">
+      © 2026 Son_of_IAM_. All rights reserved.
     </div>
+  </footer>
 
-    <div class="modal-overlay" id="actionModal">
-        <div class="modal-content action-modal-content">
-            <button class="close-modal" onclick="closeActionModal()">&times;</button>
-            <div class="modal-tabs">
-                <button class="tab-btn active" onclick="switchTab(event, 'tab-signup')">Sign Up</button>
-                <button class="tab-btn" onclick="switchTab(event, 'tab-work')">Work With Me</button>
-                <button class="tab-btn" onclick="switchTab(event, 'tab-follow')">Follow</button>
-            </div>
-            <div id="tab-signup" class="tab-panel active">
-                <h2>Join the Inner Circle</h2>
-                <form action="https://formspree.io/f/xyklyowb" method="POST" style="display:flex; flex-direction:column; gap:15px;">
-                    <input type="email" name="Email" placeholder="Enter your email" required style="padding:15px; width:100%;">
-                    <button type="submit" class="submit-btn">Subscribe</button>
-                </form>
-            </div>
-            <div id="tab-work" class="tab-panel">
-                <h2>Let's Build Together</h2>
-                <a href="#commercial" class="submit-btn" style="text-align:center; display:block;" onclick="closeActionModal()">Go to Commercial Hub</a>
-            </div>
-            <div id="tab-follow" class="tab-panel">
-                <h2>Connect & Follow</h2>
-                <a href="#" class="social-pill">Instagram</a>
-                <a href="#" class="social-pill">X (Twitter)</a>
-            </div>
-        </div>
+  <!-- Artwork Modal -->
+  <div id="artwork-modal">
+    <div class="modal-content">
+      <button class="modal-close">×</button>
+      <h2 id="modal-title">Artwork Title</h2>
+      <div class="modal-images">
+        <img id="modal-main" class="modal-img" src="" alt="Main Artwork">
+        <img id="modal-crop" class="modal-img" src="" alt="Cropped Detail">
+      </div>
+      <div class="modal-nav">
+        <span></span>
+        <button id="next-art">NEXT ></button>
+      </div>
     </div>
+  </div>
 
-    <script>
-        // Header Scroll
-        window.addEventListener('scroll', () => {
-            document.getElementById('mainHeader').classList.toggle('scrolled', window.scrollY > 50);
-        });
+  <script>
+    // Scroll Animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-        // Mobile Menu
-        function toggleMenu() {
-            document.querySelector('.hamburger').classList.toggle('active');
-            document.querySelector('.mobile-menu').classList.toggle('active');
-            document.querySelector('.overlay').classList.toggle('active');
-        }
+    // Theme Toggle
+    const themeBtn = document.querySelector('.theme-toggle');
+    themeBtn.addEventListener('click', () => {
+      const html = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      themeBtn.textContent = isDark ? '☀️' : '🌙';
+    });
 
-        // Dark Mode
-        const themeToggles = document.querySelectorAll('.theme-toggle');
-        const rootElement = document.documentElement;
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+    });
 
-        function setTheme(theme) {
-            rootElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
-            themeToggles.forEach(t => t.textContent = theme === 'dark' ? '☀️' : '🌙');
-            localStorage.setItem('theme', theme);
-        }
-        
-        if(localStorage.getItem('theme')) setTheme(localStorage.getItem('theme'));
-        themeToggles.forEach(btn => btn.addEventListener('click', () => setTheme(rootElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')));
+    // Gallery Data & Modal Logic
+    const artworks = [
+      { title: "Redemption's Light", cat: "paintings", img: "https://placehold.co/600x800/111/d4af37?text=Art+1", crop: "https://placehold.co/300x800/111/d4af37?text=Detail+1" },
+      { title: "Digital Sanctuary", cat: "3d-art", img: "https://placehold.co/600x800/222/d4af37?text=Art+2", crop: "https://placehold.co/300x800/222/d4af37?text=Detail+2" },
+      { title: "The Proclamation", cat: "gospel", img: "https://placehold.co/600x800/333/d4af37?text=Art+3", crop: "https://placehold.co/300x800/333/d4af37?text=Detail+3" },
+      { title: "Faith & Form", cat: "paintings", img: "https://placehold.co/600x800/444/d4af37?text=Art+4", crop: "https://placehold.co/300x800/444/d4af37?text=Detail+4" },
+      { title: "Early Studies", cat: "old", img: "https://placehold.co/600x800/555/d4af37?text=Art+5", crop: "https://placehold.co/300x800/555/d4af37?text=Detail+5" }
+    ];
 
-        // Gallery Filter
-        const categoryBtns = document.querySelectorAll('.work-categories a');
-        const artworkCards = document.querySelectorAll('.artwork-card');
-        categoryBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                categoryBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const filter = btn.innerText.toLowerCase();
-                artworkCards.forEach(card => {
-                    const cat = card.querySelector('.artwork-overlay span').innerText.toLowerCase();
-                    card.style.display = (filter === 'all' || cat.includes(filter)) ? 'block' : 'none';
-                });
-            });
-        });
+    const gallery = document.getElementById('gallery');
+    const modal = document.getElementById('artwork-modal');
+    let currentIndex = 0;
 
-        // Modals
-        function openModal(title, category, mainImg, cropImg) {
-            document.getElementById('modalTitle').textContent = title;
-            document.getElementById('modalCategory').textContent = category;
-            document.getElementById('modalMainImg').innerHTML = `<img src="${mainImg}" onerror="this.style.display='none'">`;
-            document.getElementById('modalCropImg').innerHTML = `<img src="${cropImg}" onerror="this.style.display='none'">`;
-            document.getElementById('artworkModal').classList.add('active');
-        }
-        function closeModal() { document.getElementById('artworkModal').classList.remove('active'); }
-        
-        function openActionModal(tab = 'tab-signup') {
-            document.getElementById('actionModal').classList.add('active');
-            document.querySelector(`.tab-btn[onclick*="${tab}"]`).click();
-        }
-        function closeActionModal() { document.getElementById('actionModal').classList.remove('active'); }
-        
-        function switchTab(evt, tabId) {
-            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            evt.currentTarget.classList.add('active');
-        }
-    </script>
+    function renderGallery(filter = 'all') {
+      gallery.innerHTML = '';
+      const filtered = filter === 'all' ? artworks : artworks.filter(a => a.cat === filter);
+      filtered.forEach((a, i) => {
+        const card = document.createElement('div');
+        card.className = 'art-card';
+        card.innerHTML = `<img src="${a.img}" alt="${a.title}"><div class="art-overlay"><div class="art-title">${a.title}</div></div>`;
+        card.onclick = () => openModal(i, filtered);
+        gallery.appendChild(card);
+      });
+    }
+
+    function openModal(index, list) {
+      currentIndex = index;
+      modal.dataset.list = JSON.stringify(list);
+      updateModal(list);
+      modal.classList.add('active');
+    }
+
+    function updateModal(list) {
+      const item = list[currentIndex];
+      document.getElementById('modal-title').textContent = item.title;
+      document.getElementById('modal-main').src = item.img;
+      document.getElementById('modal-crop').src = item.crop;
+    }
+
+    document.getElementById('next-art').onclick = () => {
+      const list = JSON.parse(modal.dataset.list);
+      currentIndex = (currentIndex + 1) % list.length;
+      updateModal(list);
+    };
+
+    document.querySelector('.modal-close').onclick = () => modal.classList.remove('active');
+    modal.onclick = (e) => { if (e.target === modal) modal.classList.remove('active'); };
+
+    // Filters
+    document.querySelectorAll('.filters button').forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderGallery(btn.dataset.filter);
+      };
+    });
+
+    renderGallery();
+  </script>
 </body>
 </html>
