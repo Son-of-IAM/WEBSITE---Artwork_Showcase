@@ -908,6 +908,23 @@
         [data-theme="dark"] .hamburger span { background: #ffffff; }
         [data-theme="dark"] .about-text-content p,
         [data-theme="dark"] .section-subtitle { color: #aaaaaa; }
+
+
+        /* Blur-up image loading */
+.progressive-img {
+    filter: blur(20px);          /* Starts blurry */
+    transform: scale(1.05);      /* Slightly zoomed so edges don't show */
+    transition: filter 0.6s ease, transform 0.6s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.progressive-img.loaded {
+    filter: blur(0);             /* Becomes sharp */
+    transform: scale(1);         /* Zooms back to normal */
+}
+        
     </style>
 </head>
 <body>
@@ -1023,12 +1040,14 @@
             <a href="work.html#3d-art">3D Art</a>
             <a href="work.html#gospel">The Gospel Proclaimed</a>
         </div>
-
-        <div class="gallery-grid">
-            <div class="artwork-card reveal" onclick="location.href='artwork.html?id=1'">
-                <div class="artwork-image">
-                    <img src="Images/placeholder1.jpg" alt="Artwork 1" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #5D7FFF)'">
-                </div>
+<img 
+    src="Images/tiny/placeholder1-tiny.jpg" 
+    data-src="Images/placeholder1.webp" 
+    alt="The Announcing" 
+    class="progressive-img"
+>
+   <!-- more cards... -->
+</div>
                 <div class="artwork-overlay">
                     <h3>The Announcing</h3>
                     <span>Paintings</span>
@@ -1195,5 +1214,6 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
+    <script src="masonry.js"></script>
 </body>
 </html>
