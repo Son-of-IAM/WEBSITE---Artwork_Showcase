@@ -82,33 +82,39 @@
       <div class="gallery-grid" id="gallery"></div>
     </section>
 
-    <section id="commercial" class="fade-up">
-      <h2>Commercial Hub</h2>
-      <p>Whether you’re a collector, a Brand looking to collaborate, or just someone who wants to say hello, I’d love to hear from you.</p>
-      <form class="form-grid" onsubmit="return false;">
-        <input type="text" name="firstName" placeholder="First Name" required>
-        <input type="text" name="lastName" placeholder="Last Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <select name="projectType" required>
-          <option disabled selected>Project Type</option>
-          <option>Commission/Purchase</option>
-          <option>Brand Collaboration</option>
-          <option>Press/Interview</option>
-          <option>Just Saying Hello</option>
-        </select>
-        <select name="budget" required>
-          <option disabled selected>Budget</option>
-          <option>$1,000 - $5,000</option>
-          <option>$5,000 - $15,000</option>
-          <option>$15,000 - $30,000</option>
-          <option>$30,000 - $50,000</option>
-          <option>$50,000+</option>
-        </select>
-        <input type="text" name="timeline" placeholder="Timeline (e.g., Q2 2026, 3 months)">
-        <textarea name="message" class="form-full" rows="4" placeholder="Project/Message Details: Tell us about your project, goals and any references"></textarea>
-        <button type="submit" class="btn form-full">Submit Inquiry</button>
-      </form>
-    </section>
+   <section id="commercial" class="fade-up">
+  <h2>Commercial Hub</h2>
+  <p>Whether you're a collector, a Brand looking to collaborate, or just someone who wants to say hello, I'd love to hear from you.</p>
+  
+  <form class="form-grid" action="https://formspree.io/f/xyklyowb" method="POST">
+    <input type="text" name="firstName" placeholder="First Name" required>
+    <input type="text" name="lastName" placeholder="Last Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    
+    <select name="projectType" required>
+      <option disabled selected>Project Type</option>
+      <option>Commission/Purchase</option>
+      <option>Brand Collaboration</option>
+      <option>Press/Interview</option>
+      <option>Just Saying Hello</option>
+    </select>
+    
+    <select name="budget" required>
+      <option disabled selected>Budget</option>
+      <option>$1,000 - $5,000</option>
+      <option>$5,000 - $15,000</option>
+      <option>$15,000 - $30,000</option>
+      <option>$30,000 - $50,000</option>
+      <option>$50,000+</option>
+    </select>
+    
+    <input type="text" name="timeline" placeholder="Timeline (e.g., Q2 2026, 3 months)">
+    
+    <textarea name="message" class="form-full" rows="4" placeholder="Project/Message Details: Tell us about your project, goals and any references" required></textarea>
+    
+    <button type="submit" class="btn form-full">Submit Inquiry</button>
+  </form>
+</section>
 
     <section id="faq" class="fade-up">
       <h2>Common Questions</h2>
