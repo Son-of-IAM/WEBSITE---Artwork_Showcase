@@ -5,150 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Son_of_IAM_ | Stirring Hearts Through Art</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    :root {
-      --bg: #0a0a0a;
-      --surface: #111111;
-      --text: #f5f5f5;
-      --text-muted: #a3a3a3;
-      --accent: #d4af37;
-      --border: #2a2a2a;
-      --radius: 8px;
-      --transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-    :root[data-theme="light"] {
-      --bg: #fafafa;
-      --surface: #ffffff;
-      --text: #111111;
-      --text-muted: #666666;
-      --accent: #b8860b;
-      --border: #e5e5e5;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    a { color: inherit; text-decoration: none; }
-    button, input, select, textarea { font: inherit; }
-
-    /* Animations */
-    .fade-up {
-      opacity: 0; transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-    /* Header & Nav */
-    header {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-      background: rgba(var(--bg), 0.85); backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 5%;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .logo { font-weight: 700; font-size: 1.1rem; letter-spacing: 1px; }
-    nav ul { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
-    nav a, nav button { background: none; border: none; cursor: pointer; color: var(--text); font-size: 0.95rem; }
-    nav .dropdown { position: relative; }
-    nav .dropdown-content {
-      display: none; position: absolute; top: 100%; left: 0;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 0.5rem 0; min-width: 180px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    }
-    nav .dropdown-content a { display: block; padding: 0.5rem 1rem; }
-    nav .dropdown:hover .dropdown-content { display: block; }
-    .theme-toggle { background: none; border: none; font-size: 1.2rem; cursor: pointer; }
-
-    /* Sections */
-    section { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; }
-    h1, h2, h3 { font-weight: 600; line-height: 1.2; margin-bottom: 1rem; }
-    h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -1px; }
-    h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); }
-    p { color: var(--text-muted); max-width: 65ch; margin-bottom: 1.5rem; }
-    .btn {
-      display: inline-block; padding: 0.8rem 1.5rem; background: var(--text); color: var(--bg);
-      border-radius: var(--radius); font-weight: 500; transition: var(--transition);
-    }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.3); }
-    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* Hero */
-    #hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; padding-top: 8rem; }
-    .scripture { font-style: italic; color: var(--accent); border-left: 2px solid var(--accent); padding-left: 1rem; margin: 2rem 0; }
-
-    /* Disciplines */
-    .discipline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-    .discipline-card { background: var(--surface); padding: 2rem; border-radius: var(--radius); border: 1px solid var(--border); }
-    .discipline-card .num { font-size: 2rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
-
-    /* Work Gallery */
-    .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
-    .filters button { padding: 0.5rem 1rem; border: 1px solid var(--border); background: transparent; border-radius: 20px; cursor: pointer; }
-    .filters button.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
-    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
-    .art-card { position: relative; overflow: hidden; border-radius: var(--radius); cursor: pointer; aspect-ratio: 4/5; }
-    .art-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-    .art-card:hover img { transform: scale(1.05); }
-    .art-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 1rem; background: linear-gradient(transparent, rgba(0,0,0,0.8)); }
-    .art-title { font-weight: 600; color: #fff; }
-
-    /* Commercial Form */
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-full { grid-column: span 2; }
-    input, select, textarea { width: 100%; padding: 0.8rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); }
-    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
-
-    /* FAQ Accordion */
-    .faq-item { border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
-    .faq-question { display: flex; justify-content: space-between; cursor: pointer; font-weight: 500; }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; margin-top: 0.5rem; color: var(--text-muted); }
-    .faq-item.open .faq-answer { max-height: 500px; }
-    .faq-icon { transition: transform 0.3s; }
-    .faq-item.open .faq-icon { transform: rotate(45deg); }
-
-    /* Shop */
-    .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-    .shop-card { background: var(--surface); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border); }
-    .shop-card h3 { margin-bottom: 0.5rem; }
-    .shop-card .price { color: var(--accent); font-weight: 600; margin-bottom: 1rem; display: block; }
-
-    /* Footer */
-    footer { background: var(--surface); padding: 4rem 5% 2rem; border-top: 1px solid var(--border); }
-    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
-    .footer-nav { display: flex; flex-direction: column; gap: 0.5rem; }
-    .socials { display: flex; gap: 1rem; margin-top: 1rem; }
-    .socials a { width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-
-    /* Modal */
-    #artwork-modal {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 200;
-      display: none; align-items: center; justify-content: center; padding: 2rem;
-    }
-    #artwork-modal.active { display: flex; }
-    .modal-content { background: var(--surface); padding: 2rem; border-radius: var(--radius); max-width: 900px; width: 100%; position: relative; }
-    .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
-    .modal-images { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; margin-top: 1rem; }
-    .modal-img { width: 100%; border-radius: var(--radius); object-fit: cover; }
-    .modal-nav { display: flex; justify-content: space-between; margin-top: 1rem; }
-    .modal-nav button { padding: 0.5rem 1rem; background: var(--accent); color: var(--bg); border: none; border-radius: var(--radius); cursor: pointer; }
-
-    @media (max-width: 768px) {
-      .form-grid, .modal-images { grid-template-columns: 1fr; }
-      .form-full { grid-column: span 1; }
-      nav ul { display: none; } /* Mobile menu toggle can be added later */
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
-    <div class="logo">SON_OF_IAM_</div>
+    <a href="index.html" class="logo">
+      <!-- Replace with your actual logo path -->
+      <img src="assets/logo.png" alt="Son_of_IAM_ Logo" width="140" height="auto">
+    </a>
     <nav>
       <ul>
         <li><a href="#work">Work</a></li>
@@ -163,7 +29,7 @@
             <a href="#wallpapers">Wallpaper Pack</a>
           </div>
         </li>
-        <li><button class="theme-toggle">🌙</button></li>
+        <li><button class="theme-toggle" aria-label="Toggle theme">🌙</button></li>
       </ul>
     </nav>
   </header>
@@ -213,26 +79,24 @@
         <button data-filter="articles">Articles</button>
         <button data-filter="old">Old Artworks</button>
       </div>
-      <div class="gallery-grid" id="gallery">
-        <!-- Artwork cards will be injected by JS for scalability -->
-      </div>
+      <div class="gallery-grid" id="gallery"></div>
     </section>
 
     <section id="commercial" class="fade-up">
       <h2>Commercial Hub</h2>
       <p>Whether you’re a collector, a Brand looking to collaborate, or just someone who wants to say hello, I’d love to hear from you.</p>
       <form class="form-grid" onsubmit="return false;">
-        <input type="text" placeholder="First Name" required>
-        <input type="text" placeholder="Last Name" required>
-        <input type="email" placeholder="Email" required>
-        <select>
+        <input type="text" name="firstName" placeholder="First Name" required>
+        <input type="text" name="lastName" placeholder="Last Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <select name="projectType" required>
           <option disabled selected>Project Type</option>
           <option>Commission/Purchase</option>
           <option>Brand Collaboration</option>
           <option>Press/Interview</option>
           <option>Just Saying Hello</option>
         </select>
-        <select>
+        <select name="budget" required>
           <option disabled selected>Budget</option>
           <option>$1,000 - $5,000</option>
           <option>$5,000 - $15,000</option>
@@ -240,8 +104,8 @@
           <option>$30,000 - $50,000</option>
           <option>$50,000+</option>
         </select>
-        <input type="text" placeholder="Timeline (e.g., Q2 2026, 3 months)">
-        <textarea class="form-full" rows="4" placeholder="Project/Message Details: Tell us about your project, goals and any references"></textarea>
+        <input type="text" name="timeline" placeholder="Timeline (e.g., Q2 2026, 3 months)">
+        <textarea name="message" class="form-full" rows="4" placeholder="Project/Message Details: Tell us about your project, goals and any references"></textarea>
         <button type="submit" class="btn form-full">Submit Inquiry</button>
       </form>
     </section>
@@ -313,23 +177,21 @@
       <div>
         <h4>Follow</h4>
         <div class="socials">
-          <a href="#">IG</a>
-          <a href="#">X</a>
-          <a href="#">YT</a>
-          <a href="#">BE</a>
-          <a href="#">WA</a>
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="X (Twitter)">X</a>
+          <a href="#" aria-label="YouTube">YT</a>
+          <a href="#" aria-label="Behance">BE</a>
+          <a href="#" aria-label="WhatsApp">WA</a>
         </div>
       </div>
     </div>
-    <div style="border-top: 1px solid var(--border); padding-top: 1rem; color: var(--text-muted);">
-      © 2026 Son_of_IAM_. All rights reserved.
-    </div>
+    <div class="footer-bottom">© 2026 Son_of_IAM_. All rights reserved.</div>
   </footer>
 
   <!-- Artwork Modal -->
-  <div id="artwork-modal">
+  <div id="artwork-modal" aria-hidden="true">
     <div class="modal-content">
-      <button class="modal-close">×</button>
+      <button class="modal-close" aria-label="Close modal">×</button>
       <h2 id="modal-title">Artwork Title</h2>
       <div class="modal-images">
         <img id="modal-main" class="modal-img" src="" alt="Main Artwork">
@@ -342,85 +204,6 @@
     </div>
   </div>
 
-  <script>
-    // Scroll Animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-    // Theme Toggle
-    const themeBtn = document.querySelector('.theme-toggle');
-    themeBtn.addEventListener('click', () => {
-      const html = document.documentElement;
-      const isDark = html.getAttribute('data-theme') === 'dark';
-      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-      themeBtn.textContent = isDark ? '☀️' : '🌙';
-    });
-
-    // FAQ Accordion
-    document.querySelectorAll('.faq-question').forEach(q => {
-      q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
-    });
-
-    // Gallery Data & Modal Logic
-    const artworks = [
-      { title: "Redemption's Light", cat: "paintings", img: "https://placehold.co/600x800/111/d4af37?text=Art+1", crop: "https://placehold.co/300x800/111/d4af37?text=Detail+1" },
-      { title: "Digital Sanctuary", cat: "3d-art", img: "https://placehold.co/600x800/222/d4af37?text=Art+2", crop: "https://placehold.co/300x800/222/d4af37?text=Detail+2" },
-      { title: "The Proclamation", cat: "gospel", img: "https://placehold.co/600x800/333/d4af37?text=Art+3", crop: "https://placehold.co/300x800/333/d4af37?text=Detail+3" },
-      { title: "Faith & Form", cat: "paintings", img: "https://placehold.co/600x800/444/d4af37?text=Art+4", crop: "https://placehold.co/300x800/444/d4af37?text=Detail+4" },
-      { title: "Early Studies", cat: "old", img: "https://placehold.co/600x800/555/d4af37?text=Art+5", crop: "https://placehold.co/300x800/555/d4af37?text=Detail+5" }
-    ];
-
-    const gallery = document.getElementById('gallery');
-    const modal = document.getElementById('artwork-modal');
-    let currentIndex = 0;
-
-    function renderGallery(filter = 'all') {
-      gallery.innerHTML = '';
-      const filtered = filter === 'all' ? artworks : artworks.filter(a => a.cat === filter);
-      filtered.forEach((a, i) => {
-        const card = document.createElement('div');
-        card.className = 'art-card';
-        card.innerHTML = `<img src="${a.img}" alt="${a.title}"><div class="art-overlay"><div class="art-title">${a.title}</div></div>`;
-        card.onclick = () => openModal(i, filtered);
-        gallery.appendChild(card);
-      });
-    }
-
-    function openModal(index, list) {
-      currentIndex = index;
-      modal.dataset.list = JSON.stringify(list);
-      updateModal(list);
-      modal.classList.add('active');
-    }
-
-    function updateModal(list) {
-      const item = list[currentIndex];
-      document.getElementById('modal-title').textContent = item.title;
-      document.getElementById('modal-main').src = item.img;
-      document.getElementById('modal-crop').src = item.crop;
-    }
-
-    document.getElementById('next-art').onclick = () => {
-      const list = JSON.parse(modal.dataset.list);
-      currentIndex = (currentIndex + 1) % list.length;
-      updateModal(list);
-    };
-
-    document.querySelector('.modal-close').onclick = () => modal.classList.remove('active');
-    modal.onclick = (e) => { if (e.target === modal) modal.classList.remove('active'); };
-
-    // Filters
-    document.querySelectorAll('.filters button').forEach(btn => {
-      btn.onclick = () => {
-        document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        renderGallery(btn.dataset.filter);
-      };
-    });
-
-    renderGallery();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
