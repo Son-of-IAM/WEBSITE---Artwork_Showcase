@@ -1,0 +1,19 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "Images/artworks"
+public_folder: "Images/artworks"
+
+collections:
+  - name: "artworks"
+    label: "Artworks"
+    folder: "data/artworks"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Category", name: "category", widget: "select", options: ["paintings", "3d-art", "gospel", "old"]}
+      - {label: "Main Image", name: "image", widget: "image"}
+      - {label: "Cropped Detail (optional)", name: "cropImage", widget: "image", required: false}
+      - {label: "Description", name: "description", widget: "text", required: false}
