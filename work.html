@@ -140,6 +140,21 @@
         [data-theme="dark"] .logo { color: #ffffff; }
         [data-theme="dark"] .desktop-menu a { color: #cccccc; }
         [data-theme="dark"] .hamburger span { background: #ffffff; }
+
+        .work-card {
+    display: block; /* Makes the <a> tag behave like a div */
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--bg-light);
+    aspect-ratio: 4/5;
+    transition: all 0.5s ease;
+    border: 1px solid var(--border-light);
+    text-decoration: none;
+    color: inherit;
+}
+        
     </style>
 </head>
 <body>
@@ -199,6 +214,8 @@
 
     <section class="work-hero">
         <h1 class="reveal">Work</h1>
+
+        
         <p class="reveal">Each piece is an invitation to know Jesus more.</p>
         <div class="scripture-block reveal">
             <p class="scripture">"This is eternal life: that they may know You, the only true God, and Jesus Christ, whom You have sent."</p>
@@ -211,15 +228,64 @@
             <h2>Paintings</h2>
             <span>Selected Works</span>
         </div>
-        <div class="category-grid">
-            <div class="work-card reveal" onclick="location.href='artwork.html?id=1'">
-                <img src="Images/placeholder1.jpg" alt="Artwork" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #5D7FFF)'">
-                <div class="overlay-info"><h3>The Announcing</h3><p>Paintings</p></div>
-            </div>
-            <div class="work-card reveal" onclick="location.href='artwork.html?id=3'">
-                <img src="Images/placeholder3.jpg" alt="Artwork" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #1a0a2e, #7205cd)'">
-                <div class="overlay-info"><h3>Deliverance</h3><p>Paintings</p></div>
-            </div>
+       <div class="category-grid">
+    <a href="artwork.html?id=1" class="work-card reveal">
+        <img src="Images/placeholder1.jpg" alt="The Announcing" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #5D7FFF)'">
+        <div class="overlay-info">
+            <h3>The Announcing</h3>
+            <p>Paintings</p>
+        </div>
+    </a>
+    <a href="artwork.html?id=2" class="work-card reveal">
+        <img src="Images/placeholder2.jpg" alt="Throne Room" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #0f0518, #5D7FFF)'">
+        <div class="overlay-info">
+            <h3>Throne Room</h3>
+            <p>3D Art</p>
+        </div>
+    </a>
+    <a href="artwork.html?id=3" class="work-card reveal">
+        <img src="Images/placeholder3.jpg" alt="Deliverance" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #1a0a2e, #7205cd)'">
+        <div class="overlay-info">
+            <h3>Deliverance</h3>
+            <p>Paintings</p>
+        </div>
+    </a>
+    <a href="artwork.html?id=4" class="work-card reveal">
+        <img src="Images/placeholder4.jpg" alt="New Jerusalem" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #f8f5ff)'">
+        <div class="overlay-info">
+            <h3>New Jerusalem</h3>
+            <p>3D Art</p>
+        </div>
+    </a>
+    <a href="artwork.html?id=5" class="work-card reveal">
+        <img src="Images/placeholder5.jpg" alt="The Good Shepherd" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #5D7FFF, #1a0a2e)'">
+        <div class="overlay-info">
+            <h3>The Good Shepherd</h3>
+            <p>The Gospel Proclaimed</p>
+        </div>
+    </a>
+    <a href="artwork.html?id=6" class="work-card reveal">
+        <img src="Images/placeholder6.jpg" alt="Upper Room" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #5D7FFF, #7205cd)'">
+        <div class="overlay-info">
+            <h3>Upper Room</h3>
+            <p>Paintings</p>
+        </div>
+    </a>
+    <a href="artwork.html?id=7" class="work-card reveal">
+        <img src="Images/placeholder7.jpg" alt="The Ascension" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #1a0a2e, #0f0518)'">
+        <div class="overlay-info">
+            <h3>The Ascension</h3>
+            <p>3D Art</p>
+        </div>
+    </a>
+    <a href="artwork.html?id=8" class="work-card reveal">
+        <img src="Images/placeholder8.jpg" alt="Prodigal" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #5D7FFF)'">
+        <div class="overlay-info">
+            <h3>Prodigal</h3>
+            <p>The Gospel Proclaimed</p>
+        </div>
+    </a>
+</div>
             <div class="work-card reveal" onclick="location.href='artwork.html?id=6'">
                 <img src="Images/placeholder6.jpg" alt="Artwork" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #5D7FFF, #7205cd)'">
                 <div class="overlay-info"><h3>Upper Room</h3><p>Paintings</p></div>
