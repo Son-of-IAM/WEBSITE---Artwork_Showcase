@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial Hub | Son_of_IAM_</title>
+    <link rel="icon" type="image/png" href="Images/LOGO.PNG">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-dominant: #7205cd;
+            --color-compliment: #5D7FFF;
+            --bg-light: #fafafa;
+            --bg-white: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-muted: #555555;
+            --border-light: #e0e0e0;
+            --font-primary: 'Optima', 'Segoe UI', sans-serif;
+            --font-secondary: 'Georgia', 'Times New Roman', serif;
+            --font-handwriting: 'Caveat', cursive;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        [data-theme="dark"] {
+            --bg-white: #0a0a0a;
+            --bg-light: #121212;
+            --text-dark: #f0f0f0;
+            --text-muted: #999999;
+            --border-light: #2a2a2a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-secondary); color: var(--text-dark); background: var(--bg-white); line-height: 1.7; overflow-x: hidden; transition: background-color 0.5s, color 0.5s; }
+        h1, h2, h3, h4 { font-family: var(--font-primary); font-weight: 700; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); z-index: 1000; padding: 1rem 5%; border-bottom: 1px solid rgba(114, 5, 205, 0.1); transition: var(--transition); }
+        [data-theme="dark"] header { background: rgba(10,10,10,0.95); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo-wrapper { display: flex; align-items: center; gap: 1rem; }
+        .logo-icon { width: 48px; height: 48px; }
+        @keyframes fireGlow { 0% { filter: drop-shadow(0 0 8px rgba(114,5,205,0.4)); } 50% { filter: drop-shadow(0 0 20px rgba(114,5,205,0.8)); transform: translateY(-2px) scale(1.02); } 100% { filter: drop-shadow(0 0 8px rgba(114,5,205,0.4)); } }
+        .logo-icon img { width: 100%; height: 100%; object-fit: contain; animation: fireGlow 3s infinite alternate; }
+        .logo { font-size: 1.4rem; font-weight: 700; color: var(--text-dark); font-family: var(--font-primary); letter-spacing: 1px; }
+        .logo-tagline { font-size: 0.65rem; color: var(--color-dominant); text-transform: uppercase; font-weight: 600; letter-spacing: 2px; font-family: var(--font-primary); }
+        .nav-right { display: flex; align-items: center; gap: 2.5rem; }
+        .desktop-menu { display: flex; gap: 2.5rem; align-items: center; font-family: var(--font-primary); }
+        .desktop-menu a { font-weight: 600; font-size: 0.85rem; transition: var(--transition); position: relative; padding: 0.5rem 0; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-dark); }
+        .desktop-menu a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--color-dominant); transition: width 0.3s; }
+        .desktop-menu a:hover::after { width: 100%; }
+        .desktop-menu a:hover { color: var(--color-dominant); }
+        .theme-toggle { background: none; border: none; font-size: 1.3rem; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .theme-toggle:hover { background: var(--bg-light); transform: rotate(15deg); }
+        .btn-cta { display: inline-block; background: var(--color-dominant); color: white !important; padding: 0.7rem 1.8rem; border-radius: 8px; font-weight: 700; font-family: var(--font-primary); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; }
+        .btn-cta:hover { background: var(--color-compliment); transform: translateY(-2px); }
+        .hamburger { display: none; flex-direction: column; background: none; border: none; cursor: pointer; z-index: 1002; padding: 0.5rem; gap: 5px; }
+        .hamburger span { width: 26px; height: 2px; background: var(--text-dark); transition: 0.3s; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); background: var(--color-dominant); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); background: var(--color-dominant); }
+        .mobile-menu { position: fixed; top: 0; right: -100%; width: 85%; max-width: 400px; height: 100vh; background: var(--bg-white); z-index: 1001; padding: 8rem 3rem; transition: 0.5s; box-shadow: -10px 0 50px rgba(0,0,0,0.15); font-family: var(--font-primary); }
+        .mobile-menu.active { right: 0; }
+        .mobile-menu a { display: block; font-size: 1.3rem; padding: 1.2rem 0; border-bottom: 1px solid var(--border-light); font-weight: 600; text-transform: uppercase; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; display: none; backdrop-filter: blur(8px); }
+        .overlay.active { display: block; }
+
+        .commercial-hero { margin-top: 80px; padding: 6rem 5%; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .commercial-hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1rem; text-transform: uppercase; }
+        .commercial-hero > p { color: var(--text-muted); font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem; }
+
+        .contact-section { max-width: 900px; margin: 0 auto; padding: 2rem 5% 5rem; }
+        .contact-form { background: var(--bg-white); padding: 3rem; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.08); border: 1px solid var(--border-light); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.7rem; font-family: var(--font-primary); color: var(--text-muted); }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 1rem 1.2rem; border: 2px solid var(--border-light); border-radius: 12px; background: var(--bg-light); color: var(--text-dark); font-family: inherit; font-size: 1rem; transition: var(--transition); }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--color-dominant); outline: none; background: var(--bg-white); }
+        
+        .radio-group { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .radio-option { display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.2rem; border: 2px solid var(--border-light); border-radius: 30px; cursor: pointer; transition: var(--transition); font-family: var(--font-primary); font-size: 0.85rem; }
+        .radio-option:hover { border-color: var(--color-dominant); }
+        .radio-option input[type="radio"] { display: none; }
+        .radio-option input[type="radio"]:checked + span { color: var(--color-dominant); font-weight: 700; }
+        .radio-option:has(input:checked) { border-color: var(--color-dominant); background: rgba(114, 5, 205, 0.05); }
+
+        .submit-btn { width: 100%; padding: 1.3rem; background: var(--color-dominant); color: white; border: none; border-radius: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-family: var(--font-primary); cursor: pointer; font-size: 1rem; transition: var(--transition); }
+        .submit-btn:hover { background: var(--color-compliment); transform: translateY(-2px); box-shadow: 0 15px 40px rgba(114, 5, 205, 0.3); }
+
+        .email-display { text-align: center; margin: 3rem 0; padding: 2rem; background: var(--bg-light); border-radius: 16px; }
+        .email-display p { color: var(--text-muted); margin-bottom: 0.5rem; font-family: var(--font-primary); text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; }
+        .email-display a { font-size: 1.5rem; color: var(--color-dominant); font-weight: 700; font-family: var(--font-primary); }
+        .email-display a:hover { text-decoration: underline; }
+
+        .faq-section { max-width: 800px; margin: 5rem auto; padding: 0 5%; }
+        .faq-section h2 { text-align: center; margin-bottom: 3rem; text-transform: uppercase; letter-spacing: 2px; }
+        details { border-bottom: 1px solid var(--border-light); padding: 1.8rem 0; }
+        summary { font-weight: 700; font-size: 1.15rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-primary); }
+        summary::after { content: '+'; color: var(--color-dominant); font-size: 1.5rem; font-weight: 300; }
+        details[open] summary::after { content: '−'; }
+        details p { margin-top: 1.2rem; color: var(--text-muted); padding-left: 15px; border-left: 3px solid var(--color-compliment); line-height: 1.8; font-size: 1.05rem; }
+
+        footer { background: #0a0a0a; color: rgba(255,255,255,0.8); padding: 6rem 5% 3rem; margin-top: 4rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1.5fr 1.5fr; gap: 4rem; max-width: 1400px; margin: 0 auto; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 4rem; }
+        .footer-brand h3 { margin-bottom: 1.5rem; font-size: 1.8rem; color: white; letter-spacing: 2px; }
+        .footer-brand p { opacity: 0.7; max-width: 350px; font-family: var(--font-primary); font-size: 1.05rem; line-height: 1.8; }
+        .footer-links h4 { margin-bottom: 1.8rem; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; color: var(--color-dominant); font-family: var(--font-primary); }
+        .footer-links a { display: block; margin-bottom: 12px; opacity: 0.7; transition: var(--transition); color: rgba(255,255,255,0.8); font-family: var(--font-primary); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        .footer-links a:hover { opacity: 1; color: var(--color-dominant); padding-left: 8px; }
+        .social-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+        .social-pill { display: inline-block; padding: 0.6rem 1.2rem; border: 1px solid rgba(255,255,255,0.25); border-radius: 30px; font-size: 0.8rem; color: white !important; transition: var(--transition); font-family: var(--font-primary); text-transform: uppercase; letter-spacing: 1px; }
+        .social-pill:hover { background: var(--color-dominant); border-color: var(--color-dominant); transform: translateY(-3px); }
+        .footer-bottom { text-align: center; padding-top: 3rem; opacity: 0.4; font-size: 0.85rem; font-family: var(--font-primary); text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.6); }
+
+        @media (max-width: 900px) { .nav-right { display: none; } .hamburger { display: flex; } .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; } .form-row { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; text-align: center; } .footer-brand p { margin: 0 auto; } .social-pills { justify-content: center; } .contact-form { padding: 1.5rem; } .radio-group { flex-direction: column; } .radio-option { width: 100%; } }
+
+        [data-theme="dark"] .logo { color: #ffffff; }
+        [data-theme="dark"] .desktop-menu a { color: #cccccc; }
+        [data-theme="dark"] .hamburger span { background: #ffffff; }
+        [data-theme="dark"] .contact-form { background: var(--bg-light); border-color: var(--border-light); }
+    </style>
+</head>
+<body>
+
+    <header id="mainHeader">
+        <div class="nav-container">
+            <a href="index.html" class="logo-wrapper">
+                <div class="logo-icon">
+                    <img src="Images/LOGO.PNG" alt="Son_of_IAM_ Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-size:24px;\'>🔥</span>';">
+                </div>
+                <div class="logo-text">
+                    <span class="logo">Son_of_IAM_</span>
+                    <span class="logo-tagline">Stirring Hearts Through Art</span>
+                </div>
+            </a>
+            <div class="nav-right">
+                <nav class="desktop-menu">
+                    <a href="work.html">Work</a>
+                    <a href="shop.html">Shop</a>
+                    <a href="about.html">About</a>
+                    <a href="https://medium.com/@Son_of_IAM_" target="_blank">Articles</a>
+                </nav>
+                <a href="commercial.html" class="btn-cta">Connect</a>
+                <button class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+            </div>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <button id="mobile-theme-toggle" class="theme-toggle" style="display: none;" aria-label="Toggle Dark Mode">🌙</button>
+                <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="overlay" onclick="toggleMenu()"></div>
+    <div class="mobile-menu">
+        <a href="work.html" onclick="toggleMenu()">Work</a>
+        <a href="shop.html" onclick="toggleMenu()">Shop</a>
+        <a href="about.html" onclick="toggleMenu()">About</a>
+        <a href="https://medium.com/@Son_of_IAM_" target="_blank" onclick="toggleMenu()">Articles</a>
+        <a href="commercial.html" onclick="toggleMenu()">Commercial</a>
+    </div>
+
+    <section class="commercial-hero">
+        <h1 class="reveal">Get in touch</h1>
+        <p class="reveal">Let's talk. Whether you're a collector, a Brand looking to collaborate, or just someone who wants to say hello, I'd love to hear from you.</p>
+    </section>
+
+    <section class="contact-section" id="get-in-touch">
+        <div class="email-display reveal">
+            <p>For general enquiries</p>
+            <a href="mailto:SonofIAM.9@gmail.com">SonofIAM.9@gmail.com</a>
+        </div>
+
+        <form action="https://formspree.io/f/xyklyowb" method="POST" class="contact-form reveal">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" name="First Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" name="Last Name" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="Email" required>
+            </div>
+            <div class="form-group">
+                <label>Project Type</label>
+                <select name="Project Type" required>
+                    <option value="">Select an option</option>
+                    <option value="Commission/purchase">Commission / Purchase</option>
+                    <option value="Brand collaboration">Brand Collaboration</option>
+                    <option value="Press/interview">Press / Interview</option>
+                    <option value="Just saying Hello">Just Saying Hello</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Budget</label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="Budget" value="$1,000-$5,000"><span>$1,000 – $5,000</span></label>
+                    <label class="radio-option"><input type="radio" name="Budget" value="$5,000-$15,000"><span>$5,000 – $15,000</span></label>
+                    <label class="radio-option"><input type="radio" name="Budget" value="$15,000-$30,000"><span>$15,000 – $30,000</span></label>
+                    <label class="radio-option"><input type="radio" name="Budget" value="$30,000-$50,000"><span>$30,000 – $50,000</span></label>
+                    <label class="radio-option"><input type="radio" name="Budget" value="$50,000+"><span>$50,000+</span></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Timeline (e.g., Q2 2026, 3 months)</label>
+                <input type="text" name="Timeline" placeholder="When do you need this completed?">
+            </div>
+            <div class="form-group">
+                <label>Project / Message Details</label>
+                <textarea name="Message" rows="5" placeholder="Tell us about your project, goals and any references" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit Inquiry</button>
+        </form>
+    </section>
+
+    <section class="faq-section">
+        <h2 class="reveal">Common Questions</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 3rem; font-family: var(--font-primary); text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;" class="reveal">Before you reach out</p>
+        
+        <details class="reveal">
+            <summary>Do you take commissions?</summary>
+            <p>Yes, but selectively. I take on a limited number of personal commissions each year. For the best chance of working together, reach out with a clear vision and timeline.</p>
+        </details>
+        <details class="reveal">
+            <summary>What's your typical turnaround?</summary>
+            <p>It depends on the project. Simple pieces take 2-4 weeks. Complex campaigns can take up to 2-3 months. I'll give you a timeline once I understand your needs.</p>
+        </details>
+        <details class="reveal">
+            <summary>Do you sell prints?</summary>
+            <p>Yes. We currently have only two offers for prints: Limited Premium Edition and Open Prints Offer. They are both available through the <a href="shop.html" style="color: var(--color-dominant); text-decoration: underline;">shop</a>.</p>
+        </details>
+        <details class="reveal">
+            <summary>Can I license your work?</summary>
+            <p>For commercial licensing (ads, products, media), please use the Commercial Hub or email directly. All licensing is handled through Son_of_IAM_ studios.</p>
+        </details>
+        <details class="reveal">
+            <summary>What other products do you have your Art on?</summary>
+            <p>I have my handcrafted art on diverse products from affordable to premium price range: stickers, wallpaper pack & prints. All available in <a href="shop.html" style="color: var(--color-dominant); text-decoration: underline;">Shop</a>.</p>
+        </details>
+        <details class="reveal">
+            <summary>How does your Limited premium prints and open edition prints work?</summary>
+            <p><strong>Limited premium prints</strong> are available in limited numbers, and the offer is only open twice a year. This offer comes with: a certificate of Authenticity, larger sizes, museum grade printing, scriptural handcrafted scroll gift, Printed QR code to published article about purchased art, signature of artist (+edition numbers), possible special finish, collectors only wearables.</p>
+            <p style="margin-top: 1rem;"><strong>Open Edition prints</strong> are always going to be available in the Shop, they come in small or standard frame size, canvas or regular art frame, artist signature (if requested), and Digital QR code to published article about purchased art.</p>
+        </details>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand"><h3>SON_OF_IAM_</h3><p>Nigerian creative and worshipper, bringing the God dimension into the world through Art from Lagos.</p></div>
+            <div class="footer-links"><h4>Navigation</h4><a href="work.html">Work</a><a href="about.html">About</a><a href="commercial.html">Commercial</a><a href="shop.html">Shop</a></div>
+            <div class="footer-links"><h4>Explore</h4><a href="work.html#paintings">Paintings</a><a href="work.html#3d-art">3D Art</a><a href="https://medium.com/@Son_of_IAM_" target="_blank">Articles</a><a href="work.html#old-artworks">Old Artworks</a></div>
+            <div class="footer-links"><h4>Follow</h4><div class="social-pills"><a href="https://instagram.com/son_of_iam_" target="_blank" class="social-pill">Instagram</a><a href="https://twitter.com/son_of_iam_" target="_blank" class="social-pill">X (Twitter)</a><a href="https://youtube.com/@son_of_iam_" target="_blank" class="social-pill">YouTube</a><a href="https://behance.net/son_of_iam_" target="_blank" class="social-pill">Behance</a><a href="https://wa.me/2340000000000" target="_blank" class="social-pill">WhatsApp</a></div></div>
+        </div>
+        <div class="footer-bottom">© 2026 Son_of_IAM_. All rights reserved.</div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => document.getElementById('mainHeader').classList.toggle('scrolled', window.scrollY > 50));
+        function toggleMenu() { document.querySelector('.hamburger').classList.toggle('active'); document.querySelector('.mobile-menu').classList.toggle('active'); document.querySelector('.overlay').classList.toggle('active'); document.body.style.overflow = document.querySelector('.mobile-menu').classList.contains('active') ? 'hidden' : ''; }
+        const themeToggles = document.querySelectorAll('.theme-toggle');
+        const rootElement = document.documentElement;
+        function setTheme(theme) { if (theme === 'dark') { rootElement.setAttribute('data-theme', 'dark'); themeToggles.forEach(t => t.textContent = '☀️'); localStorage.setItem('theme', 'dark'); } else { rootElement.removeAttribute('data-theme'); themeToggles.forEach(t => t.textContent = '🌙'); localStorage.setItem('theme', 'light'); } }
+        const savedTheme = localStorage.getItem('theme'); if (savedTheme) setTheme(savedTheme); else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
+        themeToggles.forEach(btn => btn.addEventListener('click', () => setTheme(rootElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')));
+        function checkMobile() { const m = document.getElementById('mobile-theme-toggle'); m.style.display = window.innerWidth <= 900 ? 'flex' : 'none'; } checkMobile(); window.addEventListener('resize', checkMobile);
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
