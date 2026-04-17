@@ -10,11 +10,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
         /* ==========================================
-           1. CSS VARIABLES & BASE
+           1. CSS VARIABLES & BASE FONTS
         =========================================== */
         :root {
             --color-dominant: #7205cd;      
@@ -24,14 +24,18 @@
             --bg-light: #fafafa;
             --bg-white: #ffffff;
             --text-dark: #1a1a1a;
-            --text-muted: #666666;
+            --text-muted: #555555;
             --border-light: #e0e0e0;
-            --font-primary: 'Inter', sans-serif; 
-            --font-secondary: 'Inter', sans-serif; 
+            
+            /* UPDATED TO PROMISE'S REQUESTED FONTS */
+            --font-primary: 'Optima', sans-serif; 
+            --font-secondary: 'Georgia', serif; 
             --font-handwriting: 'Caveat', cursive;
+            
             --transition: all 0.3s ease;
         }
 
+        /* DARK MODE VARIABLES */
         [data-theme="dark"] {
             --bg-white: #121212;
             --bg-light: #1a1a1a;
@@ -44,12 +48,16 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: var(--font-primary);
+            font-family: var(--font-secondary); /* Georgia for body text */
             color: var(--text-dark);
             background: var(--bg-white);
-            line-height: 1.6;
+            line-height: 1.8;
             overflow-x: hidden;
             transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-primary); /* Optima for headings */
         }
 
         a { text-decoration: none; color: inherit; }
@@ -58,14 +66,14 @@
 
         .scripture {
             font-family: var(--font-handwriting);
-            font-size: 1.8rem;
-            line-height: 1.6;
+            font-size: 2.2rem;
+            line-height: 1.4;
             color: var(--color-dominant);
             margin: 1.5rem 0 0.5rem;
         }
         .scripture-reference {
             font-family: var(--font-handwriting);
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             color: var(--color-dominant);
             opacity: 0.85;
             display: block;
@@ -87,13 +95,13 @@
             transition: var(--transition);
         }
         
-        /* UPDATED DARK MODE HEADER FIX */
+        /* DARK MODE HEADER FIXES */
         [data-theme="dark"] header { background: rgba(18,18,18,0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         [data-theme="dark"] header.scrolled { background: rgba(18,18,18,0.98); }
-        [data-theme="dark"] .logo { color: var(--color-highlight-light); }
-        [data-theme="dark"] .desktop-menu a { color: rgba(255,255,255,0.8); }
-        [data-theme="dark"] .desktop-menu a:hover { color: var(--color-dominant); }
-        [data-theme="dark"] .hamburger span { background: var(--color-highlight-light); }
+        [data-theme="dark"] .logo { color: #ffffff !important; }
+        [data-theme="dark"] .desktop-menu a { color: #cccccc !important; }
+        [data-theme="dark"] .desktop-menu a:hover { color: var(--color-dominant) !important; }
+        [data-theme="dark"] .hamburger span { background: #ffffff !important; }
         
         header.scrolled { padding: 0.6rem 5%; background: rgba(255,255,255,0.96); }
 
@@ -102,7 +110,7 @@
         .logo-wrapper { display: flex; align-items: center; gap: 1rem; transition: var(--transition); }
         .logo-icon { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; }
         
-        /* UPDATED PURPLE LOGO FIRE ANIMATION */
+        /* PURPLE LOGO FIRE ANIMATION */
         @keyframes fireGlow {
             0% { filter: drop-shadow(0 0 5px rgba(114, 5, 205, 0.5)) drop-shadow(0 0 10px rgba(93, 127, 255, 0.3)); }
             50% { filter: drop-shadow(0 0 15px rgba(114, 5, 205, 0.8)) drop-shadow(0 0 25px rgba(93, 127, 255, 0.5)); transform: translateY(-1px); }
@@ -112,12 +120,12 @@
 
         .logo-text { display: flex; flex-direction: column; }
         .logo { font-size: 1.5rem; font-weight: 700; color: var(--text-dark); transition: var(--transition); }
-        .logo-tagline { font-size: 0.7rem; color: var(--color-dominant); text-transform: uppercase; font-weight: 600;}
+        .logo-tagline { font-family: var(--font-primary); font-size: 0.7rem; color: var(--color-dominant); text-transform: uppercase; font-weight: 600;}
         .logo-wrapper:hover .logo { color: var(--color-dominant); }
 
         .nav-right { display: flex; align-items: center; gap: 2.5rem; }
-        .desktop-menu { display: flex; gap: 2.5rem; align-items: center; }
-        .desktop-menu a { font-weight: 500; font-size: 0.95rem; transition: var(--transition); position: relative; padding: 0.5rem 0;}
+        .desktop-menu { display: flex; gap: 2.5rem; align-items: center; font-family: var(--font-primary); }
+        .desktop-menu a { font-weight: 600; font-size: 0.95rem; transition: var(--transition); position: relative; padding: 0.5rem 0; text-transform: uppercase; letter-spacing: 1px;}
         .desktop-menu a::after {
             content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
             background: var(--color-dominant); transition: width 0.3s ease;
@@ -128,82 +136,103 @@
         .dropdown { position: relative; }
         .dropdown-menu {
             position: absolute; top: 100%; right: 0; background: var(--bg-white);
-            min-width: 240px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            min-width: 260px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             border-radius: 12px; padding: 0.8rem 0; display: none; opacity: 0;
             transition: all 0.3s ease; transform: translateY(-10px); border: 1px solid var(--border-light);
         }
         .dropdown:hover .dropdown-menu { display: block; opacity: 1; transform: translateY(0); }
-        .dropdown-menu a { display: block; padding: 0.7rem 1.5rem; }
-        .dropdown-menu a:hover { color: var(--color-dominant); background: var(--bg-light); padding-left: 1.8rem;}
+        .dropdown-menu a { display: block; padding: 0.7rem 1.5rem; font-size: 0.85rem;}
+        .dropdown-menu a:hover { color: var(--color-dominant) !important; background: var(--bg-light); padding-left: 1.8rem;}
         .dropdown-menu a::after { display: none; }
 
         .theme-toggle { background: none; border: none; font-size: 1.4rem; cursor: pointer; transition: 0.3s;}
         .theme-toggle:hover { transform: scale(1.15); }
         
+        .btn-cta {
+            display: inline-block; background: var(--color-dominant); color: white !important; 
+            padding: 0.6rem 1.5rem; border-radius: 8px; font-weight: bold; border: none; cursor: pointer;
+            transition: var(--transition); font-family: var(--font-primary); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;
+        }
+        .btn-cta:hover { background: var(--color-compliment); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(114, 5, 205, 0.3); }
+
         /* Mobile Nav Elements */
         .hamburger { display: none; flex-direction: column; background: none; border: none; cursor: pointer; z-index: 1002; padding: 0.5rem;}
         .hamburger span { width: 28px; height: 3px; background: var(--text-dark); margin: 3px 0; transition: 0.3s; border-radius: 3px;}
-        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); background: var(--color-dominant);}
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); background: var(--color-dominant) !important;}
         .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); background: var(--color-dominant);}
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); background: var(--color-dominant) !important;}
         
         .mobile-menu {
             position: fixed; top: 0; right: -100%; width: 85%; max-width: 400px; height: 100vh;
             background: var(--bg-white); z-index: 1001; padding: 6rem 2.5rem; transition: 0.4s;
-            box-shadow: -10px 0 50px rgba(0,0,0,0.15);
+            box-shadow: -10px 0 50px rgba(0,0,0,0.15); font-family: var(--font-primary);
         }
         .mobile-menu.active { right: 0; }
-        .mobile-menu a { display: block; font-size: 1.4rem; padding: 1rem 0; border-bottom: 1px solid var(--border-light); font-weight: 600; transition: 0.3s;}
+        .mobile-menu a { display: block; font-size: 1.4rem; padding: 1rem 0; border-bottom: 1px solid var(--border-light); font-weight: 600; transition: 0.3s; text-transform: uppercase;}
         .mobile-menu a:hover { color: var(--color-dominant); padding-left: 10px; }
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: none; backdrop-filter: blur(4px);}
         .overlay.active { display: block; }
 
         /* ==========================================
-           3. SECTIONS & LAYOUTS (ABOUT SPECIFIC)
+           3. ABOUT PAGE CONTENT
         =========================================== */
         section { padding: 5rem 5%; max-width: 1400px; margin: 0 auto; }
-        .section-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; text-transform: uppercase; }
+        .section-title { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; text-transform: uppercase; }
         
-        .btn-cta {
-            display: inline-block; background: var(--color-dominant); color: white !important; 
-            padding: 1rem 2.5rem; border-radius: 8px; font-weight: bold; border: none; cursor: pointer;
-            transition: var(--transition);
-        }
-        .btn-cta:hover { background: var(--color-compliment); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(114, 5, 205, 0.4); }
+        .about-content { max-width: 900px; }
+        .about-content h3 { font-size: 2rem; margin: 3.5rem 0 1.5rem; color: var(--color-dominant); }
+        .about-content p { margin-bottom: 1.5rem; font-size: 1.15rem; }
+        
+        /* Dark Mode overrides for About Text */
+        [data-theme="dark"] .about-content p { color: #cccccc !important; }
+        [data-theme="dark"] .section-title { color: #ffffff !important; }
+        [data-theme="dark"] .timeline-text { color: #aaaaaa !important; }
 
-        /* About Timeline */
-        .about-content { max-width: 800px; }
-        .about-content h3 { font-size: 1.8rem; margin: 2.5rem 0 1.5rem; }
-        .about-content p { margin-bottom: 1.5rem; color: var(--text-dark); line-height: 1.8; }
-        
-        .timeline { margin: 3rem 0; border-left: 3px solid var(--color-compliment); padding-left: 2rem; }
-        .timeline-item { margin-bottom: 2rem; position: relative; }
+        /* Timelines */
+        .timeline { margin: 3rem 0; border-left: 3px solid var(--color-compliment); padding-left: 2.5rem; }
+        .timeline-item { margin-bottom: 3rem; position: relative; }
         .timeline-item::before {
-            content: ''; position: absolute; left: -2.65rem; top: 0.5rem; width: 12px; height: 12px;
-            border-radius: 50%; background: var(--color-dominant); box-shadow: 0 0 0 4px rgba(114, 5, 205, 0.2);
+            content: ''; position: absolute; left: -3.35rem; top: 0.5rem; width: 16px; height: 16px;
+            border-radius: 50%; background: var(--color-dominant); box-shadow: 0 0 0 5px rgba(114, 5, 205, 0.2);
         }
-        .timeline-year { font-weight: 700; margin-bottom: 0.3rem; color: var(--color-dominant); }
-        .timeline-text { color: var(--text-muted); }
+        .timeline-year { font-weight: 700; margin-bottom: 0.5rem; color: var(--color-dominant); font-family: var(--font-primary); font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px;}
+        .timeline-text { color: var(--text-muted); font-size: 1.1rem; }
 
-        /* FOOTER */
-        footer { background: #111111; color: white; padding: 4rem 5% 2rem; margin-top: 4rem;}
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; max-width: 1400px; margin: 0 auto; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3rem;}
-        .footer-brand h3 { margin-bottom: 1rem; }
-        .footer-brand p { opacity: 0.8; max-width: 300px; }
-        .footer-links h4 { margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
-        .footer-links a { display: block; margin-bottom: 0.8rem; opacity: 0.8; transition: var(--transition); color: white;}
-        .footer-links a:hover { opacity: 1; color: var(--color-dominant); padding-left: 5px; }
-        .social-pill { display: inline-block; padding: 0.5rem 1.2rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 30px; margin: 0.2rem; font-size: 0.85rem; color: white !important;}
-        .social-pill:hover { background: var(--color-dominant); border-color: var(--color-dominant); transform: translateY(-2px);}
-        .footer-bottom { text-align: center; padding-top: 2rem; opacity: 0.5; font-size: 0.85rem; }
+        /* Image Placeholders */
+        .image-placeholder {
+            background: var(--bg-light); border-radius: 16px; overflow: hidden; 
+            border: 1px solid var(--border-light); box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .image-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+        .placeholder-text { padding: 20px; text-align: center; color: var(--text-muted); font-family: var(--font-primary); font-style: italic; opacity: 0.6; }
 
         /* ==========================================
-           5. MEDIA QUERIES 
+           4. FOOTER
+        =========================================== */
+        footer { background: #111111; color: white; padding: 5rem 5% 2rem; margin-top: 4rem;}
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1.5fr; gap: 3rem; max-width: 1400px; margin: 0 auto; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 4rem;}
+        .footer-brand h3 { margin-bottom: 1rem; font-size: 1.8rem; }
+        .footer-brand p { opacity: 0.8; max-width: 350px; font-family: var(--font-primary); font-size: 1.1rem;}
+        
+        .footer-links h4 { margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 2px; font-size: 1rem; color: var(--color-dominant);}
+        .footer-links a { display: block !important; margin-bottom: 15px; opacity: 0.8; transition: var(--transition); color: white; font-family: var(--font-primary); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;}
+        .footer-links a:hover { opacity: 1; color: var(--color-dominant); padding-left: 8px; }
+        
+        .social-pill { display: inline-block !important; padding: 0.6rem 1.5rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 30px; margin: 0.3rem; font-size: 0.85rem; color: white !important; transition: var(--transition);}
+        .social-pill:hover { background: var(--color-dominant); border-color: var(--color-dominant); transform: translateY(-3px);}
+        
+        .footer-bottom { text-align: center; padding-top: 2rem; opacity: 0.5; font-size: 0.9rem; font-family: var(--font-primary); text-transform: uppercase; letter-spacing: 1px;}
+
+        /* ==========================================
+           5. MEDIA QUERIES
         =========================================== */
         @media (max-width: 900px) {
             .nav-right { display: none; }
             .hamburger { display: flex; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .social-pill { margin: 0.5rem; }
+            .side-by-side-gallery { grid-template-columns: 1fr !important; }
         }
     </style>
 </head>
@@ -237,7 +266,7 @@
                     <a href="index.html#articles">Articles</a>
                 </nav>
                 
-                <a href="index.html#commercial" class="btn-cta" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;">Connect</a>
+                <a href="index.html#commercial" class="btn-cta">Connect</a>
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
             </div>
             
@@ -262,8 +291,168 @@
     </div>
 
     <section id="about" style="margin-top: 120px;">
-        <h1 class="section-title" style="font-size: 3.5rem; margin-bottom: 2rem;">About</h1>
+        <h1 class="section-title">About</h1>
         <div class="about-content">
-            <h3 style="color: var(--color-dominant); font-size: 2rem;">I bring the God dimension into the world through Art.</h3>
+            <h3 style="margin-top: 1rem;">I bring the God dimension into the world through Art.</h3>
             <p>Son_of_IAM_ is a multidisciplinary creative, based in Lagos, Nigeria. His work primarily focuses on communicating the Christian Faith visually, using Faith symbols, themes and figures to communicate his Faith bodily as inspired by the Holy Spirit in Worship.</p>
-            <p>Promise (artist alias; Son_of_IAM), was born in Ogun State, Nigeria. Teaching himself how to draw as a child, evolving to learning Digital softwares like Photoshop
+            <p>Promise (artist alias; Son_of_IAM), was born in Ogun State, Nigeria. Teaching himself how to draw as a child, evolving to learning Digital softwares like Photoshop, Blender 3D & Procreate in his early teenage years, to now using all these skills for a greater purpose; to serve the LORD. Change has been a common theme in his Life and in his work that has explored various themes and approach.</p>
+
+            <p class="scripture" style="margin-top: 4rem;">"This is eternal life: that they may know You, the only true God, and Jesus Christ, whom You have sent."</p>
+            <span class="scripture-reference">- John 17:3 | The ethos behind every work</span>
+
+            <h3 style="margin-top: 5rem;">Origin</h3>
+            <p>Born in Lagos, 2006. Looking back recently, I realized I was actually surrounded by few creatives, my mom was an event photographer. I can remember clearly how I used to play with her old analogue camera in the compound. By secondary school, I was drawing constantly, on my class tables, in my note books, and on A4 papers, drawing diverse figures just to practice.</p>
+            <p>Years passed, we relocated and around 2020 my parent got me an old Pentium all-in-one desktop, a wired keyboard and a mouse, with those I installed Photoshop with the help of a new neighbor who was a graphic designer. He also helped with tutorial videos, and textures on my drive. It wasn't a pivot — it was a new track in the same direction.</p>
+            <p>In 2022 I took a big break from social media and started teaching myself Blender 3D. Studied the blender gurus — polyfjord, blender guru, ducky 3D — and fused their techniques with my vision. Back then, I just wanted to create and communicate a world only I could see in my head.</p>
+
+            <div class="image-placeholder" style="width: 100%; height: 500px; margin: 4rem 0;">
+                <img src="Images/about-studio.jpg" alt="Promise in the studio" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder-text\'>Placeholder: Artist Studio / Portrait Image<br>(Add about-studio.jpg to Images folder)</div>';">
+            </div>
+
+            <h3 style="margin-top: 5rem;">Journey</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2020 - Learning Photoshop</div>
+                    <div class="timeline-text">My first exploration into digital art.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2022 - Learning 3D</div>
+                    <div class="timeline-text">I started learning Blender 3D on YouTube.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2022 - NFT Breakthrough</div>
+                    <div class="timeline-text">I found out about NFTs, started and sold out collaboration collections on Nifty Gateway, sold out a collection on Foundation.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2023 - First Commission & Collaborations</div>
+                    <div class="timeline-text">An American found me online. The commissions began. 8+ international collaborations with artists across 5 continents.</div>
+                </div>
+            </div>
+
+            <div class="side-by-side-gallery" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 5rem 0;">
+                <div class="image-placeholder" style="height: 400px;">
+                    <img src="Images/about-art1.jpg" alt="Artwork detail" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder-text\'>Placeholder: Art Detail 1<br>(Add about-art1.jpg to Images folder)</div>';">
+                </div>
+                <div class="image-placeholder" style="height: 400px;">
+                    <img src="Images/about-art2.jpg" alt="Artwork detail" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder-text\'>Placeholder: Art Detail 2<br>(Add about-art2.jpg to Images folder)</div>';">
+                </div>
+            </div>
+
+            <h3 style="margin-top: 5rem;">Exhibitions</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">Lagos, Nigeria</div>
+                    <div class="timeline-text">Logoandheart 1.0 (2025) | Art 4 Peace by the Museum of Krypto Art (2025)</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">New York City</div>
+                    <div class="timeline-text">Community Artist Showcase, NFT.NYC</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Florence, Italy (2024)</div>
+                    <div class="timeline-text">Link Between Worlds at The Social Hub | Dimensions DAO Digital Gallery Exhibition</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>SON_OF_IAM_</h3>
+                <p>Nigerian Christian creative and worshipper, bringing the God dimension into the world through Art from Lagos.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <a href="index.html#work">Work</a>
+                <a href="about.html">About</a>
+                <a href="index.html#commercial">Commercial</a>
+                <a href="index.html#shop">Shop</a>
+            </div>
+            <div class="footer-links">
+                <h4>Follow</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    <a href="#" class="social-pill">Instagram</a>
+                    <a href="#" class="social-pill">X (Twitter)</a>
+                    <a href="#" class="social-pill">YouTube</a>
+                    <a href="#" class="social-pill">Behance</a>
+                    <a href="#" class="social-pill">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 Son_of_IAM_. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            document.querySelector('.hamburger').classList.toggle('active');
+            document.querySelector('.mobile-menu').classList.toggle('active');
+            document.querySelector('.overlay').classList.toggle('active');
+            document.body.style.overflow = document.querySelector('.mobile-menu').classList.contains('active') ? 'hidden' : '';
+        }
+
+        // ==========================================
+        // DARK MODE TOGGLE LOGIC
+        // ==========================================
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const rootElement = document.documentElement;
+
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                rootElement.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '☀️';
+                mobileThemeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                rootElement.removeAttribute('data-theme');
+                themeToggle.textContent = '🌙';
+                mobileThemeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setTheme(savedTheme);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            setTheme('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = rootElement.getAttribute('data-theme');
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+        
+        mobileThemeToggle.addEventListener('click', () => {
+            const currentTheme = rootElement.getAttribute('data-theme');
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+        
+        // Show mobile toggle on small screens
+        if (window.innerWidth <= 900) {
+            mobileThemeToggle.style.display = 'block';
+        }
+        window.addEventListener('resize', () => {
+            if (window.innerWidth <= 900) {
+                mobileThemeToggle.style.display = 'block';
+            } else {
+                mobileThemeToggle.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
