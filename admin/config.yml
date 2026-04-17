@@ -1,0 +1,33 @@
+backend:
+  name: github
+  repo: Son-of-IAM/WEBSITE---Artwork_Showcase
+  branch: main
+
+media_folder: "Images/artworks"
+public_folder: "Images/artworks"
+
+collections:
+  - name: "artworks"
+    label: "Artworks"
+    folder: "data/artworks"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - "paintings"
+          - "3d-art"
+          - "gospel"
+          - "old"
+      - label: "Main Image"
+        name: "image"
+        widget: "image"
+      - label: "Cropped Detail"
+        name: "cropImage"
+        widget: "image"
+        required: false
