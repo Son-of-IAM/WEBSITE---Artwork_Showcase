@@ -1,0 +1,28 @@
+name: Compress Images
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Images/**'
+      - '**.jpg'
+      - '**.jpeg'
+      - '**.png'
+      - '**.webp'
+
+jobs:
+  compress:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: calibreapp/image-actions@main
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          jpegQuality: 82
+          webpQuality: 80
+          compressOnly: true
+      - uses: peter-evans/create-pull-request@v5
+        with:
+          title: Auto-compressed images
+          commit-message: Compress images
+          body: Images were automatically optimized
