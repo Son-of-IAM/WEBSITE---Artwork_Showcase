@@ -37,29 +37,39 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // === GALLERY & MODAL ===
-  const artworks = [
-    { title: "Redemption's Light", cat: "paintings", img: "assets/art1.jpg", crop: "assets/art1-crop.jpg" },
-    { title: "Digital Sanctuary", cat: "3d-art", img: "assets/art2.jpg", crop: "assets/art2-crop.jpg" },
-    { title: "The Proclamation", cat: "gospel", img: "assets/art3.jpg", crop: "assets/art3-crop.jpg" },
-    { title: "Faith & Form", cat: "paintings", img: "assets/art4.jpg", crop: "assets/art4-crop.jpg" },
-    { title: "Early Studies", cat: "old", img: "assets/art5.jpg", crop: "assets/art5-crop.jpg" }
-  ];
-
+  let artworks = [];
+  let currentIndex = 0;
   const gallery = document.getElementById('gallery');
   const modal = document.getElementById('artwork-modal');
-  let currentIndex = 0;
+
+  async function loadArtworks() {
+    try {
+      const response = await fetch('data/artworks.json');
+      if (response.ok) {
+        artworks = await response.json();
+      }
+    } catch (error) {
+      console.log('No artworks.json yet - using empty gallery');
+      artworks = [];
+    }
+    
+    if (gallery) renderGallery('all');
+  }
 
   function renderGallery(filter = 'all') {
+    if (!gallery) return;
+    
     gallery.innerHTML = '';
-    const filtered = filter === 'all' ? artworks : artworks.filter(a => a.cat === filter);
+    const filtered = filter === 'all' ? artworks : artworks.filter(a => a.category === filter);
+    
     filtered.forEach((art, i) => {
       const card = document.createElement('div');
       card.className = 'art-card fade-up visible';
       card.innerHTML = `
-        <img src="${art.img}" alt="${art.title}" loading="lazy">
+        <img src="${art.image}" alt="${art.title}" loading="lazy">
         <div class="art-overlay">
           <div class="art-title">${art.title}</div>
-          <div class="art-cat">${art.cat.replace('-', ' ').toUpperCase()}</div>
+          <div class="art-cat">${art.category.replace('-', ' ').toUpperCase()}</div>
         </div>`;
       card.onclick = () => openModal(i, filtered);
       gallery.appendChild(card);
@@ -68,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openModal(index, list) {
     currentIndex = index;
-    modal.dataset.list = JSON.stringify(list);
+    modal.dataset.list = JSON.stringify(list.map((a, i) => i));
     updateModal(list);
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
@@ -78,12 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateModal(list) {
     const item = list[currentIndex];
     document.getElementById('modal-title').textContent = item.title;
-    document.getElementById('modal-main').src = item.img;
-    document.getElementById('modal-crop').src = item.crop;
+    document.getElementById('modal-main').src = item.image;
+    document.getElementById('modal-crop').src = item.cropImage || item.image;
   }
 
   document.getElementById('next-art').onclick = () => {
-    const list = JSON.parse(modal.dataset.list);
+    const list = JSON.parse(modal.dataset.list).map(i => artworks[i]);
     currentIndex = (currentIndex + 1) % list.length;
     updateModal(list);
   };
@@ -110,5 +120,5 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   });
 
-  if (gallery) renderGallery();
+  if (gallery) loadArtworks();
 });
