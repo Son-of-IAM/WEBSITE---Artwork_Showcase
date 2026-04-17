@@ -382,63 +382,67 @@
         /* ==========================================
            HERO SECTION
         =========================================== */
+       
         .hero {
-            margin-top: 100px;
-            padding: 5rem 5%;
-            max-width: 1400px;
-            margin-left: auto;
-            margin-right: auto;
+            /* Adjust the top margin to account for the fixed header */
+            margin-top: 60px; 
+            padding: 8rem 5%;
+            /* Remove max-width and auto margins to allow edge-to-edge */
+            width: 100vw;
+            position: relative;
+            /* Placeholder Background Image - replace the URL when you have the asset */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('Images/hero-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: var(--color-highlight-light); /* Ensure text is white against the dark overlay */
         }
 
         .hero-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr; /* Change to a single column for a more editorial look */
+            gap: 2rem;
             align-items: center;
+            text-align: center; /* Center the text */
+            max-width: 1000px; /* Constrain the text width for readability */
+            margin: 0 auto;
+            position: relative;
+            z-index: 2; /* Ensure content sits above the background */
         }
 
         .hero-text h1 {
-            font-size: 3.5rem;
+            font-size: 4.5rem; /* Make the headline larger */
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 1.5rem;
             letter-spacing: -1.5px;
+            color: var(--color-highlight-light); /* Force white text */
         }
 
         .hero-text h1 span { 
-            color: var(--color-dominant);
-            background: linear-gradient(135deg, #7205cd 0%, #9b3dd6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--color-highlight-light); /* Remove the purple gradient for better contrast on images */
+            background: none;
+            -webkit-text-fill-color: initial;
         }
 
         .hero-text p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
+            font-size: 1.3rem; /* Slightly larger intro text */
+            color: rgba(255, 255, 255, 0.9); /* Soft white */
             margin-bottom: 1.5rem;
         }
+        
+        .hero .scripture {
+            color: rgba(255, 255, 255, 0.9); /* Soft white for scripture */
+        }
+        
+        .hero .scripture-reference {
+            color: rgba(255, 255, 255, 0.7); /* Even softer white for reference */
+        }
 
+        /* Hide the hero-image div since we're using a full background */
         .hero-image {
-            background: var(--bg-light);
-            border-radius: 16px;
-            aspect-ratio: 4/5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-style: italic;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(114, 5, 205, 0.15);
-            border: 1px solid rgba(114, 5, 205, 0.1);
+            display: none; 
         }
-
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         /* ==========================================
            SECTIONS GENERAL
         =========================================== */
@@ -462,19 +466,28 @@
             max-width: 600px;
         }
 
-        /* ==========================================
+      /* ==========================================
            DISCIPLINES
         =========================================== */
         .disciplines {
-            background: var(--bg-light);
+            position: relative;
+            /* The image and the dark overlay */
+            background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.95)), url('Images/disciplines-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* THIS CREATES THE PARALLAX EFFECT */
+            
             border-radius: 24px;
-            padding: 4rem;
+            padding: 6rem 4rem;
             margin-bottom: 4rem;
-            border: 1px solid var(--border-light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff; /* Forces text to white */
         }
 
-        [data-theme="dark"] .disciplines {
-            background: #111111;
+        /* We don't need a separate dark mode rule for this section anymore because it's always dark! */
+
+        .disciplines .section-title {
+            color: #ffffff;
         }
 
         .discipline-grid {
@@ -487,7 +500,7 @@
         .discipline-item h3 {
             font-size: 4rem;
             color: var(--color-dominant);
-            opacity: 0.2;
+            opacity: 0.6; /* Bumped up opacity so it's visible on the dark background */
             margin-bottom: 0.5rem;
             line-height: 1;
             font-weight: 700;
@@ -497,13 +510,13 @@
             font-size: 1.4rem;
             margin-bottom: 1rem;
             font-weight: 600;
+            color: #ffffff;
         }
 
         .discipline-item p {
-            color: var(--text-muted);
+            color: rgba(255, 255, 255, 0.7); /* Soft white */
             line-height: 1.7;
         }
-
         /* ==========================================
            WORK / GALLERY
         =========================================== */
@@ -811,221 +824,114 @@
             color: var(--text-muted);
         }
 
-        /* ==========================================
+      /* ==========================================
            COMMERCIAL HUB (BLACK FORM)
         =========================================== */
-        .commercial-intro {
-            max-width: 700px;
-            margin-bottom: 3rem;
-        }
-
-        .contact-form {
-            max-width: 700px;
-            background: var(--bg-white);
-            padding: 3rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        #commercial {
+            position: relative;
+            background-image: linear-gradient(rgba(250, 250, 250, 0.8), rgba(250, 250, 250, 0.95)), url('Images/commercial-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+            border-radius: 24px;
+            padding: 5rem 5%;
             margin-bottom: 4rem;
-            border: 1px solid var(--border-light);
+            max-width: 100%; /* Allows it to stretch wider than normal sections */
         }
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-dark);
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid var(--border-light);
-            border-radius: 8px;
-            font-family: var(--font-secondary);
-            font-size: 1rem;
-            background: var(--bg-light);
-            color: var(--text-dark);
-            transition: var(--transition);
-        }
-
-        [data-theme="dark"] .form-group input,
-        [data-theme="dark"] .form-group select,
-        [data-theme="dark"] .form-group textarea {
-            background: #2a2a2a;
-            border-color: #444;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--color-dominant);
-            box-shadow: 0 0 0 4px rgba(114, 5, 205, 0.1);
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1.2rem;
-            background: var(--color-highlight-dark);
-            color: var(--color-highlight-light);
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition);
-            letter-spacing: 1px;
-        }
-
-        .submit-btn:hover {
-            background: var(--color-dominant);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(114, 5, 205, 0.3);
-            color: white;
-        }
-
-        .faq-section {
-            max-width: 800px;
-        }
-
-        details {
-            border-bottom: 1px solid var(--border-light);
-            padding: 1.5rem 0;
-        }
-
-        summary {
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: var(--transition);
-        }
-
-        summary:hover {
-            color: var(--color-dominant);
-        }
-
-        summary::after {
-            content: '+';
-            font-size: 1.5rem;
-            color: var(--color-dominant);
-            transition: var(--transition);
-            font-weight: 300;
-        }
-
-        details[open] summary::after {
-            content: '-';
-        }
-
-        details p {
-            margin-top: 1rem;
-            color: var(--text-muted);
-            line-height: 1.7;
+        /* Adjust for dark mode */
+        [data-theme="dark"] #commercial {
+            background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.95)), url('Images/commercial-bg.jpg');
         }
 
         /* ==========================================
-           SHOP SECTION
+           SHOP SECTION (PREMIUM GLASSMORPHISM)
         =========================================== */
         .shop-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
+            /* Makes the cards massive, just like the reference */
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
         }
 
         .product-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border-light);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-        }
-
-        .product-image-wrapper {
             position: relative;
-            height: 300px;
-            background: var(--bg-light);
+            height: 600px; /* Tall, editorial layout */
+            border-radius: 20px;
+            overflow: hidden;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-style: italic;
+            align-items: flex-end; /* Pushes content to the bottom */
+            justify-content: flex-end; /* Pushes content to the right */
+            padding: 2rem;
+            background-color: var(--bg-light);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        .product-image-wrapper img {
+        /* The Image stretching to cover the whole card */
+        .product-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
+            z-index: 0;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            padding: 5px 15px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: white;
-            border-radius: 20px;
-            letter-spacing: 1px;
-            z-index: 2;
+        /* Subtle zoom on hover */
+        .product-card:hover .product-bg {
+            transform: scale(1.05);
         }
 
-        .badge.limited { background-color: var(--color-dominant); }
-        .badge.open { background-color: var(--color-compliment); }
-        .badge.digital { background-color: #333333; }
-
-        .product-info {
+        /* The Floating Frosted Glass Panel */
+        .product-info-glass {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.75); /* Semi-transparent white */
+            backdrop-filter: blur(20px); /* The frosted glass blur */
+            -webkit-backdrop-filter: blur(20px);
             padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
+            border-radius: 16px;
+            width: 85%;
+            max-width: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: var(--transition);
         }
 
-        .product-info h3 {
-            font-size: 1.4rem;
+        /* Dark Mode adjustments for the glass panel */
+        [data-theme="dark"] .product-info-glass {
+            background: rgba(30, 30, 30, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .product-info-glass h3 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             margin-bottom: 0.5rem;
+            font-family: var(--font-primary);
+        }
+
+        .price-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1.5rem;
         }
 
         .product-price {
-            font-size: 1.25rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            color: var(--color-dominant);
-            margin-bottom: 1rem;
         }
 
-        .product-desc {
-            font-size: 0.95rem;
+        .edition-count {
+            font-size: 0.9rem;
             color: var(--text-muted);
-            margin-bottom: 2rem;
-            flex-grow: 1;
-            line-height: 1.6;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .buy-button {
@@ -1033,19 +939,37 @@
             text-align: center;
             background: var(--color-highlight-dark);
             color: var(--color-highlight-light);
-            padding: 1rem;
-            border-radius: 8px;
+            padding: 1.2rem;
+            border-radius: 30px; /* Pill-shaped button like the reference */
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             transition: var(--transition);
+            margin-bottom: 1rem;
         }
 
         .buy-button:hover {
-            background: var(--color-dominant);
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(114, 5, 205, 0.3);
+            background: var(--color-dominant);
             color: white;
+        }
+
+        .shipping-note {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .product-card {
+                height: 500px;
+                padding: 1rem;
+                justify-content: center; /* Centers the box on phones */
+            }
+            .product-info-glass {
+                width: 100%;
+            }
         }
 
         /* ==========================================
@@ -1219,6 +1143,58 @@
             .about-text-content h2 {
                 text-align: center !important;
             }
+
+            /* ==========================================
+           UNIFIED ACTION MODAL
+        =========================================== */
+        .action-modal-content {
+            max-width: 550px; 
+            padding: 0;
+            text-align: center;
+            background: var(--bg-white);
+        }
+
+        .modal-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-light);
+            background: var(--bg-light);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 20px 10px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-family: var(--font-primary);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .tab-btn.active {
+            color: var(--color-dominant);
+            border-bottom-color: var(--color-dominant);
+            background: var(--bg-white);
+        }
+
+        .tab-panel {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         }
     </style>
 </head>
@@ -1237,9 +1213,8 @@
             </a>
             
             <div class="nav-right">
-                    <nav class="desktop-menu">
+                <nav class="desktop-menu">
                     <a href="#work">Work</a>
-                    
                     <div class="dropdown">
                         <a href="#shop">Shop ▾</a>
                         <div class="dropdown-menu">
@@ -1249,23 +1224,13 @@
                             <a href="#wallpapers">Wallpaper Pack</a>
                         </div>
                     </div>
-                    
-                    <a href="#about">About</a>
-                    <a href="#articles">Articles</a>
+                    <a href="about.html">About</a> <a href="#articles">Articles</a>
                 </nav>
-               
                 
+                <button class="btn-cta" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;" onclick="openActionModal()">Connect</button>
+
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
             </div>
-            
-            <div style="display: flex; align-items: center; gap: 15px;">
-                <button id="mobile-theme-toggle" class="theme-toggle hamburger-theme" style="display: none;" aria-label="Toggle Dark Mode">🌙</button>
-                
-                <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </div>
     </header>
 
     <div class="overlay" onclick="toggleMenu()"></div>
@@ -1349,7 +1314,7 @@
                     <a href="#articles">Articles</a>
                 </nav>
         <div class="gallery-grid">
-            <div class="artwork-card" onclick="openModal('Artwork Title 1', 'Digital Illustration', 'art1.jpg', 'crop1.jpg')">
+            <div class="artwork-card" onclick="openModal('Artwork Title 1', 'Digital Illustration', 'Images/placeholder1.jpg', 'Images/placeholder1-crop.jpg')">
                 <div class="artwork-image">
                     <span>Artwork Image 1</span>
                 </div>
@@ -1358,6 +1323,57 @@
                     <span>Digital Illustration</span>
                 </div>
             </div>
+
+            <div class="artwork-card" onclick="openModal('Artwork Title 2', '3D Art', 'Images/placeholder2.jpg', 'Images/placeholder2-crop.jpg')">
+                <div class="artwork-image">
+                    <span>Artwork Image 2</span>
+                </div>
+                <div class="artwork-overlay">
+                    <h3>Artwork Title 2</h3>
+                    <span>3D Art</span>
+                </div>
+            </div>
+
+            <div class="artwork-card" onclick="openModal('Artwork Title 3', 'The Gospel Proclaimed', 'Images/placeholder3.jpg', 'Images/placeholder3-crop.jpg')">
+                <div class="artwork-image">
+                    <span>Artwork Image 3</span>
+                </div>
+                <div class="artwork-overlay">
+                    <h3>Artwork Title 3</h3>
+                    <span>The Gospel Proclaimed</span>
+                </div>
+            </div>
+            
+            <div class="artwork-card" onclick="openModal('Artwork Title 4', 'Digital Illustration', 'Images/placeholder4.jpg', 'Images/placeholder4-crop.jpg')">
+                <div class="artwork-image">
+                    <span>Artwork Image 4</span>
+                </div>
+                <div class="artwork-overlay">
+                    <h3>Artwork Title 4</h3>
+                    <span>Digital Illustration</span>
+                </div>
+            </div>
+
+            <div class="artwork-card" onclick="openModal('Artwork Title 5', 'Paintings', 'Images/placeholder5.jpg', 'Images/placeholder5-crop.jpg')">
+                <div class="artwork-image">
+                    <span>Artwork Image 5</span>
+                </div>
+                <div class="artwork-overlay">
+                    <h3>Artwork Title 5</h3>
+                    <span>Paintings</span>
+                </div>
+            </div>
+
+            <div class="artwork-card" onclick="openModal('Artwork Title 6', '3D Art', 'Images/placeholder6.jpg', 'Images/placeholder6-crop.jpg')">
+                <div class="artwork-image">
+                    <span>Artwork Image 6</span>
+                </div>
+                <div class="artwork-overlay">
+                    <h3>Artwork Title 6</h3>
+                    <span>3D Art</span>
+                </div>
+            </div>
+        </div>
 
             <div class="artwork-card" onclick="openModal('Artwork Title 2', '3D Art', 'art2.jpg', 'crop2.jpg')">
                 <div class="artwork-image">
@@ -1544,52 +1560,92 @@
         <h2 class="section-title">Shop</h2>
         <p class="section-subtitle">Bring the God dimension into your space. All limited and open editions.</p>
 
-        <div class="shop-grid">
+       <div class="shop-grid">
             <article class="product-card" id="limited-prints">
-                <div class="product-image-wrapper">
-                    <span>Limited Print Image</span>
-                    <span class="badge limited">Limited Drop</span>
-                </div>
-                <div class="product-info">
-                    <h3>Limited Premium Print</h3>
-                    <p class="product-price">$150.00</p>
-                    <p class="product-desc">Museum grade printing, certificate of authenticity, and artist signature.</p>
+                <img src="Images/shop-1.jpg" alt="Limited premium print" class="product-bg" onerror="this.style.display='none';">
+                
+                <div class="product-info-glass">
+                    <h3>Limited premium print</h3>
+                    <div class="price-row">
+                        <p class="product-price">$150.00</p>
+                        <span class="edition-count">30 Editions</span>
+                    </div>
                     <a href="https://paystack.com/pay/your-unique-link" target="_blank" class="buy-button">Purchase Now</a>
+                    <p class="shipping-note">FREE WORLDWIDE SHIPPING</p>
                 </div>
             </article>
 
             <article class="product-card" id="open-prints">
-                <div class="product-image-wrapper">
-                    <span>Open Edition Image</span>
-                    <span class="badge open">Open Edition</span>
-                </div>
-                <div class="product-info">
-                    <h3>Open Edition </h3>
-                    <p class="product-price">$45.00</p>
-                    <p class="product-desc">Standard frame size canvas with digital QR code access.</p>
+                <img src="Images/shop-2.jpg" alt="Open edition" class="product-bg" onerror="this.style.display='none';">
+                
+                <div class="product-info-glass">
+                    <h3>Open edition</h3>
+                    <div class="price-row">
+                        <p class="product-price">$45.00</p>
+                        <span class="edition-count">Open</span>
+                    </div>
                     <a href="https://paystack.com/pay/your-unique-link" target="_blank" class="buy-button">Purchase Now</a>
+                    <p class="shipping-note">STANDARD FRAME SIZES</p>
                 </div>
             </article>
 
             <article class="product-card" id="wallpapers">
-                <div class="product-image-wrapper">
-                    <span>Digital Wallpaper Image</span>
-                    <span class="badge digital">Digital</span>
-                </div>
-                <div class="product-info">
-                    <h3>Mobile & Desktop Wallpapers</h3>
-                    <p class="product-price">$10.00</p>
-                    <p class="product-desc">High-resolution digital downloads of my best artwork.</p>
+                <img src="Images/shop-3.jpg" alt="Wallpaper Pack" class="product-bg" onerror="this.style.display='none';">
+                
+                <div class="product-info-glass">
+                    <h3>Wallpaper Pack</h3>
+                    <div class="price-row">
+                        <p class="product-price">$10.00</p>
+                        <span class="edition-count">Digital</span>
+                    </div>
                     <a href="https://paystack.com/pay/your-unique-link" target="_blank" class="buy-button">Purchase Now</a>
+                    <p class="shipping-note">INSTANT DOWNLOAD</p>
                 </div>
             </article>
         </div>
-    </section>
-
     <section class="cta-section">
         <h2>Work with me</h2>
         <p>Looking for a creative who brings visions, not just visuals? Whether it's a campaign, an album, a fashion collection, or piece for your collection or other commercial use — let's create something that lasts.</p>
         <a href="#commercial" class="btn-cta">Commercial Inquiries →</a>
+
+        <div class="modal-overlay" id="actionModal">
+        <div class="modal-content action-modal-content">
+            <button class="close-modal" onclick="closeActionModal()">&times;</button>
+            
+            <div class="modal-tabs">
+                <button class="tab-btn active" onclick="switchTab(event, 'tab-signup')">Sign Up</button>
+                <button class="tab-btn" onclick="switchTab(event, 'tab-work')">Work With Me</button>
+                <button class="tab-btn" onclick="switchTab(event, 'tab-follow')">Follow</button>
+            </div>
+
+            <div id="tab-signup" class="tab-panel active">
+                <h2 style="font-family: var(--font-primary); font-size: 2rem; margin-bottom: 10px;">Join the Inner Circle</h2>
+                <p style="color: var(--text-muted); margin-bottom: 25px;">Get exclusive access to early print drops, behind-the-scenes process, and spiritual insights.</p>
+                <form action="https://formspree.io/f/xyklyowb" method="POST" style="display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 0 auto;">
+                    <input type="email" name="Newsletter Email" placeholder="Enter your email address" required style="padding: 15px; border: 1px solid var(--border-light); border-radius: 8px; width: 100%;">
+                    <button type="submit" class="buy-button" style="border: none; cursor: pointer; width: 100%;">Subscribe</button>
+                </form>
+            </div>
+
+            <div id="tab-work" class="tab-panel">
+                <h2 style="font-family: var(--font-primary); font-size: 2rem; margin-bottom: 10px;">Let's Build Together</h2>
+                <p style="color: var(--text-muted); margin-bottom: 25px;">Looking for a creative who brings visions, not just visuals? I'm currently taking select commissions and brand collaborations.</p>
+                <a href="#commercial" class="buy-button" onclick="closeActionModal()">Go to Commercial Hub &rarr;</a>
+            </div>
+
+            <div id="tab-follow" class="tab-panel">
+                <h2 style="font-family: var(--font-primary); font-size: 2rem; margin-bottom: 10px;">Connect & Follow</h2>
+                <p style="color: var(--text-muted); margin-bottom: 25px;">Join the community and see the latest artworks as they are created.</p>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+                    <a href="#" class="social-pill">Instagram</a>
+                    <a href="#" class="social-pill">X (Twitter)</a>
+                    <a href="#" class="social-pill">YouTube</a>
+                    <a href="#" class="social-pill">Behance</a>
+                    <a href="#" class="social-pill">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </div>
     </section>
 
     <footer>
@@ -1725,6 +1781,70 @@
             } else {
                 mobileThemeToggle.style.display = 'none';
             }
+        });
+
+        // ==========================================
+        // WORK CATEGORY FILTERING
+        // ==========================================
+        const categoryBtns = document.querySelectorAll('.work-categories a');
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Remove active class from all buttons
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                // Add to clicked button
+                this.classList.add('active');
+                
+                const filterValue = this.innerText.toLowerCase();
+                
+                // Hide/Show artwork cards based on category
+                artworkCards.forEach(card => {
+                    const cardCategory = card.querySelector('.artwork-overlay span').innerText.toLowerCase();
+                    if (filterValue === 'all' || cardCategory.includes(filterValue)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // ==========================================
+        // UNIFIED ACTION MODAL LOGIC
+        // ==========================================
+        function openActionModal(defaultTab = 'tab-signup') {
+            document.getElementById('actionModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Trigger a click to ensure the right tab is active
+            const targetBtn = document.querySelector(`.tab-btn[onclick*="${defaultTab}"]`);
+            if(targetBtn) targetBtn.click();
+        }
+
+        function closeActionModal() {
+            document.getElementById('actionModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function switchTab(evt, tabId) {
+            // Hide all tab panels
+            const tabPanels = document.querySelectorAll('.tab-panel');
+            tabPanels.forEach(panel => panel.classList.remove('active'));
+
+            // Remove active class from all tab buttons
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => btn.classList.remove('active'));
+
+            // Show the specific tab panel
+            document.getElementById(tabId).classList.add('active');
+
+            // Add an active class to the clicked button
+            evt.currentTarget.classList.add('active');
+        }
+
+        // Close action modal on outside click
+        document.getElementById('actionModal').addEventListener('click', function(e) {
+            if (e.target === this) closeActionModal();
         });
     </script>
 </body>
