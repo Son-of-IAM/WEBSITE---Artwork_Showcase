@@ -388,20 +388,13 @@
         }
 
         /* Hero Section */
+        /* HERO - EDGE TO EDGE WITH PURPLE TINT */
         .hero {
-            min-height: 100vh;
-            margin-top: 0;
-            padding: 14rem 5% 8rem;
-            width: 100%;
-            background: linear-gradient(135deg, #1a0a2e 0%, #0f0518 50%, #1a0a2e 100%);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            margin-top: 60px; padding: 10rem 5%; width: 100vw; max-width: 100vw;
+            /* The deep purple gradient overlay on top of the image */
+            background-image: linear-gradient(rgba(50, 0, 90, 0.85), rgba(18, 18, 18, 0.95)), url('Images/hero-background.jpg');
+            background-size: cover; background-position: center; color: white;
             text-align: center;
-            color: white;
         }
         .hero::before {
             content: '';
