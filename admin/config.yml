@@ -7,27 +7,33 @@ media_folder: "Images/artworks"
 public_folder: "Images/artworks"
 
 collections:
-  - name: "artworks"
-    label: "Artworks"
-    folder: "data/artworks"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - label: "Title"
-        name: "title"
-        widget: "string"
-      - label: "Category"
-        name: "category"
-        widget: "select"
-        options:
-          - "paintings"
-          - "3d-art"
-          - "gospel"
-          - "old"
-      - label: "Main Image"
-        name: "image"
-        widget: "image"
-      - label: "Cropped Detail"
-        name: "cropImage"
-        widget: "image"
-        required: false
+  - name: "artworks_data"
+    label: "Artwork Manager"
+    files:
+      - label: "Gallery Database"
+        name: "gallery"
+        file: "data/artworks/index.json" # Points directly to your JSON file!
+        fields:
+          - label: "Artworks List"
+            name: "artworks"
+            widget: "list" # This creates an array [] inside the JSON
+            summary: '{{fields.title}} - {{fields.category}}'
+            fields:
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options:
+                  - "paintings"
+                  - "3d-art"
+                  - "gospel"
+                  - "old"
+              - label: "Main Image"
+                name: "image"
+                widget: "image"
+              - label: "Cropped Detail"
+                name: "cropImage"
+                widget: "image"
+                required: false
