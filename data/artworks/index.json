@@ -1,1 +1,19 @@
-[]
+{
+  "artworks": [
+    {
+      "title": "The Announcing",
+      "category": "paintings",
+      "image": "Images/placeholder1.jpg"
+    },
+    {
+      "title": "Throne Room",
+      "category": "3d-art",
+      "image": "Images/placeholder2.jpg"
+    },
+    {
+      "title": "The Good Shepherd",
+      "category": "gospel",
+      "image": "Images/placeholder5.jpg"
+    }
+  ]
+}
