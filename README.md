@@ -1,55 +1,77 @@
-# Son_of_IAM_ | Digital Portfolio & Commercial Hub
+```markdown
+# Son_of_IAM_ | Premium Portfolio & Commercial Hub
 
 ![Project Status](https://img.shields.io/badge/Status-Completed-success)
-![Version](https://img.shields.io/badge/Version-1.0-blue)
-![Tech Stack](https://img.shields.io/badge/Tech-HTML5%20|%20CSS3%20|%20Vanilla%20JS-orange)
+![Version](https://img.shields.io/badge/Version-2.0-blue)
+![Tech Stack](https://img.shields.io/badge/Tech-Vanilla%20JS%20|%20CSS3%20|%20Decap%20CMS-orange)
+![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF)
 
-A high-performance, custom-coded portfolio and e-commerce landing page built for Christian digital artist Promise Adebayo (Son_of_IAM_). 
+A high-performance, serverless digital gallery and e-commerce landing page built for Christian digital artist Promise Adebayo (Son_of_IAM_). 
 
-**Developed by:** [Ayoleyi Marvelous from Marvelous Ascent]
+**Architected & Developed by:** Ayoleyi Marvelous ([Marvelous Ascent])
 
-##  Project Overview
-The goal of this project was to translate a highly specific brand identity and wireframe into a lightning-fast, serverless web experience. Rather than relying on heavy frameworks or bloated CMS platforms, this site was engineered from the ground up using **Vanilla web technologies**. This approach ensures zero monthly maintenance costs for the client, instantaneous load times, and pixel-perfect adherence to the brand's 60-30-10 color rule.
+## 🚀 Project Overview
+The objective was to build a premium, highly-editorial gallery experience without the bloat, slow load times, or recurring monthly server costs of traditional platforms like WordPress or Shopify. 
 
-##  Key Features & Technical Highlights
+This project utilizes a **Serverless Architecture**, leveraging pure Vanilla web technologies connected to a **Headless CMS**. It provides the client with a secure, user-friendly admin dashboard to upload art, while maintaining instantaneous load times, zero monthly hosting fees, and a dynamic 3-2-3-2 asymmetrical gallery layout.
 
-* ** Custom CSS Architecture:** Built entirely without CSS frameworks (like Bootstrap or Tailwind). Utilizes native CSS Variables (`:root`) for global theming, making brand color updates instantaneous.
-* ** Native Light/Dark Mode:** Engineered a custom dark mode toggle using JavaScript and CSS data-attributes. User preferences are saved locally via `localStorage` to persist across sessions.
-* ** Dynamic DOM Gallery Modal:** Instead of loading a separate HTML page or heavy modal library for every artwork, the portfolio utilizes a single, dynamic JavaScript modal. It extracts data attributes from clicked grid items and injects them into the DOM, keeping the codebase incredibly DRY (Don't Repeat Yourself).
-* ** Fluid Responsiveness:** Utilizes CSS Grid, Flexbox, and `clamp()` typography to ensure the layout elegantly adapts from massive desktop monitors down to mobile devices without layout shift.
-* ** Serverless E-commerce:** Designed to operate without a heavy backend. The shop integrates directly with direct-to-checkout payment links (e.g., Paystack/Stripe), eliminating database overhead and minimizing security liabilities.
-* ** Headless Form Integration:** The "Commercial Hub" securely captures and routes lead data using Formspree endpoints, completely eliminating the need for a PHP/Node server.
+---
 
-## 🛠️ Tech Stack
-* **Markup:** Semantic HTML5
-* **Styling:** CSS3 (Flexbox, Grid, Custom Properties, Media Queries)
-* **Interactivity:** Vanilla JavaScript (ES6+)
-* **Data Routing:** Formspree (Serverless Contact Forms)
-* **Analytics/Tracking:** Prepared for Meta Pixel, TikTok Pixel, and GA4 integration.
+## ✅ Client Requirements Delivered
 
-## Project Structure
+This project was meticulously fine-tuned to meet the client's exact visual and functional specifications:
+
+* **Mobile-Optimized Typography:** Engineered custom CSS media queries to force strict typographic rules on mobile devices (e.g., ensuring the main Hero text perfectly wraps to two lines, while the logo tagline remains constrained to a single line).
+* **Scalable E-Commerce Strategy:** Removed hardcoded prices and dimensions. Implemented a "Check Live Pricing" routing system that directs users to live Paystack checkout portals or dedicated dummy landing pages (e.g., `limited.html`), ensuring the website never displays outdated pricing.
+* **Immersive "Double Exposure" Visuals:** Fulfilled the client request for animated backgrounds over static art. Utilized advanced CSS `mix-blend-mode: screen` to render dynamic, rotating purple/blue light animations that visually interact with the background artwork without hiding it.
+* **"Scream Art" Gallery Layout:** Replaced standard grid layouts with a custom CSS Grid calculating a highly editorial **3-2-3-2 asymmetric pattern**, prioritizing large artwork displays while maintaining responsive integrity across all screen sizes.
+* **Unified Brand Identity:** Integrated requested brand fonts (*Optima* for headers, *Georgia* for body, *Caveat* for handwriting accents) and programmed the interactive "fire" logo to pulse using the brand's exact dominant hex codes.
+* **Flawless Dark Mode:** Built a native Light/Dark toggle that correctly inverts specific typography colors and restores mobile visibility constraints automatically.
+
+---
+
+## 🧠 Technical Highlights & Architecture
+
+* **Headless CMS Integration (Decap CMS):** A secure `/admin` portal connected directly to the GitHub API. Client uploads are automatically serialized into a JSON database (`data/artworks/index.json`) without requiring a backend Node/PHP server.
+* **Automated CI/CD Image Pipeline:** Engineered a GitHub Actions workflow (`optimize-images.yml`) that intercepts high-resolution artwork uploads, losslessly compresses them, and auto-generates pull requests to keep the repository lightweight.
+* **Dynamic Vanilla JS Renderer:** The gallery is drawn dynamically to the DOM using asynchronous `fetch()` requests. This allows the client to upload new art via the CMS, which instantly populates on the live site without touching the HTML.
+* **Progressive Loading:** Pre-configured directory structures (`Images/tiny` and `Images/full`) to support progressive blur-up image loading for massive resolution artwork.
+
+## 📁 Repository Structure
 ```text
 /
-├── index.html          # Main application file (Structure & Logic)
-├── Images/             # Directory for all optimized visual assets
-│   └── LOGO.PNG        # Brand Logo / Favicon
-└── fonts/              # Directory for custom `.ttf` / `.otf` typography
+├── index.html              # Main Application View
+├── about.html              # Dedicated Artist Biography
+├── style.css               # Global Styling & Media Queries
+├── script.js               # Global Logic, CMS Fetching, & Modals
+├── limited.html            # Product Dummy Landing Page
+├── .github/workflows/      # CI/CD Automation Scripts
+│   └── optimize-images.yml 
+├── admin/                  # Decap Headless CMS Configuration
+│   ├── index.html
+│   └── config.yml          # Maps CMS inputs to JSON schema
+├── data/artworks/          # The JSON Database
+│   └── index.json          
+└── Images/                 # Optimized Visual Assets
+```
 
+## 🛠️ Setup & Installation
+Because this project utilizes a serverless Jamstack architecture, no build steps, compilers, or package managers (like npm or Webpack) are required.
 
-Setup & Installation
-Because this project is built with vanilla web technologies, no build steps, compilers, or package managers (like npm or Webpack) are required.
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/Son-of-IAM/WEBSITE---Artwork_Showcase.git](https://github.com/Son-of-IAM/WEBSITE---Artwork_Showcase.git)
+   ```
+2. **Local Development:** Open `index.html` in any modern web browser or use VS Code Live Server. *(Note: CMS fetching requires a local server environment due to CORS restrictions, Live Server handles this perfectly).*
+3. **Deployment:** Hosted natively on GitHub Pages for zero-latency CDN delivery.
 
-Clone the repository:
+## 🎨 Content Management (For the Client)
+To add, edit, or remove artworks from the live website:
+1. Navigate to `[[Your-Website-URL]/admin](https://son-of-iam.github.io/WEBSITE---Artwork_Showcase/admin/#/)`
+2. Authenticate securely via GitHub OAuth.
+3. Click "New Artwork", fill in the details (Title, Category, Image), and click Publish.
+4. The system will automatically compress the image, update the database, and display the new art on the live website within seconds.
 
-Bash
-git clone [https://github.com/yourusername/your-repo-name.git](https://github.com/yourusername/your-repo-name.git)
-Open index.html in any modern web browser to view the site locally.
-
-To deploy, simply host the directory on any static hosting provider (GitHub Pages, Netlify, Vercel).
-
-Future Roadmap
-CMS Integration: Potential future migration of the Articles section to a headless CMS (like Sanity or Contentful) for easier client publishing.
-
-Data Dashboards: Implementation of a custom Power BI or Looker Studio dashboard connected to the site's analytics to track limited-drop conversion rates.
-
-If you are looking for a developer who prioritizes clean code, performance, and custom architecture, feel free to reach out to me.
+---
+*Engineered for speed, built for scale, designed for impact.*
+```
