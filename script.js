@@ -45,9 +45,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // 4. Filter Logic for Gallery
+    const categoryBtns = document.querySelectorAll('.work-categories a');
+    const artworkCards = document.querySelectorAll('.artwork-card');
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            categoryBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            const filterValue = this.innerText.toLowerCase();
+            
+            artworkCards.forEach(card => {
+                const cardCategory = card.querySelector('.artwork-overlay span').innerText.toLowerCase();
+                if (filterValue === 'all' || filterValue === 'view all' || cardCategory.includes(filterValue)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
 });
 
-// 4. Mobile Menu Toggle
+// 5. Mobile Menu Toggle
 function toggleMenu() {
     document.querySelector('.hamburger').classList.toggle('active');
     document.querySelector('.mobile-menu').classList.toggle('active');
@@ -55,7 +77,7 @@ function toggleMenu() {
     document.body.style.overflow = document.querySelector('.mobile-menu').classList.contains('active') ? 'hidden' : '';
 }
 
-// 5. Unified Action Modal Logic (Sign Up / Work / Follow)
+// 6. Unified Action Modal Logic (Sign Up / Work / Follow)
 function openActionModal(defaultTab = 'tab-signup') {
     const modal = document.getElementById('actionModal');
     if (modal) {
