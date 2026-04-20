@@ -117,7 +117,11 @@ header.scrolled { padding: 0.7rem 5%; box-shadow: 0 4px 30px rgba(114, 5, 205, 0
 .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); background: var(--color-dominant); }
 .hamburger.active span:nth-child(2) { opacity: 0; }
 .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); background: var(--color-dominant); }
-
+/* Mobile Theme Toggle Visibility */
+#mobile-theme-toggle { display: none; }
+@media (max-width: 900px) {
+    #mobile-theme-toggle { display: flex; }
+}
 .mobile-menu {
     position: fixed; top: 0; right: -100%; width: 85%; max-width: 400px; height: 100vh;
     background: var(--bg-white); z-index: 1001; padding: 8rem 3rem; 
