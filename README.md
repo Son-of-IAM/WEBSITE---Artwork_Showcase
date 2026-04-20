@@ -1,22 +1,10 @@
-
-```html
-<div align="center">
-
 # Son_of_IAM_ | Premium Portfolio & Commercial Hub
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Status-Completed-success?style=for-the-badge" alt="Project Status" />
-  <img src="https://img.shields.io/badge/Version-2.0-blue?style=for-the-badge" alt="Version" />
-  <img src="https://img.shields.io/badge/Tech-Vanilla_JS_|_CSS3-orange?style=for-the-badge" alt="Tech Stack" />
-  <img src="https://img.shields.io/badge/CMS-Decap_Headless-7205cd?style=for-the-badge" alt="CMS" />
-  <img src="https://img.shields.io/badge/CI%2FCD-GitHub_Actions-2088FF?style=for-the-badge" alt="CI/CD" />
-</p>
+![Project Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge) ![Version](https://img.shields.io/badge/Version-2.0-blue?style=for-the-badge) ![Tech Stack](https://img.shields.io/badge/Tech-Vanilla_JS_|_CSS3-orange?style=for-the-badge) ![CMS](https://img.shields.io/badge/CMS-Decap_Headless-7205cd?style=for-the-badge) ![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-2088FF?style=for-the-badge)
 
 A high-performance, serverless digital gallery and e-commerce landing page built for Christian digital artist Promise Adebayo (Son_of_IAM_).
 
 **Architected & Developed by:** Ayoleyi Marvelous
-
-</div>
 
 ---
 
@@ -45,6 +33,8 @@ This project was meticulously fine-tuned to meet the client's exact visual and f
 * **Dynamic Vanilla JS Renderer:** The gallery is drawn dynamically to the DOM using asynchronous `fetch()` requests. This allows the client to upload new art via the CMS, which instantly populates on the live site without touching the HTML.
 * **Progressive Loading:** Pre-configured directory structures (`Images/tiny` and `Images/full`) to support progressive blur-up image loading for massive resolution artwork.
 
+---
+
 ## 📁 Repository Structure
 ```text
 /
@@ -61,20 +51,12 @@ This project was meticulously fine-tuned to meet the client's exact visual and f
 ├── data/artworks/          # The JSON Database
 │   └── index.json          
 └── Images/                 # Optimized Visual Assets
-```
 
-## 🛠️ Setup & Installation
+Setup & Installation
 Because this project utilizes a serverless Jamstack architecture, no build steps, compilers, or package managers are required.
 
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/Son-of-IAM/WEBSITE---Artwork_Showcase.git](https://github.com/Son-of-IAM/WEBSITE---Artwork_Showcase.git)
-   ```
-2. **Local Development:** Open `index.html` in any modern web browser or use VS Code Live Server. *(Note: CMS fetching requires a local server environment due to CORS restrictions, Live Server handles this perfectly).*
-3. **Deployment:** Hosted natively on GitHub Pages for zero-latency CDN delivery.
+Clone the repository:
+git clone [https://github.com/Son-of-IAM/WEBSITE---Artwork_Showcase.git](https://github.com/Son-of-IAM/WEBSITE---Artwork_Showcase.git)
+Local Development: Open index.html in any modern web browser or use VS Code Live Server. (Note: CMS fetching requires a local server environment due to CORS restrictions, Live Server handles this perfectly).
 
----
-
-## 🏷️ Tags
-`Vanilla JavaScript` `CSS3 Grid` `Serverless` `Jamstack` `Decap CMS` `Headless CMS` `GitHub Actions` `CI/CD` `E-Commerce` `Digital Art Portfolio` `Responsive Design`
-```
+Deployment: Hosted natively on GitHub Pages for zero-latency CDN delivery.
