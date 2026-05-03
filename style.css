@@ -308,12 +308,11 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.8); padding: 6rem 5% 3re
 }
 
 @media (max-width: 600px) { 
-    .hero { padding: 9rem 5% 6rem; }
-    /* FIXED: Ensures the huge text breaks into exactly two lines gracefully */
-    .hero h1 { font-size: clamp(2rem, 8vw, 2.5rem); line-height: 1.2; text-wrap: balance; margin-bottom: 1rem; }
-    /* FIXED: Forces Tagline to a single line */
-    .logo-tagline { white-space: nowrap; font-size: 0.55rem; letter-spacing: 0; }
-    
+    .hero { padding: 8rem 5% 4rem; min-height: 85vh; display: flex; align-items: center; justify-content: center; }
+.hero h1 { font-size: clamp(2.2rem, 9vw, 2.8rem); line-height: 1.1; margin-bottom: 1rem; word-break: keep-all; }
+.hero p { font-size: 1.05rem; padding: 0 10px; }
+.hero .scripture { font-size: 1.6rem; margin-top: 1rem; }
+.logo-tagline { white-space: nowrap; font-size: 0.55rem; letter-spacing: 0; }
     .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 350px; }
     .artwork-card,
     .artwork-card:nth-child(5n+1), .artwork-card:nth-child(5n+2),
