@@ -486,11 +486,10 @@
         <div class="artwork-meta-header reveal">
             <span class="artwork-category-label" id="artworkCategory">Paintings</span>
             <h1 class="artwork-title" id="artworkTitle">The Announcing</h1>
-            <div class="artwork-meta-row">
-                <span id="artworkYear">2024</span>
-                <span id="artworkMedium">Digital Illustration</span>
-                <span id="artworkDimensions">24 x 36 in</span>
-            </div>
+           <div class="artwork-meta-row">
+    <span id="artworkYear">2024</span>
+    <span id="artworkMedium">Digital Illustration</span>
+</div>
         </div>
 
         <div class="main-artwork-container reveal">
@@ -516,7 +515,6 @@
                 <div class="purchase-card">
                     <span class="badge limited">Limited Premium</span>
                     <h4>Limited Print</h4>
-                    <div class="price">$150</div>
                     <ul>
                         <li>Certificate of Authenticity</li>
                         <li>Museum grade printing</li>
@@ -528,7 +526,7 @@
                 <div class="purchase-card">
                     <span class="badge open">Open Edition</span>
                     <h4>Open Print</h4>
-                    <div class="price">$45</div>
+                    
                     <ul>
                         <li>Standard frame size</li>
                         <li>Canvas or art frame</li>
@@ -666,8 +664,7 @@
         document.getElementById('artworkCategory').textContent = artwork.category;
         document.getElementById('artworkYear').textContent = artwork.year;
         document.getElementById('artworkMedium').textContent = artwork.medium;
-        document.getElementById('artworkDimensions').textContent = artwork.dimensions;
-        document.getElementById('artworkDescription').textContent = artwork.description;
+document.getElementById('artworkDescription').textContent = artwork.description;
         document.getElementById('mainImage').src = artwork.main;
         document.getElementById('cropImage').src = artwork.crop;
 
