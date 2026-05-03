@@ -136,7 +136,7 @@
 
         @media (max-width: 900px) { .nav-right { display: none; } .hamburger { display: flex; } .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; } .category-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); } }
         @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; text-align: center; } .footer-brand p { margin: 0 auto; } .social-pills { justify-content: center; } .category-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; } .work-hero h1 { font-size: 2rem; } }
-
+        .work-hero h1 { font-size: clamp(2.2rem, 9vw, 2.8rem); line-height: 1.1; word-break: keep-all; }
         [data-theme="dark"] .logo { color: #ffffff; }
         [data-theme="dark"] .desktop-menu a { color: #cccccc; }
         [data-theme="dark"] .hamburger span { background: #ffffff; }
