@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limited Drop Waitlist | Son_of_IAM_</title>
+    <link rel="icon" type="image/png" href="Images/LOGO.PNG">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .waitlist-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+        }
+        .waitlist-box {
+            max-width: 600px;
+            background: var(--bg-white);
+            padding: 4rem 3rem;
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-light);
+            text-align: center;
+        }
+        [data-theme="dark"] .waitlist-box { background: var(--bg-light); border-color: var(--border-light); }
+        .waitlist-box h1 { font-size: 2.5rem; text-transform: uppercase; margin-bottom: 1rem; }
+        .waitlist-box p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2.5rem; line-height: 1.7; }
+        .waitlist-form { display: flex; flex-direction: column; gap: 15px; }
+        .waitlist-form input { padding: 1.2rem; border: 2px solid var(--border-light); border-radius: 12px; background: var(--bg-light); font-family: inherit; font-size: 1rem; color: var(--text-dark); transition: var(--transition); }
+        .waitlist-form input:focus { border-color: var(--color-dominant); outline: none; background: var(--bg-white); }
+        .btn-submit { padding: 1.2rem; background: var(--color-dominant); color: white; border: none; border-radius: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-family: var(--font-primary); cursor: pointer; transition: var(--transition); }
+        .btn-submit:hover { background: var(--color-compliment); transform: translateY(-2px); box-shadow: 0 15px 30px rgba(114, 5, 205, 0.3); }
+        .back-link { display: inline-block; margin-top: 2rem; font-family: var(--font-primary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); transition: var(--transition); }
+        .back-link:hover { color: var(--color-dominant); }
+    </style>
+</head>
+<body>
+
+    <!-- Standard Header (Copy-pasted from your other pages) -->
+    <header id="mainHeader">
+        <div class="nav-container">
+            <a href="index.html" class="logo-wrapper">
+                <div class="logo-icon"><img src="Images/LOGO.PNG" alt="Son_of_IAM_ Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-size:24px;\'>🔥</span>';"></div>
+                <div class="logo-text">
+                    <span class="logo">Son_of_IAM_</span>
+                    <span class="logo-tagline">Stirring Hearts Through Art</span>
+                </div>
+            </a>
+            <div class="nav-right">
+                <a href="shop.html" class="btn-cta" style="background: transparent; color: var(--text-dark) !important; border: 1px solid var(--border-light);">Back to Shop</a>
+                <button class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="waitlist-container">
+        <div class="waitlist-box reveal active">
+            <span class="badge limited" style="display:inline-block; padding:0.5rem 1rem; background:var(--color-dominant); color:white; border-radius:30px; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:1.5rem; font-family:var(--font-primary);">Limited Drop</span>
+            <h1>The Vault is Closed</h1>
+            <p>Our Limited Premium Prints are highly exclusive and only open twice a year. Enter your email below to be the first to know when the next collection drops.</p>
+            
+            <form action="https://formspree.io/f/xyklyowb" method="POST" class="waitlist-form">
+                <input type="email" name="Waitlist Email" placeholder="Enter your best email address" required>
+                <button type="submit" class="btn-submit">Join the Waitlist</button>
+            </form>
+
+            <a href="index.html" class="back-link">&larr; Return Home</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
