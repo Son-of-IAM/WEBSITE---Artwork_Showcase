@@ -143,7 +143,14 @@ async function loadArtworks() {
                 card.className = 'artwork-card reveal active'; 
                 
                 // Format the category text nicely (e.g. "3d-art" -> "3d art")
-                const cleanCategory = art.category ? art.category.replace('-', ' ') : 'Artwork';
+              // Map the backend CMS tags to the exact Frontend button labels
+let cleanCategory = 'Artwork';
+if (art.category === 'paintings') cleanCategory = 'Paintings';
+else if (art.category === '3d-art') cleanCategory = '3D Art';
+else if (art.category === 'gospel') cleanCategory = 'The Gospel Proclaimed';
+else if (art.category === 'old') cleanCategory = 'Old Artworks';
+else if (art.category === 'graffiti') cleanCategory = 'Graffiti';
+else if (art.category) cleanCategory = art.category.replace('-', ' ');
 
                 // Wire up the Modal click event with the real CMS data
                 card.onclick = () => openModal(
