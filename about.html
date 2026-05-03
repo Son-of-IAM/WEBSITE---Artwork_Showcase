@@ -707,6 +707,21 @@
             .timeline { padding-left: 2rem; }
             .timeline-item { padding-left: 1.5rem; }
             .timeline-item::before { left: -2rem; }
+            @media (max-width: 768px) {
+            .about-hero { align-items: center; justify-content: center; }
+            .about-hero-content { text-align: center; padding: 0 5%; margin-top: 4rem; }
+            .about-hero-content h1 { font-size: clamp(2.5rem, 12vw, 3.5rem); line-height: 1.1; margin-bottom: 1rem; word-break: keep-all; }
+            .about-hero-content .lead { margin: 0 auto; font-size: 1.1rem; }
+            /* Keep your existing rules below this... */
+            .exhibitions-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-brand p { margin: 0 auto; }
+            .social-pills { justify-content: center; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .timeline { padding-left: 2rem; }
+            .timeline-item { padding-left: 1.5rem; }
+            .timeline-item::before { left: -2rem; }
+        }
         }
 
         [data-theme="dark"] .logo { color: #ffffff; }
