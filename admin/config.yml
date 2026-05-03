@@ -30,6 +30,7 @@ collections:
                   - "3d-art"
                   - "gospel"
                   - "old"
+                  - "graffiti"
               - label: "Main Image"
                 name: "image"
                 widget: "image"
