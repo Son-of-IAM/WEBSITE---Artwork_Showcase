@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Son_of_IAM_</title>
+    <meta name="description" content="The page you are looking for has wandered into the wilderness.">
+    <link rel="icon" type="image/png" href="Images/LOGO.PNG">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <meta property="og:title" content="Son_of_IAM_ | Stirring Hearts Through Art">
+    <meta property="og:description" content="Nigerian creative spreading the gospel through digital art, 3D renders, and visual storytelling.">
+    <meta property="og:image" content="https://yourwebsite.com/Images/hero-background.jpg">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+    <header id="mainHeader">
+        <div class="nav-container">
+            <a href="index.html" class="logo-wrapper">
+                <div class="logo-icon">
+                    <img src="Images/LOGO.PNG" alt="Son_of_IAM_ Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-size:24px;\'>🔥</span>';">
+                </div>
+                <div class="logo-text">
+                    <span class="logo">Son_of_IAM_</span>
+                    <span class="logo-tagline">Stirring Hearts Through Art</span>
+                </div>
+            </a>
+            
+            <div class="nav-right">
+                <nav class="desktop-menu">
+                    <a href="work.html">Work</a>
+                    <div class="dropdown">
+                        <a href="shop.html">Shop ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="shop.html#limited-prints">Limited Premium Edition</a>
+                            <a href="shop.html#open-prints">Open Prints Offer</a>
+                            <a href="shop.html#stickers">Stickers</a>
+                            <a href="shop.html#wallpapers">Wallpaper Pack</a>
+                        </div>
+                    </div>
+                    <a href="about.html">About</a>
+                    <a href="https://medium.com/@xyvyhnd" target="_blank">Articles</a>
+                </nav>
+                <a href="commercial.html" class="btn-cta">Connect</a>
+                <button class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <button id="mobile-theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+                <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>        
+        </div>
+    </header>
+
+    <div class="overlay" onclick="toggleMenu()"></div>
+    <div class="mobile-menu">
+        <a href="work.html" onclick="toggleMenu()">Work</a>
+        <a href="shop.html" onclick="toggleMenu()">Shop</a>
+        <a href="about.html" onclick="toggleMenu()">About</a>
+        <a href="https://medium.com/@Son_of_IAM_" target="_blank" onclick="toggleMenu()">Articles</a>
+        <a href="commercial.html" onclick="toggleMenu()">Commercial</a>
+    </div>
+
+  <section style="min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 5%; margin-top: 80px;">
+        <h1 style="font-size: clamp(5rem, 12vw, 8rem); color: var(--color-dominant); font-family: var(--font-primary); line-height: 1;">404</h1>
+        <h2 style="font-size: clamp(1.5rem, 4vw, 2.5rem); margin-bottom: 1rem;">Wandering in the Wilderness</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.15rem; max-width: 500px;">The page you are looking for doesn't exist or has been moved to a new location.</p>
+        
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+            <a href="index.html" class="btn-cta">Return to Sanctuary</a>
+            <button onclick="reportError()" id="reportBtn" class="btn-outline" style="cursor: pointer;">Report Broken Link</button>
+        </div>
+    </section>
+
+    <script>
+        function reportError() {
+            const btn = document.getElementById('reportBtn');
+            btn.innerText = "Reporting...";
+            btn.disabled = true;
+
+            // Grab the broken URL and where they came from
+            const brokenUrl = window.location.href;
+            const previousPage = document.referrer || 'Direct Link / Unknown';
+
+            // Send silent POST request to your existing Formspree
+            fetch("https://formspree.io/f/xyklyowb", {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "Subject": "⚠️ 404 ERROR REPORT",
+                    "Broken URL": brokenUrl,
+                    "Referred By": previousPage
+                })
+            }).then(response => {
+                if (response.ok) {
+                    btn.innerText = "Reported! Thank you.";
+                    btn.style.borderColor = "green";
+                    btn.style.color = "green";
+                } else {
+                    btn.innerText = "Error reporting.";
+                }
+            }).catch(error => {
+                btn.innerText = "Network Error.";
+            });
+        }
+    </script>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>SON_OF_IAM_</h3>
+                <p>Nigerian creative and worshipper, bringing the God dimension into the world through Art from Lagos.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <a href="work.html">Work</a>
+                <a href="about.html">About</a>
+                <a href="commercial.html">Commercial</a>
+                <a href="shop.html">Shop</a>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <a href="work.html#paintings">Paintings</a>
+                <a href="work.html#3d-art">3D Art</a>
+                <a href="https://medium.com/@Son_of_IAM_" target="_blank">Articles</a>
+                <a href="work.html#old-artworks">Old Artworks</a>
+            </div>
+            <div class="footer-links">
+                <h4>Follow</h4>
+                <div class="social-pills">
+                    <a href="https://instagram.com/son_of_iam_" target="_blank" class="social-pill">Instagram</a>
+                    <a href="https://x.com/son_of_iam_?s=21" target="_blank" class="social-pill">X (Twitter)</a>
+                    <a href="https://www.tiktok.com/@son_of_iam_?_t=zs-9032ktsad1b&_r=1" target="_blank" class="social-pill">Tiktok</a>
+                    <a href="https://www.behance.net/themainugly" target="_blank" class="social-pill">Behance</a>
+                    <a href="https://pin.it/4kjJwst" target="_blank" class="social-pill">Pinterest</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 Son_of_IAM_. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
