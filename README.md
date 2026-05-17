@@ -1,62 +1,88 @@
-# Son_of_IAM_ | Premium Portfolio & Commercial Hub
-
-![Project Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge) ![Version](https://img.shields.io/badge/Version-2.0-blue?style=for-the-badge) ![Tech Stack](https://img.shields.io/badge/Tech-Vanilla_JS_|_CSS3-orange?style=for-the-badge) ![CMS](https://img.shields.io/badge/CMS-Decap_Headless-7205cd?style=for-the-badge) ![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-2088FF?style=for-the-badge)
-
-A high-performance, serverless digital gallery and e-commerce landing page built for Christian digital artist Promise Adebayo (Son_of_IAM_).
-
-**Architected & Developed by:** Ayoleyi Marvelous
-
 ---
 
-## 🚀 Project Overview
-The objective was to build a premium, highly-editorial gallery experience without the bloat, slow load times, or recurring monthly server costs of traditional platforms like WordPress or Shopify. 
+```markdown
+# Son_of_IAM_ | Premium Digital Art Portfolio & Commercial Hub
 
-This project utilizes a **Serverless Architecture**, leveraging pure Vanilla web technologies connected to a **Headless CMS**. It provides the client with a secure, user-friendly admin dashboard to upload art, while maintaining instantaneous load times, zero monthly hosting fees, and a dynamic 3-2-3-2 asymmetrical gallery layout.
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![Vanilla JS](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![Decap CMS](https://img.shields.io/badge/Decap_CMS-FF0082?style=for-the-badge&logo=netlify&logoColor=white)
 
----
+A high-performance, serverless portfolio and commercial hub engineered for Nigerian creative and digital artist, Son_of_IAM_ (Promise Adebayo). 
 
-## ✅ Client Requirements Delivered
-This project was meticulously fine-tuned to meet the client's exact visual and functional specifications:
+This platform was built from the ground up to showcase high-resolution 3D renders and digital paintings while maintaining an ultra-fast, app-like user experience with zero backend hosting costs.
 
-* **Mobile-Optimized Typography:** Engineered custom CSS media queries to force strict typographic rules on mobile devices (e.g., ensuring the main Hero text perfectly wraps to two lines, while the logo tagline remains constrained to a single line).
-* **Scalable E-Commerce Strategy:** Removed hardcoded prices and dimensions. Implemented a "Check Live Pricing" routing system that directs users to live Paystack checkout portals or dedicated landing pages (`limited.html`), ensuring the site never displays outdated pricing.
-* **Immersive "Double Exposure" Visuals:** Fulfilled the client request for animated backgrounds over static art. Utilized advanced CSS `mix-blend-mode: screen` to render dynamic, rotating purple/blue light animations that visually interact with the background artwork without hiding it.
-* **"Scream Art" Gallery Layout:** Replaced standard grid layouts with a custom CSS Grid calculating a highly editorial **3-2-3-2 asymmetric pattern**, prioritizing large artwork displays while maintaining responsive integrity across all screen sizes.
-* **Unified Brand Identity:** Integrated requested brand fonts (*Optima* for headers, *Georgia* for body, *Caveat* for handwriting accents) and programmed the interactive "fire" logo to pulse using the brand's exact dominant hex codes.
+##  Core Architecture & How It Works
 
----
+Instead of relying on heavy frameworks like React or bloated platforms like WordPress, this site uses a streamlined **Static + Headless CMS** architecture. 
 
-## 🧠 Technical Highlights & Architecture
+### 1. The Content Pipeline (Decap CMS)
+The site uses **Decap CMS** (formerly Netlify CMS) to allow the artist to upload new artworks without touching the code. 
+* When the artist logs into the `/admin` portal and adds a new artwork, Decap CMS automatically commits a new entry to the repository.
+* The CMS aggregates all these entries and generates a single, clean JSON file (`data/artworks/index.json`).
 
-* **Headless CMS Integration (Decap CMS):** A secure `/admin` portal connected directly to the GitHub API. Client uploads are automatically serialized into a JSON database (`data/artworks/index.json`) without requiring a backend Node/PHP server.
-* **Automated CI/CD Image Pipeline:** Engineered a GitHub Actions workflow (`optimize-images.yml`) that intercepts high-resolution artwork uploads, losslessly compresses them, and auto-generates pull requests to keep the repository lightweight.
-* **Dynamic Vanilla JS Renderer:** The gallery is drawn dynamically to the DOM using asynchronous `fetch()` requests. This allows the client to upload new art via the CMS, which instantly populates on the live site without touching the HTML.
-* **Progressive Loading:** Pre-configured directory structures (`Images/tiny` and `Images/full`) to support progressive blur-up image loading for massive resolution artwork.
+### 2. Dynamic Frontend Rendering (Vanilla JS)
+To keep the site blazing fast, the gallery is dynamically rendered on the client side.
+* When a user visits `index.html` or `work.html`, `script.js` fires an asynchronous `fetch()` request to grab the `index.json` file.
+* The JavaScript parses the data and dynamically injects the HTML cards into the DOM.
+* This allows for instant category filtering (Paintings, 3D Art, Graffiti) without requiring a page reload.
 
----
+### 3. Serverless Data Handling (Formspree)
+Because the site is static, all backend form processing is outsourced to the **Formspree API**.
+* **Commercial Inquiries:** The forms on `commercial.html` capture client briefs, budgets, and timelines and route them directly to the artist's email.
+* **Silent Error Tracking:** The custom `404.html` page features a hidden JavaScript script. If a user clicks "Report Broken Link," it silently sends a POST request via Formspree, alerting the developer of the exact broken URL and referring page without interrupting the user journey.
 
-## 📁 Repository Structure
+### 4. Aggressive Performance Optimization
+Visual artist portfolios are notoriously slow due to heavy image payloads. This site combats that with:
+* **Native Lazy Loading:** All images utilize `loading="lazy"`, preventing the browser from downloading art until it enters the user's viewport.
+* **Automated Compression:** A GitHub Action (`optimize-images.yml`) automatically compresses high-res uploads into optimized web formats upon commit.
+
+##  Repository Structure
+
 ```text
-/
-├── index.html              # Main Application View
-├── about.html              # Dedicated Artist Biography
-├── style.css               # Global Styling & Media Queries
-├── script.js               # Global Logic, CMS Fetching, & Modals
-├── limited.html            # Product Dummy Landing Page
-├── .github/workflows/      # CI/CD Automation Scripts
-│   └── optimize-images.yml 
-├── admin/                  # Decap Headless CMS Configuration
-│   ├── index.html
-│   └── config.yml          # Maps CMS inputs to JSON schema
-├── data/artworks/          # The JSON Database
-│   └── index.json          
-└── Images/                 # Optimized Visual Assets
+├── .github/workflows/   # Automated image optimization scripts
+├── admin/               # Decap CMS configuration (config.yml)
+├── data/artworks/       # JSON payload generated by the CMS
+├── Fonts/               # Custom web fonts 
+├── Images/              # UI assets and static imagery
+├── index.html           # Landing page
+├── work.html            # Main portfolio gallery
+├── artwork.html         # Dynamic individual artwork template
+├── shop.html            # E-commerce front for print offers
+├── commercial.html      # Commission inquiries and FAQ accordion
+├── limited.html         # Exclusive drop waitlist gateway
+├── 404.html             # Custom fallback page with error reporting
+├── style.css            # Master stylesheet
+└── script.js            # Global UI logic and CMS data fetching
 
-Setup & Installation
-Because this project utilizes a serverless Jamstack architecture, no build steps, compilers, or package managers are required.
+```
 
-Clone the repository:
-git clone [https://github.com/Son-of-IAM/WEBSITE---Artwork_Showcase.git](https://github.com/Son-of-IAM/WEBSITE---Artwork_Showcase.git)
-Local Development: Open index.html in any modern web browser or use VS Code Live Server. (Note: CMS fetching requires a local server environment due to CORS restrictions, Live Server handles this perfectly).
+##  Local Development
 
-Deployment: Hosted natively on GitHub Pages for zero-latency CDN delivery.
+To run this project locally, no complex Node.js build processes are required.
+
+1. **Clone the repository:**
+```bash
+git clone [https://github.com/Ayoleyi-dev/WEBSITE---Artwork_Showcase-main.git](https://github.com/Ayoleyi-dev/WEBSITE---Artwork_Showcase-main.git)
+
+```
+
+
+2. **Launch locally:** Because of the dynamic JSON fetching, the site must be run on a local server (opening the file directly in Chrome will cause a CORS error).
+* If using VS Code, install the **Live Server** extension and click "Go Live".
+* Alternatively, run a Python HTTP server: `python -m http.server 8000`.
+
+
+
+##  Development & Credits
+
+* **Engineering & Architecture:** Built by Ayoleyi ([@Ayoleyi-dev](https://github.com/Ayoleyi-dev)).
+* **Art & Brand Identity:** All artworks, concepts, and copy are the intellectual property of **Son_of_IAM_** (Promise Adebayo).
+
+*Note: Artwork and brand assets may not be reproduced, distributed, or transmitted in any form without prior written permission from the artist.*
+
+```
+
+***
+
+```
