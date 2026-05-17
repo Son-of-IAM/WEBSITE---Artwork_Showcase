@@ -1,6 +1,4 @@
 ---
-
-```markdown
 # Son_of_IAM_ | Premium Digital Art Portfolio & Commercial Hub
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
@@ -80,9 +78,5 @@ git clone [https://github.com/Ayoleyi-dev/WEBSITE---Artwork_Showcase-main.git](h
 * **Art & Brand Identity:** All artworks, concepts, and copy are the intellectual property of **Son_of_IAM_** (Promise Adebayo).
 
 *Note: Artwork and brand assets may not be reproduced, distributed, or transmitted in any form without prior written permission from the artist.*
-
-```
-
-***
 
 ```
