@@ -199,53 +199,64 @@ header.scrolled { padding: 0.7rem 5%; box-shadow: 0 4px 30px rgba(114, 5, 205, 0
         <p class="reveal">Let's talk. Whether you're a collector, a Brand looking to collaborate, or just someone who wants to say hello, I'd love to hear from you.</p>
     </section>
 
-    <section class="contact-section" id="get-in-touch">
-        <div class="email-display reveal">
-            <p>For general enquiries</p>
-            <a href="mailto:SonofIAM.9@gmail.com">SonofIAM.9@gmail.com</a>
-        </div>
+    <style>
+    /* Tab System Styles */
+    .form-tabs { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
+    .form-tab-btn { padding: 0.8rem 2rem; background: transparent; border: 2px solid var(--border-light); border-radius: 30px; font-family: var(--font-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); cursor: pointer; transition: var(--transition); }
+    .form-tab-btn.active { background: var(--color-dominant); border-color: var(--color-dominant); color: white; }
+    .form-panel { display: none; animation: fadeIn 0.5s ease; }
+    .form-panel.active { display: block; }
+</style>
 
-        <form action="https://formspree.io/f/xyklyowb" method="POST" class="contact-form reveal">
+<section class="contact-section" id="get-in-touch" style="padding-top: 0;">
+    <div class="form-tabs reveal">
+        <button class="form-tab-btn active" onclick="switchForm('inquiry')">Project Inquiry</button>
+        <button class="form-tab-btn" onclick="switchForm('testimony')">Share Testimony</button>
+    </div>
+
+    <div id="panel-inquiry" class="form-panel active reveal">
+        <form action="https://formspree.io/f/xyklyowb" method="POST" class="contact-form ajax-form">
+            <input type="hidden" name="_subject" value="New Project Inquiry!">
+            <div class="form-row">
+                <div class="form-group"><label>First Name</label><input type="text" name="First Name" required></div>
+                <div class="form-group"><label>Last Name</label><input type="text" name="Last Name" required></div>
+            </div>
+            <div class="form-group"><label>Email</label><input type="email" name="Email" required></div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>First Name</label>
-                    <input type="text" name="First Name" required>
+                    <label>Project Type</label>
+                    <select name="Project Type" required>
+                        <option value="">Select an option</option>
+                        <option value="Commission/purchase">Commission / Purchase</option>
+                        <option value="Brand collaboration">Brand Collaboration</option>
+                        <option value="Press/interview">Press / Interview</option>
+                        <option value="Just saying Hello">Just Saying Hello</option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label>Last Name</label>
-                    <input type="text" name="Last Name" required>
-                </div>
+                <div class="form-group"><label>Budget</label><input type="text" name="Budget" placeholder="Proposed budget"></div>
             </div>
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" name="Email" required>
-            </div>
-            <div class="form-group">
-                <label>Project Type</label>
-                <select name="Project Type" required>
-                    <option value="">Select an option</option>
-                    <option value="Commission/purchase">Commission / Purchase</option>
-                    <option value="Brand collaboration">Brand Collaboration</option>
-                    <option value="Press/interview">Press / Interview</option>
-                    <option value="Just saying Hello">Just Saying Hello</option>
-                </select>
-            </div>
-                <div class="form-group">
-    <label>Budget</label>
-    <input type="text" name="Budget" placeholder="Enter your proposed budget" style="width: 100%; padding: 15px; border-radius: 8px; border: 1px solid var(--border-light); background: var(--bg-light);">
-</div>
-            </div>
-            <div class="form-group">
-                <label>Timeline (e.g., Q2 2026, 3 months)</label>
-                <input type="text" name="Timeline" placeholder="When do you need this completed?">
-            </div>
-            <div class="form-group">
-                <label>Project / Message Details</label>
-                <textarea name="Message" rows="5" placeholder="Tell us about your project, goals and any references" required></textarea>
-            </div>
+            <div class="form-group"><label>Timeline</label><input type="text" name="Timeline" placeholder="When do you need this completed?"></div>
+            <div class="form-group"><label>Project Details</label><textarea name="Message" rows="5" placeholder="Tell us about your project..." required></textarea></div>
             <button type="submit" class="submit-btn">Submit Inquiry</button>
         </form>
-    </section>
+    </div>
+
+    <div id="panel-testimony" class="form-panel reveal">
+        <form action="https://formspree.io/f/xyklyowb" method="POST" class="contact-form ajax-form">
+            <input type="hidden" name="_subject" value="New Testimony Submitted!">
+            <div class="form-row">
+                <div class="form-group"><label>Full Name</label><input type="text" name="Full Name" required></div>
+                <div class="form-group"><label>Email Address</label><input type="email" name="Email" required></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group"><label>Location (Optional)</label><input type="text" name="Location"></div>
+                <div class="form-group"><label>Subject</label><input type="text" name="Subject"></div>
+            </div>
+            <div class="form-group"><label>Your Testimony</label><textarea name="Testimony" rows="6" required placeholder="Share your experience here..."></textarea></div>
+            <button type="submit" class="submit-btn">Submit Testimony</button>
+        </form>
+    </div>
+</section>
 
     <section class="faq-section">
         <h2 class="reveal">Common Questions</h2>
@@ -276,29 +287,23 @@ header.scrolled { padding: 0.7rem 5%; box-shadow: 0 4px 30px rgba(114, 5, 205, 0
             <p><strong>Open Edition prints</strong> are always available in the Shop. They come in small or standard frame size, canvas or regular art frame, artist signature (if requested), and a Digital code to the published article about the purchased art.</p>
 <br>
 <p>While <strong>Limited Premium prints</strong> are available in limited numbers, and the offer is only open twice a year. The prints you get from this offer are not outsourced; the framing and shipping are handled exclusively by the artist and his team.</p>
-            <p style="margin-top: 1rem;"><strong>Open Edition prints</strong> are always going to be available in the Shop, they come in small or standard frame size, canvas or regular art frame, artist signature (if requested), and Digital QR code to published article about purchased art.</p>
         </details>
     </section>
 
-    <section class="testimony-section reveal" style="padding: 6rem 5%; background: var(--bg-light); border-radius: 30px; margin: 4rem 0;">
-    <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
-        <h2 class="section-title">Share Your Testimony</h2>
-        <p>How has the art stirred your heart? I would love to hear your story.</p>
-    </div>
-    <form action="https://formspree.io/f/xyklyowb" method="POST" style="max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem;">
-        <input type="text" name="Full Name" placeholder="Full Name" required style="padding: 15px; border-radius: 8px; border: 1px solid var(--border-light);">
-        <input type="email" name="Email" placeholder="Email Address" required style="padding: 15px; border-radius: 8px; border: 1px solid var(--border-light);">
-        <input type="text" name="Location" placeholder="Location (Optional)" style="padding: 15px; border-radius: 8px; border: 1px solid var(--border-light);">
-        <input type="text" name="Subject" placeholder="Subject" style="padding: 15px; border-radius: 8px; border: 1px solid var(--border-light);">
-        <textarea name="Testimony" placeholder="Your Testimony" required style="padding: 15px; border-radius: 8px; border: 1px solid var(--border-light); min-height: 150px;"></textarea>
-        <button type="submit" class="btn-cta">Submit Testimony</button>
-    </form>
-</section>
+
+
+<div class="overlay" id="successOverlay" style="z-index: 6000;"></div>
+<div id="successModal" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); background: var(--bg-white); padding: 3rem; border-radius: 24px; z-index: 6001; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.2); opacity: 0; pointer-events: none; transition: all 0.4s ease; border: 1px solid var(--border-light); max-width: 400px; width: 90%;">
+    <div style="width: 80px; height: 80px; background: rgba(114, 5, 205, 0.1); color: var(--color-dominant); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin: 0 auto 1.5rem;">✨</div>
+    <h3 style="margin-bottom: 1rem; font-size: 1.8rem;">Message Received</h3>
+    <p style="color: var(--text-muted); margin-bottom: 2rem;">Thank you for reaching out. We have received your submission and will get back to you shortly.</p>
+    <button onclick="closeSuccessModal()" class="btn-cta" style="width: 100%;">Close</button>
+</div>
 
     <footer>
         <div class="footer-grid">
             <div class="footer-brand"><h3>SON_OF_IAM_</h3><p>Nigerian creative and worshipper, bringing the God dimension into the world through Art from Lagos.</p></div>
-            <div class="footer-links"><h4>Navigation</h4><a href="work.html">Work</a><a href="about.html">About</a><a href="commercial.html">Commercial</a><a href="shop.html">Shop</a></div>
+            <div class="footer-links"><h4>Navigation</h4><a href="work.html">Work</a><a href="about.html">About</a><a href="commercial.html">Commercial</a><a href="shop.html">Shop</a><a href="commercial.html">Inquiries</a></div>
             <div class="footer-links"><h4>Explore</h4><a href="work.html#paintings">Paintings</a><a href="work.html#3d-art">3D Art</a><a href="https://medium.com/@Son_of_IAM_" target="_blank">Articles</a><a href="work.html#old-artworks">Old Artworks</a></div>
             <div class="footer-links"><h4>Follow</h4><div class="social-pills"><a href="https://instagram.com/son_of_iam_" target="_blank" class="social-pill">Instagram</a><a href="https://x.com/son_of_iam_?s=21" target="_blank" class="social-pill">X (Twitter)</a><a href="https://www.tiktok.com/@son_of_iam_?_t=zs-9032ktsad1b&_r=1" target="_blank" class="social-pill">Tiktok</a><a href="https://www.behance.net/themainugly" target="_blank" class="social-pill">Behance</a><a href="https://pin.it/4kjJwst" target="_blank" class="social-pill">Pinterest</a></div></div>
         <div class="footer-bottom">© 2026 Son_of_IAM_. All rights reserved.</div>
@@ -315,6 +320,59 @@ header.scrolled { padding: 0.7rem 5%; box-shadow: 0 4px 30px rgba(114, 5, 205, 0
         function checkMobile() { const m = document.getElementById('mobile-theme-toggle'); m.style.display = window.innerWidth <= 900 ? 'flex' : 'none'; } checkMobile(); window.addEventListener('resize', checkMobile);
         const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        // Tab Switcher Logic
+function switchForm(formName) {
+    document.querySelectorAll('.form-tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.form-panel').forEach(panel => panel.classList.remove('active'));
+    
+    event.target.classList.add('active');
+    document.getElementById(`panel-${formName}`).classList.add('active');
+}
+
+// Background Form Submission (AJAX)
+document.querySelectorAll('.ajax-form').forEach(form => {
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault(); // Stop page redirect
+        
+        const btn = form.querySelector('button[type="submit"]');
+        const originalText = btn.innerText;
+        btn.innerText = "Sending...";
+        btn.disabled = true;
+
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
+            
+            if (response.ok) {
+                // Show Success Popup
+                document.getElementById('successOverlay').classList.add('active');
+                const modal = document.getElementById('successModal');
+                modal.style.opacity = '1';
+                modal.style.pointerEvents = 'auto';
+                modal.style.transform = 'translate(-50%, -50%) scale(1)';
+                form.reset(); // Clear form fields
+            } else {
+                alert("Oops! There was a problem submitting your form.");
+            }
+        } catch (error) {
+            alert("Network error. Please try again.");
+        }
+        
+        btn.innerText = originalText;
+        btn.disabled = false;
+    });
+});
+
+function closeSuccessModal() {
+    document.getElementById('successOverlay').classList.remove('active');
+    const modal = document.getElementById('successModal');
+    modal.style.opacity = '0';
+    modal.style.pointerEvents = 'none';
+    modal.style.transform = 'translate(-50%, -50%) scale(0.8)';
+}
     </script>
 </body>
 </html>

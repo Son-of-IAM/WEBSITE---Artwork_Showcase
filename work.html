@@ -378,13 +378,19 @@ header.scrolled { padding: 0.7rem 5%; box-shadow: 0 4px 30px rgba(114, 5, 205, 0
         </div>
     </section>
 
-    <section id="articles" class="category-section" style="background: linear-gradient(135deg, #f8f5ff, #f0f4ff); border-radius: 30px; margin: 2rem auto; text-align: center;">
-        <div class="category-header reveal" style="border: none; justify-content: center;">
-            <h2>Articles</h2>
-        </div>
-        <p class="reveal" style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem;">Thoughts on faith, creativity, and the journey.</p>
-        <a href="https://medium.com/@xyvyhnd" target="_blank" class="medium-link reveal">Read on Medium →</a>
-    </section>
+   <style>
+    .articles-section-bg { background: linear-gradient(135deg, #f8f5ff, #f0f4ff); border-radius: 30px; margin: 2rem auto; text-align: center; }
+    [data-theme="dark"] .articles-section-bg { background: linear-gradient(135deg, #1a0a2e, #0f0518); }
+</style>
+
+<section id="articles" class="category-section articles-section-bg">
+    <div class="category-header reveal" style="border: none; justify-content: center;">
+        <h2>Articles</h2>
+    </div>
+    <p class="reveal" style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem;">Thoughts on faith, creativity, and the journey.</p>
+    <a href="https://medium.com/@xyvyhnd" target="_blank" class="medium-link reveal">Read on Medium →</a>
+</section>
+
 
     <section id="old-artworks" class="category-section">
         <div class="category-header reveal">
