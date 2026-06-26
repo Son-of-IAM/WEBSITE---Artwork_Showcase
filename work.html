@@ -50,58 +50,56 @@
         .scripture-block::before { top: 0; } .scripture-block::after { bottom: 0; }
         .scripture { font-family: var(--font-handwriting); font-size: 2.4rem; line-height: 1.3; color: var(--color-dominant); margin-bottom: 0.5rem; }
         .scripture-reference { font-family: var(--font-handwriting); font-size: 1.5rem; color: var(--text-muted); }
-/* ==========================================
-2. HEADER & NAV (UNIFIED INDEX LOOK)
-=========================================== */
-header {
-    position: fixed; top: 0; width: 100%;
-    background: rgba(255,255,255,0.85); backdrop-filter: blur(20px);
-    z-index: 1000; padding: 1rem 5%; border-bottom: 1px solid rgba(114, 5, 205, 0.08);
-    transition: var(--transition);
-}
-[data-theme="dark"] header { background: rgba(10,10,10,0.85); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-header.scrolled { padding: 0.7rem 5%; box-shadow: 0 4px 30px rgba(114, 5, 205, 0.1); }
 
-.nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-.logo-wrapper { display: flex; align-items: center; gap: 1rem; }
-.logo-icon { width: 48px; height: 48px; position: relative; }
+        /* Header */
+        header {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255,255,255,0.85); backdrop-filter: blur(20px);
+            z-index: 1000; padding: 1rem 5%; border-bottom: 1px solid rgba(114, 5, 205, 0.08);
+            transition: var(--transition);
+        }
+        [data-theme="dark"] header { background: rgba(10,10,10,0.85); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        header.scrolled { padding: 0.7rem 5%; box-shadow: 0 4px 30px rgba(114, 5, 205, 0.1); }
 
-/* Purple Fire Animation (Unified Index Version) */
-@keyframes fireGlow {
-    0% { filter: drop-shadow(0 0 8px rgba(114, 5, 205, 0.4)) drop-shadow(0 0 16px rgba(93, 127, 255, 0.2)); }
-    50% { filter: drop-shadow(0 0 20px rgba(114, 5, 205, 0.8)) drop-shadow(0 0 30px rgba(93, 127, 255, 0.4)); transform: translateY(-2px) scale(1.02); }
-    100% { filter: drop-shadow(0 0 8px rgba(114, 5, 205, 0.4)) drop-shadow(0 0 16px rgba(93, 127, 255, 0.2)); }
-}
-.logo-icon img { width: 100%; height: 100%; object-fit: contain; animation: fireGlow 3s infinite alternate; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo-wrapper { display: flex; align-items: center; gap: 1rem; }
+        .logo-icon { width: 48px; height: 48px; position: relative; }
 
-.logo-text { display: flex; flex-direction: column; }
-.logo { font-size: 1.4rem; font-weight: 700; color: var(--text-dark); font-family: var(--font-primary); letter-spacing: 1px; }
-.logo-tagline { font-size: 0.65rem; color: var(--color-dominant); text-transform: uppercase; font-weight: 600; letter-spacing: 2px; font-family: var(--font-primary); white-space: nowrap; }
+        @keyframes fireGlow {
+            0% { filter: drop-shadow(0 0 8px rgba(114, 5, 205, 0.4)) drop-shadow(0 0 16px rgba(93, 127, 255, 0.2)); }
+            50% { filter: drop-shadow(0 0 20px rgba(114, 5, 205, 0.8)) drop-shadow(0 0 30px rgba(93, 127, 255, 0.4)); transform: translateY(-2px) scale(1.02); }
+            100% { filter: drop-shadow(0 0 8px rgba(114, 5, 205, 0.4)) drop-shadow(0 0 16px rgba(93, 127, 255, 0.2)); }
+        }
+        .logo-icon img { width: 100%; height: 100%; object-fit: contain; animation: fireGlow 3s infinite alternate; }
 
-.nav-right { display: flex; align-items: center; gap: 2.5rem; }
-.desktop-menu { display: flex; gap: 2.5rem; align-items: center; font-family: var(--font-primary); }
-.desktop-menu a { font-weight: 600; font-size: 0.85rem; transition: var(--transition); position: relative; padding: 0.5rem 0; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-dark); }
-.desktop-menu a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--color-dominant); transition: width 0.3s ease; }
-.desktop-menu a:hover::after { width: 100%; }
-.desktop-menu a:hover { color: var(--color-dominant); }
+        .logo-text { display: flex; flex-direction: column; }
+        .logo { font-size: 1.4rem; font-weight: 700; color: var(--text-dark); font-family: var(--font-primary); letter-spacing: 1px; }
+        .logo-tagline { font-size: 0.65rem; color: var(--color-dominant); text-transform: uppercase; font-weight: 600; letter-spacing: 2px; font-family: var(--font-primary); white-space: nowrap; }
 
-.dropdown { position: relative; }
-.dropdown-menu { position: absolute; top: 100%; right: 0; background: var(--bg-white); min-width: 280px; box-shadow: 0 20px 50px rgba(0,0,0,0.12); border-radius: 16px; padding: 1rem 0; opacity: 0; visibility: hidden; transition: all 0.3s; transform: translateY(-10px); border: 1px solid var(--border-light); }
-.dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-.dropdown-menu a { display: block; padding: 0.8rem 1.8rem; font-size: 0.85rem; }
-.dropdown-menu a:hover { color: var(--color-dominant); background: var(--bg-light); padding-left: 2.2rem; }
-.dropdown-menu a::after { display: none; }
+        .nav-right { display: flex; align-items: center; gap: 2.5rem; }
+        .desktop-menu { display: flex; gap: 2.5rem; align-items: center; font-family: var(--font-primary); }
+        .desktop-menu a { font-weight: 600; font-size: 0.85rem; transition: var(--transition); position: relative; padding: 0.5rem 0; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-dark); }
+        .desktop-menu a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--color-dominant); transition: width 0.3s ease; }
+        .desktop-menu a:hover::after { width: 100%; }
+        .desktop-menu a:hover { color: var(--color-dominant); }
 
-.theme-toggle { background: none; border: none; font-size: 1.3rem; cursor: pointer; transition: 0.3s; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.theme-toggle:hover { background: var(--bg-light); transform: rotate(15deg); }
-.btn-cta { display: inline-block; background: var(--color-dominant); color: white !important; padding: 0.7rem 1.8rem; border-radius: 8px; font-weight: 700; border: none; cursor: pointer; transition: var(--transition); font-family: var(--font-primary); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; }
-.btn-cta:hover { background: var(--color-compliment); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(114, 5, 205, 0.3); }
+        .dropdown { position: relative; }
+        .dropdown-menu { position: absolute; top: 100%; right: 0; background: var(--bg-white); min-width: 280px; box-shadow: 0 20px 50px rgba(0,0,0,0.12); border-radius: 16px; padding: 1rem 0; opacity: 0; visibility: hidden; transition: all 0.3s; transform: translateY(-10px); border: 1px solid var(--border-light); }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-menu a { display: block; padding: 0.8rem 1.8rem; font-size: 0.85rem; }
+        .dropdown-menu a:hover { color: var(--color-dominant); background: var(--bg-light); padding-left: 2.2rem; }
+        .dropdown-menu a::after { display: none; }
 
-/* The fix for your missing mobile toggle */
-#mobile-theme-toggle { display: none; }
-@media (max-width: 900px) {
-    #mobile-theme-toggle { display: flex; align-items: center; justify-content: center; }
-}
+        .theme-toggle { background: none; border: none; font-size: 1.3rem; cursor: pointer; transition: 0.3s; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .theme-toggle:hover { background: var(--bg-light); transform: rotate(15deg); }
+        .btn-cta { display: inline-block; background: var(--color-dominant); color: white !important; padding: 0.7rem 1.8rem; border-radius: 8px; font-weight: 700; border: none; cursor: pointer; transition: var(--transition); font-family: var(--font-primary); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; }
+        .btn-cta:hover { background: var(--color-compliment); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(114, 5, 205, 0.3); }
+
+        #mobile-theme-toggle { display: none; }
+        @media (max-width: 900px) {
+            #mobile-theme-toggle { display: flex; align-items: center; justify-content: center; }
+        }
+
         .hamburger { display: none; flex-direction: column; background: none; border: none; cursor: pointer; z-index: 1002; padding: 0.5rem; gap: 5px; }
         .hamburger span { width: 26px; height: 2px; background: var(--text-dark); transition: 0.3s; border-radius: 2px; }
         .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); background: var(--color-dominant); }
@@ -126,9 +124,9 @@ header.scrolled { padding: 0.7rem 5%; box-shadow: 0 4px 30px rgba(114, 5, 205, 0
         .category-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; border-bottom: 2px solid var(--border-light); padding-bottom: 1.5rem; }
         .category-header h2 { font-size: 2rem; text-transform: uppercase; letter-spacing: 2px; }
         .category-header span { font-family: var(--font-primary); color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-        
+
         .category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
-        .work-card { position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; background: var(--bg-light); aspect-ratio: 4/5; transition: all 0.5s ease; border: 1px solid var(--border-light); }
+        .work-card { display: block; position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; background: var(--bg-light); aspect-ratio: 4/5; transition: all 0.5s ease; border: 1px solid var(--border-light); text-decoration: none; color: inherit; }
         .work-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.15); }
         .work-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s; }
         .work-card:hover img { transform: scale(1.08); }
@@ -145,6 +143,9 @@ header.scrolled { padding: 0.7rem 5%; box-shadow: 0 4px 30px rgba(114, 5, 205, 0
         .archive-card:hover { filter: grayscale(0); transform: scale(1.03); }
         .archive-card img { width: 100%; height: 100%; object-fit: cover; }
 
+        .articles-section-bg { background: linear-gradient(135deg, #f8f5ff, #f0f4ff); border-radius: 30px; margin: 2rem auto; text-align: center; }
+        [data-theme="dark"] .articles-section-bg { background: linear-gradient(135deg, #1a0a2e, #0f0518); }
+
         /* Footer */
         footer { background: #0a0a0a; color: rgba(255,255,255,0.8); padding: 6rem 5% 3rem; margin-top: 4rem; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1.5fr 1.5fr; gap: 4rem; max-width: 1400px; margin: 0 auto; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 4rem; }
@@ -159,32 +160,17 @@ header.scrolled { padding: 0.7rem 5%; box-shadow: 0 4px 30px rgba(114, 5, 205, 0
         .footer-bottom { text-align: center; padding-top: 3rem; opacity: 0.4; font-size: 0.85rem; font-family: var(--font-primary); text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.6); }
 
         @media (max-width: 900px) { .nav-right { display: none; } .hamburger { display: flex; } .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; } .category-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); } }
-        @media (max-width: 600px) { 
+        @media (max-width: 600px) {
             .work-hero { padding: 8rem 5% 4rem; }
             .work-hero h1 { font-size: clamp(2.2rem, 9vw, 2.8rem); line-height: 1.1; margin-bottom: 1rem; text-wrap: balance; }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; } 
-            .footer-brand p { margin: 0 auto; } 
-            .social-pills { justify-content: center; } 
-            .category-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; } 
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-brand p { margin: 0 auto; }
+            .social-pills { justify-content: center; }
+            .category-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
         }
         [data-theme="dark"] .logo { color: #ffffff; }
         [data-theme="dark"] .desktop-menu a { color: #cccccc; }
         [data-theme="dark"] .hamburger span { background: #ffffff; }
-
-        .work-card {
-    display: block; /* Makes the <a> tag behave like a div */
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    cursor: pointer;
-    background: var(--bg-light);
-    aspect-ratio: 4/5;
-    transition: all 0.5s ease;
-    border: 1px solid var(--border-light);
-    text-decoration: none;
-    color: inherit;
-}
-        
     </style>
 </head>
 <body>
@@ -213,7 +199,7 @@ header.scrolled { padding: 0.7rem 5%; box-shadow: 0 4px 30px rgba(114, 5, 205, 0
                         </div>
                     </div>
                     <a href="about.html">About</a>
-                    <a href="https://medium.com/@xyvyhnd" target="_blank">Articles</a>
+                    <a href="https://medium.com/@Son_of_IAM_" target="_blank">Articles</a>
                 </nav>
                 <a href="commercial.html" class="btn-cta">Connect</a>
                 <button class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
@@ -244,8 +230,6 @@ header.scrolled { padding: 0.7rem 5%; box-shadow: 0 4px 30px rgba(114, 5, 205, 0
 
     <section class="work-hero">
         <h1 class="reveal">Work</h1>
-
-        
         <p class="reveal">Each piece is an invitation to know Jesus more.</p>
         <div class="scripture-block reveal">
             <p class="scripture">"This is eternal life: that they may know You, the only true God, and Jesus Christ, whom You have sent."</p>
@@ -258,106 +242,28 @@ header.scrolled { padding: 0.7rem 5%; box-shadow: 0 4px 30px rgba(114, 5, 205, 0
             <h2>Paintings</h2>
             <span>Selected Works</span>
         </div>
-       <div class="category-grid">
-    <a href="artwork.html?id=1" class="work-card reveal">
-        <img src="Images/placeholder1.jpg" alt="The Announcing" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #5D7FFF)'">
-        <div class="overlay-info">
-            <h3>The Announcing</h3>
-            <p>Paintings</p>
-        </div>
-    </a>
-    <a href="artwork.html?id=2" class="work-card reveal">
-        <img src="Images/placeholder2.jpg" alt="Throne Room" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #0f0518, #5D7FFF)'">
-        <div class="overlay-info">
-            <h3>Throne Room</h3>
-            <p>3D Art</p>
-        </div>
-    </a>
-    <a href="artwork.html?id=3" class="work-card reveal">
-        <img src="Images/placeholder3.jpg" alt="Deliverance" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #1a0a2e, #7205cd)'">
-        <div class="overlay-info">
-            <h3>Deliverance</h3>
-            <p>Paintings</p>
-        </div>
-    </a>
-    <a href="artwork.html?id=4" class="work-card reveal">
-        <img src="Images/placeholder4.jpg" alt="New Jerusalem" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #f8f5ff)'">
-        <div class="overlay-info">
-            <h3>New Jerusalem</h3>
-            <p>3D Art</p>
-        </div>
-    </a>
-    <a href="artwork.html?id=5" class="work-card reveal">
-        <img src="Images/placeholder5.jpg" alt="The Good Shepherd" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #5D7FFF, #1a0a2e)'">
-        <div class="overlay-info">
-            <h3>The Good Shepherd</h3>
-            <p>The Gospel Proclaimed</p>
-        </div>
-    </a>
-    <a href="artwork.html?id=6" class="work-card reveal">
-        <img src="Images/placeholder6.jpg" alt="Upper Room" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #5D7FFF, #7205cd)'">
-        <div class="overlay-info">
-            <h3>Upper Room</h3>
-            <p>Paintings</p>
-        </div>
-    </a>
-    <a href="artwork.html?id=7" class="work-card reveal">
-        <img src="Images/placeholder7.jpg" alt="The Ascension" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #1a0a2e, #0f0518)'">
-        <div class="overlay-info">
-            <h3>The Ascension</h3>
-            <p>3D Art</p>
-        </div>
-    </a>
-    <a href="artwork.html?id=8" class="work-card reveal">
-        <img src="Images/placeholder8.jpg" alt="Prodigal" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #5D7FFF)'">
-        <div class="overlay-info">
-            <h3>Prodigal</h3>
-            <p>The Gospel Proclaimed</p>
-        </div>
-    </a>
-</div>
-            <div class="work-card reveal" onclick="location.href='artwork.html?id=6'">
-                <img src="Images/placeholder6.jpg" alt="Artwork" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #5D7FFF, #7205cd)'">
-                <div class="overlay-info"><h3>Upper Room</h3><p>Paintings</p></div>
-            </div>
+        <div class="category-grid" id="paintings-grid">
+            <!-- Populated by script.js -->
         </div>
     </section>
 
     <section id="graffiti" class="category-section">
-    <div class="category-header reveal">
-        <h2>Graffiti</h2>
-        <span>Selected Works</span>
-    </div>
-    <div class="category-grid">
-        <!-- Graffiti Placeholder 1 -->
-        <a href="#" class="work-card reveal">
-            <img src="Images/placeholder1.jpg" alt="Graffiti Art" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #5D7FFF)'">
-            <div class="overlay-info">
-                <h3>[Graffiti Title]</h3>
-                <p>Graffiti</p>
-            </div>
-        </a>
-    </div>
-</section>
+        <div class="category-header reveal">
+            <h2>Graffiti</h2>
+            <span>Selected Works</span>
+        </div>
+        <div class="category-grid" id="graffiti-grid">
+            <!-- Populated by script.js -->
+        </div>
+    </section>
 
     <section id="3d-art" class="category-section" style="background: var(--bg-light); border-radius: 30px; margin: 2rem auto;">
         <div class="category-header reveal">
             <h2>3D Art</h2>
             <span>Blender Renders</span>
         </div>
-        <div class="category-grid">
-            <div class="work-card reveal" onclick="location.href='artwork.html?id=2'">
-                <img src="Images/placeholder2.jpg" alt="Artwork" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #0f0518, #5D7FFF)'">
-                <div class="overlay-info"><h3>Throne Room</h3><p>3D Art</p></div>
-            </div>
-            <div class="work-card reveal" onclick="location.href='artwork.html?id=4'">
-                <img src="Images/placeholder4.jpg" alt="Artwork" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #f8f5ff)'">
-                <div class="overlay-info"><h3>New Jerusalem</h3><p>3D Art</p></div>
-            </div>
-            <div class="work-card reveal" onclick="location.href='artwork.html?id=7'">
-                <img src="Images/placeholder7.jpg" alt="Artwork" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #1a0a2e, #0f0518)'">
-                <div class="overlay-info"><h3>The Ascension</h3><p>3D Art</p></div>
-            </div>
+        <div class="category-grid" id="3d-art-grid">
+            <!-- Populated by script.js -->
         </div>
     </section>
 
@@ -366,44 +272,26 @@ header.scrolled { padding: 0.7rem 5%; box-shadow: 0 4px 30px rgba(114, 5, 205, 0
             <h2>The Gospel Proclaimed</h2>
             <span>Collection</span>
         </div>
-        <div class="category-grid">
-            <div class="work-card reveal" onclick="location.href='artwork.html?id=5'">
-                <img src="Images/placeholder5.jpg" alt="Artwork" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #5D7FFF, #1a0a2e)'">
-                <div class="overlay-info"><h3>The Good Shepherd</h3><p>The Gospel Proclaimed</p></div>
-            </div>
-            <div class="work-card reveal" onclick="location.href='artwork.html?id=8'">
-                <img src="Images/placeholder8.jpg" alt="Artwork" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #5D7FFF)'">
-                <div class="overlay-info"><h3>Prodigal</h3><p>The Gospel Proclaimed</p></div>
-            </div>
+        <div class="category-grid" id="gospel-grid">
+            <!-- Populated by script.js -->
         </div>
     </section>
 
-   <style>
-    .articles-section-bg { background: linear-gradient(135deg, #f8f5ff, #f0f4ff); border-radius: 30px; margin: 2rem auto; text-align: center; }
-    [data-theme="dark"] .articles-section-bg { background: linear-gradient(135deg, #1a0a2e, #0f0518); }
-</style>
-
-<section id="articles" class="category-section articles-section-bg">
-    <div class="category-header reveal" style="border: none; justify-content: center;">
-        <h2>Articles</h2>
-    </div>
-    <p class="reveal" style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem;">Thoughts on faith, creativity, and the journey.</p>
-    <a href="https://medium.com/@xyvyhnd" target="_blank" class="medium-link reveal">Read on Medium →</a>
-</section>
-
+    <section id="articles" class="category-section articles-section-bg">
+        <div class="category-header reveal" style="border: none; justify-content: center;">
+            <h2>Articles</h2>
+        </div>
+        <p class="reveal" style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem;">Thoughts on faith, creativity, and the journey.</p>
+        <a href="https://medium.com/@Son_of_IAM_" target="_blank" class="medium-link reveal">Read on Medium →</a>
+    </section>
 
     <section id="old-artworks" class="category-section">
         <div class="category-header reveal">
             <h2>Old Artworks</h2>
             <span>Archive</span>
         </div>
-        <div class="archive-grid">
-            <div class="archive-card reveal"><img src="Images/archive1.jpg" alt="Old work" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)'"></div>
-            <div class="archive-card reveal"><img src="Images/archive2.jpg" alt="Old work" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)'"></div>
-            <div class="archive-card reveal"><img src="Images/archive3.jpg" alt="Old work" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)'"></div>
-            <div class="archive-card reveal"><img src="Images/archive4.jpg" alt="Old work" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)'"></div>
-            <div class="archive-card reveal"><img src="Images/archive5.jpg" alt="Old work" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)'"></div>
-            <div class="archive-card reveal"><img src="Images/archive6.jpg" alt="Old work" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)'"></div>
+        <div class="archive-grid" id="old-artworks-grid">
+            <!-- Populated by script.js -->
         </div>
     </section>
 
@@ -417,18 +305,16 @@ header.scrolled { padding: 0.7rem 5%; box-shadow: 0 4px 30px rgba(114, 5, 205, 0
         <div class="footer-bottom">© 2026 Son_of_IAM_. All rights reserved.</div>
     </footer>
 
+    <script src="script.js"></script>
     <script>
-        window.addEventListener('scroll', () => document.getElementById('mainHeader').classList.toggle('scrolled', window.scrollY > 50));
-        function toggleMenu() { document.querySelector('.hamburger').classList.toggle('active'); document.querySelector('.mobile-menu').classList.toggle('active'); document.querySelector('.overlay').classList.toggle('active'); document.body.style.overflow = document.querySelector('.mobile-menu').classList.contains('active') ? 'hidden' : ''; }
-        function toggleDropdown(e) { e.preventDefault(); e.target.nextElementSibling.classList.toggle('active'); }
-        const themeToggles = document.querySelectorAll('.theme-toggle');
-        const rootElement = document.documentElement;
-        function setTheme(theme) { if (theme === 'dark') { rootElement.setAttribute('data-theme', 'dark'); themeToggles.forEach(t => t.textContent = '☀️'); localStorage.setItem('theme', 'dark'); } else { rootElement.removeAttribute('data-theme'); themeToggles.forEach(t => t.textContent = '🌙'); localStorage.setItem('theme', 'light'); } }
-        const savedTheme = localStorage.getItem('theme'); if (savedTheme) setTheme(savedTheme); else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
-        themeToggles.forEach(btn => btn.addEventListener('click', () => setTheme(rootElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')));
-        function checkMobile() { const m = document.getElementById('mobile-theme-toggle'); m.style.display = window.innerWidth <= 900 ? 'flex' : 'none'; } checkMobile(); window.addEventListener('resize', checkMobile);
-        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const artworks = await fetchArtworks();
+                renderWorkGrids(artworks);
+            } catch (err) {
+                console.error('Failed to load gallery:', err);
+            }
+        });
     </script>
 </body>
 </html>
