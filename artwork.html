@@ -92,10 +92,24 @@
         .desktop-menu a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--color-dominant); transition: width 0.3s ease; }
         .desktop-menu a:hover::after { width: 100%; }
         .desktop-menu a:hover { color: var(--color-dominant); }
+
+        .dropdown { position: relative; }
+        .dropdown-menu { position: absolute; top: 100%; right: 0; background: var(--bg-white); min-width: 280px; box-shadow: 0 20px 50px rgba(0,0,0,0.12); border-radius: 16px; padding: 1rem 0; opacity: 0; visibility: hidden; transition: all 0.3s; transform: translateY(-10px); border: 1px solid var(--border-light); }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-menu a { display: block; padding: 0.8rem 1.8rem; font-size: 0.85rem; }
+        .dropdown-menu a:hover { color: var(--color-dominant); background: var(--bg-light); padding-left: 2.2rem; }
+        .dropdown-menu a::after { display: none; }
+
         .theme-toggle { background: none; border: none; font-size: 1.3rem; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
         .theme-toggle:hover { background: var(--bg-light); transform: rotate(15deg); }
         .btn-cta { display: inline-block; background: var(--color-dominant); color: white !important; padding: 0.7rem 1.8rem; border-radius: 8px; font-weight: 700; font-family: var(--font-primary); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; }
         .btn-cta:hover { background: var(--color-compliment); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(114, 5, 205, 0.3); }
+
+        #mobile-theme-toggle { display: none; }
+        @media (max-width: 900px) {
+            #mobile-theme-toggle { display: flex; align-items: center; justify-content: center; }
+        }
+
         .hamburger { display: none; flex-direction: column; background: none; border: none; cursor: pointer; z-index: 1002; padding: 0.5rem; gap: 5px; }
         .hamburger span { width: 26px; height: 2px; background: var(--text-dark); transition: 0.3s; border-radius: 2px; }
         .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); background: var(--color-dominant); }
@@ -105,6 +119,9 @@
         .mobile-menu.active { right: 0; }
         .mobile-menu a { display: block; font-size: 1.3rem; padding: 1.2rem 0; border-bottom: 1px solid var(--border-light); font-weight: 600; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
         .mobile-menu a:hover { color: var(--color-dominant); padding-left: 10px; }
+        .mobile-menu .dropdown-mobile { margin-left: 1rem; margin-top: 0.5rem; display: none; }
+        .mobile-menu .dropdown-mobile.active { display: block; }
+        .mobile-menu .dropdown-mobile a { font-size: 1rem; padding: 0.8rem 0; border: none; color: var(--text-muted); }
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; display: none; backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.3s; }
         .overlay.active { display: block; opacity: 1; }
 
@@ -179,46 +196,6 @@
             width: 100%;
             height: auto;
             display: block;
-        }
-
-        /* Detail / Crop Section */
-        .detail-section {
-            max-width: 1000px;
-            margin: 0 auto 6rem;
-            padding: 0 5%;
-        }
-        .detail-label {
-            font-family: var(--font-primary);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .detail-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border-light);
-        }
-        .cropped-image {
-            width: 100%;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            background: var(--bg-light);
-        }
-        .cropped-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.8s ease;
-        }
-        .cropped-image:hover img {
-            transform: scale(1.03);
         }
 
         /* Artist Note / Description */
@@ -457,9 +434,17 @@
             <div class="nav-right">
                 <nav class="desktop-menu">
                     <a href="work.html">Work</a>
-                    <a href="shop.html">Shop</a>
+                    <div class="dropdown">
+                        <a href="shop.html">Shop ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="shop.html#limited-prints">Limited Premium Edition</a>
+                            <a href="shop.html#open-prints">Open Prints Offer</a>
+                            <a href="shop.html#stickers">Stickers</a>
+                            <a href="shop.html#wallpapers">Wallpaper Pack</a>
+                        </div>
+                    </div>
                     <a href="about.html">About</a>
-                    <a href="https://medium.com/@xyvyhnd" target="_blank">Articles</a>
+                    <a href="https://medium.com/@Son_of_IAM_" target="_blank">Articles</a>
                 </nav>
                 <a href="commercial.html" class="btn-cta">Connect</a>
                 <button class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
@@ -476,7 +461,13 @@
     <div class="overlay" onclick="toggleMenu()"></div>
     <div class="mobile-menu">
         <a href="work.html" onclick="toggleMenu()">Work</a>
-        <a href="shop.html" onclick="toggleMenu()">Shop</a>
+        <a href="#" onclick="toggleDropdown(event)">Shop ▾</a>
+        <div class="dropdown-mobile">
+            <a href="shop.html#limited-prints" onclick="toggleMenu()">Limited Premium Edition</a>
+            <a href="shop.html#open-prints" onclick="toggleMenu()">Open Prints Offer</a>
+            <a href="shop.html#stickers" onclick="toggleMenu()">Stickers</a>
+            <a href="shop.html#wallpapers" onclick="toggleMenu()">Wallpaper Pack</a>
+        </div>
         <a href="about.html" onclick="toggleMenu()">About</a>
         <a href="https://medium.com/@Son_of_IAM_" target="_blank" onclick="toggleMenu()">Articles</a>
         <a href="commercial.html" onclick="toggleMenu()">Commercial</a>
@@ -486,21 +477,16 @@
         <div class="artwork-meta-header reveal">
             <span class="artwork-category-label" id="artworkCategory">Paintings</span>
             <h1 class="artwork-title" id="artworkTitle">The Announcing</h1>
-           <div class="artwork-meta-row">
-    <span id="artworkYear">2024</span>
-    <span id="artworkMedium">Digital Illustration</span>
-</div>
+            <div class="artwork-meta-row">
+                <span id="artworkYear">2024</span>
+                <span id="artworkMedium">Digital Illustration</span>
+                <span id="artworkDimensions" style="display:none;">24 x 36 in</span>
+                <span id="artworkPrice" style="display:none; color: var(--color-dominant); font-weight: 700;"></span>
+            </div>
         </div>
 
         <div class="main-artwork-container reveal">
-            <img src="Images/placeholder1.jpg" alt="Main artwork" id="mainImage" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #1a0a2e, #7205cd)'">
-        </div>
-
-        <div class="detail-section reveal">
-            <div class="detail-label">Cropped Detailed Version</div>
-            <div class="cropped-image">
-                <img src="Images/placeholder1-crop.jpg" alt="Detail view" id="cropImage" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--bg-light), var(--border-light))'">
-            </div>
+            <img src="" alt="Main artwork" id="mainImage" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #1a0a2e, #7205cd)'">
         </div>
 
         <div class="artwork-description reveal">
@@ -526,7 +512,6 @@
                 <div class="purchase-card">
                     <span class="badge open">Open Edition</span>
                     <h4>Open Print</h4>
-                    
                     <ul>
                         <li>Standard frame size</li>
                         <li>Canvas or art frame</li>
@@ -540,12 +525,12 @@
     </main>
 
     <div class="artwork-nav reveal">
-        <a href="artwork.html?id=0" class="nav-arrow prev" id="prevBtn">
+        <a href="work.html" class="nav-arrow prev" id="prevBtn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             Previous
         </a>
         <a href="work.html" class="back-to-gallery">Back to Gallery</a>
-        <a href="artwork.html?id=2" class="nav-arrow next" id="nextBtn">
+        <a href="work.html" class="nav-arrow next" id="nextBtn">
             Next
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -554,168 +539,24 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-brand"><h3>SON_OF_IAM_</h3><p>Nigerian creative and worshipper, bringing the God dimension into the world through Art from Lagos.</p></div>
-            <div class="footer-links"><h4>Navigation</h4><a href="work.html">Work</a><a href="about.html">About</a><a href="commercial.html">Commercial</a><a href="shop.html">Shop</a><a href="commercial.html">Inquiries</a></div>
+            <div class="footer-links"><h4>Navigation</h4><a href="work.html">Work</a><a href="about.html">About</a><a href="commercial.html">Commercial</a><a href="shop.html">Shop</a></div>
             <div class="footer-links"><h4>Explore</h4><a href="work.html#paintings">Paintings</a><a href="work.html#3d-art">3D Art</a><a href="https://medium.com/@Son_of_IAM_" target="_blank">Articles</a><a href="work.html#old-artworks">Old Artworks</a></div>
-           <div class="footer-links"><h4>Follow</h4><div class="social-pills"><a href="https://instagram.com/son_of_iam_" target="_blank" class="social-pill">Instagram</a><a href="https://x.com/son_of_iam_?s=21" target="_blank" class="social-pill">X (Twitter)</a><a href="https://www.tiktok.com/@son_of_iam_?_t=zs-9032ktsad1b&_r=1" target="_blank" class="social-pill">Tiktok</a><a href="https://www.behance.net/themainugly" target="_blank" class="social-pill">Behance</a><a href="https://pin.it/4kjJwst" target="_blank" class="social-pill">Pinterest</a></div></div>
+            <div class="footer-links"><h4>Follow</h4><div class="social-pills"><a href="https://instagram.com/son_of_iam_" target="_blank" class="social-pill">Instagram</a><a href="https://x.com/son_of_iam_?s=21" target="_blank" class="social-pill">X (Twitter)</a><a href="https://www.tiktok.com/@son_of_iam_?_t=zs-9032ktsad1b&_r=1" target="_blank" class="social-pill">Tiktok</a><a href="https://www.behance.net/themainugly" target="_blank" class="social-pill">Behance</a><a href="https://pin.it/4kjJwst" target="_blank" class="social-pill">Pinterest</a></div></div>
+        </div>
         <div class="footer-bottom">© 2026 Son_of_IAM_. All rights reserved.</div>
     </footer>
 
+    <script src="script.js"></script>
     <script>
-        // Artwork database
-        const artworks = [
-            {
-                id: 1,
-                title: "The Announcing",
-                category: "Paintings",
-                year: "2024",
-                medium: "Digital Illustration",
-                dimensions: "24 x 36 in",
-                description: "This piece emerged from a season of deep worship. The colors were chosen to reflect the tension between divine glory and human fragility — a reminder that Christ meets us in our brokenness.",
-                main: "Images/placeholder1.jpg",
-                crop: "Images/placeholder1-crop.jpg"
-            },
-            {
-                id: 2,
-                title: "Throne Room",
-                category: "3D Art",
-                year: "2024",
-                medium: "Blender 3D Render",
-                dimensions: "Digital",
-                description: "A vision of heavenly worship. Built in Blender over three weeks, every light ray was placed intentionally to guide the eye upward toward the source of all light.",
-                main: "Images/placeholder2.jpg",
-                crop: "Images/placeholder2-crop.jpg"
-            },
-            {
-                id: 3,
-                title: "Deliverance",
-                category: "Paintings",
-                year: "2023",
-                medium: "Digital Illustration",
-                dimensions: "20 x 30 in",
-                description: "There is a moment when chains fall. This piece captures that split second between bondage and freedom — the exhale of the soul.",
-                main: "Images/placeholder3.jpg",
-                crop: "Images/placeholder3-crop.jpg"
-            },
-            {
-                id: 4,
-                title: "New Jerusalem",
-                category: "3D Art",
-                year: "2025",
-                medium: "Blender 3D Render",
-                dimensions: "Digital",
-                description: "A glimpse of the city to come. Inspired by Revelation 21, this render explores what it means for God to dwell among His people.",
-                main: "Images/placeholder4.jpg",
-                crop: "Images/placeholder4-crop.jpg"
-            },
-            {
-                id: 5,
-                title: "The Good Shepherd",
-                category: "The Gospel Proclaimed",
-                year: "2024",
-                medium: "Mixed Media",
-                dimensions: "30 x 40 in",
-                description: "The shepherd who leaves the ninety-nine. This piece was birthed from meditation on John 10 — the relentless pursuit of the one.",
-                main: "Images/placeholder5.jpg",
-                crop: "Images/placeholder5-crop.jpg"
-            },
-            {
-                id: 6,
-                title: "Upper Room",
-                category: "Paintings",
-                year: "2023",
-                medium: "Digital Illustration",
-                dimensions: "18 x 24 in",
-                description: "Where the Spirit fell. The Upper Room collection explores the moment everything changed — when frightened disciples became flaming witnesses.",
-                main: "Images/placeholder6.jpg",
-                crop: "Images/placeholder6-crop.jpg"
-            },
-            {
-                id: 7,
-                title: "The Ascension",
-                category: "3D Art",
-                year: "2025",
-                medium: "Blender 3D Render",
-                dimensions: "Digital",
-                description: "He ascended in glory, and the disciples stood gazing. This render captures the weight of that departure and the promise it carried.",
-                main: "Images/placeholder7.jpg",
-                crop: "Images/placeholder7-crop.jpg"
-            },
-            {
-                id: 8,
-                title: "Prodigal",
-                category: "The Gospel Proclaimed",
-                year: "2024",
-                medium: "Digital Illustration",
-                dimensions: "24 x 36 in",
-                description: "The Father ran. While the son was still a long way off, the Father ran. This piece is an invitation to come home.",
-                main: "Images/placeholder8.jpg",
-                crop: "Images/placeholder8-crop.jpg"
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const artworks = await fetchArtworks();
+                renderArtworkDetail(artworks);
+            } catch (err) {
+                console.error('Failed to load artwork:', err);
+                showArtworkError();
             }
-        ];
-
-        // Get ID from URL
-        const params = new URLSearchParams(window.location.search);
-        let currentId = parseInt(params.get('id')) || 1;
-        const artwork = artworks.find(a => a.id === currentId) || artworks[0];
-
-        // Populate page
-        document.getElementById('artworkTitle').textContent = artwork.title;
-        document.getElementById('artworkCategory').textContent = artwork.category;
-        document.getElementById('artworkYear').textContent = artwork.year;
-        document.getElementById('artworkMedium').textContent = artwork.medium;
-document.getElementById('artworkDescription').textContent = artwork.description;
-        document.getElementById('mainImage').src = artwork.main;
-        document.getElementById('cropImage').src = artwork.crop;
-
-        // Navigation
-        const currentIndex = artworks.findIndex(a => a.id === currentId);
-        const prevArt = artworks[currentIndex - 1] || artworks[artworks.length - 1];
-        const nextArt = artworks[currentIndex + 1] || artworks[0];
-        document.getElementById('prevBtn').href = `artwork.html?id=${prevArt.id}`;
-        document.getElementById('nextBtn').href = `artwork.html?id=${nextArt.id}`;
-
-        // Header scroll
-        window.addEventListener('scroll', () => document.getElementById('mainHeader').classList.toggle('scrolled', window.scrollY > 50));
-
-        // Menu
-        function toggleMenu() {
-            document.querySelector('.hamburger').classList.toggle('active');
-            document.querySelector('.mobile-menu').classList.toggle('active');
-            document.querySelector('.overlay').classList.toggle('active');
-            document.body.style.overflow = document.querySelector('.mobile-menu').classList.contains('active') ? 'hidden' : '';
-        }
-
-        // Dark Mode
-        const themeToggles = document.querySelectorAll('.theme-toggle');
-        const rootElement = document.documentElement;
-        function setTheme(theme) {
-            if (theme === 'dark') {
-                rootElement.setAttribute('data-theme', 'dark');
-                themeToggles.forEach(t => t.textContent = '☀️');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                rootElement.removeAttribute('data-theme');
-                themeToggles.forEach(t => t.textContent = '🌙');
-                localStorage.setItem('theme', 'light');
-            }
-        }
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) setTheme(savedTheme);
-        else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
-        themeToggles.forEach(btn => btn.addEventListener('click', () => setTheme(rootElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')));
-
-        function checkMobile() {
-            const m = document.getElementById('mobile-theme-toggle');
-            m.style.display = window.innerWidth <= 900 ? 'flex' : 'none';
-        }
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-
-        // Reveal animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
     </script>
 </body>
 </html>
