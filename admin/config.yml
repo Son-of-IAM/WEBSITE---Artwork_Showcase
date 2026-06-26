@@ -3,8 +3,8 @@ backend:
   repo: Son-of-IAM/WEBSITE---Artwork_Showcase
   branch: main
 
-media_folder: "Images/artworks"
-public_folder: "Images/artworks"
+media_folder: "Images/full"
+public_folder: "Images/full"
 
 collections:
   - name: "artworks_data"
@@ -12,16 +12,27 @@ collections:
     files:
       - label: "Gallery Database"
         name: "gallery"
-        file: "data/artworks/index.json" # Points directly to your JSON file!
+        file: "data/artworks/index.json"
         fields:
           - label: "Artworks List"
             name: "artworks"
-            widget: "list" # This creates an array [] inside the JSON
-            summary: '{{fields.title}} - {{fields.category}}'
+            widget: "list"
+            summary: '{{fields.title}} — {{fields.category}}'
             fields:
+              - label: "ID"
+                name: "id"
+                widget: "string"
+                hint: "Unique identifier for URLs. Use numbers (1, 2, 3…) or short slugs. Never change an ID once published."
+
               - label: "Title"
                 name: "title"
                 widget: "string"
+
+              - label: "Description"
+                name: "description"
+                widget: "text"
+                required: false
+
               - label: "Category"
                 name: "category"
                 widget: "select"
@@ -31,10 +42,46 @@ collections:
                   - "gospel"
                   - "old"
                   - "graffiti"
-              - label: "Main Image"
-                name: "image"
-                widget: "image"
-              - label: "Cropped Detail"
-                name: "cropImage"
-                widget: "image"
+                hint: "Top-level category. To add a new one later, edit this list in config.yml."
+
+              - label: "Subcategory / Branch"
+                name: "subcategory"
+                widget: "string"
                 required: false
+                hint: "Optional branch within a category, e.g. 'portraits', 'character-design'. Spell it consistently."
+
+              - label: "Year"
+                name: "year"
+                widget: "string"
+                required: false
+                hint: "e.g. 2024"
+
+              - label: "Medium"
+                name: "medium"
+                widget: "string"
+                required: false
+                hint: "e.g. Digital Illustration, Blender 3D Render, Mixed Media"
+
+              - label: "Dimensions"
+                name: "dimensions"
+                widget: "string"
+                required: false
+                hint: "e.g. 24 x 36 in, Digital"
+
+              - label: "Price"
+                name: "price"
+                widget: "string"
+                required: false
+                hint: "Optional. Number only, no symbol (e.g. 120). Leave blank if not for sale."
+
+              - label: "Preview Image (small — gallery grid)"
+                name: "previewImage"
+                widget: "image"
+                media_folder: "Images/tiny"
+                public_folder: "Images/tiny"
+
+              - label: "Full Image (large — detail page)"
+                name: "fullImage"
+                widget: "image"
+                media_folder: "Images/full"
+                public_folder: "Images/full"
