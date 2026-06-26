@@ -1,316 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Son_of_IAM_ | Stirring Hearts Through Art</title>
-    <meta name="description" content="Nigerian Christian creative spreading the gospel through digital art, 3D renders, and visual storytelling.">
-    <link rel="icon" type="image/png" href="Images/LOGO.PNG">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
-    <meta property="og:title" content="Son_of_IAM_ | Stirring Hearts Through Art">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Son_of_IAM_ | Stirring Hearts Through Art</title>
+<meta name="description" content="Nigerian Christian creative spreading the gospel through digital art, 3D renders, and visual storytelling.">
+<link rel="icon" type="image/png" href="Images/LOGO.PNG">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<meta property="og:title" content="Son_of_IAM_ | Stirring Hearts Through Art">
 <meta property="og:description" content="Nigerian creative spreading the gospel through digital art, 3D renders, and visual storytelling.">
 <meta property="og:image" content="https://yourwebsite.com/Images/hero-background.jpg">
 <meta property="og:url" content="https://yourwebsite.com">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
-
-    <header id="mainHeader">
-        <div class="nav-container">
-            <a href="index.html" class="logo-wrapper">
-                <div class="logo-icon">
-                    <img src="Images/LOGO.PNG" alt="Son_of_IAM_ Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-size:24px;\'>🔥</span>';">
-                </div>
-                <div class="logo-text">
-                    <span class="logo">Son_of_IAM_</span>
-                    <span class="logo-tagline">Stirring Hearts Through Art</span>
-                </div>
-            </a>
-            
-          <div class="nav-right">
-                <nav class="desktop-menu">
-                    <a href="work.html">Work</a>
-                    <div class="dropdown">
-                        <a href="shop.html">Shop ▾</a>
-                        <div class="dropdown-menu">
-                            <a href="shop.html#limited-prints">Limited Premium Edition</a>
-                            <a href="shop.html#open-prints">Open Prints Offer</a>
-                            <a href="shop.html#stickers">Stickers</a>
-                            <a href="shop.html#wallpapers">Wallpaper Pack</a>
-                        </div>
-                    </div>
-                    <a href="about.html">About</a>
-                    <a href="commercial.html">Inquiries</a>
-                    <a href="https://medium.com/@xyvyhnd" target="_blank">Articles</a>
-                </nav>
-                <button class="btn-cta" onclick="openActionModal()">Connect</button>
-                <button class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
-            </div>
-            
-            <div style="display: flex; align-items: center; gap: 15px;">
-                <button id="mobile-theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
-                <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>        
+<header id="mainHeader">
+  <div class="nav-container">
+    <a href="index.html" class="logo-wrapper">
+      <div class="logo-icon">
+        <img src="Images/LOGO.PNG" alt="Son_of_IAM_ Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-size:24px;\'>🔥</span>';">
+      </div>
+      <div class="logo-text">
+        <span class="logo">Son_of_IAM_</span>
+        <span class="logo-tagline">Stirring Hearts Through Art</span>
+      </div>
+    </a>
+    <div class="nav-right">
+      <nav class="desktop-menu">
+        <a href="work.html">Work</a>
+        <div class="dropdown">
+          <a href="shop.html">Shop ▾</a>
+          <div class="dropdown-menu">
+            <a href="shop.html#limited-prints">Limited Premium Edition</a>
+            <a href="shop.html#open-prints">Open Prints Offer</a>
+            <a href="shop.html#stickers">Stickers</a>
+            <a href="shop.html#wallpapers">Wallpaper Pack</a>
+          </div>
         </div>
-    </header>
-
-    <div class="overlay" onclick="toggleMenu()"></div>
-    <div class="mobile-menu">
-        <a href="work.html" onclick="toggleMenu()">Work</a>
-        <a href="shop.html" onclick="toggleMenu()">Shop</a>
-        <a href="about.html" onclick="toggleMenu()">About</a>
-        <a href="https://medium.com/@Son_of_IAM_" target="_blank" onclick="toggleMenu()">Articles</a>
-        <a href="commercial.html" onclick="toggleMenu()">Commercial</a>
+        <a href="about.html">About</a>
+        <a href="commercial.html">Inquiries</a>
+        <a href="https://medium.com/@xyvyhnd" target="_blank">Articles</a>
+      </nav>
+      <button class="btn-cta" onclick="openActionModal()">Connect</button>
+      <button class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
     </div>
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <button id="mobile-theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+      <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
 
-    <section class="hero">
-        <div class="hero-content reveal">
-            <h1>STIRRING HEARTS<br>THROUGH ART</h1>
-           <p>Promise Adebayo is a creative called to spread the gospel of Christ through art as God moves across the earth in these times.</p>
-            <p class="scripture">"See, I have called by name Bezalel the son of Uri, the son of Hur, of the tribe of Judah. I have filled him with the Spirit of God in wisdom, in understanding, in knowledge, and in all manner of workmanship"</p>
-            <span class="scripture-reference">Exodus 31:2-3</span>
-        </div>
-    </section>
+<div class="overlay" onclick="toggleMenu()"></div>
+<div class="mobile-menu">
+  <a href="work.html" onclick="toggleMenu()">Work</a>
+  <a href="shop.html" onclick="toggleMenu()">Shop</a>
+  <a href="about.html" onclick="toggleMenu()">About</a>
+  <a href="https://medium.com/@Son_of_IAM_" target="_blank" onclick="toggleMenu()">Articles</a>
+  <a href="commercial.html" onclick="toggleMenu()">Commercial</a>
+</div>
 
-    <section class="home-about-split reveal">
-        <div class="about-portrait">
-            <img src="Images/portrait.jpg" alt="Promise Adebayo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder-text\' style=\'padding:40px;text-align:center;\'>Portrait Image<br>(Add portrait.jpg)</div>';">
-        </div>
-        <div class="about-text-content">
-            <h2 class="section-title">About</h2>
-            <p class="lead">I bring the God dimension into the world through Art.</p>
-            <p>I'm Promise Adebayo a Nigerian creative who uses his gifts in Service to God. My practice currently spans digital illustrations, blender 3D renders, and writing, all unified by a single goal; bringing the God dimension into the world and leading others closer to Him through Art imparted on me by the Holy Spirit in Worship.</p>
-            <a href="about.html" class="btn-cta">Read Full Story →</a>
-        </div>
-    </section>
+<section class="hero">
+  <div class="hero-content reveal">
+    <h1>STIRRING HEARTS<br>THROUGH ART</h1>
+    <!-- UPDATED: Client text change -->
+    <p>SonofIAM is a creative called to spread the gospel of Christ through art as God moves across the earth in these times.</p>
+    <p class="scripture">"See, I have called by name Bezalel the son of Uri, the son of Hur, of the tribe of Judah. I have filled him with the Spirit of God in wisdom, in understanding, in knowledge, and in all manner of workmanship"</p>
+    <span class="scripture-reference">Exodus 31:2-3</span>
+  </div>
+</section>
 
-    <section class="disciplines-section">
-        <div class="disciplines-content">
-            <h2 class="section-title reveal">One Vision<br>Multiple Disciplines</h2>
-         <div class="discipline-grid">
-    <div class="discipline-item reveal">
+<section class="home-about-split reveal">
+  <div class="about-portrait">
+    <img src="Images/portrait.jpg" alt="Promise Adebayo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder-text\' style=\'padding:40px;text-align:center;\'>Portrait Image<br>(Add portrait.jpg)</div>';">
+  </div>
+  <div class="about-text-content">
+    <h2 class="section-title">About</h2>
+    <!-- UPDATED: Client text change -->
+    <p class="lead">Bringing the God dimension into the world through Art.</p>
+    <!-- UPDATED: Client text change -->
+    <p>Promise Adebayo (artist alias — SonofIAM) is a Nigerian creative who uses his gifts in Service to God. His practice currently spans digital illustrations, blender 3D renders, and writing, all unified by a single goal; bringing the God dimension into the world and leading others closer to Him through Art imparted to him by the Holy Spirit in Worship.</p>
+    <a href="about.html" class="btn-cta">Read Full Story →</a>
+  </div>
+</section>
+
+<section class="disciplines-section">
+  <div class="disciplines-content">
+    <h2 class="section-title reveal">One Vision<br>Multiple Disciplines</h2>
+    <div class="discipline-grid">
+      <div class="discipline-item reveal">
         <h3>01</h3>
         <h4>Digital Illustration</h4>
         <p>Bold, Christ centered paintings created Digitally to propagate the worship of Jesus across the world.</p>
-    </div>
-    <div class="discipline-item reveal" style="transition-delay: 0.1s;">
+      </div>
+      <div class="discipline-item reveal" style="transition-delay: 0.1s;">
         <h3>02</h3>
         <h4>Album Art</h4>
         <p>Visual identity for music Worshippers. From brief to billboards.</p>
-    </div>
-    <div class="discipline-item reveal" style="transition-delay: 0.2s;">
+      </div>
+      <div class="discipline-item reveal" style="transition-delay: 0.2s;">
         <h3>03</h3>
         <h4>Brand Campaign</h4>
         <p>Commercial Artwork for brands seeking visual impact with depth.</p>
-    </div>
-    <div class="discipline-item reveal" style="transition-delay: 0.3s;">
+      </div>
+      <div class="discipline-item reveal" style="transition-delay: 0.3s;">
         <h3>04</h3>
         <h4>Writing</h4>
         <p>Articles that complement the visual work.</p>
+      </div>
     </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="section-header reveal">
+    <h2 class="section-title">Selected Works</h2>
+    <p class="section-subtitle">Each piece is an invitation to know Jesus more.</p>
+  </div>
+  <div class="work-categories reveal">
+    <a href="#" class="active">All</a>
+    <a href="#">Paintings</a>
+    <a href="#">3D Art</a>
+    <a href="#">The Gospel Proclaimed</a>
+    <a href="#">Graffiti</a>
+  </div>
+  <div class="gallery-grid">
+    <a href="artwork.html?id=1" class="artwork-card reveal">
+      <div class="artwork-image">
+        <img src="Images/placeholder1.jpg" alt="The Announcing" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #5D7FFF)'">
+      </div>
+      <div class="artwork-overlay"><h3>The Announcing</h3><span>Paintings</span></div>
+    </a>
+    <a href="artwork.html?id=2" class="artwork-card reveal">
+      <div class="artwork-image">
+        <img src="Images/placeholder2.jpg" alt="Throne Room" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #0f0518, #5D7FFF)'">
+      </div>
+      <div class="artwork-overlay"><h3>Throne Room</h3><span>3D Art</span></div>
+    </a>
+    <a href="artwork.html?id=3" class="artwork-card reveal">
+      <div class="artwork-image">
+        <img src="Images/placeholder3.jpg" alt="Deliverance" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #1a0a2e, #7205cd)'">
+      </div>
+      <div class="artwork-overlay"><h3>Deliverance</h3><span>Paintings</span></div>
+    </a>
+    <a href="artwork.html?id=4" class="artwork-card reveal">
+      <div class="artwork-image">
+        <img src="Images/placeholder4.jpg" alt="New Jerusalem" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #f8f5ff)'">
+      </div>
+      <div class="artwork-overlay"><h3>New Jerusalem</h3><span>3D Art</span></div>
+    </a>
+    <a href="artwork.html?id=5" class="artwork-card reveal">
+      <div class="artwork-image">
+        <img src="Images/placeholder5.jpg" alt="The Good Shepherd" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #5D7FFF, #1a0a2e)'">
+      </div>
+      <div class="artwork-overlay"><h3>The Good Shepherd</h3><span>The Gospel Proclaimed</span></div>
+    </a>
+    <a href="artwork.html?id=6" class="artwork-card reveal">
+      <div class="artwork-image">
+        <img src="Images/placeholder6.jpg" alt="Upper Room" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #5D7FFF, #7205cd)'">
+      </div>
+      <div class="artwork-overlay"><h3>Upper Room</h3><span>Paintings</span></div>
+    </a>
+  </div>
+  <div class="view-all-work reveal">
+    <a href="work.html" class="btn-outline">View All Artworks &rarr;</a>
+  </div>
+</section>
+
+<section id="shop" class="shop-preview reveal">
+  <div class="section-header">
+    <h2 class="section-title">Shop</h2>
+    <p class="section-subtitle">Bring the God dimension into your space. All limited and open editions.</p>
+  </div>
+  <div class="shop-grid">
+    <article class="shop-card">
+      <div class="shop-image-wrapper">
+        <img src="Images/shop-1.jpg" alt="Limited Edition" onerror="this.style.display='none';">
+        <span class="badge limited">Limited Drop</span>
+      </div>
+      <div class="shop-info">
+        <h3>Limited premium print</h3>
+        <p>Museum grade printing, certificate of authenticity, and artist signature. Available for a limited time.</p>
+        <a href="limited.html" class="buy-button">Check Live Pricing</a>
+      </div>
+    </article>
+    <article class="shop-card">
+      <div class="shop-image-wrapper">
+        <img src="Images/shop-2.jpg" alt="Open Edition" onerror="this.style.display='none';">
+        <span class="badge open">Open Edition</span>
+      </div>
+      <div class="shop-info">
+        <h3>Open edition</h3>
+        <!-- UPDATED: Client text change -->
+        <p>A beautiful way to welcome the God dimension into your space through timeless Art. Standard frame size canvas with digital QR code access.</p>
+        <a href="https://paystack.com/pay/your-unique-link" target="_blank" class="buy-button">Check Live Pricing</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="work-with-me reveal">
+  <h2 style="font-family: var(--font-primary);">Work with me</h2>
+  <p>Looking for a creative who brings visions, not just visuals? Whether it's a campaign, an album, a fashion collection, or a piece for your collection — let's create something that stirs hearts.</p>
+  <div class="cta-buttons">
+    <a href="commercial.html" class="btn-cta">Commercial Inquiries</a>
+    <button onclick="openActionModal('tab-signup')" class="btn-outline" style="border-color: white; color: white;">Join Inner Circle</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>SON_OF_IAM_</h3>
+      <p>Nigerian creative and worshipper, bringing the God dimension into the world through Art from Lagos.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Navigation</h4>
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="commercial.html">Inquiries</a>
+      <a href="commercial.html">Commercial</a>
+      <a href="shop.html">Shop</a>
+    </div>
+    <div class="footer-links">
+      <h4>Explore</h4>
+      <a href="work.html#paintings">Paintings</a>
+      <a href="work.html#3d-art">3D Art</a>
+      <a href="https://medium.com/@Son_of_IAM_" target="_blank">Articles</a>
+      <a href="work.html#old-artworks">Old Artworks</a>
+    </div>
+    <div class="footer-links">
+      <h4>Follow</h4>
+      <div class="social-pills">
+        <a href="https://instagram.com/son_of_iam_" target="_blank" class="social-pill">Instagram</a>
+        <a href="https://x.com/son_of_iam_?s=21" target="_blank" class="social-pill">X (Twitter)</a>
+        <a href="https://www.tiktok.com/@son_of_iam_?_t=zs-9032ktsad1b&_r=1" target="_blank" class="social-pill">Tiktok</a>
+        <a href="https://www.behance.net/themainugly" target="_blank" class="social-pill">Behance</a>
+        <a href="https://pin.it/4kjJwst" target="_blank" class="social-pill">Pinterest</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Son_of_IAM_. All rights reserved.
+  </div>
+</footer>
+
+<!-- =============================================
+     CONNECT MODAL
+     Inner Circle tab now uses Mailchimp.
+     Replace the action URL + hidden fields
+     with your actual Mailchimp audience embed.
+============================================== -->
+<div class="modal-overlay" id="actionModal">
+  <div class="modal-content action-modal-content">
+    <button class="close-modal" onclick="closeActionModal()">&times;</button>
+    <div class="modal-tabs">
+      <button class="tab-btn active" onclick="switchTab(event, 'tab-signup')">Sign Up</button>
+      <button class="tab-btn" onclick="switchTab(event, 'tab-work')">Work With Me</button>
+      <button class="tab-btn" onclick="switchTab(event, 'tab-follow')">Follow</button>
+    </div>
+
+    <!-- TAB: SIGN UP (Mailchimp) -->
+    <div id="tab-signup" class="tab-panel active">
+      <h2 style="font-family: var(--font-primary); font-size: 2rem; margin-bottom: 10px;">Join the Inner Circle</h2>
+      <p style="color: var(--text-muted); margin-bottom: 25px;">Get exclusive access to early print drops, behind the scenes process, and what The Father lays on my heart to share with you.</p>
+
+      <!-- ============================================================
+           MAILCHIMP EMBED — Replace action URL & hidden fields below.
+
+           Steps:
+           1. Log in to Mailchimp → Audience → Signup forms → Embedded forms
+           2. Select "Unstyled" and copy your form action URL
+              (looks like: https://yoursite.us1.list-manage.com/subscribe/post?u=xxx&id=yyy)
+           3. Paste it into action="" below.
+           4. Update the bot-protection input name (b_XXXXXXXX_XXXXXXXX)
+              with the value from your Mailchimp embed code.
+
+           Automation email setup (in Mailchimp):
+           - Go to Automations → Classic Automations → Welcome new subscribers
+           - Pick your audience → set trigger to "Subscribes to audience"
+           - Write your welcome email (subject, body, from name)
+           - Activate the automation — it fires automatically on signup.
+           ============================================================ -->
+      <div id="mc_embed_signup" style="width: 100%; max-width: 400px; margin: 0 auto;">
+        <form action="https://gmail.us22.list-manage.com/subscribe/post?u=cb1fd926982378a0b498008fe&amp;id=63d516ae5f&amp;f_id=0014c2e1f0"
+              method="post"
+              id="mc-embedded-subscribe-form"
+              name="mc-embedded-subscribe-form"
+              class="validate"
+              target="_blank"
+              novalidate
+              style="display: flex; flex-direction: column; gap: 12px;">
+          <input type="email"
+                 name="EMAIL"
+                 class="required email"
+                 id="mce-EMAIL"
+                 placeholder="Enter your email address"
+                 required
+                 style="padding: 15px; border: 1px solid var(--border-light); border-radius: 8px; width: 100%; background: var(--bg-light); color: var(--text-dark); font-family: inherit; font-size: 1rem;">
+          <!-- Bot protection — do not remove -->
+          <div style="position: absolute; left: -5000px;" aria-hidden="true">
+            <input type="text" name="b_cb1fd926982378a0b498008fe_63d516ae5f">
+          </div>
+          <div id="mce-responses">
+            <div id="mce-error-response" style="display:none; color: red; font-size: 0.9rem;"></div>
+            <div id="mce-success-response" style="display:none; color: var(--color-dominant); font-size: 0.9rem;"></div>
+          </div>
+          <button type="submit"
+                  name="subscribe"
+                  id="mc-embedded-subscribe"
+                  class="btn-cta"
+                  style="width: 100%; border: none; cursor: pointer;">
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- TAB: WORK WITH ME -->
+    <div id="tab-work" class="tab-panel">
+      <h2 style="font-family: var(--font-primary); font-size: 2rem; margin-bottom: 10px;">Let's Build Together</h2>
+      <p style="color: var(--text-muted); margin-bottom: 25px;">Looking for a creative who brings visions, not just visuals? I'm currently taking select commissions and brand collaborations.</p>
+      <a href="commercial.html" class="btn-cta">Go to Commercial Hub &rarr;</a>
+    </div>
+
+    <!-- TAB: FOLLOW -->
+    <div id="tab-follow" class="tab-panel">
+      <h2 style="font-family: var(--font-primary); font-size: 2rem; margin-bottom: 10px;">Connect & Follow</h2>
+      <p style="color: var(--text-muted); margin-bottom: 25px;">Join the community and see the latest artworks as they are created.</p>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+        <a href="https://instagram.com/son_of_iam_" class="btn-outline">Instagram</a>
+        <a href="https://twitter.com/son_of_iam_" class="btn-outline">X (Twitter)</a>
+        <a href="https://youtube.com/@son_of_iam_" class="btn-outline">YouTube</a>
+      </div>
+    </div>
+  </div>
 </div>
-        </div>
-    </section>
 
-    <section id="work">
-        <div class="section-header reveal">
-            <h2 class="section-title">Selected Works</h2>
-            <p class="section-subtitle">Each piece is an invitation to know Jesus more.</p>
-        </div>
-        
-        <div class="work-categories reveal">
-            <a href="#" class="active">All</a>
-            <a href="#">Paintings</a>
-            <a href="#">3D Art</a>
-            <a href="#">The Gospel Proclaimed</a>
-            <a href="#">Graffiti</a>
-        </div>
-
-        <div class="gallery-grid">
-            <a href="artwork.html?id=1" class="artwork-card reveal">
-                <div class="artwork-image">
-                    <img src="Images/placeholder1.jpg" alt="The Announcing" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #5D7FFF)'">
-                </div>
-                <div class="artwork-overlay">
-                    <h3>The Announcing</h3>
-                    <span>Paintings</span>
-                </div>
-            </a>
-
-            <a href="artwork.html?id=2" class="artwork-card reveal">
-                <div class="artwork-image">
-                    <img src="Images/placeholder2.jpg" alt="Throne Room" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #0f0518, #5D7FFF)'">
-                </div>
-                <div class="artwork-overlay">
-                    <h3>Throne Room</h3>
-                    <span>3D Art</span>
-                </div>
-            </a>
-
-            <a href="artwork.html?id=3" class="artwork-card reveal">
-                <div class="artwork-image">
-                    <img src="Images/placeholder3.jpg" alt="Deliverance" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #1a0a2e, #7205cd)'">
-                </div>
-                <div class="artwork-overlay">
-                    <h3>Deliverance</h3>
-                    <span>Paintings</span>
-                </div>
-            </a>
-
-            <a href="artwork.html?id=4" class="artwork-card reveal">
-                <div class="artwork-image">
-                    <img src="Images/placeholder4.jpg" alt="New Jerusalem" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #f8f5ff)'">
-                </div>
-                <div class="artwork-overlay">
-                    <h3>New Jerusalem</h3>
-                    <span>3D Art</span>
-                </div>
-            </a>
-
-            <a href="artwork.html?id=5" class="artwork-card reveal">
-                <div class="artwork-image">
-                    <img src="Images/placeholder5.jpg" alt="The Good Shepherd" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #5D7FFF, #1a0a2e)'">
-                </div>
-                <div class="artwork-overlay">
-                    <h3>The Good Shepherd</h3>
-                    <span>The Gospel Proclaimed</span>
-                </div>
-            </a>
-
-            <a href="artwork.html?id=6" class="artwork-card reveal">
-                <div class="artwork-image">
-                    <img src="Images/placeholder6.jpg" alt="Upper Room" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #5D7FFF, #7205cd)'">
-                </div>
-                <div class="artwork-overlay">
-                    <h3>Upper Room</h3>
-                    <span>Paintings</span>
-                </div>
-            </a>
-        </div>
-
-        <div class="view-all-work reveal">
-            <a href="work.html" class="btn-outline">View All Artworks &rarr;</a>
-        </div>
-    </section>
-
-    <section id="shop" class="shop-preview reveal">
-        <div class="section-header">
-            <h2 class="section-title">Shop</h2>
-            <p class="section-subtitle">Bring the God dimension into your space. All limited and open editions.</p>
-        </div>
-
-        <div class="shop-grid">
-            <article class="shop-card">
-                <div class="shop-image-wrapper">
-                    <img src="Images/shop-1.jpg" alt="Limited Edition" onerror="this.style.display='none';">
-                    <span class="badge limited">Limited Drop</span>
-                </div>
-                <div class="shop-info">
-                    <h3>Limited premium print</h3>
-                    <p>Museum grade printing, certificate of authenticity, and artist signature. Available for a limited time.</p>
-                    <a href="limited.html" class="buy-button">Check Live Pricing</a>
-                </div>
-            </article>
-
-            <article class="shop-card">
-                <div class="shop-image-wrapper">
-                    <img src="Images/shop-2.jpg" alt="Open Edition" onerror="this.style.display='none';">
-                    <span class="badge open">Open Edition</span>
-                </div>
-                <div class="shop-info">
-                    <h3>Open edition</h3>
-                    <p>Standard canvas formats with digital QR code access. Unlimited availability.</p>
-                    <a href="https://paystack.com/pay/your-unique-link" target="_blank" class="buy-button">Check Live Pricing</a>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <section class="work-with-me reveal">
-        <h2 style="font-family: var(--font-primary);">Work with me</h2>
-        <p>Looking for a creative who brings visions, not just visuals? Whether it's a campaign, an album, a fashion collection, or a piece for your collection — let's create something that stirs hearts.</p>
-        <div class="cta-buttons">
-            <a href="commercial.html" class="btn-cta">Commercial Inquiries</a>
-            <button onclick="openActionModal('tab-signup')" class="btn-outline" style="border-color: white; color: white;">Join Inner Circle</button>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <h3>SON_OF_IAM_</h3>
-                <p>Nigerian creative and worshipper, bringing the God dimension into the world through Art from Lagos.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Navigation</h4>
-                <a href="work.html">Work</a>
-                <a href="about.html">About</a>
-                <a href="commercial.html">Inquiries</a>
-                <a href="commercial.html">Commercial</a>
-                <a href="shop.html">Shop</a>
-            </div>
-            <div class="footer-links">
-                <h4>Explore</h4>
-                <a href="work.html#paintings">Paintings</a>
-                <a href="work.html#3d-art">3D Art</a>
-                <a href="https://medium.com/@Son_of_IAM_" target="_blank">Articles</a>
-                <a href="work.html#old-artworks">Old Artworks</a>
-            </div>
-            <div class="footer-links">
-                <h4>Follow</h4>
-                <div class="footer-links"><h4>Follow</h4><div class="social-pills"><a href="https://instagram.com/son_of_iam_" target="_blank" class="social-pill">Instagram</a><a href="https://x.com/son_of_iam_?s=21" target="_blank" class="social-pill">X (Twitter)</a><a href="https://www.tiktok.com/@son_of_iam_?_t=zs-9032ktsad1b&_r=1" target="_blank" class="social-pill">Tiktok</a><a href="https://www.behance.net/themainugly" target="_blank" class="social-pill">Behance</a><a href="https://pin.it/4kjJwst" target="_blank" class="social-pill">Pinterest</a></div></div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            © 2026 Son_of_IAM_. All rights reserved.
-        </div>
-    </footer>
-
-    <div class="modal-overlay" id="actionModal">
-        <div class="modal-content action-modal-content">
-            <button class="close-modal" onclick="closeActionModal()">&times;</button>
-            
-            <div class="modal-tabs">
-                <button class="tab-btn active" onclick="switchTab(event, 'tab-signup')">Sign Up</button>
-                <button class="tab-btn" onclick="switchTab(event, 'tab-work')">Work With Me</button>
-                <button class="tab-btn" onclick="switchTab(event, 'tab-follow')">Follow</button>
-            </div>
-
-            <div id="tab-signup" class="tab-panel active">
-                <h2 style="font-family: var(--font-primary); font-size: 2rem; margin-bottom: 10px;">Join the Inner Circle</h2>
-                <p style="color: var(--text-muted); margin-bottom: 25px;">Get exclusive access to early print drops, behind the scenes process, and what The Father lays on my heart to share with you.</p>
-                <form action="https://formspree.io/f/xyklyowb" method="POST" style="display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 0 auto;">
-                    <input type="email" name="Newsletter Email" placeholder="Enter your email address" required style="padding: 15px; border: 1px solid var(--border-light); border-radius: 8px; width: 100%; background: var(--bg-light); color: var(--text-dark);">
-                    <button type="submit" class="btn-cta" style="width: 100%;">Subscribe</button>
-                </form>
-            </div>
-
-            <div id="tab-work" class="tab-panel">
-                <h2 style="font-family: var(--font-primary); font-size: 2rem; margin-bottom: 10px;">Let's Build Together</h2>
-                <p style="color: var(--text-muted); margin-bottom: 25px;">Looking for a creative who brings visions, not just visuals? I'm currently taking select commissions and brand collaborations.</p>
-                <a href="commercial.html" class="btn-cta">Go to Commercial Hub &rarr;</a>
-            </div>
-
-            <div id="tab-follow" class="tab-panel">
-                <h2 style="font-family: var(--font-primary); font-size: 2rem; margin-bottom: 10px;">Connect & Follow</h2>
-                <p style="color: var(--text-muted); margin-bottom: 25px;">Join the community and see the latest artworks as they are created.</p>
-                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
-                    <a href="https://instagram.com/son_of_iam_" class="btn-outline">Instagram</a>
-                    <a href="https://twitter.com/son_of_iam_" class="btn-outline">X (Twitter)</a>
-                    <a href="https://youtube.com/@son_of_iam_" class="btn-outline">YouTube</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+<script src="https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
