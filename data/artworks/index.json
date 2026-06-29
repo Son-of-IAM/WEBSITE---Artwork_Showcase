@@ -1,0 +1,26 @@
+{
+  "artworks": [
+    {
+      "title": "The Announcing",
+      "description": "This piece emerged from a season of deep worship. The colors were chosen to reflect the tension between divine glory and human fragility — a reminder that Christ meets us in our brokenness.",
+      "category": "paintings",
+      "subcategory": "",
+      "year": "2024",
+      "medium": "Digital Illustration",
+      "dimensions": "24 x 36 in",
+      "price": "",
+      "image": "Images/full/placeholder1.jpg"
+    },
+    {
+      "title": "Throne Room",
+      "description": "A vision of heavenly worship. Built in Blender over three weeks, every light ray was placed intentionally to guide the eye upward toward the source of all light.",
+      "category": "3d-art",
+      "subcategory": "",
+      "year": "2024",
+      "medium": "Blender 3D Render",
+      "dimensions": "Digital",
+      "price": "",
+      "image": "Images/full/placeholder2.jpg"
+    }
+  ]
+}

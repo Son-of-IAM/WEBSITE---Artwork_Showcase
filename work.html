@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work | Son_of_IAM_</title>
+    <meta name="description" content="Paintings, 3D Art, The Gospel Proclaimed, and more by Son_of_IAM_.">
+    <link rel="icon" type="image/png" href="Images/LOGO.PNG">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Custom Domain SEO / Open Graph Tags -->
+    <meta property="og:title" content="Work | Son_of_IAM_">
+    <meta property="og:description" content="Nigerian creative spreading the gospel through digital art, 3D renders, and visual storytelling.">
+    <meta property="og:image" content="https://sonofiam.com/Images/hero-background.jpg">
+    <meta property="og:url" content="https://sonofiam.com/work.html">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK59NQ2PR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XMK59NQ2PR');
+    </script>
+
+    <!-- Prevents Dark Mode Flashing/Glitching -->
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+
+    <style>
+        /* Custom Work Page Hero Styling */
+        .work-hero {
+            margin-top: 80px; 
+            padding: 6rem 5% 2rem; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .work-hero h1 { 
+    font-size: clamp(4.5rem, 12vw, 8rem); /* Massive text */
+    margin-bottom: 0.5rem; 
+    text-transform: uppercase; 
+    line-height: 1;
+    color: var(--text-dark) !important; /* Forces perfect contrast */
+}
+        .work-hero > p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+        .scripture-block { 
+            max-width: 800px; 
+            margin: 3rem auto; 
+            text-align: center; 
+            padding: 2rem; 
+            position: relative; 
+        }
+        .scripture-block .scripture { 
+            font-family: var(--font-handwriting); 
+            font-size: clamp(1.4rem, 4vw, 2.2rem); /* Reduced scripture size */
+            line-height: 1.4; 
+            color: var(--color-dominant); 
+            margin-bottom: 1rem; 
+        }
+    </style>
+</head>
+<body>
+
+    <header id="mainHeader">
+        <div class="nav-container">
+            <a href="index.html" class="logo-wrapper">
+                <div class="logo-icon"><img src="Images/LOGO.PNG" alt="Son_of_IAM_ Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-size:24px;\'>🔥</span>';"></div>
+                <div class="logo-text"><span class="logo">Son_of_IAM_</span><span class="logo-tagline">Stirring Hearts Through Art</span></div>
+            </a>
+            <div class="nav-right">
+                <nav class="desktop-menu">
+                    <a href="work.html" style="color: var(--color-dominant);">Work</a>
+                    <a href="shop.html">Shop</a>
+                    <a href="about.html">About</a>
+                    <a href="https://medium.com/@xyvyhnd" target="_blank">Articles</a>
+                </nav>
+                <a href="commercial.html" class="btn-cta">Inquiries</a>
+                <button class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+            </div>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <button id="mobile-theme-toggle" class="theme-toggle" style="display: none;" aria-label="Toggle Dark Mode">🌙</button>
+                <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="overlay" onclick="toggleMenu()"></div>
+    <div class="mobile-menu">
+        <a href="work.html" onclick="toggleMenu()">Work</a>
+        <a href="shop.html" onclick="toggleMenu()">Shop</a>
+        <a href="about.html" onclick="toggleMenu()">About</a>
+        <a href="https://medium.com/@xyvyhnd" target="_blank" onclick="toggleMenu()">Articles</a>
+        <a href="commercial.html" onclick="toggleMenu()">Commercial</a>
+    </div>
+
+    <section class="work-hero">
+        <h1 class="reveal">Work</h1>
+        <p class="reveal">Each piece is an invitation to know Jesus more.</p>
+        <div class="scripture-block reveal">
+            <p class="scripture">"This is eternal life: that they may know You, the only true God, and Jesus Christ, whom You have sent."</p>
+            <span class="scripture-reference">John 17:3 — The ethos behind every work</span>
+        </div>
+    </section>
+
+    <section id="paintings" class="category-section">
+        <div class="category-header reveal">
+            <h2>Paintings</h2>
+            <span>Selected Works</span>
+        </div>
+        <div class="category-grid" id="paintings-grid"></div>
+    </section>
+
+    <section id="graffiti" class="category-section">
+        <div class="category-header reveal">
+            <h2>Graffiti</h2>
+            <span>Selected Works</span>
+        </div>
+        <div class="category-grid" id="graffiti-grid"></div>
+    </section>
+
+    <section id="3d-art" class="category-section" style="background: var(--bg-light); border-radius: 30px; margin: 2rem auto;">
+        <div class="category-header reveal">
+            <h2>3D Art</h2>
+            <span>Blender Renders</span>
+        </div>
+        <div class="category-grid" id="3d-art-grid"></div>
+    </section>
+
+    <section id="gospel" class="category-section">
+        <div class="category-header reveal">
+            <h2>The Gospel Proclaimed</h2>
+            <span>Collection</span>
+        </div>
+        <div class="category-grid" id="gospel-grid"></div>
+    </section>
+
+    <section id="articles" class="category-section articles-section-bg">
+        <div class="category-header reveal" style="border: none; justify-content: center;">
+            <h2>Articles</h2>
+        </div>
+        <p class="reveal" style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem;">Thoughts on faith, creativity, and the journey.</p>
+        <a href="https://medium.com/@xyvyhnd" target="_blank" class="medium-link reveal">Read on Medium →</a>
+    </section>
+
+    <section id="old-artworks" class="category-section">
+        <div class="category-header reveal">
+            <h2>Old Artworks</h2>
+            <span>Archive</span>
+        </div>
+        <div class="archive-grid" id="old-artworks-grid"></div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand"><h3>SON_OF_IAM_</h3><p>Nigerian creative and worshipper, bringing the God dimension into the world through Art from Lagos.</p></div>
+            <div class="footer-links"><h4>Navigation</h4><a href="work.html">Work</a><a href="about.html">About</a><a href="commercial.html">Commercial</a><a href="shop.html">Shop</a></div>
+            <div class="footer-links"><h4>Explore</h4><a href="work.html#paintings">Paintings</a><a href="work.html#3d-art">3D Art</a><a href="https://medium.com/@Son_of_IAM_" target="_blank">Articles</a><a href="work.html#old-artworks">Old Artworks</a></div>
+            <div class="footer-links"><h4>Follow</h4><div class="social-pills"><a href="https://instagram.com/son_of_iam_" target="_blank" class="social-pill">Instagram</a><a href="https://x.com/son_of_iam_?s=21" target="_blank" class="social-pill">X (Twitter)</a><a href="https://www.tiktok.com/@son_of_iam_?_t=zs-9032ktsad1b&_r=1" target="_blank" class="social-pill">Tiktok</a><a href="https://www.behance.net/themainugly" target="_blank" class="social-pill">Behance</a><a href="https://pin.it/4kjJwst" target="_blank" class="social-pill">Pinterest</a></div></div>
+        </div>
+        <div class="footer-bottom">© 2026 Son_of_IAM_. All rights reserved.</div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

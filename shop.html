@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Son_of_IAM_ | Stirring Hearts Through Art">
+    <meta property="og:description" content="Nigerian creative spreading the gospel through digital art, 3D renders, and visual storytelling.">
+    <meta property="og:image" content="https://sonofiam.com/Images/hero-background.jpg">
+    <meta property="og:url" content="https://sonofiam.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Shop — The Mysteries | Son_of_IAM_</title>
+    <meta name="description" content="The Son_of_IAM_ shop is opening soon. Join the inner circle to be first in line.">
+    <link rel="icon" type="image/png" href="Images/LOGO.PNG">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK59NQ2PR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XMK59NQ2PR');
+    </script>
+    
+    <style>
+        :root {
+            --color-dominant: #7205cd;
+            --color-compliment: #5D7FFF;
+            --bg-light: #f5f5f7;
+            --bg-white: #ffffff;
+            --text-dark: #111111;
+            --text-muted: #666666;
+            --border-light: #e0e0e0;
+            --font-primary: 'Optima', 'Segoe UI', sans-serif;
+            --font-secondary: 'Georgia', 'Times New Roman', serif;
+            --font-handwriting: 'Caveat', cursive;
+            --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        [data-theme="dark"] {
+            --bg-white: #050505;
+            --bg-light: #0f0f0f;
+            --text-dark: #f5f5f7;
+            --text-muted: #888888;
+            --border-light: #222222;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-secondary);
+            color: var(--text-dark);
+            background: var(--bg-white);
+            line-height: 1.8;
+            overflow-x: hidden;
+            transition: background-color 0.6s ease, color 0.6s ease, filter 1s ease;
+            font-size: 18px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* -------------------------------------------
+           EASTER EGG: BEZALEL MODE (Film Grain & Desaturation)
+        ------------------------------------------- */
+        body.bezalel-mode {
+            filter: grayscale(80%) contrast(1.1) sepia(20%);
+        }
+        body.bezalel-mode::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            opacity: 0.8;
+        }
+
+        /* -------------------------------------------
+           CANVAS LAYERS
+        ------------------------------------------- */
+        #interactive-canvas, #fire-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            pointer-events: none;
+        }
+        #interactive-canvas { z-index: 0; }
+        #fire-canvas { z-index: 6000; opacity: 0; transition: opacity 1s; } /* For Konami */
+
+        header, .coming-soon-hero, footer, .shop-preview, #secret-overlay, #codex-modal {
+            position: relative;
+            z-index: 10; 
+        }
+
+        /* -------------------------------------------
+           HEADER & NAV
+        ------------------------------------------- */
+        h1, h2, h3 { font-family: var(--font-primary); font-weight: 700; letter-spacing: -0.02em; }
+        a { text-decoration: none; color: inherit; }
+
+        header {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1.2rem 5%;
+            border-bottom: 1px solid rgba(114, 5, 205, 0.08);
+            transition: var(--transition);
+        }
+        [data-theme="dark"] header {
+            background: rgba(5,5,5,0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo-wrapper { display: flex; align-items: center; gap: 1rem; cursor: pointer; user-select: none; }
+        .logo-icon { width: 48px; height: 48px; transition: var(--transition); }
+        .logo-icon img { width: 100%; height: 100%; object-fit: contain; }
+        .logo { font-size: 1.4rem; font-weight: 700; color: var(--text-dark); font-family: var(--font-primary); letter-spacing: 1px; transition: color 0.3s; }
+        .logo-tagline { font-size: 0.65rem; color: var(--color-dominant); text-transform: uppercase; font-weight: 600; letter-spacing: 2px; font-family: var(--font-primary); transition: color 0.3s; }
+        
+        /* 7th Click Logo Glow */
+        .logo-wrapper.golden .logo { color: #d4af37 !important; text-shadow: 0 0 20px rgba(212, 175, 55, 0.8); }
+        .logo-wrapper.golden .logo-tagline { color: #d4af37 !important; }
+        .logo-wrapper.golden .logo-icon { filter: drop-shadow(0 0 15px #d4af37) hue-rotate(45deg); transform: scale(1.1); }
+
+        .nav-right { display: flex; align-items: center; gap: 2.5rem; }
+        .desktop-menu { display: flex; gap: 2.5rem; align-items: center; font-family: var(--font-primary); }
+        .desktop-menu a { font-weight: 600; font-size: 0.85rem; transition: var(--transition); position: relative; padding: 0.5rem 0; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-dark); }
+        .desktop-menu a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--color-dominant); transition: width 0.3s ease; }
+        .desktop-menu a:hover::after { width: 100%; }
+        
+        .theme-toggle { background: none; border: none; font-size: 1.3rem; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .theme-toggle:hover { background: var(--bg-light); transform: rotate(15deg); }
+
+        /* -------------------------------------------
+           MAIN HERO & ORB
+        ------------------------------------------- */
+        .coming-soon-hero {
+            flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 10rem 5% 4rem; max-width: 800px; margin: 0 auto;
+        }
+
+        .orb-container {
+            position: relative; width: 180px; height: 180px; margin-bottom: 3rem;
+            cursor: pointer; transition: transform 0.5s ease; user-select: none; -webkit-user-select: none;
+        }
+        .orb-container:active { transform: scale(0.9); }
+        .orb-container.holding .orb { animation: orbHoldPulse 0.5s ease-in-out forwards; box-shadow: 0 0 60px rgba(114, 5, 205, 0.8), 0 0 100px rgba(93, 127, 255, 0.6); }
+        .orb-container.holding .orb-ring { border-color: rgba(114, 5, 205, 0.8); animation-duration: 2s; }
+        
+        .orb {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 100px; border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, var(--color-compliment), var(--color-dominant));
+            box-shadow: 0 0 40px rgba(114, 5, 205, 0.4), 0 0 80px rgba(93, 127, 255, 0.2);
+            animation: orbPulse 3s ease-in-out infinite; transition: box-shadow 0.5s ease;
+        }
+        .orb-ring {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            border: 2px solid rgba(114, 5, 205, 0.3); border-radius: 50%; width: 140px; height: 140px;
+            animation: orbSpin 8s linear infinite; transition: border-color 0.5s ease;
+        }
+        .orb-ring:nth-child(2) { width: 180px; height: 180px; border-color: rgba(93, 127, 255, 0.2); animation-duration: 12s; animation-direction: reverse; }
+        
+        @keyframes orbPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; } 50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; } }
+        @keyframes orbHoldPulse { 100% { transform: translate(-50%, -50%) scale(1.4); } }
+        @keyframes orbSpin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+
+        .coming-soon-hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1rem; transition: transform 0.2s ease-out; }
+        .coming-soon-hero > p { color: var(--text-muted); font-size: 1.2rem; max-width: 500px; margin-bottom: 3rem; }
+
+        /* Form with Magnetic Button */
+        .notify-form { width: 100%; max-width: 480px; display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; z-index: 20; position: relative; }
+        .notify-form input { flex: 1; min-width: 240px; padding: 1rem 1.5rem; border: 2px solid var(--border-light); border-radius: 12px; background: var(--bg-white); color: var(--text-dark); font-family: var(--font-primary); font-size: 1rem; transition: var(--transition); }
+        .notify-form input:focus { outline: none; border-color: var(--color-dominant); }
+        
+        .magnetic-wrap { position: relative; display: inline-block; }
+        .notify-form button {
+            padding: 1rem 2rem; background: var(--color-dominant); color: white; border: none; border-radius: 12px;
+            font-family: var(--font-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
+            font-size: 0.85rem; cursor: pointer; transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.3s;
+        }
+        .notify-form button:hover { background: var(--color-compliment); }
+
+        /* Cursor Spark Trail Target */
+        .shop-preview { margin-top: 4rem; opacity: 0.6; font-family: var(--font-primary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); padding: 2rem; cursor: crosshair; }
+        
+        .spark { position: fixed; width: 4px; height: 4px; background: var(--color-dominant); border-radius: 50%; pointer-events: none; z-index: 9999; animation: sparkFade 0.8s ease-out forwards; box-shadow: 0 0 10px var(--color-dominant); }
+        @keyframes sparkFade { 0% { opacity: 1; transform: scale(1) translateY(0); } 100% { opacity: 0; transform: scale(0) translateY(-20px); } }
+
+        /* -------------------------------------------
+           MODALS & OVERLAYS
+        ------------------------------------------- */
+        /* Orb Secret Overlay */
+        #secret-overlay {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95); z-index: 5000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: 1.5s ease; text-align: center; padding: 2rem;
+        }
+        #secret-overlay.revealed { opacity: 1; visibility: visible; }
+        #secret-overlay p.scripture { font-family: var(--font-handwriting); font-size: clamp(2rem, 5vw, 4rem); color: var(--color-dominant); max-width: 800px; margin-bottom: 1rem; text-shadow: 0 0 20px rgba(114, 5, 205, 0.5); transform: translateY(20px); opacity: 0; transition: all 1.5s ease 0.5s; }
+        #secret-overlay p.scripture-ref { font-family: var(--font-primary); font-size: 1.2rem; color: var(--color-compliment); letter-spacing: 3px; text-transform: uppercase; transform: translateY(20px); opacity: 0; transition: all 1.5s ease 1s; }
+        #secret-overlay.revealed p { transform: translateY(0); opacity: 1; }
+        .close-secret { position: absolute; top: 40px; right: 40px; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; opacity: 0.5; transition: 0.3s; }
+        .close-secret:hover { opacity: 1; transform: rotate(90deg); }
+
+        /* Idle Blessing Toast */
+        .toast {
+            position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%);
+            background: var(--bg-white); border: 1px solid var(--border-light); box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            padding: 1.2rem 2rem; border-radius: 30px; font-family: var(--font-primary); font-size: 0.9rem;
+            color: var(--text-dark); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            z-index: 8000; opacity: 0; transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .toast.show { bottom: 40px; opacity: 1; }
+
+        /* 7-Click Secret Modal */
+        #gold-modal {
+            position: fixed; inset: 0; background: rgba(255,255,255,0.95); z-index: 6000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: 0.5s; text-align: center;
+        }
+        [data-theme="dark"] #gold-modal { background: rgba(5,5,5,0.95); }
+        #gold-modal.active { opacity: 1; visibility: visible; }
+        .gold-text { font-family: var(--font-primary); color: #d4af37; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 2rem; font-weight: 700; text-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+        .discount-code { background: var(--bg-light); border: 2px dashed #d4af37; padding: 1rem 3rem; font-size: 2rem; font-family: monospace; font-weight: bold; color: var(--text-dark); border-radius: 12px; }
+
+        /* The Codex (Hint System) */
+        .codex-trigger {
+            position: fixed; bottom: 20px; right: 20px; font-size: 1.2rem; color: var(--text-muted);
+            opacity: 0.2; cursor: pointer; z-index: 9000; transition: 0.3s; font-family: monospace; font-weight: bold;
+        }
+        .codex-trigger:hover { opacity: 1; color: var(--color-dominant); }
+        
+        #codex-modal {
+            position: fixed; inset: 0; background: rgba(10,10,12,0.98); z-index: 9000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: 0.4s; color: #fff;
+        }
+        #codex-modal.active { opacity: 1; visibility: visible; }
+        .codex-content { max-width: 600px; width: 90%; text-align: left; border: 1px solid rgba(114, 5, 205, 0.3); border-radius: 12px; padding: 3rem; background: rgba(0,0,0,0.5); box-shadow: 0 0 50px rgba(114, 5, 205, 0.1); }
+        .codex-title { font-family: var(--font-primary); font-size: 2rem; color: var(--color-dominant); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem; }
+        .codex-progress { font-family: monospace; font-size: 1rem; color: #d4af37; margin-bottom: 2rem; }
+        .hint-list { list-style: none; display: flex; flex-direction: column; gap: 1.5rem; font-family: var(--font-primary); font-size: 1rem; letter-spacing: 1px; }
+        .hint-item { display: flex; gap: 1rem; align-items: flex-start; opacity: 0.6; transition: 0.3s; }
+        .hint-item.unlocked { opacity: 1; color: #d4af37; text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
+        .hint-icon { font-size: 1.2rem; }
+
+        /* Footer */
+        footer { background: transparent; padding: 3rem 5%; text-align: center; }
+        .footer-bottom { font-family: var(--font-primary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.4; cursor: pointer; transition: 0.3s; }
+        .footer-bottom:hover { opacity: 1; color: var(--color-dominant); }
+    </style>
+</head>
+<body>
+
+    <!-- CANVAS LAYERS -->
+    <canvas id="interactive-canvas"></canvas>
+    <canvas id="fire-canvas"></canvas>
+
+    <!-- HEADER -->
+    <header id="mainHeader">
+        <div class="nav-container">
+            <!-- 7-Click Secret Target -->
+            <div class="logo-wrapper" id="mystery-logo" title="Home">
+                <div class="logo-icon">
+                    <img src="Images/LOGO.PNG" alt="Son_of_IAM_ Logo" onerror="this.style.display='none';">
+                </div>
+                <div class="logo-text">
+                    <span class="logo">Son_of_IAM_</span>
+                    <span class="logo-tagline">Stirring Hearts Through Art</span>
+                </div>
+            </div>
+            <div class="nav-right">
+                <nav class="desktop-menu">
+                    <a href="work.html">Work</a>
+                    <a href="shop.html" style="color: var(--color-dominant);">Shop</a>
+                    <a href="about.html">About</a>
+                    <a href="https://medium.com/@xyvyhnd" target="_blank">Articles</a>
+                </nav>
+                <button class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="coming-soon-hero">
+        
+        <!-- Orb Long-Press Target -->
+        <div class="orb-container" id="mystery-orb" title="Hold">
+            <div class="orb-ring"></div>
+            <div class="orb-ring"></div>
+            <div class="orb"></div>
+            <div class="orb-dot"></div>
+        </div>
+
+        <h1>Shop Opening Soon</h1>
+        <p>Bringing the God dimension into your space. Prints, wallpapers, and more — arriving later this year.</p>
+
+        <!-- Form with Magnetic Button -->
+        <form class="notify-form" action="https://formspree.io/f/xyklyowb" method="POST">
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <input type="hidden" name="_next" value="https://son-of-iam.github.io/WEBSITE---Artwork_Showcase/thank-you.html">
+            <div class="magnetic-wrap">
+                <button type="submit" id="magnetic-btn">Notify Me</button>
+            </div>
+        </form>
+
+        <!-- Spark Trail Target -->
+        <div class="shop-preview" id="spark-zone" title="Move cursor here">
+            Hover: Open Edition Prints · Limited Premium · Wallpaper Packs
+        </div>
+    </main>
+
+    <!-- Overlays -->
+    <div id="secret-overlay">
+        <button class="close-secret" onclick="document.getElementById('secret-overlay').classList.remove('revealed')">&times;</button>
+        <p class="scripture">"I have filled him with the Spirit of God in wisdom, in understanding, in knowledge, and in all manner of workmanship..."</p>
+        <p class="scripture-ref">Exodus 31:3</p>
+    </div>
+
+    <div class="toast" id="idle-toast">Still here? May what you seek find you.</div>
+
+    <div id="gold-modal">
+        <button class="close-secret" style="color:var(--text-dark);" onclick="document.getElementById('gold-modal').classList.remove('active')">&times;</button>
+        <div class="gold-text">The Golden Seal Unlocked</div>
+        <div class="discount-code">BEZALEL7</div>
+        <p style="margin-top: 2rem; color: var(--text-muted); font-family: var(--font-primary);">Use this sacred key when the shop opens.</p>
+    </div>
+
+    <!-- The Codex (Hints) -->
+    <div class="codex-trigger" onclick="document.getElementById('codex-modal').classList.add('active')">?</div>
+    
+    <div id="codex-modal">
+        <button class="close-secret" onclick="document.getElementById('codex-modal').classList.remove('active')">&times;</button>
+        <div class="codex-content">
+            <div class="codex-title">Codex of Mysteries</div>
+            <div class="codex-progress"><span id="unlock-count">0</span>/5 Secrets Revealed</div>
+            <ul class="hint-list">
+                <li class="hint-item" id="hint-orb">
+                    <span class="hint-icon">🔒</span>
+                    <span>Some revelations require patience. Hold the center core and wait.</span>
+                </li>
+                <li class="hint-item" id="hint-logo">
+                    <span class="hint-icon">🔒</span>
+                    <span>The creator rested on the seventh day. What happens when you tap the emblem seven times?</span>
+                </li>
+                <li class="hint-item" id="hint-konami">
+                    <span class="hint-icon">🔒</span>
+                    <span>A classic sequence of directions and letters holds fiery power. [ ↑ ↑ ↓ ↓ ← → ← → B A ]</span>
+                </li>
+                <li class="hint-item" id="hint-idle">
+                    <span class="hint-icon">🔒</span>
+                    <span>Be still and know. Wait one minute in complete silence.</span>
+                </li>
+                <li class="hint-item" id="hint-footer">
+                    <span class="hint-icon">🔒</span>
+                    <span>The builder's signature at the very end holds a new perspective.</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <!-- Bezalel Mode Target -->
+        <div class="footer-bottom" id="copyright-text" title="Click">© 2026 Son_of_IAM_. All rights reserved.</div>
+    </footer>
+
+    <script>
+        /* ==========================================
+           0. SECRETS TRACKER (THE CODEX)
+        ========================================== */
+        let unlockedSecrets = new Set(JSON.parse(localStorage.getItem('sonofiam_secrets')) || []);
+        
+        function unlockSecret(id) {
+            if (!unlockedSecrets.has(id)) {
+                unlockedSecrets.add(id);
+                localStorage.setItem('sonofiam_secrets', JSON.stringify([...unlockedSecrets]));
+                updateCodex();
+            }
+        }
+        
+        function updateCodex() {
+            document.getElementById('unlock-count').innerText = unlockedSecrets.size;
+            unlockedSecrets.forEach(id => {
+                const hintEl = document.getElementById(`hint-${id}`);
+                if (hintEl && !hintEl.classList.contains('unlocked')) {
+                    hintEl.classList.add('unlocked');
+                    hintEl.querySelector('.hint-icon').innerText = '🔓';
+                }
+            });
+        }
+        updateCodex(); 
+
+        /* ==========================================
+           1. THEME LOGIC
+        ========================================== */
+        const themeToggle = document.querySelector('.theme-toggle');
+        const root = document.documentElement;
+        function setTheme(t) {
+            if (t === 'dark') { root.setAttribute('data-theme', 'dark'); themeToggle.textContent = '☀️'; localStorage.setItem('theme', 'dark'); }
+            else { root.removeAttribute('data-theme'); themeToggle.textContent = '🌙'; localStorage.setItem('theme', 'light'); }
+        }
+        const saved = localStorage.getItem('theme');
+        if (saved) setTheme(saved); else if (window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
+        themeToggle.addEventListener('click', () => setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
+
+        /* ==========================================
+           2. CANVAS ENGINE (Particles, Drawing, Parallax)
+        ========================================== */
+        const canvas = document.getElementById('interactive-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles = [], ripples = [], paintStrokes = [];
+        let mouse = { x: -1000, y: -1000 };
+        let isPainting = false;
+        let lastX = 0, lastY = 0;
+
+        function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize); resize();
+
+        // 2a. Drawing Mechanics & Ripples
+        window.addEventListener('mousedown', (e) => {
+            if(e.target.closest('button') || e.target.closest('a') || e.target.closest('input') || e.target.closest('.codex-trigger')) return;
+            isPainting = true;
+            lastX = e.clientX; lastY = e.clientY;
+        });
+
+        window.addEventListener('mouseup', () => isPainting = false);
+
+        window.addEventListener('click', (e) => {
+            if(e.target.closest('button') || e.target.closest('a') || e.target.closest('input') || e.target.closest('.codex-trigger')) return;
+            const style = getComputedStyle(document.body);
+            const domColor = style.getPropertyValue('--color-dominant').trim() || '#7205cd';
+            const compColor = style.getPropertyValue('--color-compliment').trim() || '#5D7FFF';
+            ripples.push({ x: e.clientX, y: e.clientY, radius: 0, alpha: 1, color: Math.random() > 0.5 ? domColor : compColor });
+        });
+
+        window.addEventListener('mousemove', (e) => { 
+            mouse.x = e.clientX; mouse.y = e.clientY; 
+
+            // 2b. Spatial Parallax Depth Illusion
+            const px = (window.innerWidth - e.clientX * 2) / 90;
+            const py = (window.innerHeight - e.clientY * 2) / 90;
+            
+            const heroText = document.querySelector('.coming-soon-hero h1');
+            if(heroText) heroText.style.transform = `translate(${px * 1.5}px, ${py * 1.5}px)`;
+            
+            const orbBox = document.querySelector('.orb-container');
+            if(orbBox && !orbBox.classList.contains('holding')) {
+                orbBox.style.transform = `translate(${px * -1}px, ${py * -1}px)`;
+            }
+
+            // 2c. Paint Logic
+            if (isPainting) {
+                const style = getComputedStyle(document.body);
+                const domColor = style.getPropertyValue('--color-dominant').trim() || '#7205cd';
+                const compColor = style.getPropertyValue('--color-compliment').trim() || '#5D7FFF';
+                
+                paintStrokes.push({
+                    startX: lastX, startY: lastY,
+                    endX: e.clientX, endY: e.clientY,
+                    color: Math.random() > 0.5 ? domColor : compColor,
+                    life: 1.0,
+                    width: Math.random() * 3 + 1
+                });
+                lastX = e.clientX; lastY = e.clientY;
+            }
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width; this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5; this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 0.5;
+            }
+            update() {
+                this.x += this.vx; this.y += this.vy;
+                if (this.x < 0) this.x = width; if (this.x > width) this.x = 0;
+                if (this.y < 0) this.y = height; if (this.y > height) this.y = 0;
+                let dx = mouse.x - this.x, dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < 120) {
+                    let force = (120 - distance) / 120;
+                    this.x -= (dx / distance) * force * 3; this.y -= (dy / distance) * force * 3;
+                }
+            }
+            draw(isDark) {
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = isDark ? `rgba(255, 255, 255, ${this.size * 0.15})` : `rgba(114, 5, 205, ${this.size * 0.1})`;
+                ctx.fill();
+            }
+        }
+        for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            const isDark = root.getAttribute('data-theme') === 'dark';
+            
+            particles.forEach(p => { p.update(); p.draw(isDark); });
+            
+            // Render Drawing Strokes
+            for (let i = paintStrokes.length - 1; i >= 0; i--) {
+                let stroke = paintStrokes[i];
+                stroke.life -= 0.015;
+                if (stroke.life <= 0) { paintStrokes.splice(i, 1); continue; }
+                
+                ctx.beginPath();
+                ctx.moveTo(stroke.startX, stroke.startY);
+                ctx.lineTo(stroke.endX, stroke.endY);
+                ctx.strokeStyle = stroke.color;
+                ctx.lineWidth = stroke.width;
+                ctx.lineCap = 'round';
+                ctx.globalAlpha = stroke.life;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = stroke.color;
+                ctx.stroke();
+                ctx.globalAlpha = 1;
+                ctx.shadowBlur = 0;
+            }
+
+            // Render Ripples
+            for (let i = ripples.length - 1; i >= 0; i--) {
+                let r = ripples[i]; r.radius += 2; r.alpha -= 0.015;
+                if (r.alpha <= 0) { ripples.splice(i, 1); continue; }
+                ctx.beginPath(); ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
+                ctx.strokeStyle = r.color; ctx.lineWidth = 2; ctx.globalAlpha = r.alpha;
+                ctx.shadowBlur = 15; ctx.shadowColor = r.color; ctx.stroke();
+                ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        /* ==========================================
+           3. EASTER EGG 1: LONG PRESS ORB
+        ========================================== */
+        const orb = document.getElementById('mystery-orb');
+        const secretOverlay = document.getElementById('secret-overlay');
+        let pressTimer;
+        function startPress(e) {
+            if (e.type === 'mousedown' && e.button !== 0) return; 
+            orb.classList.add('holding');
+            pressTimer = setTimeout(() => {
+                secretOverlay.classList.add('revealed');
+                orb.classList.remove('holding');
+                unlockSecret('orb');
+            }, 2000); 
+        }
+        function cancelPress() { clearTimeout(pressTimer); orb.classList.remove('holding'); }
+        orb.addEventListener('mousedown', startPress);
+        orb.addEventListener('touchstart', startPress, {passive: true});
+        orb.addEventListener('mouseup', cancelPress); orb.addEventListener('mouseleave', cancelPress); orb.addEventListener('touchend', cancelPress);
+
+        /* ==========================================
+           4. EASTER EGG 2: SEVENTH CLICK LOGO
+        ========================================== */
+        const logoWrap = document.getElementById('mystery-logo');
+        let clickCount = 0;
+        let clickTimer;
+        
+        function playChime() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 1.5);
+                gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1.5);
+                osc.connect(gain); gain.connect(audioCtx.destination);
+                osc.start(); osc.stop(audioCtx.currentTime + 1.5);
+            } catch(e) {} 
+        }
+
+        logoWrap.addEventListener('click', () => {
+            clickCount++;
+            clearTimeout(clickTimer);
+            if(clickCount === 7) {
+                logoWrap.classList.add('golden');
+                playChime();
+                setTimeout(() => { document.getElementById('gold-modal').classList.add('active'); }, 800);
+                unlockSecret('logo');
+                clickCount = 0;
+            }
+            clickTimer = setTimeout(() => { clickCount = 0; logoWrap.classList.remove('golden'); }, 2000);
+        });
+
+        /* ==========================================
+           5. EASTER EGG 3: KONAMI CODE (Fire Shower)
+        ========================================== */
+        const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+        let konamiIndex = 0;
+        const fireCanvas = document.getElementById('fire-canvas');
+        const fCtx = fireCanvas.getContext('2d');
+        let fireParticles = [];
+        
+        window.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === konamiCode[konamiIndex].toLowerCase()) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    triggerHolyFire();
+                    konamiIndex = 0;
+                    unlockSecret('konami');
+                }
+            } else { konamiIndex = 0; }
+        });
+
+        function triggerHolyFire() {
+            fireCanvas.width = window.innerWidth; fireCanvas.height = window.innerHeight;
+            fireCanvas.style.opacity = '1';
+            fireParticles = [];
+            for(let i=0; i<200; i++) {
+                fireParticles.push({
+                    x: Math.random() * window.innerWidth,
+                    y: window.innerHeight + Math.random() * 200,
+                    vx: (Math.random() - 0.5) * 2,
+                    vy: Math.random() * -5 - 2,
+                    life: Math.random() * 100 + 50,
+                    size: Math.random() * 5 + 2
+                });
+            }
+            
+            function animateFire() {
+                fCtx.clearRect(0,0, fireCanvas.width, fireCanvas.height);
+                fCtx.globalCompositeOperation = 'lighter';
+                let allDead = true;
+                
+                fCtx.fillStyle = 'rgba(114, 5, 205, 0.8)';
+                fCtx.font = "bold 40px 'Optima', sans-serif";
+                fCtx.textAlign = "center";
+                fCtx.shadowBlur = 20; fCtx.shadowColor = '#7205cd';
+                fCtx.fillText("THE HOLY SPIRIT IS UPON YOU", fireCanvas.width/2, fireCanvas.height/2);
+                fCtx.shadowBlur = 0;
+
+                fireParticles.forEach(p => {
+                    if (p.life > 0) {
+                        allDead = false;
+                        p.x += p.vx; p.y += p.vy; p.life--;
+                        fCtx.beginPath(); fCtx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+                        fCtx.fillStyle = `rgba(114, 5, 205, ${p.life/150})`;
+                        fCtx.fill();
+                    }
+                });
+                if(!allDead) requestAnimationFrame(animateFire);
+                else fireCanvas.style.opacity = '0';
+            }
+            animateFire();
+        }
+
+        /* ==========================================
+           6. EASTER EGG 4: IDLE BLESSING
+        ========================================== */
+        let idleTimer;
+        const toast = document.getElementById('idle-toast');
+        function resetIdle() {
+            toast.classList.remove('show');
+            clearTimeout(idleTimer);
+            idleTimer = setTimeout(() => {
+                toast.classList.add('show');
+                unlockSecret('idle');
+                setTimeout(() => toast.classList.remove('show'), 6000);
+            }, 60000);
+        }
+        window.addEventListener('mousemove', resetIdle);
+        window.addEventListener('keypress', resetIdle);
+        window.addEventListener('touchstart', resetIdle, {passive: true});
+        resetIdle();
+
+        /* ==========================================
+           7. EASTER EGG 5: BEZALEL MODE (Footer)
+        ========================================== */
+        const copyright = document.getElementById('copyright-text');
+        copyright.addEventListener('click', () => {
+            document.body.classList.toggle('bezalel-mode');
+            if(document.body.classList.contains('bezalel-mode')) unlockSecret('footer');
+        });
+
+        /* ==========================================
+           8. EASTER EGG 6: SPARK TRAIL ON HOVER
+        ========================================== */
+        const sparkZone = document.getElementById('spark-zone');
+        sparkZone.addEventListener('mousemove', (e) => {
+            if(Math.random() > 0.4) return;
+            const spark = document.createElement('div');
+            spark.className = 'spark';
+            spark.style.left = (e.clientX - 2) + 'px';
+            spark.style.top = (e.clientY - 2) + 'px';
+            document.body.appendChild(spark);
+            setTimeout(() => spark.remove(), 800);
+        });
+
+        /* ==========================================
+           9. MAGNETIC BUTTON (Form)
+        ========================================== */
+        const magBtn = document.getElementById('magnetic-btn');
+        if (magBtn) {
+            magBtn.addEventListener('mousemove', (e) => {
+                const rect = magBtn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width/2;
+                const y = e.clientY - rect.top - rect.height/2;
+                magBtn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                magBtn.style.transition = 'none';
+            });
+            magBtn.addEventListener('mouseleave', () => {
+                magBtn.style.transform = 'translate(0px, 0px)';
+                magBtn.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            });
+        }
+    </script>
+</body>
+</html>

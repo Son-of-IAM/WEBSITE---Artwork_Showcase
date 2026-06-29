@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Son_of_IAM_</title>
+    <meta name="description" content="Learn about Promise Adebayo, a Nigerian creative spreading the gospel through art.">
+    <link rel="icon" type="image/png" href="Images/LOGO.PNG">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Custom Domain SEO / Open Graph Tags -->
+    <meta property="og:title" content="About Son_of_IAM_ | Stirring Hearts Through Art">
+    <meta property="og:description" content="Nigerian creative spreading the gospel through digital art, 3D renders, and visual storytelling.">
+    <meta property="og:image" content="https://sonofiam.com/Images/hero-background.jpg">
+    <meta property="og:url" content="https://sonofiam.com/about.html">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK59NQ2PR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XMK59NQ2PR');
+    </script>
+
+    <!-- Prevents Dark Mode Flashing/Glitching -->
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+
+    <style>
+        /* HERO — Cinematic */
+        .about-hero {
+            margin-top: 0;
+            padding: 0;
+            position: relative;
+            width: 100%;
+            height: 85vh;
+            min-height: 600px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+        }
+        .about-hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .about-hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+        .about-hero-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 100%);
+        }
+        .about-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 5%;
+            width: 100%;
+            color: white;
+        }
+        .about-hero-content h1 {
+            font-size: clamp(3rem, 7vw, 6rem);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 1.5rem;
+            line-height: 1;
+        }
+        .about-hero-content .lead {
+            font-size: clamp(1.2rem, 2vw, 1.6rem);
+            font-family: var(--font-primary);
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 8rem 5% 4rem;
+            text-align: center;
+        }
+        .intro-section p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            line-height: 1.9;
+        }
+
+        /* Editorial Split Layout */
+        .editorial-split {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        .editorial-split.reverse {
+            grid-template-columns: 1.2fr 1fr;
+        }
+        .editorial-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+        .editorial-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        .editorial-image:hover img {
+            transform: scale(1.05);
+        }
+        .editorial-text h3 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--color-dominant);
+        }
+        .editorial-text p {
+            color: var(--text-muted);
+            margin-bottom: 1.8rem;
+            font-size: 1.15rem;
+            line-height: 1.9;
+        }
+
+        /* Section Label */
+        .section-label {
+            font-family: var(--font-primary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--color-dominant);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Timeline */
+        .timeline-section {
+            max-width: 1000px;
+            margin: 8rem auto;
+            padding: 0 5%;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--color-dominant), var(--color-compliment));
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            padding-left: 2.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--color-dominant);
+            box-shadow: 0 0 0 6px rgba(114, 5, 205, 0.15);
+            transition: var(--transition);
+        }
+        .timeline-item:hover::before {
+            transform: scale(1.3);
+            box-shadow: 0 0 0 10px rgba(114, 5, 205, 0.2);
+        }
+        .timeline-year {
+            font-family: var(--font-primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-dominant);
+            margin-bottom: 0.8rem;
+        }
+        .timeline-text {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        /* Scripture Block */
+        .scripture-block {
+            max-width: 900px;
+            margin: 6rem auto;
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+        .scripture-block::before, .scripture-block::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background: var(--color-dominant);
+            opacity: 0.5;
+        }
+        .scripture-block::before { top: 0; }
+        .scripture-block::after { bottom: 0; }
+        .scripture {
+            font-family: var(--font-handwriting);
+            font-size: 2.8rem;
+            line-height: 1.3;
+            color: var(--color-dominant);
+            margin-bottom: 1rem;
+        }
+        .scripture-reference {
+            font-family: var(--font-handwriting);
+            font-size: 1.6rem;
+            color: var(--text-muted);
+        }
+
+        /* CTA Section */
+        .about-cta {
+            max-width: 1400px;
+            margin: 8rem auto 0;
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, #f8f5ff 0%, #fff 50%, #f0f4ff 100%);
+            border-radius: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        [data-theme="dark"] .about-cta {
+            background: linear-gradient(135deg, #1a0a2e 0%, #0f0518 50%, #1a0a2e 100%);
+        }
+        .about-cta::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(114, 5, 205, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .about-cta h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .about-cta > p {
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        .btn-outline {
+            display: inline-block;
+            padding: 0.9rem 2.5rem;
+            border: 2px solid var(--color-dominant);
+            color: var(--color-dominant);
+            border-radius: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-family: var(--font-primary);
+            font-size: 0.8rem;
+            transition: var(--transition);
+            background: transparent;
+        }
+        .btn-outline:hover {
+            background: var(--color-dominant);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(114, 5, 205, 0.2);
+        }
+
+        /* Media Queries */
+        @media (max-width: 1024px) {
+            .editorial-split, .editorial-split.reverse {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+        @media (max-width: 900px) {
+            .about-hero { height: 70vh; min-height: 500px; }
+        }
+        @media (max-width: 768px) {
+            .about-hero { align-items: center; justify-content: center; min-height: 60vh; }
+            .about-hero-content { text-align: center; padding: 0 5%; }
+            .about-hero-content h1 { font-size: clamp(2.2rem, 9vw, 2.8rem); line-height: 1.1; margin-bottom: 1rem; text-wrap: balance; }
+            .about-hero-content .lead { margin: 0 auto; text-align: center; font-size: 1.1rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .timeline { padding-left: 2rem; }
+            .timeline-item { padding-left: 1.5rem; }
+            .timeline-item::before { left: -2rem; }
+        }
+
+        [data-theme="dark"] .editorial-text p { color: #bbbbbb; }
+    </style>
+</head>
+<body>
+
+    <header id="mainHeader">
+        <div class="nav-container">
+            <a href="index.html" class="logo-wrapper">
+                <div class="logo-icon">
+                    <img src="Images/LOGO.PNG" alt="Son_of_IAM_ Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-size:24px;\'>🔥</span>';">
+                </div>
+                <div class="logo-text">
+                    <span class="logo">Son_of_IAM_</span>
+                    <span class="logo-tagline">Stirring Hearts Through Art</span>
+                </div>
+            </a>
+            <div class="nav-right">
+                <nav class="desktop-menu">
+                    <a href="work.html">Work</a>
+                    <a href="shop.html">Shop</a>
+                    <a href="about.html" style="color: var(--color-dominant);">About</a>
+                    <a href="https://medium.com/@xyvyhnd" target="_blank">Articles</a>
+                </nav>
+                <a href="commercial.html" class="btn-cta">Inquiries</a>
+                <button class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+            </div>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <button id="mobile-theme-toggle" class="theme-toggle" style="display: none;" aria-label="Toggle Dark Mode">🌙</button>
+                <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="overlay" onclick="toggleMenu()"></div>
+    <div class="mobile-menu">
+        <a href="work.html" onclick="toggleMenu()">Work</a>
+        <a href="shop.html" onclick="toggleMenu()">Shop</a>
+        <a href="about.html" onclick="toggleMenu()">About</a>
+        <a href="https://medium.com/@xyvyhnd" target="_blank" onclick="toggleMenu()">Articles</a>
+        <a href="commercial.html" onclick="toggleMenu()">Commercial</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="about-hero">
+        <div class="about-hero-image">
+            <img src="Images/about-hero.jpg" alt="Promise Adebayo" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #1a0a2e, #7205cd)'">
+        </div>
+        <div class="about-hero-content">
+            <h1 class="reveal">About</h1>
+            <p class="lead reveal delay-1">Bringing the God dimension into the world through Art.</p>
+        </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="intro-section">
+        <p class="reveal">
+            Promise Adebayo (artist Alias- SonofIAM) is a Nigerian creative who uses his gifts in Service to God. His practice currently spans digital illustrations, blender 3D renders, and writing, all unified by a single goal; bringing the God dimension into the world and leading others closer to Him through Art imparted to him by the Holy Spirit in Worship.
+        </p>
+    </section>
+
+    <!-- SCRIPTURE -->
+    <div class="scripture-block reveal">
+        <p class="scripture">"This is eternal life: that they may know You, the only true God, and Jesus Christ, whom You have sent."</p>
+        <span class="scripture-reference">John 17:3 — The ethos behind every work</span>
+    </div>
+
+    <!-- ORIGIN -->
+    <section class="editorial-split" id="origin">
+        <div class="editorial-image reveal">
+            <img src="Images/about-studio.jpg" alt="The studio" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder-text\'>Artist Studio / Portrait</div>'">
+        </div>
+        <div class="editorial-text reveal delay-1">
+            <p class="section-label">Origin</p>
+            <h3>Born in Lagos, 2006</h3>
+            <p>Looking back recently, I realized I was surrounded by few creatives, my mom was an event photographer. I remember how I used to play with her analogue camera in the compound. By secondary school, I was drawing constantly, on my class tables, in my note books, and on A4 papers, drawing diverse figures just to practice.</p>
+            <p>Years passed, we relocated and around 2020 my parent got me an old Pentium all-in-one desktop, a wired keyboard and a mouse, with those I installed Photoshop with the help of a new neighbor who was a graphic designer. He also helped with tutorial videos, and textures on my drive. It wasn't a pivot — it was a new track in the same direction.</p>
+            <p>In 2022 I took a big break from social media and started teaching myself Blender 3D. Studied the blender gurus — polyfjord, blender guru, ducky 3D — and fused their techniques with my vision. Back then, I just wanted to create and communicate a world only I could see in my head.</p>
+        </div>
+    </section>
+
+    <!-- JOURNEY -->
+    <section class="timeline-section" id="journey">
+        <p class="section-label reveal">Journey</p>
+        <h2 class="reveal" style="font-size: clamp(2rem, 4vw, 3.5rem); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4rem;">From my school desk<br>to the world</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item reveal">
+                <div class="timeline-year">2020 — Learning Photoshop</div>
+                <div class="timeline-text">My first exploration into digital art.</div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-year">2022 — Learning 3D</div>
+                <div class="timeline-text">I started learning Blender 3D on YouTube.</div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-year">2022 — NFT Breakthrough</div>
+                <div class="timeline-text">I found out about NFTs, I started and sold out collaboration collections on Nifty Gateway, sold out a collection on Foundation.</div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-year">2023 — First Commission & Collaborations</div>
+                <div class="timeline-text">An American found me online. The commissions began. 8+ international collaborations with artists across 5 continents.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="about-cta reveal">
+        <h2>Let's create something unforgettable</h2>
+        <p>For commissions, collaborations or just say hello.</p>
+        <div class="cta-buttons">
+            <a href="commercial.html" class="btn-cta">Inquiries</a>
+            <a href="mailto:SonofIAM.9@gmail.com" class="btn-outline">Email Me</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>SON_OF_IAM_</h3>
+                <p>Nigerian creative and worshipper, bringing the God dimension into the world through Art from Lagos.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <a href="work.html">Work</a>
+                <a href="about.html">About</a>
+                <a href="commercial.html">Commercial</a>
+                <a href="shop.html">Shop</a>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <a href="work.html#paintings">Paintings</a>
+                <a href="work.html#3d-art">3D Art</a>
+                <a href="https://medium.com/@xyvyhnd" target="_blank">Articles</a>
+                <a href="work.html#old-artworks">Old Artworks</a>
+            </div>
+            <div class="footer-links">
+                <h4>Follow</h4>
+                <div class="social-pills">
+                    <a href="https://instagram.com/son_of_iam_" target="_blank" class="social-pill">Instagram</a>
+                    <a href="https://x.com/son_of_iam_?s=21" target="_blank" class="social-pill">X (Twitter)</a>
+                    <a href="https://www.tiktok.com/@son_of_iam_?_t=zs-9032ktsad1b&_r=1" target="_blank" class="social-pill">Tiktok</a>
+                    <a href="https://www.behance.net/themainugly" target="_blank" class="social-pill">Behance</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2026 Son_of_IAM_. All rights reserved.</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="image-loader.js"></script>
+</body>
+</html>

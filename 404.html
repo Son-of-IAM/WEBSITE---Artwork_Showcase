@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Son_of_IAM_</title>
+    <meta name="description" content="The page you are looking for has wandered into the wilderness.">
+    <link rel="icon" type="image/png" href="Images/LOGO.PNG">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK59NQ2PR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XMK59NQ2PR');
+</script>
+</head>
+<body>
+
+    <header id="mainHeader">
+        <div class="nav-container">
+            <a href="index.html" class="logo-wrapper">
+                <div class="logo-icon">
+                    <img src="Images/LOGO.PNG" alt="Son_of_IAM_ Logo">
+                </div>
+                <div class="logo-text">
+                    <span class="logo">Son_of_IAM_</span>
+                    <span class="logo-tagline">Stirring Hearts Through Art</span>
+                </div>
+            </a>
+            
+            <div class="nav-right">
+                <nav class="desktop-menu">
+                    <a href="work.html">Work</a>
+                    <a href="shop.html">Shop</a>
+                    <a href="about.html">About</a>
+                    <a href="https://medium.com/@Son_of_IAM_" target="_blank">Articles</a>
+                </nav>
+                <a href="commercial.html" class="btn-cta">Inquiries</a>
+                <button class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <button id="mobile-theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+                <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>        
+        </div>
+    </header>
+
+    <div class="overlay" onclick="toggleMenu()"></div>
+    <div class="mobile-menu">
+        <a href="work.html" onclick="toggleMenu()">Work</a>
+        <a href="shop.html" onclick="toggleMenu()">Shop</a>
+        <a href="about.html" onclick="toggleMenu()">About</a>
+        <a href="https://medium.com/@Son_of_IAM_" target="_blank" onclick="toggleMenu()">Articles</a>
+        <a href="commercial.html" onclick="toggleMenu()">Commercial</a>
+    </div>
+
+  <section style="min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 5%; margin-top: 80px;">
+        <h1 style="font-size: clamp(5rem, 12vw, 8rem); color: var(--color-dominant); font-family: var(--font-primary); line-height: 1;">404</h1>
+        <h2 style="font-size: clamp(1.5rem, 4vw, 2.5rem); margin-bottom: 1rem;">Wandering in the Wilderness</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.15rem; max-width: 500px;">The page you are looking for doesn't exist or has been moved to a new location.</p>
+        
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+            <a href="index.html" class="btn-cta">Return to Sanctuary</a>
+            <button onclick="reportError()" id="reportBtn" class="btn-outline" style="cursor: pointer;">Report Broken Link</button>
+        </div>
+    </section>
+
+    <script>
+        function reportError() {
+            const btn = document.getElementById('reportBtn');
+            btn.innerText = "Reporting...";
+            btn.disabled = true;
+
+            const brokenUrl = window.location.href;
+            const previousPage = document.referrer || 'Direct Link / Unknown';
+
+            // Silent Formspree Request
+            fetch("https://formspree.io/f/xyklyowb", {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "Subject": "⚠️ 404 ERROR REPORT",
+                    "Broken URL": brokenUrl,
+                    "Referred By": previousPage
+                })
+            }).then(response => {
+                if (response.ok) {
+                    btn.innerText = "Reported! Thank you.";
+                    btn.style.borderColor = "green";
+                    btn.style.color = "green";
+                } else {
+                    btn.innerText = "Error reporting.";
+                }
+            }).catch(error => {
+                btn.innerText = "Network Error.";
+            });
+        }
+    </script>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>SON_OF_IAM_</h3>
+                <p>Nigerian creative and worshipper, bringing the God dimension into the world through Art from Lagos.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <a href="work.html">Work</a>
+                <a href="about.html">About</a>
+                <a href="commercial.html">Commercial</a>
+                <a href="shop.html">Shop</a>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <a href="work.html#paintings">Paintings</a>
+                <a href="work.html#3d-art">3D Art</a>
+                <a href="https://medium.com/@Son_of_IAM_" target="_blank">Articles</a>
+            </div>
+            <div class="footer-links">
+                <h4>Follow</h4>
+                <div class="social-pills">
+                    <a href="https://instagram.com/son_of_iam_" target="_blank" class="social-pill">Instagram</a>
+                    <a href="https://x.com/son_of_iam_?s=21" target="_blank" class="social-pill">X (Twitter)</a>
+                    <a href="https://www.tiktok.com/@son_of_iam_?_t=zs-9032ktsad1b&_r=1" target="_blank" class="social-pill">Tiktok</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 Son_of_IAM_. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

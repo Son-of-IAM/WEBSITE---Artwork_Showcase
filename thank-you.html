@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | Son_of_IAM_</title>
+    <meta http-equiv="refresh" content="5;url=work.html">
+    <link rel="icon" type="image/png" href="Images/LOGO.PNG">
+    
+    <meta property="og:title" content="Thank You | Son_of_IAM_">
+    <meta property="og:description" content="Nigerian creative spreading the gospel through digital art, 3D renders, and visual storytelling.">
+    <meta property="og:image" content="https://sonofiam.com/Images/hero-background.jpg">
+    <meta property="og:url" content="https://sonofiam.com/thank-you.html">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK59NQ2PR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XMK59NQ2PR');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-dominant: #7205cd;
+            --color-compliment: #5D7FFF;
+            --bg-white: #ffffff;
+            --text-dark: #111111;
+            --text-muted: #666666;
+            --font-primary: 'Optima', 'Segoe UI', sans-serif;
+            --font-secondary: 'Georgia', 'Times New Roman', serif;
+        }
+        [data-theme="dark"] {
+            --bg-white: #050505;
+            --text-dark: #f5f5f7;
+            --text-muted: #888888;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-secondary);
+            color: var(--text-dark);
+            background: var(--bg-white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            transition: background-color 0.6s ease, color 0.6s ease;
+            overflow: hidden;
+        }
+
+        /* ── LOGO & ORB ANIMATION ── */
+        .orb-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin-bottom: 2rem;
+            animation: popIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .logo-center {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 80px; height: 80px; z-index: 10;
+        }
+        .logo-center img {
+            width: 100%; height: 100%; object-fit: contain;
+            animation: fireGlow 3s infinite alternate;
+        }
+        .orb-ring {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            border: 2px solid rgba(114, 5, 205, 0.3); border-radius: 50%;
+            width: 140px; height: 140px; animation: orbSpin 8s linear infinite;
+        }
+        .orb-ring:nth-child(2) {
+            width: 180px; height: 180px; border-color: rgba(93, 127, 255, 0.2);
+            animation-duration: 12s; animation-direction: reverse;
+        }
+
+        @keyframes fireGlow {
+            0% { filter: drop-shadow(0 0 8px rgba(114, 5, 205, 0.4)) drop-shadow(0 0 16px rgba(93, 127, 255, 0.2)); }
+            50% { filter: drop-shadow(0 0 20px rgba(114, 5, 205, 0.8)) drop-shadow(0 0 30px rgba(93, 127, 255, 0.4)); transform: scale(1.05); }
+            100% { filter: drop-shadow(0 0 8px rgba(114, 5, 205, 0.4)) drop-shadow(0 0 16px rgba(93, 127, 255, 0.2)); }
+        }
+        @keyframes orbSpin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+        @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 80% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
+
+        h1 { font-family: var(--font-primary); font-size: 2.5rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 2px; }
+        p { color: var(--text-muted); font-size: 1.1rem; max-width: 450px; margin-bottom: 2rem; line-height: 1.7; }
+        .redirect-text { font-family: var(--font-primary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); opacity: 0.7; }
+        a { color: var(--color-dominant); font-weight: 700; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="orb-container">
+        <div class="orb-ring"></div>
+        <div class="orb-ring"></div>
+        <div class="logo-center">
+            <img src="Images/LOGO.PNG" alt="Son_of_IAM_ Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-size:40px;\'>🔥</span>';">
+        </div>
+    </div>
+    
+    <h1>Thank You</h1>
+    <p>Your submission was successful. If you joined the Inner Circle, keep an eye on your inbox for your welcome email.</p>
+    <p class="redirect-text">Redirecting back to my works in 5 seconds…<br><br><a href="index.html">Click here if nothing happens</a></p>
+
+    <script>
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        else if (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.setAttribute('data-theme', 'dark');
+    </script>
+</body>
+</html>

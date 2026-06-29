@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial Hub | Son_of_IAM_</title>
+    <link rel="icon" type="image/png" href="Images/LOGO.PNG">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Custom Domain SEO / Open Graph Tags -->
+    <meta property="og:title" content="Commercial Hub | Son_of_IAM_">
+    <meta property="og:description" content="Nigerian creative spreading the gospel through digital art, 3D renders, and visual storytelling.">
+    <meta property="og:image" content="https://sonofiam.com/Images/hero-background.jpg">
+    <meta property="og:url" content="https://sonofiam.com/commercial.html">
+    <meta name="twitter:card" content="summary_large_image">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK59NQ2PR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XMK59NQ2PR');
+</script>
+    <style>
+        .commercial-hero { margin-top: 80px; padding: 6rem 5%; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .commercial-hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1rem; text-transform: uppercase; }
+        .commercial-hero > p { color: var(--text-muted); font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem; }
+
+        .contact-section { max-width: 900px; margin: 0 auto; padding: 2rem 5% 5rem; }
+        .contact-form { background: var(--bg-white); padding: 3rem; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.08); border: 1px solid var(--border-light); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.7rem; font-family: var(--font-primary); color: var(--text-muted); }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 1rem 1.2rem; border: 2px solid var(--border-light); border-radius: 12px; background: var(--bg-light); color: var(--text-dark); font-family: inherit; font-size: 1rem; transition: var(--transition); }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--color-dominant); outline: none; background: var(--bg-white); }
+        
+        .submit-btn { width: 100%; padding: 1.3rem; background: var(--color-dominant); color: white; border: none; border-radius: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-family: var(--font-primary); cursor: pointer; font-size: 1rem; transition: var(--transition); }
+        .submit-btn:hover { background: var(--color-compliment); transform: translateY(-2px); box-shadow: 0 15px 40px rgba(114, 5, 205, 0.3); }
+
+        .faq-section { max-width: 800px; margin: 5rem auto; padding: 0 5%; }
+        .faq-section h2 { text-align: center; margin-bottom: 3rem; text-transform: uppercase; letter-spacing: 2px; }
+        details { border-bottom: 1px solid var(--border-light); padding: 1.8rem 0; }
+        summary { font-weight: 700; font-size: 1.15rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-primary); }
+        summary::after { content: '+'; color: var(--color-dominant); font-size: 1.5rem; font-weight: 300; }
+        details[open] summary::after { content: '−'; }
+        details p { margin-top: 1.2rem; color: var(--text-muted); padding-left: 15px; border-left: 3px solid var(--color-compliment); line-height: 1.8; font-size: 1.05rem; }
+
+        /* Tab System Styles */
+        .form-tabs { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
+        .form-tab-btn { padding: 0.8rem 2rem; background: transparent; border: 2px solid var(--border-light); border-radius: 30px; font-family: var(--font-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); cursor: pointer; transition: var(--transition); }
+        .form-tab-btn.active { background: var(--color-dominant); border-color: var(--color-dominant); color: white; }
+        .form-panel { display: none; animation: fadeIn 0.5s ease; }
+        .form-panel.active { display: block; }
+        
+        @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } .contact-form { padding: 1.5rem; } }
+        [data-theme="dark"] .contact-form { background: var(--bg-light); border-color: var(--border-light); }
+    </style>
+</head>
+<body>
+
+    <header id="mainHeader">
+        <div class="nav-container">
+            <a href="index.html" class="logo-wrapper">
+                <div class="logo-icon"><img src="Images/LOGO.PNG" alt="Son_of_IAM_ Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-size:24px;\'>🔥</span>';"></div>
+                <div class="logo-text"><span class="logo">Son_of_IAM_</span><span class="logo-tagline">Stirring Hearts Through Art</span></div>
+            </a>
+            <div class="nav-right">
+                <nav class="desktop-menu">
+                    <a href="work.html">Work</a>
+                    <a href="shop.html">Shop</a>
+                    <a href="about.html">About</a>
+                    <a href="commercial.html" style="color: var(--color-dominant);">Inquiries</a>
+                </nav>
+                <button class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+            </div>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <button id="mobile-theme-toggle" class="theme-toggle" style="display: none;" aria-label="Toggle Dark Mode">🌙</button>
+                <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="overlay" onclick="toggleMenu()"></div>
+    <div class="mobile-menu">
+        <a href="work.html" onclick="toggleMenu()">Work</a>
+        <a href="shop.html" onclick="toggleMenu()">Shop</a>
+        <a href="about.html" onclick="toggleMenu()">About</a>
+        <a href="https://medium.com/@xyvyhnd" target="_blank" onclick="toggleMenu()">Articles</a>
+        <a href="commercial.html" onclick="toggleMenu()">Commercial</a>
+    </div>
+
+    <section class="commercial-hero">
+        <h1 class="reveal">Get in touch</h1>
+        <p class="reveal">Let's talk. Whether you're a collector, a Brand looking to collaborate, or just someone who wants to say hello, I'd love to hear from you.</p>
+    </section>
+
+    <section class="contact-section" id="get-in-touch" style="padding-top: 0;">
+        <div class="form-tabs reveal">
+            <button class="form-tab-btn active" onclick="switchForm('inquiry')">Project Inquiry</button>
+            <button class="form-tab-btn" onclick="switchForm('testimony')">Share Testimony</button>
+        </div>
+
+        <div id="panel-inquiry" class="form-panel active reveal">
+            <form action="https://formspree.io/f/xyklyowb" method="POST" class="contact-form ajax-form">
+                <input type="hidden" name="_subject" value="New Project Inquiry!">
+                
+                <div class="form-row">
+                    <div class="form-group"><label>First Name</label><input type="text" name="First Name" required></div>
+                    <div class="form-group"><label>Last Name</label><input type="text" name="Last Name" required></div>
+                </div>
+                <div class="form-group"><label>Email</label><input type="email" name="Email" required></div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Project Type</label>
+                        <select name="Project Type" required>
+                            <option value="">Select an option</option>
+                            <option value="Commission/purchase">Commission / Purchase</option>
+                            <option value="Brand collaboration">Brand Collaboration</option>
+                            <option value="Press/interview">Press / Interview</option>
+                            <option value="Just saying Hello">Just Saying Hello</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Budget</label><input type="text" name="Budget" placeholder="Proposed budget"></div>
+                </div>
+                <div class="form-group"><label>Timeline</label><input type="text" name="Timeline" placeholder="When do you need this completed?"></div>
+                <div class="form-group"><label>Project Details</label><textarea name="Message" rows="5" placeholder="Tell us about your project..." required></textarea></div>
+                <button type="submit" class="submit-btn">Submit Inquiry</button>
+            </form>
+        </div>
+
+        <div id="panel-testimony" class="form-panel reveal">
+            <form action="https://formspree.io/f/xyklyowb" method="POST" class="contact-form ajax-form">
+                <input type="hidden" name="_subject" value="New Testimony Submitted!">
+
+                <div class="form-row">
+                    <div class="form-group"><label>Full Name</label><input type="text" name="Full Name" required></div>
+                    <div class="form-group"><label>Email Address</label><input type="email" name="Email" required></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Location (Optional)</label><input type="text" name="Location"></div>
+                    <div class="form-group"><label>Subject</label><input type="text" name="Subject"></div>
+                </div>
+                <div class="form-group"><label>Your Testimony</label><textarea name="Testimony" rows="6" required placeholder="Share your experience here..."></textarea></div>
+                <button type="submit" class="submit-btn">Submit Testimony</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <h2 class="reveal">Common Questions</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 3rem; font-family: var(--font-primary); text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;" class="reveal">Before you reach out</p>
+        
+        <details class="reveal">
+            <summary>Do you take commissions?</summary>
+            <p>Yes, but selectively. I take on a limited number of personal commissions each year. For the best chance of working together, reach out with a clear vision and timeline.</p>
+        </details>
+        <details class="reveal">
+            <summary>What's your typical turnaround?</summary>
+            <p>It depends on the project. Simple pieces take 2-4 weeks. Complex campaigns can take up to 2-3 months. I'll give you a timeline once I understand your needs.</p>
+        </details>
+        <details class="reveal">
+            <summary>Do you sell prints?</summary>
+            <p>Yes. Our shop opens soon featuring Open Edition prints, Digital Wallpaper Packs, and more. Join the waiting list so you don’t miss out.</p>
+        </details>
+        <details class="reveal">
+            <summary>Can I license your work?</summary>
+            <p>For commercial licensing (ads, products, media), please use the form above to reach out. All licensing is handled through Son_of_IAM_ studios.</p>
+        </details>
+    </section>
+
+    <footer>
+        <div class="footer-bottom" style="margin-bottom: 30px; text-align: center; opacity: 0.5;">© 2026 Son_of_IAM_. All rights reserved.</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 1. Tab Switcher Logic
+        function switchForm(formName) {
+            document.querySelectorAll('.form-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.form-panel').forEach(panel => panel.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(`panel-${formName}`).classList.add('active');
+        }
+
+        // 2. Formspree AJAX Paywall Bypass
+        document.querySelectorAll('.ajax-form').forEach(form => {
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault(); // Stop page redirect
+                
+                const btn = form.querySelector('button[type="submit"]');
+                const originalText = btn.innerText;
+                btn.innerText = "Sending...";
+                btn.disabled = true;
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        window.location.href = "thank-you.html";
+                    } else {
+                        alert("Oops! There was a problem submitting your form.");
+                        btn.innerText = originalText;
+                        btn.disabled = false;
+                    }
+                } catch (error) {
+                    alert("Network error. Please try again.");
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

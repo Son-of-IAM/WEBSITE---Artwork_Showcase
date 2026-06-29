@@ -1,0 +1,62 @@
+backend:
+  name: github
+  repo: Son-of-IAM/WEBSITE---Artwork_Showcase
+  branch: main
+  # UNCOMMENT THIS LINE ONCE YOU SET UP YOUR RENDER APP OAUTH:
+  # base_url: https://sonofiam-cms.onrender.com
+
+media_folder: "Images/full"
+public_folder: "Images/full"
+
+collections:
+  - name: "artworks_data"
+    label: "Artwork Manager"
+    files:
+      - label: "Gallery Database"
+        name: "gallery"
+        file: "data/artworks/index.json" 
+        fields:
+          - label: "Artworks List"
+            name: "artworks"
+            widget: "list" 
+            summary: '{{fields.title}} - {{fields.category}}'
+            fields:
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Description"
+                name: "description"
+                widget: "text"
+                required: false
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options:
+                  - "paintings"
+                  - "3d-art"
+                  - "gospel"
+                  - "old"
+                  - "graffiti"
+              - label: "Subcategory / Branch"
+                name: "subcategory"
+                widget: "string"
+                required: false
+              - label: "Year"
+                name: "year"
+                widget: "string"
+                required: false
+              - label: "Medium"
+                name: "medium"
+                widget: "string"
+                required: false
+              - label: "Dimensions"
+                name: "dimensions"
+                widget: "string"
+                required: false
+              - label: "Price"
+                name: "price"
+                widget: "string"
+                required: false
+              - label: "Main Image"
+                name: "image"
+                widget: "image"
