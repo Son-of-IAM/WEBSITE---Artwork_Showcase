@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> 
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK59NQ2PR"></script>
     <script>
@@ -88,9 +89,9 @@
             pointer-events: none;
         }
         #interactive-canvas { z-index: 0; }
-        #fire-canvas { z-index: 6000; opacity: 0; transition: opacity 1s; } /* For Konami */
+        #fire-canvas { z-index: 6000; opacity: 0; transition: opacity 1s; } 
 
-        header, .coming-soon-hero, footer, .shop-preview, #secret-overlay, #codex-modal {
+        header, .coming-soon-hero, footer, .shop-preview, #secret-overlay, #codex-modal, #master-completion-overlay {
             position: relative;
             z-index: 10; 
         }
@@ -117,13 +118,23 @@
         }
         .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         
-        .logo-wrapper { display: flex; align-items: center; gap: 1rem; cursor: pointer; user-select: none; }
-        .logo-icon { width: 48px; height: 48px; transition: var(--transition); }
+        .logo-wrapper { display: flex; align-items: center; gap: 1rem; user-select: none; position: relative; }
+        
+        .logo-icon { width: 48px; height: 48px; transition: var(--transition); cursor: pointer; position: relative; }
         .logo-icon img { width: 100%; height: 100%; object-fit: contain; }
+        
+        .logo-hint {
+            position: absolute; top: 130%; left: 50%; transform: translateX(-50%) translateY(10px);
+            background: rgba(114, 5, 205, 0.9); color: white; font-size: 0.65rem; padding: 4px 10px;
+            border-radius: 4px; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s ease;
+            pointer-events: none; font-family: var(--font-primary); letter-spacing: 1.5px; text-transform: uppercase;
+        }
+        .logo-icon:hover .logo-hint { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+
+        .logo-text { display: flex; flex-direction: column; cursor: pointer; }
         .logo { font-size: 1.4rem; font-weight: 700; color: var(--text-dark); font-family: var(--font-primary); letter-spacing: 1px; transition: color 0.3s; }
         .logo-tagline { font-size: 0.65rem; color: var(--color-dominant); text-transform: uppercase; font-weight: 600; letter-spacing: 2px; font-family: var(--font-primary); transition: color 0.3s; }
         
-        /* 7th Click Logo Glow */
         .logo-wrapper.golden .logo { color: #d4af37 !important; text-shadow: 0 0 20px rgba(212, 175, 55, 0.8); }
         .logo-wrapper.golden .logo-tagline { color: #d4af37 !important; }
         .logo-wrapper.golden .logo-icon { filter: drop-shadow(0 0 15px #d4af37) hue-rotate(45deg); transform: scale(1.1); }
@@ -136,6 +147,21 @@
         
         .theme-toggle { background: none; border: none; font-size: 1.3rem; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
         .theme-toggle:hover { background: var(--bg-light); transform: rotate(15deg); }
+
+        .hamburger { display: none; flex-direction: column; background: none; border: none; cursor: pointer; z-index: 1002; padding: 0.5rem; gap: 5px; }
+        .hamburger span { width: 26px; height: 2px; background: var(--text-dark); transition: 0.3s; border-radius: 2px; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); background: var(--color-dominant); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); background: var(--color-dominant); }
+        
+        .mobile-menu { position: fixed; top: 0; right: -100%; width: 85%; max-width: 400px; height: 100vh; background: var(--bg-white); z-index: 1001; padding: 8rem 3rem; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: -10px 0 50px rgba(0,0,0,0.15); font-family: var(--font-primary); overflow-y: auto; }
+        .mobile-menu.active { right: 0; }
+        .mobile-menu a { display: block; font-size: 1.3rem; padding: 1.2rem 0; border-bottom: 1px solid var(--border-light); font-weight: 600; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .mobile-menu a:hover { color: var(--color-dominant); padding-left: 10px; }
+        .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; display: none; backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.3s; }
+        .overlay.active { display: block; opacity: 1; }
+
+        @media (max-width: 900px) { .nav-right { display: none; } .hamburger { display: flex; } }
 
         /* -------------------------------------------
            MAIN HERO & ORB
@@ -170,7 +196,7 @@
         @keyframes orbHoldPulse { 100% { transform: translate(-50%, -50%) scale(1.4); } }
         @keyframes orbSpin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
 
-        .coming-soon-hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1rem; transition: transform 0.2s ease-out; }
+        .coming-soon-hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1rem; transition: transform 0.1s ease-out; }
         .coming-soon-hero > p { color: var(--text-muted); font-size: 1.2rem; max-width: 500px; margin-bottom: 3rem; }
 
         /* Form with Magnetic Button */
@@ -195,6 +221,30 @@
         /* -------------------------------------------
            MODALS & OVERLAYS
         ------------------------------------------- */
+        
+        /* Master Completion Celebration */
+        #master-completion-overlay {
+            position: fixed; inset: 0; background: rgba(5, 2, 10, 0.98); z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: opacity 2s ease, visibility 2s; text-align: center; padding: 2rem;
+        }
+        #master-completion-overlay.revealed { opacity: 1; visibility: visible; }
+        .master-glow {
+            position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+            top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; animation: orbPulse 4s infinite alternate; pointer-events: none;
+        }
+        .master-title {
+            font-family: var(--font-primary); font-size: clamp(2rem, 5vw, 4rem); color: #d4af37; text-transform: uppercase;
+            letter-spacing: 6px; margin-bottom: 2rem; text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+            transform: translateY(20px); opacity: 0; transition: all 2s ease 0.5s; position: relative; z-index: 2;
+        }
+        .master-subtitle {
+            font-family: var(--font-secondary); font-size: 1.2rem; color: rgba(255,255,255,0.7); max-width: 600px; font-style: italic; line-height: 1.8;
+            transform: translateY(20px); opacity: 0; transition: all 2s ease 1.5s; position: relative; z-index: 2;
+        }
+        #master-completion-overlay.revealed .master-title,
+        #master-completion-overlay.revealed .master-subtitle { transform: translateY(0); opacity: 1; }
+
         /* Orb Secret Overlay */
         #secret-overlay {
             position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95); z-index: 5000;
@@ -205,7 +255,7 @@
         #secret-overlay p.scripture { font-family: var(--font-handwriting); font-size: clamp(2rem, 5vw, 4rem); color: var(--color-dominant); max-width: 800px; margin-bottom: 1rem; text-shadow: 0 0 20px rgba(114, 5, 205, 0.5); transform: translateY(20px); opacity: 0; transition: all 1.5s ease 0.5s; }
         #secret-overlay p.scripture-ref { font-family: var(--font-primary); font-size: 1.2rem; color: var(--color-compliment); letter-spacing: 3px; text-transform: uppercase; transform: translateY(20px); opacity: 0; transition: all 1.5s ease 1s; }
         #secret-overlay.revealed p { transform: translateY(0); opacity: 1; }
-        .close-secret { position: absolute; top: 40px; right: 40px; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; opacity: 0.5; transition: 0.3s; }
+        .close-secret { position: absolute; top: 40px; right: 40px; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; opacity: 0.5; transition: 0.3s; z-index: 10; }
         .close-secret:hover { opacity: 1; transform: rotate(90deg); }
 
         /* Idle Blessing Toast */
@@ -265,16 +315,20 @@
     <!-- HEADER -->
     <header id="mainHeader">
         <div class="nav-container">
-            <!-- 7-Click Secret Target -->
-            <div class="logo-wrapper" id="mystery-logo" title="Home">
+            
+            <div class="logo-wrapper" id="mystery-logo">
+                <!-- 7-Click Secret Target (Icon) -->
                 <div class="logo-icon">
                     <img src="Images/LOGO.PNG" alt="Son_of_IAM_ Logo" onerror="this.style.display='none';">
+                    <span class="logo-hint">Tap 7 times</span>
                 </div>
-                <div class="logo-text">
+                <!-- Home Link (Text) -->
+                <a href="index.html" class="logo-text">
                     <span class="logo">Son_of_IAM_</span>
                     <span class="logo-tagline">Stirring Hearts Through Art</span>
-                </div>
+                </a>
             </div>
+            
             <div class="nav-right">
                 <nav class="desktop-menu">
                     <a href="work.html">Work</a>
@@ -284,8 +338,23 @@
                 </nav>
                 <button class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
             </div>
+            
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <button id="mobile-theme-toggle" class="theme-toggle" style="display: none;" aria-label="Toggle Dark Mode">🌙</button>
+                <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
     </header>
+
+    <div class="overlay" onclick="toggleMenu()"></div>
+    <div class="mobile-menu">
+        <a href="work.html" onclick="toggleMenu()">Work</a>
+        <a href="shop.html" onclick="toggleMenu()">Shop</a>
+        <a href="about.html" onclick="toggleMenu()">About</a>
+        <a href="https://medium.com/@xyvyhnd" target="_blank" onclick="toggleMenu()">Articles</a>
+    </div>
 
     <main class="coming-soon-hero">
         
@@ -316,6 +385,15 @@
     </main>
 
     <!-- Overlays -->
+    
+    <!-- MASTER COMPLETION CELEBRATION -->
+    <div id="master-completion-overlay">
+        <div class="master-glow"></div>
+        <h2 class="master-title">All Mysteries Revealed</h2>
+        <p class="master-subtitle">"It is the glory of God to conceal a matter; to search out a matter is the glory of kings."<br>— Proverbs 25:2</p>
+        <button class="close-secret" onclick="document.getElementById('master-completion-overlay').classList.remove('revealed')">&times;</button>
+    </div>
+
     <div id="secret-overlay">
         <button class="close-secret" onclick="document.getElementById('secret-overlay').classList.remove('revealed')">&times;</button>
         <p class="scripture">"I have filled him with the Spirit of God in wisdom, in understanding, in knowledge, and in all manner of workmanship..."</p>
@@ -337,7 +415,7 @@
     <div id="codex-modal">
         <button class="close-secret" onclick="document.getElementById('codex-modal').classList.remove('active')">&times;</button>
         <div class="codex-content">
-            <div class="codex-title">Codex of Mysteries</div>
+            <div class="codex-title" id="codex-title-text">Codex of Mysteries</div>
             <div class="codex-progress"><span id="unlock-count">0</span>/5 Secrets Revealed</div>
             <ul class="hint-list">
                 <li class="hint-item" id="hint-orb">
@@ -371,7 +449,7 @@
 
     <script>
         /* ==========================================
-           0. SECRETS TRACKER (THE CODEX)
+           0. SECRETS TRACKER (THE CODEX & MASTER COMPLETION)
         ========================================== */
         let unlockedSecrets = new Set(JSON.parse(localStorage.getItem('sonofiam_secrets')) || []);
         
@@ -380,6 +458,11 @@
                 unlockedSecrets.add(id);
                 localStorage.setItem('sonofiam_secrets', JSON.stringify([...unlockedSecrets]));
                 updateCodex();
+                
+                // Master Completion Check
+                if (unlockedSecrets.size === 5 && !localStorage.getItem('sonofiam_master_unlocked')) {
+                    setTimeout(() => { triggerMasterCompletion(); }, 1500); 
+                }
             }
         }
         
@@ -392,7 +475,20 @@
                     hintEl.querySelector('.hint-icon').innerText = '🔓';
                 }
             });
+            if(unlockedSecrets.size === 5 || localStorage.getItem('sonofiam_master_unlocked')) {
+                document.getElementById('codex-title-text').innerText = "The Revealed Codex";
+            }
         }
+        
+        function triggerMasterCompletion() {
+            localStorage.setItem('sonofiam_master_unlocked', 'true');
+            const overlay = document.getElementById('master-completion-overlay');
+            if(overlay) overlay.classList.add('revealed');
+            
+            // Permanently alter particles to Gold
+            particles.forEach(p => p.isGolden = true);
+        }
+
         updateCodex(); 
 
         /* ==========================================
@@ -409,7 +505,29 @@
         themeToggle.addEventListener('click', () => setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
 
         /* ==========================================
-           2. CANVAS ENGINE (Particles, Drawing, Parallax)
+           1B. MOBILE MENU LOGIC
+        ========================================== */
+        function toggleMenu() {
+            document.querySelector('.hamburger')?.classList.toggle('active');
+            document.querySelector('.mobile-menu')?.classList.toggle('active');
+            document.querySelector('.overlay')?.classList.toggle('active');
+            const isOpen = document.querySelector('.mobile-menu')?.classList.contains('active');
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        }
+        
+        const mThemeToggle = document.getElementById('mobile-theme-toggle');
+        if (mThemeToggle) { 
+            function checkMobile(){ mThemeToggle.style.display = window.innerWidth <= 900 ? 'flex' : 'none'; } 
+            checkMobile(); 
+            window.addEventListener('resize', checkMobile); 
+            mThemeToggle.addEventListener('click', () => {
+                const current = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                setTheme(current);
+            });
+        }
+
+        /* ==========================================
+           2. CANVAS ENGINE (Shapes, Drawing, Parallax)
         ========================================== */
         const canvas = document.getElementById('interactive-canvas');
         const ctx = canvas.getContext('2d');
@@ -417,13 +535,14 @@
         let mouse = { x: -1000, y: -1000 };
         let isPainting = false;
         let lastX = 0, lastY = 0;
+        const isMasterUnlocked = localStorage.getItem('sonofiam_master_unlocked') === 'true';
 
         function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize); resize();
 
-        // 2a. Drawing Mechanics & Ripples
+        // Drawing Mechanics & Ripples
         window.addEventListener('mousedown', (e) => {
-            if(e.target.closest('button') || e.target.closest('a') || e.target.closest('input') || e.target.closest('.codex-trigger')) return;
+            if(e.target.closest('button') || e.target.closest('a') || e.target.closest('input') || e.target.closest('.codex-trigger') || e.target.closest('.logo-icon')) return;
             isPainting = true;
             lastX = e.clientX; lastY = e.clientY;
         });
@@ -431,7 +550,7 @@
         window.addEventListener('mouseup', () => isPainting = false);
 
         window.addEventListener('click', (e) => {
-            if(e.target.closest('button') || e.target.closest('a') || e.target.closest('input') || e.target.closest('.codex-trigger')) return;
+            if(e.target.closest('button') || e.target.closest('a') || e.target.closest('input') || e.target.closest('.codex-trigger') || e.target.closest('.logo-icon')) return;
             const style = getComputedStyle(document.body);
             const domColor = style.getPropertyValue('--color-dominant').trim() || '#7205cd';
             const compColor = style.getPropertyValue('--color-compliment').trim() || '#5D7FFF';
@@ -441,7 +560,7 @@
         window.addEventListener('mousemove', (e) => { 
             mouse.x = e.clientX; mouse.y = e.clientY; 
 
-            // 2b. Spatial Parallax Depth Illusion
+            // Spatial Parallax Depth Illusion
             const px = (window.innerWidth - e.clientX * 2) / 90;
             const py = (window.innerHeight - e.clientY * 2) / 90;
             
@@ -453,7 +572,7 @@
                 orbBox.style.transform = `translate(${px * -1}px, ${py * -1}px)`;
             }
 
-            // 2c. Paint Logic
+            // Paint Logic
             if (isPainting) {
                 const style = getComputedStyle(document.body);
                 const domColor = style.getPropertyValue('--color-dominant').trim() || '#7205cd';
@@ -474,7 +593,9 @@
             constructor() {
                 this.x = Math.random() * width; this.y = Math.random() * height;
                 this.vx = (Math.random() - 0.5) * 0.5; this.vy = (Math.random() - 0.5) * 0.5;
-                this.size = Math.random() * 2 + 0.5;
+                this.size = Math.random() * 2 + 1; 
+                this.shapeType = Math.floor(Math.random() * 3); 
+                this.isGolden = isMasterUnlocked; // Permanent reward
             }
             update() {
                 this.x += this.vx; this.y += this.vy;
@@ -488,9 +609,36 @@
                 }
             }
             draw(isDark) {
-                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = isDark ? `rgba(255, 255, 255, ${this.size * 0.15})` : `rgba(114, 5, 205, ${this.size * 0.1})`;
+                ctx.beginPath();
+                
+                if (this.isGolden) {
+                    ctx.fillStyle = `rgba(212, 175, 55, ${this.size * 0.3})`;
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = '#d4af37';
+                } else {
+                    ctx.fillStyle = isDark ? `rgba(255, 255, 255, ${this.size * 0.15})` : `rgba(114, 5, 205, ${this.size * 0.1})`;
+                    ctx.shadowBlur = 0;
+                }
+                
+                if (this.shapeType === 0) {
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                } else if (this.shapeType === 1) {
+                    ctx.moveTo(this.x, this.y - this.size);
+                    ctx.lineTo(this.x + this.size, this.y + this.size);
+                    ctx.lineTo(this.x - this.size, this.y + this.size);
+                } else {
+                    ctx.moveTo(this.x, this.y - this.size * 1.5);
+                    ctx.lineTo(this.x + this.size * 0.4, this.y - this.size * 0.4);
+                    ctx.lineTo(this.x + this.size * 1.5, this.y);
+                    ctx.lineTo(this.x + this.size * 0.4, this.y + this.size * 0.4);
+                    ctx.lineTo(this.x, this.y + this.size * 1.5);
+                    ctx.lineTo(this.x - this.size * 0.4, this.y + this.size * 0.4);
+                    ctx.lineTo(this.x - this.size * 1.5, this.y);
+                    ctx.lineTo(this.x - this.size * 0.4, this.y - this.size * 0.4);
+                }
+                ctx.closePath();
                 ctx.fill();
+                ctx.shadowBlur = 0; // Reset for other strokes
             }
         }
         for (let i = 0; i < 80; i++) particles.push(new Particle());
@@ -501,7 +649,6 @@
             
             particles.forEach(p => { p.update(); p.draw(isDark); });
             
-            // Render Drawing Strokes
             for (let i = paintStrokes.length - 1; i >= 0; i--) {
                 let stroke = paintStrokes[i];
                 stroke.life -= 0.015;
@@ -521,7 +668,6 @@
                 ctx.shadowBlur = 0;
             }
 
-            // Render Ripples
             for (let i = ripples.length - 1; i >= 0; i--) {
                 let r = ripples[i]; r.radius += 2; r.alpha -= 0.015;
                 if (r.alpha <= 0) { ripples.splice(i, 1); continue; }
@@ -558,6 +704,7 @@
            4. EASTER EGG 2: SEVENTH CLICK LOGO
         ========================================== */
         const logoWrap = document.getElementById('mystery-logo');
+        const logoIcon = logoWrap.querySelector('.logo-icon');
         let clickCount = 0;
         let clickTimer;
         
@@ -576,7 +723,7 @@
             } catch(e) {} 
         }
 
-        logoWrap.addEventListener('click', () => {
+        logoIcon.addEventListener('click', () => {
             clickCount++;
             clearTimeout(clickTimer);
             if(clickCount === 7) {
@@ -663,7 +810,7 @@
                 toast.classList.add('show');
                 unlockSecret('idle');
                 setTimeout(() => toast.classList.remove('show'), 6000);
-            }, 60000);
+            }, 60000); // 60 seconds
         }
         window.addEventListener('mousemove', resetIdle);
         window.addEventListener('keypress', resetIdle);

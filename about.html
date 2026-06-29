@@ -82,16 +82,18 @@
             letter-spacing: 4px;
             margin-bottom: 1.5rem;
             line-height: 1;
+            color: #ffffff !important; /* Forces the text to be white */
+            text-shadow: 0 4px 25px rgba(0,0,0,0.9); /* Adds cinematic depth */
         }
         .about-hero-content .lead {
             font-size: clamp(1.2rem, 2vw, 1.6rem);
             font-family: var(--font-primary);
-            color: rgba(255,255,255,0.9);
+            color: rgba(255,255,255,0.9) !important; /* Protects the paragraph color */
             max-width: 600px;
             line-height: 1.5;
             font-weight: 500;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.9);
         }
-
         /* Intro Section */
         .intro-section {
             max-width: 800px;
@@ -359,7 +361,7 @@
                 <button class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
             </div>
             <div style="display: flex; align-items: center; gap: 15px;">
-                <button id="mobile-theme-toggle" class="theme-toggle" style="display: none;" aria-label="Toggle Dark Mode">🌙</button>
+                <button id="mobile-theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
                 <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
                     <span></span><span></span><span></span>
                 </button>
