@@ -31,49 +31,55 @@ function getCategoryLabel(cat) {
 
 /* ==========================================
    2. CINEMATIC CAROUSEL LOGIC (INDEX.HTML)
+   — Fixed "Exhibition" set, independent of category data
 ========================================== */
+const EXHIBITION_IMAGES = [
+    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1783696781/1_Corinthians_2V9_k4jh2q.webp', title: '1 Corinthians 2:9' },
+    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1783696769/Crucifixion._duliqw.webp', title: 'Crucifixion' },
+    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1783696771/Daughter_Of_Zion._z6znix.webp', title: 'Daughter Of Zion' },
+    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1783696781/Genesis_3_gn8zyi.webp', title: 'Genesis 3' },
+    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1783696736/1._light_among_darkness_hmvvza.webp', title: 'Light Among Darkness' },
+    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1783696775/Light_bearer_vfilze.webp', title: 'Light Bearer' },
+    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1783696781/Messiah_s_Love_lrtkol.webp', title: "Messiah's Love" },
+    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1783696775/The_Lost_Sheep_rdoxtq.webp', title: 'The Lost Sheep' }
+];
+
 async function initCinematicCarousel(artworks) {
     const carouselItems = document.querySelectorAll('#auto-carousel .carousel-item img');
-    if (carouselItems.length === 0 || !artworks.length) return; // Stop if not on home page
+    if (carouselItems.length === 0) return; // Not on the home page
 
-    // Select 1 piece from each category for the 5 frames
-    const categories = ['paintings', '3d-art', 'gospel', 'graffiti', 'old'];
-    let selectedArtworks = [];
+    let nextIndex = carouselItems.length; // Points to the next unused exhibition image
 
-    categories.forEach(cat => {
-        const piece = artworks.find(a => a.category === cat);
-        if (piece) selectedArtworks.push(piece);
-    });
-
-    // Fill remaining slots if categories are empty
-    let i = 0;
-    while (selectedArtworks.length < 5 && i < artworks.length) {
-        if (!selectedArtworks.includes(artworks[i])) selectedArtworks.push(artworks[i]);
-        i++;
-    }
-
-    // Inject images into frames
+    // Fill the initial 5 frames with the first 5 exhibition pieces
     carouselItems.forEach((img, index) => {
-        if (selectedArtworks[index]) {
-            img.src = selectedArtworks[index].fullImage || selectedArtworks[index].previewImage || selectedArtworks[index].image || '';
-            img.alt = selectedArtworks[index].title;
-        }
+        img.src = EXHIBITION_IMAGES[index].url;
+        img.alt = EXHIBITION_IMAGES[index].title;
     });
 
-    // Start rotation
+    // Rotate positions AND cycle in the next exhibition image each tick
     const items = document.querySelectorAll('#auto-carousel .carousel-item');
     let positions = ['center', 'right', 'hidden', 'hidden', 'left'];
-    
+
     setInterval(() => {
-        positions.unshift(positions.pop()); // Shift array right
+        positions.unshift(positions.pop());
         items.forEach((item, idx) => {
             item.className = 'carousel-item ' + positions[idx];
         });
+
+        // Whichever frame just went fully hidden gets the next exhibition image
+        const hiddenIdx = positions.indexOf('hidden');
+        if (hiddenIdx !== -1) {
+            const img = carouselItems[hiddenIdx];
+            const nextImg = EXHIBITION_IMAGES[nextIndex % EXHIBITION_IMAGES.length];
+            img.src = nextImg.url;
+            img.alt = nextImg.title;
+            nextIndex++;
+        }
     }, 3500);
 }
 
 /* ==========================================
-   3. INDEX PAGE GALLERY (CATEGORY FOLDERS)
+   3. INDEX PAGE WORK PREVIEW (CATEGORY FOLDERS)
 ========================================== */
 function renderCategoryFolders(artworks) {
     const folderGrid = document.getElementById('category-folders-grid');
@@ -81,38 +87,45 @@ function renderCategoryFolders(artworks) {
     
     folderGrid.innerHTML = ''; 
 
-    // The categories we want to build folders for
+    // The 6 exact main folders mapped in the requested order
     const categories = [
         { id: 'paintings', label: 'Paintings' },
-        { id: '3d-art', label: '3D Art' },
         { id: 'gospel', label: 'The Gospel Proclaimed' },
+        { id: 'sketches', label: 'Sketches' },
+        { id: '3d-art', label: '3D Art' },
         { id: 'graffiti', label: 'Graffiti' },
         { id: 'old', label: 'Old Artworks' }
     ];
 
     categories.forEach(cat => {
-        // Find all artworks that belong to this specific category
-        const catArtworks = artworks.filter(a => a.category === cat.id);
+        let catArtworks = [];
         
-        // If Promise hasn't uploaded any art for this category yet, skip it
+        // Logic to automatically separate Sketches from Old Works
+        if (cat.id === 'sketches') {
+            catArtworks = artworks.filter(a => a.category === 'old' && a.title.toLowerCase().includes('sketch'));
+        } else if (cat.id === 'old') {
+            catArtworks = artworks.filter(a => a.category === 'old' && !a.title.toLowerCase().includes('sketch'));
+        } else {
+            catArtworks = artworks.filter(a => a.category === cat.id);
+        }
+        
         if (catArtworks.length === 0) return; 
 
-        // Use the most recently uploaded artwork as the Cover Image for the folder
+        // Uses the first image as the cover of the folder
         const coverArt = catArtworks[0];
         const imgSrc = coverArt.fullImage || coverArt.previewImage || coverArt.image || '';
 
-        // Build the physical folder card
         const card = document.createElement('a');
-        card.href = `work.html#${cat.id}`; // Links directly to the category section on the Work page
-        card.className = 'category-folder-card reveal active';
+        card.href = `work.html#${cat.id}`; 
+        card.className = 'category-folder-card reveal active tilt-card';
         
         card.innerHTML = `
             <div class="folder-image">
-                <img src="${imgSrc}" alt="${cat.label} Collection" loading="lazy" onerror="this.style.display='none';">
+                <img src="${imgSrc}" alt="${cat.label} Collection" loading="lazy" style="object-fit: cover;" onerror="this.style.display='none';">
                 <div class="folder-overlay"></div>
             </div>
             <div class="folder-info">
-                <h3>${cat.label}</h3>
+                <h3 style="color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.8);">${cat.label}</h3>
                 <span class="work-count">${catArtworks.length} ${catArtworks.length === 1 ? 'Work' : 'Works'} &rarr;</span>
             </div>
         `;
@@ -121,7 +134,7 @@ function renderCategoryFolders(artworks) {
 }
 
 /* ==========================================
-   4. WORK PAGE GRIDS
+   4. WORK PAGE GRIDS (HORIZONTAL FILTER ENGINE)
 ========================================== */
 function renderWorkGrids(artworks) {
     const sections = {
@@ -129,6 +142,7 @@ function renderWorkGrids(artworks) {
         '3d-art': document.getElementById('3d-art-grid'),
         'gospel': document.getElementById('gospel-grid'),
         'graffiti': document.getElementById('graffiti-grid'),
+        'sketches': document.getElementById('sketches-grid'), 
         'old': document.getElementById('old-artworks-grid')
     };
 
@@ -139,33 +153,130 @@ function renderWorkGrids(artworks) {
 
     if (!isWorkPage) return;
 
-    artworks.forEach(art => {
-        const grid = sections[art.category];
-        if (!grid) return;
+    // Helper: Create the clickable horizontal filter bar
+    const createFilterBar = (container, groups, gridContainer) => {
+        const filterBar = document.createElement('div');
+        filterBar.className = 'filter-bar reveal active';
+        
+        const allBtn = document.createElement('button');
+        allBtn.className = 'filter-btn active';
+        allBtn.textContent = 'All';
+        allBtn.onclick = () => filterGrid(gridContainer, filterBar, 'all', allBtn);
+        filterBar.appendChild(allBtn);
 
-        if (art.category === 'old') {
-            const card = document.createElement('div');
-            card.className = 'archive-card reveal active';
-            const imgSrc = art.previewImage || art.fullImage || art.image || '';
-            card.innerHTML = `<img src="${imgSrc}" alt="${art.title}" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)'">`;
+        groups.forEach(group => {
+            if(!group || group === 'Uncategorized') return;
+            const btn = document.createElement('button');
+            btn.className = 'filter-btn';
+            btn.textContent = group;
+            btn.onclick = () => filterGrid(gridContainer, filterBar, group, btn);
+            filterBar.appendChild(btn);
+        });
+
+        container.parentNode.insertBefore(filterBar, container);
+    };
+
+    // Helper: Handle the filtering logic
+    const filterGrid = (grid, filterBar, category, activeBtn) => {
+        filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        activeBtn.classList.add('active');
+
+        const items = grid.querySelectorAll('.filtered-item');
+        items.forEach(item => {
+            if (category === 'all' || item.dataset.group === category) {
+                item.classList.remove('hidden');
+                setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'scale(1)'; }, 50);
+            } else {
+                item.style.opacity = '0';
+                item.style.transform = 'scale(0.9)';
+                setTimeout(() => { item.classList.add('hidden'); }, 400);
+            }
+        });
+    };
+
+    // Helper: Render the cards into the grid
+    const renderCards = (container, items, isOld, isFilterable = false) => {
+        const grid = document.createElement('div');
+        grid.className = 'subcategory-grid';
+        
+        items.forEach(art => {
+            const mediaSrc = art.previewImage || art.fullImage || art.image || '';
+            const isVideo = mediaSrc.toLowerCase().endsWith('.mp4') || mediaSrc.toLowerCase().endsWith('.mov');
+            
+            const mediaElement = isVideo 
+                ? `<video src="${mediaSrc}" autoplay loop muted playsinline loading="lazy" style="width:100%; height:100%; object-fit:contain;"></video>`
+                : `<img src="${mediaSrc}" alt="${art.title}" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)'">`;
+
+            const card = document.createElement(isOld ? 'div' : 'a');
+            card.className = `${isOld ? 'archive-card' : 'work-card'} reveal active tilt-card filtered-item`;
+            
+            if (isFilterable) {
+                card.dataset.group = art.category === 'paintings' ? (art.year || 'Unknown') : (art.subcategory || 'Uncategorized');
+            }
+
+            if (!isOld) {
+                card.href = `artwork.html?id=${encodeURIComponent(art.title.replace(/\s+/g, '-').toLowerCase())}`;
+                const subcat = art.subcategory ? ` — ${art.subcategory}` : (art.year ? ` — ${art.year}` : '');
+                card.innerHTML = `
+                    ${mediaElement}
+                    <div class="overlay-info">
+                        <h3>${art.title}</h3>
+                        <p>${getCategoryLabel(art.category)}${subcat}</p>
+                    </div>
+                `;
+            } else {
+                card.innerHTML = mediaElement;
+            }
             grid.appendChild(card);
-        } else {
-            const card = document.createElement('a');
-            card.href = `artwork.html?id=${encodeURIComponent(art.title.replace(/\s+/g, '-').toLowerCase())}`;
-            card.className = 'work-card reveal active';
-            const imgSrc = art.previewImage || art.fullImage || art.image || '';
-            const subcat = art.subcategory ? ` — ${art.subcategory}` : '';
-            card.innerHTML = `
-                <img src="${imgSrc}" alt="${art.title}" loading="lazy"
-                     onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #7205cd, #5D7FFF)'">
-                <div class="overlay-info">
-                    <h3>${art.title}</h3>
-                    <p>${getCategoryLabel(art.category)}${subcat}</p>
-                </div>
-            `;
-            grid.appendChild(card);
-        }
-    });
+        });
+        container.appendChild(grid);
+    };
+
+    // 1. PAINTINGS
+    if (sections['paintings']) {
+        const paintings = artworks.filter(a => a.category === 'paintings');
+        const years = [...new Set(paintings.map(a => a.year || 'Unknown'))].sort((a, b) => b.localeCompare(a));
+        createFilterBar(sections['paintings'], years, sections['paintings']);
+        renderCards(sections['paintings'], paintings, false, true);
+    }
+
+    // 2. 3D ART
+    if (sections['3d-art']) {
+        const threeDArt = artworks.filter(a => a.category === '3d-art');
+        const desiredOrder = [
+       "Featured 3D Renders", 
+       "Stylized portrait characters", 
+       "Astronaut series", 
+       "Human series", 
+       "Abstract Figures", 
+       "Abstract still renders", 
+       "Abstract animation"
+   ];
+   
+   const availableSubs = [...new Set(threeDArt.map(a => a.subcategory || 'Uncategorized'))].filter(sub => sub !== 'Uncategorized');
+   availableSubs.sort((a, b) => {
+       let indexA = desiredOrder.findIndex(o => a.toLowerCase().includes(o.toLowerCase()));
+       let indexB = desiredOrder.findIndex(o => b.toLowerCase().includes(o.toLowerCase()));
+       if (indexA === -1) indexA = 999;
+       if (indexB === -1) indexB = 999;
+       return indexA - indexB;
+   });
+
+        createFilterBar(sections['3d-art'], availableSubs, sections['3d-art']);
+        renderCards(sections['3d-art'], threeDArt, false, true);
+    }
+
+    // 3. SKETCHES vs OLD WORKS
+    const oldItems = artworks.filter(a => a.category === 'old');
+    const sketches = oldItems.filter(a => a.title.toLowerCase().includes('sketch'));
+    const purelyOld = oldItems.filter(a => !a.title.toLowerCase().includes('sketch'));
+
+    if (sections['sketches']) renderCards(sections['sketches'], sketches, true);
+    if (sections['old']) renderCards(sections['old'], sections['sketches'] ? purelyOld : oldItems, true);
+
+    // 4. GOSPEL & GRAFFITI
+    if (sections['gospel']) renderCards(sections['gospel'], artworks.filter(a => a.category === 'gospel'), false);
+    if (sections['graffiti']) renderCards(sections['graffiti'], artworks.filter(a => a.category === 'graffiti'), false);
 }
 
 /* ==========================================
@@ -176,13 +287,12 @@ function renderArtworkDetail(artworks) {
     const idParam = params.get('id');
     const titleEl = document.getElementById('artworkTitle');
     
-    if (!titleEl) return; // Not on the detail page
+    if (!titleEl) return; 
 
     if (!idParam || !artworks.length) {
         showArtworkError(); return;
     }
 
-    // Find artwork by matching the URL slug to the title
     const art = artworks.find(a => a.title.replace(/\s+/g, '-').toLowerCase() === idParam);
     if (!art) {
         showArtworkError(); return;
@@ -226,7 +336,7 @@ function renderArtworkDetail(artworks) {
             cropImg.src = art.cropImage;
             detailSection.style.display = 'block';
         } else {
-            detailSection.style.display = 'none'; // Hide section if no crop provided
+            detailSection.style.display = 'none'; 
         }
     }
 
@@ -234,7 +344,6 @@ function renderArtworkDetail(artworks) {
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.content = art.description || 'View artwork by Son_of_IAM_.';
 
-    // Prev / Next navigation
     const currentIndex = artworks.indexOf(art);
     const prevArt = artworks[currentIndex - 1] || artworks[artworks.length - 1];
     const nextArt = artworks[currentIndex + 1] || artworks[0];
@@ -331,7 +440,6 @@ function switchTab(event, tabId) {
     document.getElementById(tabId)?.classList.add('active');
 }
 
-// Expose to window so HTML inline clicks can use them
 window.openActionModal = openActionModal;
 window.closeActionModal = closeActionModal;
 window.switchTab = switchTab;
@@ -339,11 +447,9 @@ window.switchTab = switchTab;
 /* ==========================================
    8. MASTER LOAD TRIGGER
 ========================================== */
-// Fire everything when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', async () => {
     initTheme();
     
-    // Header Scroll Effect
     const header = document.getElementById('mainHeader');
     if (header) {
         window.addEventListener('scroll', () => {
@@ -351,7 +457,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // Reveal Animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) entry.target.classList.add('active');
@@ -360,44 +465,39 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Fetch CMS Data and Route to Correct Renderer
     const artworks = await fetchArtworks();
     if (artworks.length > 0) {
-        initCinematicCarousel(artworks); // Index page (Carousel)
-        renderCategoryFolders(artworks); // Index page (Category Folders)
-        renderWorkGrids(artworks);       // Work page (Full Galleries)
-        renderArtworkDetail(artworks);   // Artwork Detail page
+        initCinematicCarousel(artworks); 
+        renderCategoryFolders(artworks); 
+        renderWorkGrids(artworks);       
+        renderArtworkDetail(artworks);   
     }
+
     /* ==========================================
-       9. PREMIUM FEATURES (Sound, Transitions, Tilt, Zen)
+       9. PREMIUM FEATURES (Transitions, Tilt, Zen)
     ========================================== */
     function initPremiumFeatures() {
         
-        // --- A. Page Transitions ---
         const transitionOverlay = document.createElement('div');
         transitionOverlay.className = 'page-transition-overlay';
         document.body.appendChild(transitionOverlay);
         
-        // Fade out overlay on load
         requestAnimationFrame(() => {
             setTimeout(() => transitionOverlay.classList.add('loaded'), 100);
         });
 
-        // Intercept link clicks to fade out
         document.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', e => {
                 const href = link.getAttribute('href');
                 const target = link.getAttribute('target');
-                // Only intercept internal links
                 if (href && !href.startsWith('#') && !href.startsWith('mailto') && target !== '_blank' && href !== '') {
                     e.preventDefault();
                     transitionOverlay.classList.remove('loaded');
-                    setTimeout(() => window.location.href = href, 600); // Matches CSS duration
+                    setTimeout(() => window.location.href = href, 600); 
                 }
             });
         });
 
-        // --- B. 3D Magnetic Artwork Tilt ---
         const tiltCards = document.querySelectorAll('.artwork-card, .work-card, .shop-card, .category-folder-card');
         tiltCards.forEach(card => {
             card.classList.add('tilt-card');
@@ -409,7 +509,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
                 
-                // Calculate rotation (max 12 degrees)
                 const rotateX = ((y - centerY) / centerY) * -12; 
                 const rotateY = ((x - centerX) / centerX) * 12;
                 
@@ -427,13 +526,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         });
 
-        // --- C. Ambient Soundscape ---
         const audioToggle = document.getElementById('audio-toggle');
         if (audioToggle) {
-            // Note: You must upload an mp3 file to your Audio folder!
             const bgAudio = new Audio('Audio/ambient.mp3'); 
             bgAudio.loop = true;
-            bgAudio.volume = 0.2; // Keep it soft and cinematic
+            bgAudio.volume = 0.2; 
 
             let isPlaying = false;
             const audioPref = localStorage.getItem('audioPref');
@@ -453,7 +550,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             audioToggle.addEventListener('click', toggleAudio);
 
-            // Auto-play attempt on first click anywhere if they previously had it playing
             if (audioPref === 'playing') {
                 const firstInteraction = () => {
                     if(!isPlaying) toggleAudio();
@@ -463,7 +559,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
 
-        // --- D. Zen Focus Mode ---
         const zenBtn = document.getElementById('zen-toggle');
         if (zenBtn) {
             zenBtn.addEventListener('click', () => {
@@ -477,8 +572,62 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // Initialize all premium features after the DOM and CMS grids have finished loading
     setTimeout(() => {
         initPremiumFeatures();
     }, 200);
+
+    initCategorySlider(); 
+    initParticles();
 });
+
+/* ==========================================
+   CATEGORY SLIDER — SCROLL SPY (WORK PAGE)
+========================================== */
+function initCategorySlider() {
+    const slider = document.getElementById('categorySlider');
+    if (!slider) return;
+
+    const dots = slider.querySelectorAll('.slider-dot');
+    const sections = Array.from(dots).map(dot => document.querySelector(dot.getAttribute('href')));
+
+    window.addEventListener('scroll', () => {
+        let currentIndex = 0;
+        sections.forEach((section, i) => {
+            if (section && window.scrollY >= section.offsetTop - window.innerHeight / 2) {
+                currentIndex = i;
+            }
+        });
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+    });
+}
+
+/* ==========================================
+   LIVE BACKGROUND ENGINE (ETHEREAL DUST)
+========================================== */
+function initParticles() {
+    // Create the container
+    const container = document.createElement('div');
+    container.id = 'particle-container';
+    document.body.appendChild(container);
+
+    const particleCount = 40; // Number of particles on screen
+
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'ambient-particle';
+        
+        // Randomize size, starting position, and speed
+        const size = Math.random() * 4 + 2; // Between 2px and 6px
+        const posX = Math.random() * 100; // Random horizontal position
+        const delay = Math.random() * 20; // Random start delay
+        const duration = Math.random() * 15 + 15; // Floats for 15-30 seconds
+
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}vw`;
+        particle.style.animationDuration = `${duration}s`;
+        particle.style.animationDelay = `-${delay}s`; // Negative delay makes some appear instantly
+
+        container.appendChild(particle);
+    }
+}

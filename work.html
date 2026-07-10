@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=2.0">
     
     <!-- Custom Domain SEO / Open Graph Tags -->
     <meta property="og:title" content="Work | Son_of_IAM_">
@@ -80,7 +80,15 @@
     </style>
 </head>
 <body>
+<nav class="category-slider" id="categorySlider">
+    <a href="#paintings" class="slider-dot" data-label="Paintings"></a>
+    <a href="#gospel" class="slider-dot" data-label="Gospel Proclaimed"></a>    
+    <a href="#sketches" class="slider-dot" data-label="Sketches"></a>
+     <a href="#3d-art" class="slider-dot" data-label="3D Art"></a>
+    <a href="#graffiti" class="slider-dot" data-label="Graffiti"></a>
 
+    <a href="#old-artworks" class="slider-dot" data-label="Old Artworks"></a>
+</nav>
     <header id="mainHeader">
         <div class="nav-container">
             <a href="index.html" class="logo-wrapper">
@@ -122,6 +130,7 @@
         </div>
     </section>
 
+    <!-- 1. PAINTINGS -->
     <section id="paintings" class="category-section">
         <div class="category-header reveal">
             <h2>Paintings</h2>
@@ -130,22 +139,7 @@
         <div class="category-grid" id="paintings-grid"></div>
     </section>
 
-    <section id="graffiti" class="category-section">
-        <div class="category-header reveal">
-            <h2>Graffiti</h2>
-            <span>Selected Works</span>
-        </div>
-        <div class="category-grid" id="graffiti-grid"></div>
-    </section>
-
-    <section id="3d-art" class="category-section" style="background: var(--bg-light); border-radius: 30px; margin: 2rem auto;">
-        <div class="category-header reveal">
-            <h2>3D Art</h2>
-            <span>Blender Renders</span>
-        </div>
-        <div class="category-grid" id="3d-art-grid"></div>
-    </section>
-
+    <!-- 2. THE GOSPEL PROCLAIMED -->
     <section id="gospel" class="category-section">
         <div class="category-header reveal">
             <h2>The Gospel Proclaimed</h2>
@@ -154,14 +148,34 @@
         <div class="category-grid" id="gospel-grid"></div>
     </section>
 
-    <section id="articles" class="category-section articles-section-bg">
-        <div class="category-header reveal" style="border: none; justify-content: center;">
-            <h2>Articles</h2>
+    <!-- 3. SKETCHES -->
+    <section id="sketches" class="category-section">
+        <div class="category-header reveal">
+            <h2>Sketches</h2>
+            <span>Pencil & Digital Drafts</span>
         </div>
-        <p class="reveal" style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem;">Thoughts on faith, creativity, and the journey.</p>
-        <a href="https://medium.com/@xyvyhnd" target="_blank" class="medium-link reveal">Read on Medium →</a>
+        <div class="category-grid" id="sketches-grid"></div>
     </section>
 
+    <!-- 4. 3D ART -->
+    <section id="3d-art" class="category-section">
+        <div class="category-header reveal">
+            <h2>3D Art</h2>
+            <span>Blender Renders</span>
+        </div>
+        <div class="category-grid" id="3d-art-grid"></div>
+    </section>
+
+    <!-- 5. GRAFFITI -->
+    <section id="graffiti" class="category-section">
+        <div class="category-header reveal">
+            <h2>Graffiti</h2>
+            <span>Selected Works</span>
+        </div>
+        <div class="category-grid" id="graffiti-grid"></div>
+    </section>
+
+    <!-- 6. OLD WORKS -->
     <section id="old-artworks" class="category-section">
         <div class="category-header reveal">
             <h2>Old Artworks</h2>
@@ -180,6 +194,6 @@
         <div class="footer-bottom">© 2026 Son_of_IAM_. All rights reserved.</div>
     </footer>
 
-    <script src="script.js"></script>
+<script src="script.js?v=2.0"></script>
 </body>
 </html>
