@@ -60,3 +60,14 @@ collections:
               - label: "Main Image"
                 name: "image"
                 widget: "image"
+
+
+
+
+
+
+                media_library:
+  name: cloudinary
+  config:
+    cloud_name: mst703ng
+    api_key: 593467664868251
