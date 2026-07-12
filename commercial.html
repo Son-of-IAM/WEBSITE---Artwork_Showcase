@@ -77,7 +77,7 @@
                 <button class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
             </div>
             <div style="display: flex; align-items: center; gap: 15px;">
-                <button id="mobile-theme-toggle" class="theme-toggle" style="display: none;" aria-label="Toggle Dark Mode">🌙</button>
+                <button id="mobile-theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
                 <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
             </div>
         </div>
@@ -99,8 +99,8 @@
 
     <section class="contact-section" id="get-in-touch" style="padding-top: 0;">
         <div class="form-tabs reveal">
-            <button class="form-tab-btn active" onclick="switchForm('inquiry')">Project Inquiry</button>
-            <button class="form-tab-btn" onclick="switchForm('testimony')">Share Testimony</button>
+            <button class="form-tab-btn active" onclick="switchForm(event, 'inquiry')">Project Inquiry</button>
+            <button class="form-tab-btn" onclick="switchForm(event, 'testimony')">Share Testimony</button>
         </div>
 
         <div id="panel-inquiry" class="form-panel active reveal">
@@ -178,10 +178,10 @@
     <script src="script.js"></script>
     <script>
         // 1. Tab Switcher Logic
-        function switchForm(formName) {
+        function switchForm(e, formName) {
             document.querySelectorAll('.form-tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.form-panel').forEach(panel => panel.classList.remove('active'));
-            event.target.classList.add('active');
+            e.currentTarget.classList.add('active');
             document.getElementById(`panel-${formName}`).classList.add('active');
         }
 

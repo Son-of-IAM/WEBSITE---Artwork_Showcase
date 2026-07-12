@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Optima&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2.0">
 
 <!-- Custom Domain SEO / Open Graph Tags -->
 <meta property="og:title" content="Son_of_IAM_ | Stirring Hearts Through Art">
@@ -366,7 +366,7 @@
 
     <section class="home-about-split reveal">
       <div class="about-portrait">
-        <img src="https://res.cloudinary.com/mst703ng/image/upload/v1783696778/Self_portrait._oahstm.webp" alt="Son_of_IAM_ Self Portrait" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder-text\' style=\'padding:40px;text-align:center;\'>Portrait Image<br>(Add portrait.jpg)</div>';">
+        <img src="https://res.cloudinary.com/mst703ng/image/upload/v1783785778/Self_portrait._painting_kihuxb.webp" alt="Son_of_IAM_ Self Portrait" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder-text\' style=\'padding:40px;text-align:center;\'>Portrait Image<br>(Add portrait.jpg)</div>';">
       </div>
       <div class="about-text-content">
         <h2 class="section-title">About</h2>
@@ -544,22 +544,7 @@
   </div>
 </div>
 
-<script src="script.js"></script>
-
-<!-- AUTO-SCROLL LOGIC FOR CINEMATIC LANDING -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const items = document.querySelectorAll('.carousel-item');
-    if(items.length === 0) return;
-    let positions = ['center', 'right', 'hidden', 'hidden', 'left'];
-    setInterval(() => {
-        positions.unshift(positions.pop());
-        items.forEach((item, index) => {
-            item.className = 'carousel-item ' + positions[index];
-        });
-    }, 3500); 
-});
-</script>
+<script src="script.js?v=2.0"></script>
 
 </body>
 </html>
