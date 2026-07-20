@@ -6,7 +6,7 @@
     <title>Artwork | Son_of_IAM_</title>
     <meta name="description" content="Son_of_IAM_ - Stirring Hearts Through Art">
     <!-- Link to your CSS file (ensure the name matches your actual CSS file) -->
-    <link rel="stylesheet" href="style.css?v=2.1">
+    <link rel="stylesheet" href="style.css?v=2.0">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK59NQ2PR"></script>
     <script>
@@ -66,44 +66,44 @@
     ARTWORK DETAIL SECTION
     =========================================== -->
     <main class="artwork-detail-page reveal active">
-        <div style="display: flex; flex-wrap: wrap; min-height: 85vh; margin-top: 80px; background: var(--bg-white);">
-            
+        <div class="artwork-detail-grid">
+
             <!-- Left: Massive Image Focus -->
-            <div style="flex: 1 1 55%; background: var(--bg-light); display: flex; align-items: center; justify-content: center; padding: 3rem;">
-                <img id="mainImage" src="" alt="Artwork" style="max-height: 80vh; max-width: 100%; object-fit: contain; box-shadow: 0 20px 50px rgba(0,0,0,0.1);">
+            <div class="artwork-image-panel">
+                <img id="mainImage" src="" alt="Artwork">
             </div>
 
             <!-- Right: Elegant Typography & Details -->
-            <div style="flex: 1 1 45%; padding: 4rem 5%; display: flex; flex-direction: column; justify-content: center;">
-                <h1 id="artworkTitle" style="font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; margin-bottom: 1rem; text-transform: uppercase; font-family: var(--font-primary);"></h1>
-                
-                <div style="font-family: var(--font-primary); color: var(--color-dominant); text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; margin-bottom: 1.5rem; font-weight: 600;">
-                    <span id="artworkCategory"></span> &bull; 
-                    <span id="artworkYear"></span> &bull; 
+            <div class="artwork-info-panel">
+                <h1 id="artworkTitle"></h1>
+
+                <div class="artwork-meta">
+                    <span id="artworkCategory"></span> &bull;
+                    <span id="artworkYear"></span> &bull;
                     <span id="artworkMedium"></span>
                 </div>
-                
-                <p id="artworkDimensions" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px;"></p>
 
-                <div style="margin-bottom: 2rem; border-left: 2px solid var(--color-dominant); padding-left: 1.5rem;">
-                    <h3 style="font-size: 1rem; margin-bottom: 0.5rem; text-transform: uppercase; color: var(--text-dark);">Artist Note</h3>
-                    <p id="artworkDescription" style="font-size: 1.1rem; color: var(--text-muted); line-height: 1.6;"></p>
+                <p id="artworkDimensions" class="artwork-dimensions"></p>
+
+                <div class="artwork-note-block">
+                    <h3>Artist Note</h3>
+                    <p id="artworkDescription"></p>
                 </div>
 
-                <div id="artworkPrice" style="font-size: 1.5rem; font-weight: 700; color: var(--text-dark); margin-bottom: 1.5rem;"></div>
+                <div id="artworkPrice" class="artwork-price"></div>
 
                 <!-- NEW: The Button for the Client's External Video Link -->
-                <div id="videoLinkContainer" style="display: none; margin-bottom: 3rem;">
-                    <a id="externalVideoLink" href="#" target="_blank" class="btn-cta" style="display: inline-flex; align-items: center; gap: 10px; font-size: 0.9rem;">
+                <div id="videoLinkContainer" class="artwork-video-link">
+                    <a id="externalVideoLink" href="#" target="_blank" class="btn-cta">
                         ▶ Watch Full Process
                     </a>
                 </div>
 
                 <!-- Navigation -->
-                <div style="margin-top: auto; display: flex; gap: 1rem; border-top: 1px solid var(--border-light); padding-top: 2rem;">
-                    <a id="prevBtn" href="#" class="btn-outline" style="padding: 0.6rem 1.2rem; font-size: 0.75rem;">&larr; Prev</a>
-                    <a href="work.html" class="btn-outline" style="padding: 0.6rem 1.2rem; font-size: 0.75rem; background: var(--bg-light); border-color: var(--border-light); color: var(--text-dark);">Gallery</a>
-                    <a id="nextBtn" href="#" class="btn-outline" style="padding: 0.6rem 1.2rem; font-size: 0.75rem;">Next &rarr;</a>
+                <div class="artwork-nav-row">
+                    <a id="prevBtn" href="#" class="btn-outline">&larr; Prev</a>
+                    <a href="work.html" class="btn-outline btn-gallery">Gallery</a>
+                    <a id="nextBtn" href="#" class="btn-outline">Next &rarr;</a>
                 </div>
             </div>
         </div>
@@ -155,6 +155,7 @@
     <!-- ==========================================
     SCRIPTS (ONLY ONE CLEAN LINK)
     =========================================== -->
-   <script src="script.js?v=2.1"></script>
+    <script src="script.js"></script>
+
 </body>
 </html>
