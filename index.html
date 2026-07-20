@@ -18,7 +18,21 @@
 <meta property="og:url" content="https://sonofiam.com">
 <meta name="twitter:card" content="summary_large_image">
 
+<!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK59NQ2PR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XMK59NQ2PR');
+    </script>
 
+    <!-- Prevents Dark Mode Flashing/Glitching -->
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
    
 <style>
 /* ==========================================
@@ -97,8 +111,9 @@
    
 #cinematic-landing {
     position: relative;
-    width: 100vw;
-    height: 100vh;
+    width: 100%; /* Changed from 100vw to prevent the Windows scrollbar white-gap */
+    max-width: 100%;
+    height: 100dvh;
     background: #030208;
     overflow: hidden;
     display: flex;

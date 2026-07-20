@@ -3,7 +3,7 @@
 const ARTWORKS_URL = 'data/artworks/index.json';
 
 /* ==========================================
-DATA FETCHING (HEADLESS CMS)
+1. DATA FETCHING (HEADLESS CMS)
 ========================================== */
 async function fetchArtworks() {
     try {
@@ -32,9 +32,6 @@ function getCategoryLabel(cat) {
 /* ==========================================
 2. CINEMATIC CAROUSEL LOGIC
 ========================================== */
-/* ==========================================
-2. CINEMATIC CAROUSEL LOGIC
-========================================== */
 const EXHIBITION_IMAGES = [
     { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1783785773/1_Corinthians_2V9_painting_ah0hjt.webp', title: '1 Corinthians 2:9' },
     { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1783785771/Crucifixion._painting_mvg0qs.webp', title: 'Crucifixion' },
@@ -60,14 +57,10 @@ async function initCinematicCarousel(artworks) {
     let positions = ['center', 'right', 'hidden', 'hidden', 'left'];
 
     setInterval(() => {
-        // Grab the index of the item on the 'left' right before it slides off-screen
         const offScreenIdx = positions.indexOf('left');
-        
-        // Shift the array to rotate the carousel
         positions.unshift(positions.pop());
         items.forEach((item, idx) => { item.className = 'carousel-item ' + positions[idx]; });
         
-        // Quietly swap the image on the exact node that just went into hiding
         if (offScreenIdx !== -1) {
             const img = carouselItems[offScreenIdx];
             const nextImg = EXHIBITION_IMAGES[nextIndex % EXHIBITION_IMAGES.length];
@@ -179,14 +172,21 @@ function renderWorkGrids(artworks) {
             const mediaSrc = art.previewImage || art.fullImage || art.image || '';
             const isVideo = mediaSrc.toLowerCase().endsWith('.mp4') || mediaSrc.toLowerCase().endsWith('.mov');
             
-            const mediaElement = isVideo 
-                ? `<video src="${mediaSrc}" autoplay loop muted playsinline loading="lazy" style="width:100%; height:100%; object-fit:contain;"></video>`
-                : `<img src="${mediaSrc}" alt="${art.title}" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)'">`;
+            let mediaElement;
+            if (isVideo) {
+                mediaElement = `<video src="${mediaSrc}" autoplay loop muted playsinline loading="lazy" style="width:100%; height:100%; object-fit:contain;"></video>`;
+            } else {
+                let fullImg = mediaSrc;
+                if (mediaSrc.includes('res.cloudinary.com') && mediaSrc.includes('/upload/')) {
+                    // Auto-format + auto-quality + capped width so images load fast
+                    fullImg = mediaSrc.replace('/upload/', '/upload/f_auto,q_auto,w_1600/');
+                }
+
+                mediaElement = `<img src="${fullImg}" alt="${art.title}" loading="lazy" decoding="async">`;
+            }
             
             const card = document.createElement('a');
             card.className = 'work-card reveal active tilt-card filtered-item';
-            
-            // FIX 1: Use stable numeric ID instead of encoded title string
             card.href = `artwork.html?id=${art.id}`;
             
             if (isFilterable) {
@@ -206,7 +206,6 @@ function renderWorkGrids(artworks) {
         container.appendChild(grid);
     };
 
-    // 1. PAINTINGS (Sorted Newest to Oldest)
     if (sections['paintings']) {
         const paintings = artworks.filter(a => a.category === 'paintings').sort((a, b) => (parseInt(b.year) || 0) - (parseInt(a.year) || 0));
         const years = [...new Set(paintings.map(a => a.year || 'Unknown'))].sort((a, b) => b.localeCompare(a));
@@ -214,14 +213,9 @@ function renderWorkGrids(artworks) {
         renderCards(sections['paintings'], paintings, true);
     }
 
-    // 2. 3D ART
     if (sections['3d-art']) {
         const threeDArt = artworks.filter(a => a.category === '3d-art');
-        const desiredOrder = [
-            "Featured Renders", "Stylized Portraits", "Astronaut Series", 
-            "Human Series", "Abstract Figures", "Abstract Still Renders", "Abstract Animations"
-        ];
-        
+        const desiredOrder = ["Featured Renders", "Stylized Portraits", "Astronaut Series", "Human Series", "Abstract Figures", "Abstract Still Renders", "Abstract Animations"];
         const availableSubs = [...new Set(threeDArt.map(a => a.subcategory || 'Uncategorized'))].filter(sub => sub !== 'Uncategorized');
         availableSubs.sort((a, b) => {
             let indexA = desiredOrder.findIndex(o => a.toLowerCase().includes(o.toLowerCase()));
@@ -230,16 +224,12 @@ function renderWorkGrids(artworks) {
             if (indexB === -1) indexB = 999;
             return indexA - indexB;
         });
-        
         createFilterBar(sections['3d-art'], availableSubs, sections['3d-art']);
         renderCards(sections['3d-art'], threeDArt, true);
     }
 
-    // 3. SKETCHES & OLD
     if (sections['sketches']) renderCards(sections['sketches'], artworks.filter(a => a.category === 'sketches'), false);
     if (sections['old']) renderCards(sections['old'], artworks.filter(a => a.category === 'old'), false);
-
-    // 4. GOSPEL & GRAFFITI
     if (sections['gospel']) renderCards(sections['gospel'], artworks.filter(a => a.category === 'gospel'), false);
     if (sections['graffiti']) renderCards(sections['graffiti'], artworks.filter(a => a.category === 'graffiti'), false);
 }
@@ -249,21 +239,14 @@ function renderWorkGrids(artworks) {
 ========================================== */
 function renderArtworkDetail(artworks) {
     const params = new URLSearchParams(window.location.search);
-    
-    // FIX 2: Parse ID as integer and handle NaN safely
     const idParam = parseInt(params.get('id'), 10);
     const titleEl = document.getElementById('artworkTitle');
     
     if (!titleEl) return; 
-    if (isNaN(idParam) || !artworks.length) {
-        return showArtworkError();
-    }
+    if (isNaN(idParam) || !artworks.length) return showArtworkError();
     
-    // FIX 3: Match against stable numeric id
     const art = artworks.find(a => a.id === idParam);
-    if (!art) {
-        return showArtworkError();
-    }
+    if (!art) return showArtworkError();
 
     const setText = (elId, text) => {
         const el = document.getElementById(elId);
@@ -294,9 +277,16 @@ function renderArtworkDetail(artworks) {
     if (mainImg) {
         mainImg.src = art.fullImage || art.image || '';
         mainImg.alt = art.title;
-        mainImg.style.objectFit = 'contain';
-        mainImg.style.maxHeight = '85vh';
-        mainImg.style.width = '100%';
+    }
+    
+    const videoLinkContainer = document.getElementById('videoLinkContainer');
+    const externalVideoLink = document.getElementById('externalVideoLink');
+
+    if (art.externalLink && videoLinkContainer) {
+        externalVideoLink.href = art.externalLink;
+        videoLinkContainer.style.display = 'block';
+    } else if (videoLinkContainer) {
+        videoLinkContainer.style.display = 'none';
     }
 
     document.title = `${art.title || 'Artwork'} | Son_of_IAM_`;
@@ -308,7 +298,6 @@ function renderArtworkDetail(artworks) {
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     
-    // FIX 4: Use stable numeric id for next/prev links
     if (prevBtn) prevBtn.href = `artwork.html?id=${prevArt.id}`;
     if (nextBtn) nextBtn.href = `artwork.html?id=${nextArt.id}`;
 }
@@ -485,7 +474,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     initCategorySlider(); 
     initParticles();
-});
+// ==========================================
+    // PROGRESSIVE IMAGE LOADER TRIGGER
+    // ==========================================
+    // Blur-up placeholder removed — images load directly with native
+    // loading="lazy" handling the deferred loading instead.
+}); // <-- END OF DOMContentLoaded BLOCK
 
 function initCategorySlider() {
     const slider = document.getElementById('categorySlider');
