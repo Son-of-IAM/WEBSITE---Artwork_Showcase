@@ -14,7 +14,7 @@
 <!-- Custom Domain SEO / Open Graph Tags -->
 <meta property="og:title" content="Son_of_IAM_ | Stirring Hearts Through Art">
 <meta property="og:description" content="Nigerian creative spreading the gospel through digital art, 3D renders, and visual storytelling.">
-<meta property="og:image" content="https://sonofiam.com/Images/hero-background.jpg">
+<meta property="og:image" content="https://res.cloudinary.com/mst703ng/image/upload/v1784595007/website_assets/landing%20page%20background%20image%20and%20about%20also%20the%20landing%20image/Messiah_s_Love.webp">
 <meta property="og:url" content="https://sonofiam.com">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -39,7 +39,17 @@
    CINEMATIC LANDING ANIMATION 
 ========================================== */
 
-   /* ==========================================
+/* Note: If your .logo class is in this file, use this updated purple version. 
+   (Also ensure you delete any [data-theme="dark"] .logo { color: #ffffff; } overrides!) */
+.logo { 
+    font-size: 1.4rem; 
+    font-weight: 700; 
+    color: #7006CC !important; /* Your custom purple */
+    font-family: var(--font-primary); 
+    letter-spacing: 1px; 
+}
+
+/* ==========================================
    CATEGORY FOLDERS (INDEX PAGE)
 ========================================== */
 .category-folders-grid {
@@ -171,23 +181,46 @@
 .accent-light.left { left: 18vw; }
 .accent-light.right { right: 18vw; }
 
-/* Typography (Moved UP) */
+/* Typography & Readability Fixes */
 .cinematic-text {
-    position: relative; z-index: 6; text-align: center;
-    margin-top: 18vh; margin-bottom: 2vh;
+    position: relative; 
+    z-index: 6; 
+    text-align: center;
+    margin-top: 15vh; /* Gives the text better breathing room */
+    margin-bottom: 2vh;
+    padding: 0 5%;
 }
+
 .cinematic-text .welcome {
-    font-family: var(--font-secondary); font-size: 0.9rem; letter-spacing: 8px;
-    color: #d4af37; text-transform: uppercase; margin-bottom: 1rem;
+    font-family: var(--font-secondary); 
+    font-size: 0.9rem; 
+    letter-spacing: 8px;
+    color: #ffffff !important; /* Crisp white for easy reading */
+    text-transform: uppercase; 
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
 }
+
 .cinematic-text h1 {
-    font-family: var(--font-secondary); font-size: clamp(3rem, 7vw, 6rem);
-    color: #d4af37; font-weight: 400; letter-spacing: 4px; margin-bottom: 0.8rem;
-    line-height: 1; text-shadow: 0 0 50px rgba(212, 175, 55, 0.3);
+    font-family: var(--font-secondary); 
+    font-size: clamp(3rem, 8vw, 6rem);
+    color: #7006CC !important; /* Your custom purple */
+    font-weight: 700; 
+    letter-spacing: 4px; 
+    margin-bottom: 0.8rem;
+    line-height: 1; 
+    /* Soft purple glow + dark shadow makes it pop off the background */
+    text-shadow: 0 0 20px rgba(112, 6, 204, 0.4), 0 4px 15px rgba(0,0,0,0.9) !important;
 }
+
 .cinematic-text .roles {
-    font-family: var(--font-secondary); font-size: 0.85rem; letter-spacing: 4px;
-    color: #888; text-transform: uppercase;
+    font-family: var(--font-secondary); 
+    font-size: 0.85rem; 
+    letter-spacing: 4px;
+    color: #cccccc !important; /* Light gray for contrast hierarchy */
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    line-height: 1.6;
 }
 
 /* 3D Carousel (Moved DOWN to rest on the Rotunda) */
@@ -269,14 +302,34 @@
 .artwork-overlay span { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; }
 
 @media (max-width: 768px) {
-    .carousel-item { width: 220px; height: 280px; bottom: 12vh; }
+    /* Push text up so it doesn't collide with the carousel */
+    .cinematic-text { margin-top: 12vh; } 
+    .cinematic-text h1 { font-size: 3rem; letter-spacing: 2px; }
+    .cinematic-text .welcome { font-size: 0.75rem; letter-spacing: 4px; }
+    .cinematic-text .roles { font-size: 0.65rem; letter-spacing: 2px; }
+    
+    /* Shrink and raise the carousel to fit mobile screens perfectly */
+    .carousel-item { width: 200px; height: 260px; bottom: 16vh; }
     .carousel-item.left { transform: translateX(-65%) scale(0.7) translateZ(-100px) rotateY(35deg); }
     .carousel-item.right { transform: translateX(65%) scale(0.7) translateZ(-100px) rotateY(-35deg); }
-    .cinematic-text h1 { font-size: 2.5rem; }
-    .cinematic-text .roles { font-size: 0.6rem; letter-spacing: 2px;}
+    
     .accent-light.left { left: 5vw; }
     .accent-light.right { right: 5vw; }
-    .cinematic-spotlight { width: 90vw; }
+    .cinematic-spotlight { width: 100vw; }
+    
+    /* Raise the enter button so mobile Safari/Chrome address bars don't cover it */
+    .enter-btn { bottom: 8vh; padding: 0.8rem 2rem; font-size: 0.7rem; }
+}
+
+/* ==========================================
+   DYNAMIC BACKGROUND UPDATE HERE 
+========================================== */
+.hero {
+    margin-top: 60px; padding: 10rem 5%; width: 100vw; max-width: 100vw;
+    background-color: #05020a;
+    background-image: linear-gradient(rgba(20, 5, 40, 0.6), rgba(10, 10, 10, 0.8)), url('https://res.cloudinary.com/mst703ng/image/upload/v1784595007/website_assets/landing%20page%20background%20image%20and%20about%20also%20the%20landing%20image/Messiah_s_Love.webp');
+    background-size: cover; background-position: center; background-attachment: fixed;
+    color: #ffffff !important; text-align: center; position: relative; overflow: hidden;
 }
 </style>
 </head>
@@ -328,6 +381,12 @@
   <a href="about.html" onclick="toggleMenu()">About</a>
   <a href="https://medium.com/@xyvyhnd" target="_blank" onclick="toggleMenu()">Articles</a>
   <a href="commercial.html" onclick="toggleMenu()">Commercial</a>
+  <div class="mobile-menu-credit">
+      <a href="https://ayoleyi-dev.github.io/Marvelous-Ascent/" target="_blank" rel="noopener" class="credit-badge" title="Website built by Marvelous Ascent — an independent developer, not affiliated with Son_of_IAM_">
+          <span class="credit-bracket">[MA]</span> Site by Marvelous Ascent
+      </a>
+      <a href="https://ayoleyi-portfolio.vercel.app/" target="_blank" rel="noopener" class="credit-portfolio-link">Developer Portfolio ↗</a>
+  </div>
 </div>
 
 <section id="cinematic-landing">
@@ -381,7 +440,8 @@
 
     <section class="home-about-split reveal">
       <div class="about-portrait">
-        <img src="https://res.cloudinary.com/mst703ng/image/upload/v1783785778/Self_portrait._painting_kihuxb.webp" alt="Son_of_IAM_ Self Portrait" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder-text\' style=\'padding:40px;text-align:center;\'>Portrait Image<br>(Add portrait.jpg)</div>';">
+        <!-- Replaced URL with the new live Cloudinary Link -->
+        <img src="https://res.cloudinary.com/mst703ng/image/upload/v1784595010/website_assets/short%20about%20on%20home%20page/Self_portrait..webp" alt="Son_of_IAM_ Self Portrait" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder-text\' style=\'padding:40px;text-align:center;\'>Portrait Image<br>(Add portrait.jpg)</div>';">
       </div>
       <div class="about-text-content">
         <h2 class="section-title">About</h2>
@@ -443,8 +503,8 @@
       <div class="shop-grid">
         <article class="shop-card">
           <div class="shop-image-wrapper">
-            <!-- Updated Image Source Below -->
-            <img src="Images/IMG_3760.jpg" alt="Shop Preview" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)';">
+            <!-- FIXED THE URL BUG! Replaced url="..." with src="..." -->
+            <img src="https://res.cloudinary.com/mst703ng/image/upload/v1784595010/website_assets/shop%20preview%20on%20home%20page/IMG_3760.webp" alt="Shop Preview" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)';">
             <span class="badge open">Open Edition Print</span>
           </div>
           <div class="shop-info">
@@ -455,7 +515,8 @@
         </article>
         <article class="shop-card">
           <div class="shop-image-wrapper">
-            <img src="Images/IMG_3760.jpg" alt="Wallpaper Pack" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)';">
+            <!-- FIXED THE URL BUG! Replaced url="..." with src="..." -->
+            <img src="https://res.cloudinary.com/mst703ng/image/upload/v1784595010/website_assets/shop%20preview%20on%20home%20page/IMG_3760.webp" alt="Wallpaper Pack" onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-light)';">
             <span class="badge limited">Digital Downloads</span>
           </div>
           <div class="shop-info">
@@ -509,7 +570,13 @@
         </div>
       </div>
       <div class="footer-bottom">
-        © 2026 Son_of_IAM_. All rights reserved.
+        <span>© 2026 Son_of_IAM_. All rights reserved.</span>
+        <span>
+            <a href="https://ayoleyi-dev.github.io/Marvelous-Ascent/" target="_blank" rel="noopener" class="credit-badge" title="Website built by Marvelous Ascent — an independent developer, not affiliated with Son_of_IAM_">
+                <span class="credit-bracket">[MA]</span> Site built by Marvelous Ascent
+            </a>
+            <a href="https://ayoleyi-portfolio.vercel.app/" target="_blank" rel="noopener" class="credit-portfolio-link">Developer Portfolio ↗</a>
+        </span>
       </div>
     </footer>
 </div>
@@ -558,6 +625,8 @@
     </div>
   </div>
 </div>
+
+
 
 <script src="script.js?v=2.0"></script>
 

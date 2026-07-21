@@ -77,7 +77,13 @@ header.scrolled { padding: 0.7rem 5%; box-shadow: 0 4px 30px rgba(114, 5, 205, 0
 
 .logo-icon img { width: 100%; height: 100%; object-fit: contain; animation: fireGlow 3s infinite alternate; }
 .logo-text { display: flex; flex-direction: column; }
-.logo { font-size: 1.4rem; font-weight: 700; color: var(--text-dark); font-family: var(--font-primary); letter-spacing: 1px; }
+.logo { 
+    font-size: 1.4rem; 
+    font-weight: 700; 
+    color: #7006CC !important; /* Your custom purple */
+    font-family: var(--font-primary); 
+    letter-spacing: 1px; 
+}
 .logo-tagline { font-size: 0.65rem; color: var(--color-dominant); text-transform: uppercase; font-weight: 600; letter-spacing: 2px; font-family: var(--font-primary); }
 
 .nav-right { display: flex; align-items: center; gap: 2.5rem; }
@@ -124,9 +130,10 @@ header.scrolled { padding: 0.7rem 5%; box-shadow: 0 4px 30px rgba(114, 5, 205, 0
 
 .mobile-menu {
     position: fixed; top: 0; right: -100%; width: 85%; max-width: 400px; height: 100vh;
-    background: var(--bg-white); z-index: 1001; padding: 8rem 3rem;
+    background: var(--bg-white); z-index: 1001; padding: 8rem 3rem 2.5rem;
     transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: -10px 0 50px rgba(0,0,0,0.15);
     font-family: var(--font-primary); overflow-y: auto;
+    display: flex; flex-direction: column;
 }
 .mobile-menu.active { right: 0; }
 .mobile-menu a { display: block; font-size: 1.3rem; padding: 1.2rem 0; border-bottom: 1px solid var(--border-light); font-weight: 600; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
@@ -272,6 +279,58 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.8); padding: 6rem 5% 3re
 .footer-links h4 { margin-bottom: 1.8rem; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; color: var(--color-dominant); font-family: var(--font-primary); }
 .footer-links a { display: block; margin-bottom: 12px; transition: 0.3s; color: rgba(255,255,255,0.8); font-family: var(--font-primary); text-transform: uppercase; font-size: 0.8rem; }
 .footer-links a:hover { color: var(--color-dominant); padding-left: 8px; }
+
+/* ==========================================
+DEVELOPER CREDIT — MARVELOUS ASCENT
+Intentionally styled apart from the Son_of_IAM_ brand colors/fonts
+so it reads as a separate, independent credit rather than part of
+the site owner's own branding.
+=========================================== */
+.footer-bottom {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+    gap: 1rem; padding-top: 2.5rem; max-width: 1400px; margin: 0 auto;
+    font-size: 0.85rem; color: rgba(255,255,255,0.5);
+}
+.credit-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'Courier New', Courier, monospace;
+    background: #0C172C;
+    color: #F8FAFC !important;
+    padding: 0.55rem 1rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    letter-spacing: 0.3px;
+    border: 1px solid rgba(248, 250, 252, 0.15);
+    transition: var(--transition);
+}
+.credit-badge:hover {
+    transform: translateY(-2px);
+    border-color: rgba(248, 250, 252, 0.4);
+    box-shadow: 0 10px 25px rgba(12, 23, 44, 0.5);
+}
+.credit-badge .credit-bracket { color: #F8FAFC; opacity: 0.55; font-weight: 700; }
+.credit-portfolio-link {
+    font-size: 0.75rem; color: rgba(255,255,255,0.4) !important; margin-left: 0.75rem;
+    text-decoration: underline; text-underline-offset: 3px; transition: 0.3s;
+}
+.credit-portfolio-link:hover { color: rgba(255,255,255,0.75) !important; }
+
+@media (max-width: 600px) {
+    .footer-bottom { flex-direction: column; text-align: center; }
+}
+
+/* Mobile side-nav version — pinned to the bottom of the panel */
+.mobile-menu-credit {
+    margin-top: auto;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    border-top: 1px solid var(--border-light);
+}
+.mobile-menu-credit .credit-badge { width: 100%; justify-content: center; }
+.mobile-menu-credit .credit-portfolio-link { margin-left: 0; }
 .social-pill { display: inline-block; padding: 0.6rem 1.2rem; border: 1px solid rgba(255,255,255,0.25); border-radius: 30px; font-size: 0.8rem; color: white !important; font-family: var(--font-primary); text-transform: uppercase; transition: 0.3s;}
 .social-pill:hover { background: var(--color-dominant); border-color: var(--color-dominant); transform: translateY(-3px); }
 
@@ -293,6 +352,29 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.8); padding: 6rem 5% 3re
     .about-text-content h2 { text-align: center !important; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
 }
+@media (max-width: 768px) {
+    /* Push text up so it doesn't collide with the carousel */
+    .cinematic-text { margin-top: 12vh; } 
+    .cinematic-text h1 { font-size: 3rem; letter-spacing: 2px; }
+    .cinematic-text .welcome { font-size: 0.75rem; letter-spacing: 4px; }
+    .cinematic-text .roles { font-size: 0.65rem; letter-spacing: 2px; }
+    
+    /* Shrink and raise the carousel to fit mobile screens perfectly */
+    .carousel-item { width: 200px; height: 260px; bottom: 16vh; }
+    .carousel-item.left { transform: translateX(-65%) scale(0.7) translateZ(-100px) rotateY(35deg); }
+    .carousel-item.right { transform: translateX(65%) scale(0.7) translateZ(-100px) rotateY(-35deg); }
+    
+    .accent-light.left { left: 5vw; }
+    .accent-light.right { right: 5vw; }
+    .cinematic-spotlight { width: 100vw; }
+    
+    /* Raise the enter button so mobile Safari/Chrome address bars don't cover it */
+    .enter-btn { bottom: 8vh; padding: 0.8rem 2rem; font-size: 0.7rem; }
+
+    /* Retained existing discipline grid fix for tablets */
+    .discipline-grid { grid-template-columns: 1fr; gap: 1.5rem; padding: 0 1rem; }
+    .discipline-item { width: 100%; box-sizing: border-box; overflow: hidden; word-wrap: break-word; }
+}
 @media (max-width: 600px) {
     .hero { padding: 8rem 5% 4rem; min-height: 85vh; display: flex; align-items: center; justify-content: center; }
     .hero h1 { font-size: clamp(2.2rem, 9vw, 2.8rem); line-height: 1.1; margin-bottom: 1rem; word-break: keep-all; }
@@ -305,7 +387,6 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.8); padding: 6rem 5% 3re
     .social-pills { justify-content: center; } 
 }
 
-[data-theme="dark"] .logo { color: #ffffff; }
 [data-theme="dark"] .desktop-menu a { color: #cccccc; }
 [data-theme="dark"] .hamburger span { background: #ffffff; }
 [data-theme="dark"] .section-title { color: #ffffff; }
@@ -336,11 +417,6 @@ PREMIUM FAQ ACCORDION
 .faq-item.active .premium-list li:nth-child(3) { transition-delay: 0.2s; }
 .faq-item.active .premium-list li:nth-child(4) { transition-delay: 0.25s; }
 .faq-item.active .premium-list li:nth-child(5) { transition-delay: 0.3s; }
-
-@media (max-width: 768px) {
-    .discipline-grid { grid-template-columns: 1fr; gap: 1.5rem; padding: 0 1rem; }
-    .discipline-item { width: 100%; box-sizing: border-box; overflow: hidden; word-wrap: break-word; }
-}
 
 /* ==========================================
 PREMIUM FEATURES: Transitions, 3D Tilt, Zen Mode
@@ -566,31 +642,178 @@ SHOW ROOM / CINEMATIC FIXES
     z-index: 10;
 }
 
-.cinematic-text h1,
+/* Typography & Readability Fixes */
+.cinematic-text {
+    position: relative; 
+    z-index: 6; 
+    text-align: center;
+    margin-top: 15vh; /* Gives the text better breathing room */
+    margin-bottom: 2vh;
+    padding: 0 5%;
+}
+
 .cinematic-text .welcome {
-    color: #000000 !important;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.9) !important;
+    font-family: var(--font-secondary); 
+    font-size: 0.9rem; 
+    letter-spacing: 8px;
+    color: #ffffff !important; /* Crisp white for easy reading */
+    text-transform: uppercase; 
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+.cinematic-text h1 {
+    font-family: var(--font-secondary); 
+    font-size: clamp(3rem, 8vw, 6rem);
+    color: #7006CC !important; /* Your custom purple */
+    font-weight: 700; 
+    letter-spacing: 4px; 
+    margin-bottom: 0.8rem;
+    line-height: 1; 
+    /* Soft purple glow + dark shadow makes it pop off the background */
+    text-shadow: 0 0 20px rgba(112, 6, 204, 0.4), 0 4px 15px rgba(0,0,0,0.9) !important;
+}
+
+.cinematic-text .roles {
+    font-family: var(--font-secondary); 
+    font-size: 0.85rem; 
+    letter-spacing: 4px;
+    color: #cccccc !important; /* Light gray for contrast hierarchy */
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    line-height: 1.6;
 }
 
 /* ==========================================
-WORK SECTION FILTER BAR (X-AXIS SCROLL)
+WORK SECTION FILTER BAR & GRIDS
 =========================================== */
-.filter-bar {
-    display: flex; flex-wrap: nowrap !important; overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch; gap: 1.2rem; padding: 1rem 2rem 20px 2rem;
-    margin: 0 auto 3.5rem auto; max-width: fit-content; justify-content: center; scroll-behavior: smooth;
+.category-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important; /* Force exact left alignment */
+    text-align: left !important; 
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 1rem;
 }
-@media (max-width: 900px) {
-    .filter-bar { max-width: 100%; justify-content: flex-start; padding: 1rem 5% 20px 5%; }
-    .filter-bar::after { content: ''; padding-right: 5%; }
-}
-.filter-btn { flex: 0 0 auto !important; white-space: nowrap !important; }
 
-/* Premium Custom Scrollbar for PC Desktop */
-.filter-bar::-webkit-scrollbar { height: 6px; }
+.subcategory-title {
+    color: var(--color-dominant); 
+    text-shadow: 0 2px 10px rgba(114, 5, 205, 0.15);
+    font-family: var(--font-primary); 
+    font-size: 1.8rem; 
+    margin: 0 0 0.3rem 0 !important; /* Removed huge top margin */
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    width: 100%;
+}
+[data-theme="dark"] .subcategory-title { color: #ffffff; }
+
+/* Fixes the "Blender Renders" / "Selected Works" subtitles */
+.category-header .section-subtitle {
+    margin: 0 !important; 
+    text-align: center !important;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+.filter-bar {
+    display: flex; 
+    flex-wrap: nowrap !important; 
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch; 
+    gap: 1rem; 
+    padding: 0.5rem 0 1.5rem 0 !important; /* Removed left padding */
+    margin: 0 0 2rem 0 !important; /* Removed left margin */
+    width: 100%; 
+    justify-content: flex-start !important; 
+    scroll-behavior: smooth;
+}
+
+/* Premium Custom Scrollbar */
+.filter-bar::-webkit-scrollbar { height: 4px; }
 .filter-bar::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); border-radius: 10px; }
+[data-theme="dark"] .filter-bar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
 .filter-bar::-webkit-scrollbar-thumb { background: var(--color-dominant); border-radius: 10px; }
-/* PATCH 2: REMOVED THE EXTRA } THAT WAS HERE */
+
+.filter-btn { 
+    flex: 0 0 auto !important; 
+    white-space: nowrap !important; 
+}
+
+.filtered-item { transition: opacity 0.4s ease, transform 0.4s ease; }
+.filtered-item.hidden { display: none !important; }
+
+.category-section > div[id$="-grid"] { display: block; }
+.subcategory-grid { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 300px; gap: 1.5rem; }
+
+/* FIXING THE CONSISTENT CURVED BORDERS FOR VIDEOS */
+.subcategory-grid .work-card, .subcategory-grid .archive-card {
+    background: transparent !important; 
+    border: none !important; 
+    box-shadow: none !important;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    grid-column: span 2; 
+    position: relative; 
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    /* Hardware acceleration for smooth clipping — no mask-image here on purpose,
+       overflow:hidden + border-radius already clips cleanly and a radial mask
+       was fading the corners unevenly instead of rounding them. */
+    transform: translateZ(0);
+}
+
+.subcategory-grid .work-card img, .subcategory-grid .archive-card img, .subcategory-grid video {
+    object-fit: cover !important; 
+    height: 100% !important; 
+    width: 100% !important;
+    border-radius: 16px !important; 
+    display: block;
+}
+
+/* Maintain Grid Spans */
+.subcategory-grid .work-card:nth-child(5n+1) { grid-column: span 3; grid-row: span 2; }
+.subcategory-grid .work-card:nth-child(5n+2) { grid-column: span 3; grid-row: span 1; }
+.subcategory-grid .work-card:nth-child(5n+3) { grid-column: span 2; grid-row: span 2; }
+.subcategory-grid .work-card:nth-child(5n+4) { grid-column: span 2; grid-row: span 1; }
+.subcategory-grid .work-card:nth-child(5n+5) { grid-column: span 2; grid-row: span 1; }
+
+.overlay-info {
+    position: absolute; bottom: 1rem; left: 1rem; right: 1rem;
+    background: rgba(20, 20, 20, 0.6); backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px; padding: 1.5rem; color: white !important; opacity: 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); display: flex;
+    flex-direction: column; justify-content: flex-start; z-index: 10;
+    transform: translateY(15px); box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.work-card:hover .overlay-info { opacity: 1; transform: translateY(0); }
+
+/* Force card title/caption text to stay white in BOTH light and dark mode.
+   Without this, the global "h1,h2,h3,h4,h5,h6 { color: var(--text-dark) }"
+   rule wins over the inherited white from .overlay-info (it targets the h3
+   directly, so inheritance doesn't apply), making the title unreadable
+   (dark text on a dark overlay) in light mode. */
+.overlay-info h3,
+.overlay-info p,
+.overlay-info span {
+    color: #ffffff !important;
+}
+
+@media (max-width: 1024px) {
+    .subcategory-grid { grid-template-columns: repeat(4, 1fr); }
+    .subcategory-grid .work-card:nth-child(5n+1) { grid-column: span 2; grid-row: span 2; }
+    .subcategory-grid .work-card:nth-child(5n+2) { grid-column: span 2; grid-row: span 1; }
+    .subcategory-grid .work-card:nth-child(5n+3) { grid-column: span 2; grid-row: span 2; }
+    .subcategory-grid .work-card:nth-child(5n+4) { grid-column: span 2; grid-row: span 1; }
+    .subcategory-grid .work-card:nth-child(5n+5) { grid-column: span 4; grid-row: span 1; }
+}
+@media (max-width: 600px) {
+    .subcategory-grid { grid-template-columns: 1fr; grid-auto-rows: 350px; }
+    .subcategory-grid .work-card, .subcategory-grid .archive-card { grid-column: span 1 !important; grid-row: span 1 !important; }
+}
 
 /* ==========================================
 MOBILE QUICK-TAP DOCK (CATEGORY SLIDER)
@@ -677,4 +900,88 @@ ARTWORK DETAIL PAGE
 @media (max-width: 480px) {
     .artwork-nav-row { gap: 0.6rem; }
     .artwork-nav-row a { flex: 1 1 auto; text-align: center; }
+}
+
+/* ==========================================
+GLOBAL OVERRIDES: LOGO, LAYOUT, & CLIPPED MEDIA
+=========================================== */
+/* 1. Force the Logo to your specific Purple */
+.logo { 
+    color: #7006CC !important; 
+}
+[data-theme="dark"] .logo { 
+    color: #7006CC !important; /* Prevents Dark Mode from turning it white */
+}
+
+/* 2. Perfectly Centered Category Titles & Subtitles */
+.category-header {
+    text-align: center !important; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: none !important;
+}
+
+.subcategory-title {
+    color: var(--color-dominant); 
+    text-shadow: 0 2px 10px rgba(114, 5, 205, 0.15);
+    font-family: var(--font-primary); 
+    font-size: 2.2rem; 
+    margin: 3rem auto 0.5rem auto !important; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+}
+[data-theme="dark"] .subcategory-title { color: #ffffff; }
+
+.category-header .section-subtitle {
+    margin: 0 auto 1.5rem auto !important; 
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+/* 3. Filter Bar (No cutoffs, perfectly aligned) */
+.filter-bar {
+    display: flex; 
+    flex-wrap: nowrap !important; 
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch; 
+    gap: 1rem; 
+    padding: 0 5% 1.5rem 5% !important; 
+    margin: 0 auto 2rem auto !important; 
+    width: 100%; 
+    max-width: 1000px;
+    justify-content: flex-start !important; 
+    border-bottom: 1px solid var(--border-light);
+    scroll-behavior: smooth;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: var(--color-dominant) transparent; /* Firefox */
+}
+@media (min-width: 1024px) {
+    .filter-bar { justify-content: center !important; }
+}
+
+/* 4. Hardware Acceleration for Strict Curved Borders */
+.subcategory-grid .work-card, .subcategory-grid .archive-card {
+    background: transparent !important; 
+    border: none !important; 
+    box-shadow: none !important;
+    display: block !important; 
+    grid-column: span 2; 
+    position: relative; 
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    /* Forces the browser to clip video layers strictly */
+    isolation: isolate; 
+    transform: translateZ(0); 
+}
+
+.subcategory-grid .work-card img, .subcategory-grid .archive-card img, .subcategory-grid video {
+    object-fit: cover !important; 
+    height: 100% !important; 
+    width: 100% !important;
+    border-radius: 16px !important; 
+    display: block;
+    margin: 0;
+    padding: 0;
 }

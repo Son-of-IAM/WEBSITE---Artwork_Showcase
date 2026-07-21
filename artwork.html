@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artwork | Son_of_IAM_</title>
     <meta name="description" content="Son_of_IAM_ - Stirring Hearts Through Art">
-    <!-- Link to your CSS file (ensure the name matches your actual CSS file) -->
     <link rel="stylesheet" href="style.css?v=2.0">
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK59NQ2PR"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -15,8 +13,6 @@
       gtag('js', new Date());
       gtag('config', 'G-XMK59NQ2PR');
     </script>
-
-    <!-- Prevents Dark Mode Flashing/Glitching -->
     <script>
         if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.setAttribute('data-theme', 'dark');
@@ -25,9 +21,6 @@
 </head>
 <body>
 
-    <!-- ==========================================
-    HEADER & NAVIGATION
-    =========================================== -->
     <header id="mainHeader">
         <div class="nav-container">
             <a href="index.html" class="logo-wrapper">
@@ -51,55 +44,54 @@
         </div>
     </header>
 
-    <!-- Mobile Menu Overlay -->
     <div class="mobile-menu">
         <a href="work.html">Work</a>
         <a href="shop.html">Shop</a>
         <a href="about.html">About</a>
         <a href="https://medium.com/@xyvyhnd" target="_blank">Articles</a>
         <a href="commercial.html">Commercial</a>
+        <div class="mobile-menu-credit">
+            <a href="https://ayoleyi-dev.github.io/Marvelous-Ascent/" target="_blank" rel="noopener" class="credit-badge" title="Website built by Marvelous Ascent — an independent developer, not affiliated with Son_of_IAM_">
+                <span class="credit-bracket">[MA]</span> Site by Marvelous Ascent
+            </a>
+            <a href="https://ayoleyi-portfolio.vercel.app/" target="_blank" rel="noopener" class="credit-portfolio-link">Developer Portfolio ↗</a>
+        </div>
     </div>
     <div class="overlay" onclick="toggleMenu()"></div>
 
-
-    <!-- ==========================================
-    ARTWORK DETAIL SECTION
-    =========================================== -->
     <main class="artwork-detail-page reveal active">
         <div class="artwork-detail-grid">
-
-            <!-- Left: Massive Image Focus -->
             <div class="artwork-image-panel">
                 <img id="mainImage" src="" alt="Artwork">
             </div>
-
-            <!-- Right: Elegant Typography & Details -->
             <div class="artwork-info-panel">
                 <h1 id="artworkTitle"></h1>
-
                 <div class="artwork-meta">
                     <span id="artworkCategory"></span> &bull;
                     <span id="artworkYear"></span> &bull;
                     <span id="artworkMedium"></span>
                 </div>
-
                 <p id="artworkDimensions" class="artwork-dimensions"></p>
-
                 <div class="artwork-note-block">
                     <h3>Artist Note</h3>
                     <p id="artworkDescription"></p>
                 </div>
-
                 <div id="artworkPrice" class="artwork-price"></div>
 
-                <!-- NEW: The Button for the Client's External Video Link -->
-                <div id="videoLinkContainer" class="artwork-video-link">
+                <!-- DYNAMIC EMAIL AUTOMATION BUTTON -->
+                <div style="margin-bottom: 2rem;">
+                    <a id="requestArtworkBtn" href="mailto:SonofIAM.9@gmail.com?subject=Artwork%20Inquiry" class="btn-cta" style="width: 100%; text-align: center; display: inline-block;">
+                        📥 Inquire / Request Artwork
+                    </a>
+                </div>
+
+                <!-- VIDEO LINK -->
+                <div id="videoLinkContainer" class="artwork-video-link" style="display: none;">
                     <a id="externalVideoLink" href="#" target="_blank" class="btn-cta">
                         ▶ Watch Full Process
                     </a>
                 </div>
 
-                <!-- Navigation -->
                 <div class="artwork-nav-row">
                     <a id="prevBtn" href="#" class="btn-outline">&larr; Prev</a>
                     <a href="work.html" class="btn-outline btn-gallery">Gallery</a>
@@ -109,13 +101,6 @@
         </div>
     </main>
 
-
-    <!-- ==========================================
-    FOOTER
-    =========================================== -->
-    <!-- ==========================================
-    FOOTER
-    =========================================== -->
     <footer>
       <div class="footer-grid">
         <div class="footer-brand">
@@ -149,13 +134,16 @@
         </div>
       </div>
       <div class="footer-bottom">
-        © 2026 Son_of_IAM_. All rights reserved.
+        <span>© 2026 Son_of_IAM_. All rights reserved.</span>
+        <span>
+            <a href="https://ayoleyi-dev.github.io/Marvelous-Ascent/" target="_blank" rel="noopener" class="credit-badge" title="Website built by Marvelous Ascent — an independent developer, not affiliated with Son_of_IAM_">
+                <span class="credit-bracket">[MA]</span> Site built by Marvelous Ascent
+            </a>
+            <a href="https://ayoleyi-portfolio.vercel.app/" target="_blank" rel="noopener" class="credit-portfolio-link">Developer Portfolio ↗</a>
+        </span>
       </div>
     </footer>
-    <!-- ==========================================
-    SCRIPTS (ONLY ONE CLEAN LINK)
-    =========================================== -->
-    <script src="script.js"></script>
 
+    <script src="script.js"></script>
 </body>
 </html>

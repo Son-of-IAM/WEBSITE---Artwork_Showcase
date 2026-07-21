@@ -3,7 +3,7 @@
 const ARTWORKS_URL = 'data/artworks/index.json';
 
 /* ==========================================
-1. DATA FETCHING (HEADLESS CMS)
+DATA FETCHING (HEADLESS CMS)
 ========================================== */
 async function fetchArtworks() {
     try {
@@ -20,6 +20,7 @@ async function fetchArtworks() {
 function getCategoryLabel(cat) {
     const labels = {
         'paintings': 'Paintings',
+        'ruach': 'Ruach',
         '3d-art': '3D Art',
         'gospel': 'The Gospel Proclaimed',
         'old': 'Old Artworks',
@@ -33,21 +34,22 @@ function getCategoryLabel(cat) {
 2. CINEMATIC CAROUSEL LOGIC
 ========================================== */
 const EXHIBITION_IMAGES = [
-    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1783785773/1_Corinthians_2V9_painting_ah0hjt.webp', title: '1 Corinthians 2:9' },
-    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1783785771/Crucifixion._painting_mvg0qs.webp', title: 'Crucifixion' },
-    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1783785772/Daughter_Of_Zion._painting_qhnhaw.webp', title: 'Daughter Of Zion' },
-    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1783785774/Genesis_3_painting_rwetjt.webp', title: 'Genesis 3' },
-    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1783785672/5._Light_Among_Darkness_sblsss.webp', title: 'Light Among Darkness' },
-    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1783785776/Light_Bearer_painting_py5zgx.webp', title: 'Light Bearer' },
-    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1783785775/Messiah_s_Love_painting_ihro5h.webp', title: "Messiah's Love" },
-    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1783787604/The_Lost_Sheep_concept_sketches_ixkpbl.jpg', title: 'The Lost Sheep' }
+    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1784594995/website_assets/exhibition/1_Corinthians_2V9.webp', title: '1 Corinthians 2:9' },
+    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1784594996/website_assets/exhibition/A_NEW_BIRTH.webp', title: 'A New Birth' },
+    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1784594998/website_assets/exhibition/AMEN.webp', title: 'Amen' },
+    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1784594998/website_assets/exhibition/Eleutheria_liberty.webp', title: 'Eleutheria (Liberty)' },
+    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1784595000/website_assets/exhibition/Genesis_3.webp', title: 'Genesis 3' },
+    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1784595003/website_assets/exhibition/light_among_darkness.webp', title: 'Light Among Darkness' },
+    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1784595004/website_assets/exhibition/Light_bearer.webp', title: 'Light Bearer' },
+    { url: 'https://res.cloudinary.com/mst703ng/image/upload/v1784595005/website_assets/exhibition/Messiah_s_Love.webp', title: "Messiah's Love" }
 ];
 
 async function initCinematicCarousel(artworks) {
     const carouselItems = document.querySelectorAll('#auto-carousel .carousel-item img');
     if (carouselItems.length === 0) return;
-    
+
     let nextIndex = carouselItems.length;
+    
     carouselItems.forEach((img, index) => {
         img.src = EXHIBITION_IMAGES[index].url;
         img.alt = EXHIBITION_IMAGES[index].title;
@@ -60,7 +62,7 @@ async function initCinematicCarousel(artworks) {
         const offScreenIdx = positions.indexOf('left');
         positions.unshift(positions.pop());
         items.forEach((item, idx) => { item.className = 'carousel-item ' + positions[idx]; });
-        
+
         if (offScreenIdx !== -1) {
             const img = carouselItems[offScreenIdx];
             const nextImg = EXHIBITION_IMAGES[nextIndex % EXHIBITION_IMAGES.length];
@@ -81,6 +83,7 @@ function renderCategoryFolders(artworks) {
     folderGrid.innerHTML = '';
     const categories = [
         { id: 'paintings', label: 'Paintings' },
+        { id: 'ruach', label: 'Ruach' },
         { id: 'gospel', label: 'The Gospel Proclaimed' },
         { id: 'sketches', label: 'Sketches' },
         { id: '3d-art', label: '3D Art' },
@@ -117,6 +120,7 @@ function renderCategoryFolders(artworks) {
 function renderWorkGrids(artworks) {
     const sections = {
         'paintings': document.getElementById('paintings-grid'),
+        'ruach': document.getElementById('ruach-grid'),
         '3d-art': document.getElementById('3d-art-grid'),
         'gospel': document.getElementById('gospel-grid'),
         'graffiti': document.getElementById('graffiti-grid'),
@@ -173,21 +177,26 @@ function renderWorkGrids(artworks) {
             const isVideo = mediaSrc.toLowerCase().endsWith('.mp4') || mediaSrc.toLowerCase().endsWith('.mov');
             
             let mediaElement;
+            let cardHref = `artwork.html?id=${art.id}`;
+            let cardTarget = "_self";
+            
             if (isVideo) {
-                mediaElement = `<video src="${mediaSrc}" autoplay loop muted playsinline loading="lazy" style="width:100%; height:100%; object-fit:contain;"></video>`;
+                let dummyImg = mediaSrc.replace(/\.(mp4|mov)$/i, '.webp');
+                mediaElement = `<img src="${dummyImg}" alt="${art.title} Video Preview" loading="lazy" decoding="async">`;
+                cardHref = "https://pin.it/NK6gtrrgt";
+                cardTarget = "_blank";
             } else {
                 let fullImg = mediaSrc;
                 if (mediaSrc.includes('res.cloudinary.com') && mediaSrc.includes('/upload/')) {
-                    // Auto-format + auto-quality + capped width so images load fast
                     fullImg = mediaSrc.replace('/upload/', '/upload/f_auto,q_auto,w_1600/');
                 }
-
                 mediaElement = `<img src="${fullImg}" alt="${art.title}" loading="lazy" decoding="async">`;
             }
             
             const card = document.createElement('a');
             card.className = 'work-card reveal active tilt-card filtered-item';
-            card.href = `artwork.html?id=${art.id}`;
+            card.href = cardHref;
+            card.target = cardTarget;
             
             if (isFilterable) {
                 card.dataset.group = art.category === 'paintings' ? (art.year || 'Unknown') : (art.subcategory || 'Uncategorized');
@@ -228,6 +237,7 @@ function renderWorkGrids(artworks) {
         renderCards(sections['3d-art'], threeDArt, true);
     }
 
+    if (sections['ruach']) renderCards(sections['ruach'], artworks.filter(a => a.category === 'ruach'), false);
     if (sections['sketches']) renderCards(sections['sketches'], artworks.filter(a => a.category === 'sketches'), false);
     if (sections['old']) renderCards(sections['old'], artworks.filter(a => a.category === 'old'), false);
     if (sections['gospel']) renderCards(sections['gospel'], artworks.filter(a => a.category === 'gospel'), false);
@@ -235,7 +245,7 @@ function renderWorkGrids(artworks) {
 }
 
 /* ==========================================
-5. ARTWORK DETAIL PAGE
+5. ARTWORK DETAIL PAGE & EMAIL AUTOMATION
 ========================================== */
 function renderArtworkDetail(artworks) {
     const params = new URLSearchParams(window.location.search);
@@ -245,7 +255,7 @@ function renderArtworkDetail(artworks) {
     if (!titleEl) return; 
     if (isNaN(idParam) || !artworks.length) return showArtworkError();
     
-    const art = artworks.find(a => a.id === idParam);
+    const art = artworks.find(a => Number(a.id) === idParam || String(a.id) === params.get('id'));
     if (!art) return showArtworkError();
 
     const setText = (elId, text) => {
@@ -278,7 +288,15 @@ function renderArtworkDetail(artworks) {
         mainImg.src = art.fullImage || art.image || '';
         mainImg.alt = art.title;
     }
-    
+
+    // --- NEW: AUTOMATED EMAIL LOGIC ---
+    const requestBtn = document.getElementById('requestArtworkBtn');
+    if (requestBtn) {
+        const emailSubject = encodeURIComponent(`Artwork Inquiry: ${art.title} (ID: ${art.id})`);
+        const emailBody = encodeURIComponent(`Hello Promise,\n\nI am reaching out regarding the following artwork from your portfolio:\n\nTitle: ${art.title}\nCategory: ${getCategoryLabel(art.category)}\nArtwork ID: ${art.id}\n\nPlease let me know about its availability and pricing.\n\nThank you!`);
+        requestBtn.href = `mailto:SonofIAM.9@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+    }
+
     const videoLinkContainer = document.getElementById('videoLinkContainer');
     const externalVideoLink = document.getElementById('externalVideoLink');
 
@@ -305,12 +323,18 @@ function renderArtworkDetail(artworks) {
 function showArtworkError() {
     const title = document.getElementById('artworkTitle');
     if (title) title.textContent = 'Artwork Not Found';
-    
     const desc = document.getElementById('artworkDescription');
     if (desc) desc.textContent = 'This artwork could not be loaded. Please return to the gallery.';
-    
     const mainImg = document.getElementById('mainImage');
     if (mainImg) mainImg.style.display = 'none';
+
+    // Keep the inquiry button alive even when the artwork can't be matched
+    const requestBtn = document.getElementById('requestArtworkBtn');
+    if (requestBtn) {
+        const subject = encodeURIComponent('Artwork Inquiry');
+        const body = encodeURIComponent('Hello Promise,\n\nI came across your portfolio and would like to know more about your artwork.\n\nThank you!');
+        requestBtn.href = `mailto:SonofIAM.9@gmail.com?subject=${subject}&body=${body}`;
+    }
 }
 
 /* ==========================================
@@ -402,7 +426,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             header.classList.toggle('scrolled', window.scrollY > 50);
         });
     }
-
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) entry.target.classList.add('active');
@@ -410,8 +434,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
+    
     const artworks = await fetchArtworks();
+    
     if (artworks.length > 0) {
         initCinematicCarousel(artworks); 
         renderCategoryFolders(artworks); 
@@ -427,11 +452,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         requestAnimationFrame(() => {
             setTimeout(() => transitionOverlay.classList.add('loaded'), 100);
         });
-
+        
         document.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', e => {
                 const href = link.getAttribute('href');
                 const target = link.getAttribute('target');
+                
                 if (href && !href.startsWith('#') && !href.startsWith('mailto') && target !== '_blank' && href !== '') {
                     e.preventDefault();
                     transitionOverlay.classList.remove('loaded');
@@ -439,7 +465,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             });
         });
-
+        
         const tiltCards = document.querySelectorAll('.artwork-card, .work-card, .shop-card, .category-folder-card');
         tiltCards.forEach(card => {
             card.classList.add('tilt-card');
@@ -450,6 +476,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const y = e.clientY - rect.top;
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
+                
                 const rotateX = ((y - centerY) / centerY) * -12; 
                 const rotateY = ((x - centerX) / centerX) * 12;
                 
@@ -474,12 +501,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     initCategorySlider(); 
     initParticles();
-// ==========================================
-    // PROGRESSIVE IMAGE LOADER TRIGGER
-    // ==========================================
-    // Blur-up placeholder removed — images load directly with native
-    // loading="lazy" handling the deferred loading instead.
-}); // <-- END OF DOMContentLoaded BLOCK
+});
 
 function initCategorySlider() {
     const slider = document.getElementById('categorySlider');
@@ -505,6 +527,7 @@ function initParticles() {
     document.body.appendChild(container);
     
     const particleCount = 40; 
+    
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'ambient-particle';

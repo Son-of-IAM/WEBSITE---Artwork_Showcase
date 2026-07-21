@@ -36,25 +36,30 @@
 
     <style>
         /* Custom Work Page Hero Styling */
+        /* Custom Work Page Hero Styling */
         .work-hero {
-            margin-top: 80px; 
-            padding: 6rem 5% 2rem; 
+            margin-top: 60px; /* Adjust for the header */
+            padding: 8rem 5% 4rem; 
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
+            background: #030208; /* Deep cinematic background */
+            background-image: linear-gradient(to bottom, rgba(114, 5, 205, 0.1), transparent);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         .work-hero h1 { 
             font-size: clamp(4.5rem, 12vw, 8rem);
             margin-bottom: 0.5rem; 
             text-transform: uppercase; 
             line-height: 1;
-            color: var(--text-dark) !important;
+            color: #ffffff !important; /* Forced White */
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
         .work-hero > p {
             font-size: 1.2rem;
-            color: var(--text-muted);
+            color: rgba(255, 255, 255, 0.8) !important; /* Forced White-ish */
         }
         .scripture-block { 
             max-width: 800px; 
@@ -67,20 +72,22 @@
             font-family: var(--font-handwriting); 
             font-size: clamp(2.2rem, 8vw, 3.2rem);
             line-height: 1.3; 
-            color: var(--color-dominant); 
+            color: #d4af37 !important; /* Gold to stand out against the dark */
             margin-bottom: 1.5rem; 
-            text-shadow: 0 2px 15px rgba(114, 5, 205, 0.2);
+            text-shadow: 0 2px 15px rgba(0,0,0,0.8);
             padding: 0 10px;
         }
         .scripture-block .scripture-reference {
             font-size: 1.3rem;
             font-weight: 600;
+            color: rgba(255, 255, 255, 0.6) !important;
         }
     </style>
 </head>
 <body>
 <nav class="category-slider" id="categorySlider">
     <a href="#paintings" class="slider-dot" data-label="Paintings"></a>
+    <a href="#ruach" class="slider-dot" data-label="Ruach"></a> <!-- NEW RUACH DOT -->
     <a href="#gospel" class="slider-dot" data-label="Gospel Proclaimed"></a>    
     <a href="#sketches" class="slider-dot" data-label="Sketches"></a>
     <a href="#3d-art" class="slider-dot" data-label="3D Art"></a>
@@ -118,6 +125,12 @@
         <a href="about.html" onclick="toggleMenu()">About</a>
         <a href="https://medium.com/@xyvyhnd" target="_blank" onclick="toggleMenu()">Articles</a>
         <a href="commercial.html" onclick="toggleMenu()">Commercial</a>
+        <div class="mobile-menu-credit">
+            <a href="https://ayoleyi-dev.github.io/Marvelous-Ascent/" target="_blank" rel="noopener" class="credit-badge" title="Website built by Marvelous Ascent — an independent developer, not affiliated with Son_of_IAM_">
+                <span class="credit-bracket">[MA]</span> Site by Marvelous Ascent
+            </a>
+            <a href="https://ayoleyi-portfolio.vercel.app/" target="_blank" rel="noopener" class="credit-portfolio-link">Developer Portfolio ↗</a>
+        </div>
     </div>
 
     <section class="work-hero">
@@ -137,6 +150,15 @@
         </div>
         <div class="category-grid" id="paintings-grid"></div>
     </section>
+
+<!-- RUACH SECTION -->
+<section id="ruach" class="category-section">
+    <div class="category-header reveal">
+        <h2 class="subcategory-title">Ruach</h2>
+        <p class="section-subtitle">The Breath of God</p>
+    </div>
+    <div class="category-grid" id="ruach-grid"></div>
+</section>
 
     <!-- 2. THE GOSPEL PROCLAIMED -->
     <section id="gospel" class="category-section">
@@ -190,7 +212,15 @@
             <div class="footer-links"><h4>Explore</h4><a href="work.html#paintings">Paintings</a><a href="work.html#3d-art">3D Art</a><a href="https://medium.com/@xyvyhnd" target="_blank">Articles</a><a href="work.html#old-artworks">Old Artworks</a></div>
             <div class="footer-links"><h4>Follow</h4><div class="social-pills"><a href="https://instagram.com/son_of_iam_" target="_blank" class="social-pill">Instagram</a><a href="https://x.com/son_of_iam_?s=21" target="_blank" class="social-pill">X (Twitter)</a><a href="https://www.tiktok.com/@son_of_iam_?_t=zs-9032ktsad1b&_r=1" target="_blank" class="social-pill">Tiktok</a><a href="https://www.behance.net/themainugly" target="_blank" class="social-pill">Behance</a><a href="https://pin.it/4kjJwst" target="_blank" class="social-pill">Pinterest</a></div></div>
         </div>
-        <div class="footer-bottom">© 2026 Son_of_IAM_. All rights reserved.</div>
+        <div class="footer-bottom">
+            <span>© 2026 Son_of_IAM_. All rights reserved.</span>
+            <span>
+                <a href="https://ayoleyi-dev.github.io/Marvelous-Ascent/" target="_blank" rel="noopener" class="credit-badge" title="Website built by Marvelous Ascent — an independent developer, not affiliated with Son_of_IAM_">
+                    <span class="credit-bracket">[MA]</span> Site built by Marvelous Ascent
+                </a>
+                <a href="https://ayoleyi-portfolio.vercel.app/" target="_blank" rel="noopener" class="credit-portfolio-link">Developer Portfolio ↗</a>
+            </span>
+        </div>
     </footer>
 
 <script src="script.js?v=2.1"></script>
